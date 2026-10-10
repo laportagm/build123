@@ -47,6 +47,9 @@
                   padding: .5mm 1.9mm; border-radius: 3mm; letter-spacing: .06em; text-transform: uppercase; margin-left: 2mm; vertical-align: 1px; }
   /* chosen */
   .hero2 { display: grid; grid-template-columns: 1.45fr 1fr; gap: 1.8mm; }
+  .hero2 > img { height: 64mm; object-fit: cover; }
+  .hero2 > div { display: flex; flex-direction: column; gap: 1.8mm; }
+  .hero2 > div > img { height: 31.1mm; object-fit: cover; }
   .stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.8mm; margin: 2mm 0 1.6mm; }
   .stat { border-top: 1.2px solid var(--ink); padding-top: .8mm; }
   .stat .v { font-family: "Inter Display", "Inter"; font-size: 11pt; font-weight: 600; line-height: 1.1; white-space: nowrap; }
@@ -87,7 +90,7 @@
       <p><b>Two banks, visible light only.</b> 660 nm deep red reaches deeper and is absorbed less by melanin (darker skin, deeper veins); 620 nm red-orange looks ~5× brighter to the eye for superficial veins.</p>
       <h3>Design moves</h3>
       <ol class="moves">
-        <li><b>One G2 skin.</b> The whole stone is a single cubic B-spline surface — curvature-continuous by construction, no fillets, no flats. The only edge is the waterline.</li>
+        <li><b>One G2 skin.</b> The whole stone is a single cubic B-spline surface — curvature-continuous by construction, no fillets, no flats (its two parametric poles are G1 today; made exact at the CAD gate). The only edge is the waterline.</li>
         <li><b>The waterline.</b> One planar parting line low on the flank splits a warm-grey PETG top from a black, light-tight optical sole. Both print outer-surface-up, no supports.</li>
         <li><b>The seal is the form.</b> A gently concave sole (R120) saddles the forearm; the index finger lands just behind the window, where pressing seals the lip.</li>
         <li><b>Hidden controls.</b> A 0.5 mm finger dimple is the button (flexing membrane). A hairline crescent on the rim glows through 0.6 mm PETG for status and charging. USB-C sits on the waterline at the tail.</li>
@@ -129,9 +132,9 @@
       <h2><span class="n">03</span>Chosen: A — Pebble</h2>
       <div class="hero2">
         <img src="renders/board/A_hero_seam.jpg" alt="Option A with the status seam lit">
-        <div style="display:grid;grid-template-rows:1fr 1fr;gap:1.8mm">
-          <img src="renders/A_detail.jpg" alt="Rim seam and finger dimple" style="height:100%;object-fit:cover">
-          <img src="renders/A_underside.jpg" alt="Underside: black optical sole" style="height:100%;object-fit:cover">
+        <div>
+          <img src="renders/A_detail.jpg" alt="Rim seam and finger dimple">
+          <img src="renders/A_underside.jpg" alt="Underside: black optical sole">
         </div>
       </div>
       <div class="stats">

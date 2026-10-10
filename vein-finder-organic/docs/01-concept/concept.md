@@ -31,7 +31,9 @@ from a black, light-tight optical sole. Behind the window it carries:
   the concave, light-tight black sole and a window that sits in a shallow well.
 * **Two wavelengths, visible only.**
   * 660 nm: melanin absorbs ~20% less here than at 620 nm, and it reaches deeper. It
-    looks dim to the eye (V(660) ≈ 0.06), so it gets the higher current.
+    looks dim to the eye (V(660) ≈ 0.06). Its current is still capped by skin heating,
+    and lower than 620 nm's because it makes more light per mA. So the 660 bank benefits
+    most from a dimmed room.
   * 620 nm: about 5× brighter per watt to the eye (V ≈ 0.38). Best for superficial
     veins on lighter skin.
 
@@ -43,9 +45,21 @@ from a black, light-tight optical sole. Behind the window it carries:
 
 ### 3.1 How the form is made (G2 by construction)
 OpenCascade fillets are circular blends, so they are only G1. Instead, the whole outer
-skin is **one periodic cubic B-spline surface**. That makes it C2, and therefore G2,
-everywhere, including across the u-seam. The only exceptions are its two parametric
-poles, which are G1-enforced and sit in flat regions.
+skin is **one periodic cubic B-spline surface**, C2 and therefore G2 by construction,
+including across the u-seam.
+
+Measured on option A, the curvature jump across the seam is 1.4·10⁻⁷ mm⁻¹.
+
+**Known gap, the first task at the CAD gate.** The surface's two parametric poles (crown
+and underside centre) are only G1 today:
+- Near the crown pole the principal curvature spreads by ±0.02 mm⁻¹ within ~2 mm, and by
+  ±0.09 mm⁻¹ within ~0.3 mm. This is far below FDM resolution and invisible in the
+  renders, but zebra stripes would show it.
+- Cause: the piecewise-linear disk map and FEM fields feed noise into the fit exactly
+  where the parametrisation is densest.
+- Fix: set the first two control rows at each pole from a least-squares osculating
+  paraboloid. This makes the pole G2 to fit accuracy, which is then re-checked with the
+  same ring test and zebra renders.
 
 `cad/stone/organic.py` builds it in five steps:
 1. The planform is a smooth C-shape (2D SDF, C2 smooth-min/max).
@@ -163,14 +177,18 @@ Moving the LED entry from r = 20 to 17.5 mm makes the rim about 5× brighter. Ti
 LEDs would barely change it. See `figures/fig_window_profile.png`.
 
 ### 5.5 IEC 62471 (preliminary)
-Bare LED at its full rated current, die area assumed 0.3 mm²:
-* **Retinal thermal:** 3.6–4.4% of the exempt limit.
-* **Blue-light weighting:** B(λ) = 0.001 above 600 nm. Unaveraged radiance is about 4×
-  the exempt limit at full rating, but well under it at the planned ≤ 50 mA cap. The
-  standard's field-of-view averaging lowers it further.
+Worst case is a bare LED at its full rated current, die area assumed 0.3 mm², viewed from
+200 mm. The die then subtends 3.1 mrad, so it counts as a *small source*.
 
-Expected **Exempt group**. The formal calculation against the standard's tables comes at
-the verification gate.
+* **Retinal thermal:** 3.6–4.4% of the exempt limit (28 000/α).
+* **Blue light:** B(λ) = 0.001 above 600 nm. Assessed as small-source irradiance, it is
+  25–30% of the exempt limit (E_B ≤ 0.01 W/m²) per LED at full rating. All six LEDs of a
+  bank together stay well under the limit at the planned ≤ 50 mA cap, about ⅙ of rating.
+* **Other hazards:** no UV, no IR.
+
+Expected **Exempt group**. The limits were taken from secondary sources that reproduce
+IEC 62471 Table 6. The formal calculation against the standard's tables, including
+whole-lamp and field-of-view rules, comes at the verification gate.
 
 ## 6. Requirements that conflict with physics, cost or printing
 | Brief | Problem | Smallest change (proposed) |

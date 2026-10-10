@@ -223,17 +223,21 @@
   "iec62471": {
     "L1SP-DRD0002800000 (660 nm)": {
       "p_opt_at_imax_mW": 372,
+      "alpha_mrad": 3.09,
       "radiance_W_m2_sr": 394245,
       "L_R_over_exempt": 0.0435,
-      "L_B_unaveraged_W_m2_sr": 394.2,
-      "L_B_exempt_limit": 100.0
+      "small_source": true,
+      "E_B_W_m2": 0.00296,
+      "E_B_over_exempt": 0.296
     },
     "L128-RNG1003500000 (~620 nm)": {
       "p_opt_at_imax_mW": 312,
+      "alpha_mrad": 3.09,
       "radiance_W_m2_sr": 330517,
       "L_R_over_exempt": 0.0365,
-      "L_B_unaveraged_W_m2_sr": 330.5,
-      "L_B_exempt_limit": 100.0
+      "small_source": true,
+      "E_B_W_m2": 0.00248,
+      "E_B_over_exempt": 0.248
     }
   }
 }

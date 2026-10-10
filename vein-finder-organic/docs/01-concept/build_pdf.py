@@ -16,15 +16,15 @@ def jpegs():
         png.unlink()
 
 
-def autocrop(img, margin=0.06, thresh=0.07, aspect=None):
+def autocrop(img, margin=0.06, thresh=0.07, aspect=None, min_frac=0.004):
     """Crop to the object (difference from the border colour), then pad to `aspect` (w/h)."""
     import numpy as np
     a = np.asarray(img.convert("RGB"), dtype=np.float32) / 255.0
     border = np.concatenate([a[:4].reshape(-1, 3), a[-4:].reshape(-1, 3), a[:, :4].reshape(-1, 3), a[:, -4:].reshape(-1, 3)])
     bg = np.median(border, axis=0)
     m = np.abs(a - bg).max(axis=2) > thresh
-    rows = np.where(m.mean(axis=1) > 0.004)[0]
-    cols = np.where(m.mean(axis=0) > 0.004)[0]
+    rows = np.where(m.mean(axis=1) > min_frac)[0]
+    cols = np.where(m.mean(axis=0) > min_frac)[0]
     H, W = m.shape
     y0, y1, x0, x1 = rows.min(), rows.max(), cols.min(), cols.max()
     my, mx = int(margin * (y1 - y0)), int(margin * (x1 - x0))
@@ -47,7 +47,7 @@ def board_crops():
         if n.endswith("_side"):
             im = autocrop(im, margin=0.10, aspect=3.4)
         elif n.endswith("_plan"):
-            im = autocrop(im.rotate(-90, expand=True), margin=0.08, aspect=1.62)
+            im = autocrop(im.rotate(-90, expand=True), margin=0.08, aspect=1.62, thresh=0.16, min_frac=0.02)
         elif n.endswith("_hero") or n in ("A_hero_seam",):
             im = autocrop(im, margin=0.05, aspect=1.45)
         elif n == "A_context":

@@ -58,11 +58,18 @@ Runtime `t = E_usable / P_bat` with `E_usable = C · V_nom · u` (u = usable fra
 Invariant: `P_in − P_out − P_loss = 0` and every term ≥ 0.
 
 ### 5. Photobiological (IEC 62471, preliminary)
-Lambertian source radiance `L = Φ / (π A_src)`. Retinal thermal `L_R = Σ L_λ R(λ)Δλ`
-(R = 1.0 for 500–700 nm); blue light `L_B = Σ L_λ B(λ)Δλ` (B = 0.001 for 600–700 nm).
-Exempt-group comparisons use the limits as recalled for the concept gate; the
-verification gate re-derives them from the standard's tables with the measurement
-field-of-view rules (all marked "to verify").
+Lambertian source radiance `L = Φ / (π A_src)`; on-axis irradiance at distance d:
+`E = Φ / (π d²)`.
+- Retinal thermal: `L_R = Σ L_λ R(λ)Δλ`, with R = 1.0 for 500–700 nm. Exempt limit
+  `28 000/α` W·m⁻²·sr⁻¹, where α ≥ 1.7 mrad.
+- Blue light: B(λ) = 0.001 for 600–700 nm. A single die seen from 200 mm subtends about
+  3 mrad, which is below 11 mrad, so it is a *small source*. Small sources are assessed by
+  irradiance, `E_B = Σ E_λ B(λ)Δλ`, with an exempt limit of 0.01 W/m² (100 J/m² in
+  10 000 s).
+
+These limits come from secondary sources that reproduce IEC 62471:2006 Table 6. The
+verification gate re-derives them from the standard, including whole-lamp and
+field-of-view rules.
 
 ## Assumptions (nominal, with the range used for sensitivity)
 | Quantity | Nominal | Range | Basis |

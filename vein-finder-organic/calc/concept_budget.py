@@ -251,15 +251,25 @@ def study(n_per_bank=6):
     return rows
 
 
-def ieec62471_prelim():
+def ieec62471_prelim(d_m=0.200):
+    """Bare LED at its full rated current (worst case), preliminary.
+
+    Limits as reproduced from IEC 62471:2006 Table 6 by secondary sources (to verify
+    against the standard): retinal thermal L_R <= 28000/alpha (exempt), blue light
+    L_B <= 100 W/m2/sr (exempt); for small sources (alpha < 0.011 rad) blue light is
+    assessed as irradiance, exempt E_B <= 0.01 W/m2 (100 J/m2 in 10 000 s).
+    B(lambda) = 0.001 and R(lambda) = 1.0 for 600-700 nm."""
     out = {}
     for led in (DEEP_RED, RED_ORANGE):
         p_max = float(led_p_opt(led, led.i_max_A))
         L = p_max / (np.pi * led.src_area_m2)
-        alpha = max(2 * np.sqrt(led.src_area_m2 / np.pi) / 0.200, 0.0017)
-        out[led.name] = dict(p_opt_at_imax_mW=round(p_max * 1e3), radiance_W_m2_sr=round(L),
-                             L_R_over_exempt=round(L / (28000.0 / alpha), 4),
-                             L_B_unaveraged_W_m2_sr=round(0.001 * L, 1), L_B_exempt_limit=100.0)
+        alpha = 2 * np.sqrt(led.src_area_m2 / np.pi) / d_m
+        alpha_eff = max(alpha, 0.0017)
+        E = (p_max / np.pi) / d_m**2                      # on-axis irradiance of a Lambertian emitter
+        out[led.name] = dict(p_opt_at_imax_mW=round(p_max * 1e3), alpha_mrad=round(alpha * 1e3, 2),
+                             radiance_W_m2_sr=round(L), L_R_over_exempt=round(L / (28000.0 / alpha_eff), 4),
+                             small_source=bool(alpha < 0.011),
+                             E_B_W_m2=round(0.001 * E, 5), E_B_over_exempt=round(0.001 * E / 0.01, 3))
     return out
 
 
