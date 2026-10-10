@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vein Finder Organic — Concept</title>
+<style>
+  @page { size: 420mm 297mm; margin: 0; }
+  :root {
+    --paper: #f6f4ef; --ink: #161616; --ink2: #55534e; --ink3: #8a877f; --rule: #dcd8cf;
+    --pass: #1f7a3f; --fail: #b4402c; --red: #c23b2a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); color: var(--ink); }
+  body { font-family: "Inter", "DejaVu Sans", sans-serif; font-size: 8.1pt; line-height: 1.36;
+         -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .sheet { width: 420mm; height: 297mm; padding: 9mm 11mm 6mm; display: grid;
+           grid-template-rows: 21mm 186mm 1fr 6mm; row-gap: 3.2mm; overflow: hidden; }
+  header { display: grid; grid-template-columns: 1fr auto; align-items: end; border-bottom: 1.2px solid var(--ink); padding-bottom: 2.2mm; }
+  .kicker { font-size: 7.2pt; letter-spacing: .18em; text-transform: uppercase; color: var(--ink2); font-weight: 600; }
+  h1 { font-family: "Inter Display", "Inter", sans-serif; font-weight: 600; font-size: 21pt; letter-spacing: -.01em; margin: .8mm 0 0; line-height: 1.05; }
+  .sub { color: var(--ink2); font-size: 9pt; margin-top: .9mm; }
+  .right-head { text-align: right; }
+  .warn { display: inline-block; border: 1.4px solid var(--red); color: var(--red); font-weight: 700; font-size: 7.8pt;
+          letter-spacing: .04em; padding: 1.1mm 2.4mm; border-radius: 1.2mm; text-transform: uppercase; }
+  .gates { margin-top: 1.8mm; font-size: 7.6pt; color: var(--ink2); }
+  .gates b { color: var(--ink); } .gates span { margin-left: 2.6mm; }
+  main { display: grid; grid-template-columns: 84mm 152mm 1fr; gap: 6mm; overflow: hidden; }
+  h2 { font-size: 10pt; margin: 0 0 1.4mm; font-weight: 700; }
+  h2 .n { color: var(--ink3); font-weight: 600; margin-right: 1.4mm; }
+  h2 .aside { font-weight: 500; color: var(--ink2); font-size: 8pt; }
+  h3 { font-size: 8.6pt; margin: 2mm 0 .8mm; font-weight: 700; }
+  p { margin: 0 0 1.4mm; }
+  img { display: block; width: 100%; height: auto; border-radius: 1mm; }
+  .cap { font-size: 6.9pt; color: var(--ink2); margin: .7mm 0 0; }
+  ol.moves { margin: 0; padding-left: 4mm; } ol.moves li { margin-bottom: 1mm; }
+  /* options */
+  .opt { display: grid; grid-template-columns: 64mm 1fr; gap: 3mm; padding: 1.8mm 0; border-top: 1px solid var(--rule); }
+  .opt.first { border-top: none; padding-top: 0; }
+  .opt-title { font-size: 10.6pt; font-weight: 700; }
+  .tag { color: var(--ink2); font-size: 7.9pt; }
+  .chips { display: flex; flex-wrap: wrap; gap: 1mm; margin: 1.3mm 0 1.5mm; }
+  .chip { font-size: 6.9pt; padding: .35mm 1.5mm; border-radius: 3mm; border: 1px solid; white-space: nowrap; }
+  .chip.ok { color: var(--pass); border-color: var(--pass); } .chip.no { color: var(--fail); border-color: var(--fail); }
+  .chip.ok::before { content: "✓ "; } .chip.no::before { content: "✕ "; }
+  .thumbs { display: grid; grid-template-columns: 3.4fr 1.62fr; gap: 1.5mm; }
+  .chosen-badge { display: inline-block; background: var(--ink); color: var(--paper); font-size: 7pt; font-weight: 700;
+                  padding: .5mm 1.9mm; border-radius: 3mm; letter-spacing: .06em; text-transform: uppercase; margin-left: 2mm; vertical-align: 1px; }
+  /* chosen */
+  .hero2 { display: grid; grid-template-columns: 1.45fr 1fr; gap: 1.8mm; }
+  .stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.8mm; margin: 2mm 0 1.6mm; }
+  .stat { border-top: 1.2px solid var(--ink); padding-top: .8mm; }
+  .stat .v { font-family: "Inter Display", "Inter"; font-size: 11pt; font-weight: 600; line-height: 1.1; white-space: nowrap; }
+  .stat .l { font-size: 6.6pt; color: var(--ink2); line-height: 1.25; }
+  ul.why { margin: 0; padding-left: 3.6mm; } ul.why li { margin-bottom: .7mm; }
+  .figs { display: grid; grid-template-columns: 1.05fr 1fr; gap: 2mm; margin-top: 1.4mm; align-items: center; }
+  /* physics band */
+  .band { display: grid; grid-template-columns: 1fr 86mm; gap: 6mm; border-top: 1.2px solid var(--ink); padding-top: 2mm; overflow: hidden; }
+  .conf { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4mm 4.5mm; }
+  .conf div { font-size: 7.25pt; line-height: 1.3; }
+  .conf b { display: block; font-size: 7.6pt; }
+  .conf .fix::before { content: "→ "; color: var(--ink3); }
+  .conf .fix { margin-top: .4mm; }
+  footer { display: flex; justify-content: space-between; gap: 8mm; font-size: 6.6pt; color: var(--ink3); border-top: 1px solid var(--rule); padding-top: 1.1mm; }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <header>
+    <div>
+      <div class="kicker">Vein Finder · Organic &nbsp;—&nbsp; Gate 1 of 5 · Concept</div>
+      <h1>A river stone that lights the skin from within</h1>
+      <div class="sub">Palm-sized, naked-eye transillumination vein finder. No camera, no screen, no app — the skin inside the crescent is the display.</div>
+    </div>
+    <div class="right-head">
+      <div class="warn">Personal prototype for bench evaluation — not a cleared medical device</div>
+      <div class="gates"><b>Gates:</b><span><b>● Concept</b></span><span>○ CAD</span><span>○ Electronics</span><span>○ Firmware</span><span>○ Verification</span></div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2><span class="n">01</span>Rationale</h2>
+      <img src="renders/board/A_context.jpg" alt="Option A on a forearm; the crescent window glows red with dark veins">
+      <div class="cap">In use (render): red-lit skin in the window, veins as dark lines; status seam on.</div>
+      <h3>How it works</h3>
+      <p>Twelve red LEDs sit in black pockets just outside a 30 mm crescent window and push light <i>into</i> the skin under a narrow lip. It scatters through the tissue and glows back out inside the window; blood absorbs it, so veins read as dark lines. Nothing shines toward the eye.</p>
+      <p><b>Two banks, visible light only.</b> 660 nm deep red reaches deeper and is absorbed less by melanin (darker skin, deeper veins); 620 nm red-orange looks ~5× brighter to the eye for superficial veins.</p>
+      <h3>Design moves</h3>
+      <ol class="moves">
+        <li><b>One G2 skin.</b> The whole stone is a single cubic B-spline surface — curvature-continuous by construction, no fillets, no flats. The only edge is the waterline.</li>
+        <li><b>The waterline.</b> One planar parting line low on the flank splits a warm-grey PETG top from a black, light-tight optical sole. Both print outer-surface-up, no supports.</li>
+        <li><b>The seal is the form.</b> A gently concave sole (R120) saddles the forearm; the index finger lands just behind the window, where pressing seals the lip.</li>
+        <li><b>Hidden controls.</b> A 0.5 mm finger dimple is the button (flexing membrane). A hairline crescent on the rim glows through 0.6 mm PETG for status and charging. USB-C sits on the waterline at the tail.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2><span class="n">02</span>Three forms, one envelope <span class="aside">— same 30 mm window, 16 mm gap, waterline and sole</span></h2>
+      <div class="opt first">
+        <img src="renders/board/A_hero.jpg" alt="Option A Pebble">
+        <div>
+          <div class="opt-title">A — Pebble<span class="chosen-badge">chosen</span></div>
+          <div class="tag">One convex dome, the crescent bored through its nose. 90.4 × 58.9 × 25.4 mm.</div>
+          <div class="chips"><span class="chip ok">600 mAh cell fits · 1.9 mm</span><span class="chip ok">switch fits · 0.6 mm</span><span class="chip ok">support-free</span><span class="chip ok">convex everywhere</span></div>
+          <div class="thumbs"><img src="renders/board/A_side.jpg" alt="A side"><img src="renders/board/A_plan.jpg" alt="A plan"></div>
+        </div>
+      </div>
+      <div class="opt">
+        <img src="renders/board/B_hero.jpg" alt="Option B Crescent">
+        <div>
+          <div class="opt-title">B — Crescent</div>
+          <div class="tag">Teardrop; crown on the window rim; horns taper to soft points. The most dynamic.</div>
+          <div class="chips"><span class="chip no">cell does not fit the tapering tail</span><span class="chip ok">switch fits</span><span class="chip ok">support-free</span></div>
+          <div class="thumbs"><img src="renders/board/B_side.jpg" alt="B side"><img src="renders/board/B_plan.jpg" alt="B plan"></div>
+        </div>
+      </div>
+      <div class="opt">
+        <img src="renders/board/C_hero.jpg" alt="Option C Hagstone">
+        <div>
+          <div class="opt-title">C — Hagstone</div>
+          <div class="tag">Flat lens with a worn crater; the opening is the hero. Lowest at 23 mm.</div>
+          <div class="chips"><span class="chip no">no height for cell or switch</span><span class="chip no">funnel lets in room light</span><span class="chip ok">support-free</span></div>
+          <div class="thumbs"><img src="renders/board/C_side.jpg" alt="C side"><img src="renders/board/C_plan.jpg" alt="C plan"></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="n">03</span>Chosen: A — Pebble</h2>
+      <div class="hero2">
+        <img src="renders/board/A_hero_seam.jpg" alt="Option A with the status seam lit">
+        <div style="display:grid;grid-template-rows:1fr 1fr;gap:1.8mm">
+          <img src="renders/A_detail.jpg" alt="Rim seam and finger dimple" style="height:100%;object-fit:cover">
+          <img src="renders/A_underside.jpg" alt="Underside: black optical sole" style="height:100%;object-fit:cover">
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="v">90×59×25</div><div class="l">mm (brief ~90×58×26)</div></div>
+        <div class="stat"><div class="v">≈ 55 g</div><div class="l">estimate (limit 80 g)</div></div>
+        <div class="stat"><div class="v">2.7–5.8 h</div><div class="l">full brightness, 600 mAh (need 45 min)</div></div>
+        <div class="stat"><div class="v">23–50 mA</div><div class="l">per LED, capped by skin ≤ 41 °C</div></div>
+        <div class="stat"><div class="v">≈ $56–70</div><div class="l">one unit incl. PCB + shipping (≤ $75)</div></div>
+      </div>
+      <h3 style="margin-top:0">Why A</h3>
+      <ul class="why">
+        <li><b>Only A packages.</b> The 30.5 × 42 × 5.4 mm cell lies across the crown, on the sole inside a PCB cut-out; the switch sits under the dimple just ahead of it. B's tail and C's crater cannot hold them.</li>
+        <li><b>It reads as one stone.</b> A single convex dome: the horns taper out of the body instead of growing from it, so it never reads as a horseshoe.</li>
+        <li><b>It holds like a pebble.</b> Thumb and middle finger pinch the tall mid-flanks; the index presses just behind the window, where the seal needs force. Symmetric for either hand.</li>
+      </ul>
+      <div class="figs">
+        <img src="figures/fig_plan.png" alt="Plan with dimensions and packaging">
+        <img src="figures/fig_section.png" alt="Centre-line section with the internal stack">
+      </div>
+    </section>
+  </main>
+
+  <section class="band">
+    <div>
+      <h2><span class="n">04</span>Where the brief meets physics, cost or printing — and the smallest change</h2>
+      <div class="conf">
+        <div><b>LEDs “angled 30–45°”</b>A flat PCB can’t tilt SMD LEDs, and in skin light forgets its direction within ~0.5 mm.<div class="fix">Flat LEDs facing the skin, in pockets behind a 2.5 mm lip (r ≈ 17.5): 5× more rim light than at r = 20.</div></div>
+        <div><b>30 mm window</b>Diffuse light falls ~e-fold per 2.5 mm: a bright 6–8 mm band at the rim, dim centre in room light.<div class="fix">Keep 30 mm (needle room); vein near a side rim. Radius is one CAD parameter (24 mm ⇒ centre 5–7× brighter).</div></div>
+        <div><b>Brightness vs. battery</b>Skin heating under each LED, not energy, sets the ceiling (≤ 41 °C ⇒ 23–50 mA per LED).<div class="fix">600 mAh cell (850–1000 mAh don’t fit): 2.7–5.8 h. Firmware cap + NTC at the hottest LED.</div></div>
+        <div><b>Walls ≥ 1.6 mm</b>The glowing seam and the flexing button both need thin PETG.<div class="fix">Two local 0.6–0.8 mm zones backed by ribs; all other walls ≥ 1.8 mm.</div></div>
+        <div><b>Snap-fit vs. support-free</b>Both halves print waterline-down, so nothing can cross the waterline.<div class="fix">Three PETG clips printed flat (strongest layers) + 4 magnet pairs. No visible screws.</div></div>
+        <div><b>Height ~26 mm</b>A lower stone looked better but missed the cell by 1 mm.<div class="fix">25.4 mm, set by cell + switch.</div></div>
+        <div><b>Concave seal</b>Forearms are R 35–50; the back of the hand and the elbow crease are flatter.<div class="fix">R120 across, rails 44 mm apart; seals under light pressure. A bench-tunable parameter.</div></div>
+        <div><b>G2 everywhere</b>The USB-C opening and the waterline must be edges.<div class="fix">They are the only two; the port gets a small round.</div></div>
+      </div>
+    </div>
+    <div><img src="figures/fig_window_profile.png" alt="Luminance across the window for two LED entry radii and two skin types"></div>
+  </section>
+
+  <footer>
+    <div>Form: G2 surface engine in build123d/OCCT — one periodic C2 B-spline skin, fit ≤ 0.12 mm. Renders: Mitsuba 3 path tracer. Budgets: diffusion (Farrell 1992) and hemispherical-source heating; tissue parameters are literature ranges, not measurements. Evidence: docs/01-concept/concept.md.</div>
+    <div>Parts &amp; prices: distributor listings via search index (direct site access blocked) — re-verified at the electronics gate.</div>
+  </footer>
+</div>
+</body>
+</html>
