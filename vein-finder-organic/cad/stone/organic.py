@@ -19,8 +19,11 @@ Pipeline
    silhouette point.  Both branches are then one C2 function of v across the equator,
    so the closed surface is G2 there by construction.
 5. Least-squares fit of ONE cubic B-spline surface: periodic in u (C2 across the seam),
-   clamped in v with the two end rows collapsed to poles (G1 enforced exactly, G2 to
-   fit tolerance -- the poles are placed in low-curvature regions).
+   clamped in v with the two end rows collapsed to poles.  At each pole the first three
+   control rows are constrained (see `fit`): row 0 is the pole point, row 1 lies in the
+   tangent plane (G1) and the normal offsets of row 2 reproduce the surface's own
+   second fundamental form there (G2), with the jet taken from a local cubic fit of
+   the analytic height field (`pole_jet`).
 6. Make an OCC face -> shell -> solid.  Everything downstream (split, shell, pockets) is
    ordinary build123d.
 
@@ -443,8 +446,60 @@ class Stone:
         P[..., 2] += self.dz
         return self.dz
 
+    # ---------------------------------------------------------------- pole jets
+    def pole_jet(self, top: bool, radius=3.0, n_r=12, n_t=48):
+        """2-jet of the surface at a pole from a local cubic fit of the analytic height field.
+
+        Near either pole the surface is a graph z = f(x, y) over the planform (the top or
+        the bottom branch).  A full cubic in (x - x0, y - y0) is fitted on a polar stencil
+        of the given radius (it averages the P1 interpolation of the FEM fields).
+        Returns the pole point P0, unit normal n (upward), an orthonormal tangent basis
+        E = [e1, e2] (3x2) and the Hessian H_loc of the height above the tangent plane,
+        in (e1, e2) coordinates:  h(xi) = 1/2 xi^T H_loc xi + O(|xi|^3).
+        """
+        x0, y0 = self.spec.pole
+        r = np.linspace(radius / n_r, radius, n_r)
+        t = np.linspace(0.0, 2 * np.pi, n_t, endpoint=False)
+        R, T = np.meshgrid(r, t, indexing="ij")
+        dx = np.r_[0.0, (R * np.cos(T)).ravel()]
+        dy = np.r_[0.0, (R * np.sin(T)).ravel()]
+        zt, zb = self.probe(np.c_[x0 + dx, y0 + dy])
+        z = (zt if top else zb) + getattr(self, "dz", 0.0)
+        A = np.c_[np.ones_like(dx), dx, dy, dx * dx, dx * dy, dy * dy,
+                  dx**3, dx * dx * dy, dx * dy * dy, dy**3]
+        c = np.linalg.lstsq(A, z, rcond=None)[0]
+        g = np.array([c[1], c[2]])
+        Hxy = np.array([[2 * c[3], c[4]], [c[4], 2 * c[5]]])
+        W = np.sqrt(1.0 + g @ g)
+        nrm = np.array([-g[0], -g[1], 1.0]) / W
+        # tangent basis: e1 = normalised image of +x, e2 = n x e1
+        e1 = np.array([1.0, 0.0, g[0]])
+        e1 /= np.linalg.norm(e1)
+        e2 = np.cross(nrm, e1)
+        E = np.c_[e1, e2]
+        # xy displacement d -> 3D tangent vector (d, g.d) -> tangent coords T d
+        Tm = E.T @ np.array([[1.0, 0.0], [0.0, 1.0], [g[0], g[1]]])
+        Ti = np.linalg.inv(Tm)
+        H_loc = Ti.T @ (Hxy / W) @ Ti
+        P0 = np.array([x0, y0, c[0]])
+        resid = A @ c - z
+        return dict(P0=P0, n=nrm, E=E, H=H_loc, grad=g, fit_rms=float(np.sqrt(np.mean(resid**2))))
+
     # ---------------------------------------------------------------- B-spline fit
-    def fit(self, smooth=1e-4):
+    def fit(self, smooth=1e-4, g2_poles=True, iters=4):
+        """Least-squares cubic B-spline fit of the samples, with constrained poles.
+
+        Each pole (v = 0 bottom, v = 1 top) gets three constrained control rows:
+            row 0  = P0                                   (position)
+            row 1  : n . (C1_i - P0) = 0                   (tangent plane -> G1)
+            row 2  : n . (C2_i - P0) = 3 l(u)^T H l(u)     (second fundamental form -> G2)
+        where l(u) are the tangent-plane coordinates of row 1's u-curve minus P0 and H is
+        the local Hessian from `pole_jet`.  Derivation (clamped uniform knots, spacing h):
+        near the pole the in-plane position is (3/h) v l(u) and the height is
+        (3/(2h^2)) v^2 n.(C2(u) - P0); matching h = 1/2 xi^T H xi gives the row-2 rule.
+        The remainder is O(rho^3), whose second derivatives vanish at the pole, so the
+        surface is C2 as a graph there: G2.  Solved per u-column with a KKT system.
+        """
         sp = self.spec
         if not hasattr(self, "samples"):
             self.sample()
@@ -462,29 +517,76 @@ class Stone:
         tv = np.r_[[0.0] * p, inner, [1.0] * p]
         Bv = BSpline.design_matrix(vs, tv, p).toarray()
 
-        def reg_solve(B, n, periodic):
-            # LSQ with a small second-difference penalty (fairing)
+        def reg_matrix(B, n, periodic):
+            # LSQ normal matrix with a small second-difference penalty (fairing)
             D = np.zeros((n, n))
             for i in range(n):
                 if periodic or 1 <= i <= n - 2:
                     D[i, (i - 1) % n] += 1
                     D[i, i] -= 2
                     D[i, (i + 1) % n] += 1
-            A = B.T @ B + smooth * len(B) / n * (D.T @ D)
-            return np.linalg.solve(A, B.T)
+            return B.T @ B + smooth * len(B) / n * (D.T @ D)
 
-        Pu = reg_solve(Bu, nu, True)        # (nu, Nu)
-        Pv = reg_solve(Bv, nv, False)       # (nv, Nv)
-        C = np.tensordot(np.tensordot(Pv, P, axes=(1, 0)), Pu, axes=(1, 1))   # (nv, Nu?) -> (nv, 3, nu)
-        C = np.transpose(C, (0, 2, 1)).copy()                                   # (nv, nu, 3)
-        # poles: collapse end rows, enforce tangent-plane (G1) on the next rows
-        for r0, r1 in [(0, 1), (nv - 1, nv - 2)]:
-            pole = P[0 if r0 == 0 else -1, 0]
-            C[r0] = pole
-            Q = C[r1] - pole
-            _, _, vt = np.linalg.svd(Q - 0.0, full_matrices=False)
-            nrm = vt[-1]
-            C[r1] = C[r1] - np.outer(Q @ nrm, nrm)
+        Pu = np.linalg.solve(reg_matrix(Bu, nu, True), Bu.T)         # (nu, Nu)
+        Qv = reg_matrix(Bv, nv, False)                                # (nv, nv)
+        Z = np.einsum("iu,vuk->vik", Pu, P)                           # (Nv, nu, 3) u-fitted rows
+        Rv = np.einsum("vj,vik->jik", Bv, Z)                          # (nv, nu, 3)
+        C = np.linalg.solve(Qv, Rv.reshape(nv, -1)).reshape(nv, nu, 3)
+        self.pole_info = {}
+        if g2_poles:
+            jets = {"bot": self.pole_jet(top=False), "top": self.pole_jet(top=True)}
+            rows = {"bot": (0, 1, 2), "top": (nv - 1, nv - 2, nv - 3)}
+            # constraint matrix A (10 x 3nv) on x = [C[:, i, 0]; C[:, i, 1]; C[:, i, 2]]
+            A = np.zeros((10, 3 * nv))
+            r = 0
+            for key in ("bot", "top"):
+                r0, r1, r2 = rows[key]
+                n = jets[key]["n"]
+                for k in range(3):
+                    A[r, k * nv + r0] = 1.0
+                    r += 1
+                for rr in (r1, r2):
+                    for k in range(3):
+                        A[r, k * nv + rr] = n[k]
+                    r += 1
+            Qi = np.linalg.inv(Qv)
+            QiAt = np.zeros((3 * nv, 10))
+            for k in range(3):
+                QiAt[k * nv:(k + 1) * nv] = Qi @ A[:, k * nv:(k + 1) * nv].T
+            M = A @ QiAt
+            X0 = np.concatenate([C[:, :, k] for k in range(3)], axis=0)  # (3nv, nu) unconstrained
+            Pu_exact = np.linalg.pinv(Bu)                                  # plain LSQ for the targets
+            for it in range(iters):
+                b = np.zeros((10, nu))
+                r = 0
+                for key in ("bot", "top"):
+                    r0, r1, r2 = rows[key]
+                    J = jets[key]
+                    P0, n, E, H = J["P0"], J["n"], J["E"], J["H"]
+                    l = (Bu @ C[r1] - P0) @ E                                # (Nu, 2) row-1 curve, tangent coords
+                    q = 3.0 * np.einsum("ua,ab,ub->u", l, H, l)
+                    tgt = Pu_exact @ q
+                    b[r:r + 3] = P0[:, None]
+                    r += 3
+                    b[r] = n @ P0
+                    r += 1
+                    b[r] = n @ P0 + tgt
+                    r += 1
+                lam = np.linalg.solve(M, b - A @ X0)
+                X = X0 + QiAt @ lam
+                C = np.stack([X[k * nv:(k + 1) * nv] for k in range(3)], axis=2)
+            for key in ("bot", "top"):
+                r0, r1, r2 = rows[key]
+                J = jets[key]
+                l = (Bu @ C[r1] - J["P0"]) @ J["E"]
+                q = 3.0 * np.einsum("ua,ab,ub->u", l, J["H"], l)
+                got = (Bu @ C[r2] - J["P0"]) @ J["n"]
+                self.pole_info[key] = dict(
+                    P0=J["P0"].round(4).tolist(), normal=J["n"].round(5).tolist(),
+                    k_principal=np.linalg.eigvalsh(J["H"]).round(5).tolist(),
+                    jet_fit_rms=J["fit_rms"],
+                    g1_residual=float(np.abs((Bu @ C[r1] - J["P0"]) @ J["n"]).max()),
+                    g2_residual=float(np.abs(got - q).max()))
         self.ctrl, self.tu, self.tv = C, tu, tv
         # fit error
         S = np.transpose(np.tensordot(np.tensordot(Bv, C, axes=(1, 0)), Bu, axes=(1, 1)), (0, 2, 1))

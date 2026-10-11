@@ -47,7 +47,7 @@ def tessellate(shape, lin_defl=0.015, ang_defl=0.12):
         for i in range(1, n + 1):
             p = tri.Node(i).Transformed(trsf)
             V[i - 1] = (p.X(), p.Y(), p.Z())
-            d = tri.Normal(i)
+            d = tri.Normal(i).Transformed(trsf)       # normals follow the shape's location too
             N[i - 1] = (d.X(), d.Y(), d.Z())
         F = np.empty((tri.NbTriangles(), 3), dtype=np.int64)
         for i in range(1, tri.NbTriangles() + 1):

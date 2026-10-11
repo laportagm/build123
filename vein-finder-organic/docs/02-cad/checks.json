@@ -1,0 +1,133 @@
+{
+ "walls": {
+  "general_min": 1.7998882495027064,
+  "general_p01": 1.7999187705114217,
+  "general_median": 1.8000897995389482,
+  "button_min": 0.3999726687287309,
+  "n_samples": 804701,
+  "general_min_at": [
+   -5.5,
+   18.26,
+   14.29
+  ]
+ },
+ "magnet_cover_mm": [
+  3.23,
+  3.23,
+  1.57,
+  1.57
+ ],
+ "mirror_symmetry": {
+  "top_shell": {
+   "y_pos": 6408.1,
+   "y_neg": 6406.72,
+   "rel_diff": 0.00022
+  },
+  "sole": {
+   "y_pos": 5242.03,
+   "y_neg": 5241.75,
+   "rel_diff": 5e-05
+  },
+  "seam_mask": {
+   "y_pos": 105.83,
+   "y_neg": 105.79,
+   "rel_diff": 0.00046
+  },
+  "bridge": {
+   "y_pos": 757.54,
+   "y_neg": 757.51,
+   "rel_diff": 3e-05
+  },
+  "pcb": {
+   "y_pos": 833.79,
+   "y_neg": 833.64,
+   "rel_diff": 0.00018
+  }
+ },
+ "seam_probe_z_intervals": {
+  "slot_+0deg": [
+   [
+    10.774,
+    12.558
+   ]
+  ],
+  "beside_+0deg": [
+   [
+    10.758,
+    15.491
+   ]
+  ],
+  "slot_+30deg": [
+   [
+    11.044,
+    12.764
+   ]
+  ],
+  "beside_+30deg": [
+   [
+    11.008,
+    15.43
+   ]
+  ],
+  "slot_-40deg": [
+   [
+    11.266,
+    12.932
+   ]
+  ],
+  "beside_-40deg": [
+   [
+    11.217,
+    15.415
+   ]
+  ]
+ },
+ "overhang_top_shell": {
+  "skin_max_deg": 21.5,
+  "skin_area_over_45_mm2": 0.0,
+  "interior_area_over_45_mm2": 2192.6,
+  "note": "skin = cosmetic outer surface (must be support-free); interior = supported from the build plate"
+ },
+ "overhang_sole": {
+  "skin_max_deg": 90.0,
+  "skin_area_over_45_mm2": 0.01,
+  "interior_area_over_45_mm2": 197.2,
+  "note": "skin = cosmetic outer surface (must be support-free); interior = supported from the build plate"
+ },
+ "membrane": {
+  "k_centre_plate_N_per_mm": 6.2916146401985005,
+  "k_centre_shell_N_per_mm": 6.808261936371422,
+  "domain_semi_axes_mm": [
+   14.4,
+   18.72
+  ],
+  "skin_curvatures_1_per_mm": [
+   0.0054,
+   0.0022
+  ],
+  "press_force_N": [
+   3.02,
+   3.61
+  ],
+  "press_force_note": "k x (gap 0.05 + travel 0.25 mm) + switch (0.98, 1.57) N; finger patch r = 3.5 mm; E = 2000.0 MPa"
+ },
+ "magnets": {
+  "pair_pull_N": 8.27,
+  "total_pull_N": 33.1,
+  "model": "coaxial current loops, N42 Br 1.29 T, gap 0.15 mm"
+ },
+ "mass_g": {
+  "top_shell": 15.95,
+  "sole": 10.65,
+  "seam_mask": 0.27,
+  "bridge": 1.64,
+  "pcb_fr4": 3.71,
+  "battery": 12.1,
+  "magnets": 4.53,
+  "leds_ics_passives": 3.0,
+  "usb_receptacle": 1.0,
+  "switch_wire_tape": 1.0,
+  "total": 53.9
+ },
+ "interference": []
+}

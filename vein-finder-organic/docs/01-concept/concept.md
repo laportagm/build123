@@ -240,17 +240,19 @@ Confidence key:
 | distributor shipping | Digi-Key, plus Mouser for the 660 nm LED if needed | — | — | — | 8–16 | ? |
 | **total** | | | | | **≈ $56–70** | |
 
-## 9. Decisions I need from you before the CAD gate
-1. **Form:** go with A, "Pebble", at 90.4 × 58.9 × 25.4 mm, or ask for changes, for
-   example to B's crown or C's crater?
-2. **LED mounting:** accept flat LEDs in lipped pockets (entry r ≈ 17.5 mm) instead of
-   physically tilted LEDs?
-3. **Window:** keep 30 mm, knowing it lights a band near the rim, or try 24 mm?
-4. **Battery:** accept 600 mAh (2.7–5.8 h) given that larger cells don't fit?
-5. **Colours:** warm light-grey top + black sole?
-6. **Parts verification:** optional. Add `digikey.com`, `mouser.com`, `lcsc.com` and
-   `adafruit.com` to the environment's allowed domains so live stock and prices can be
-   verified at the electronics gate.
+## 9. Decisions (answered at the concept review, 2026-10-11)
+| # | Question | Answer |
+|---|---|---|
+| 1 | Form | **A "Pebble"** as shown. |
+| 2 | LED mounting | **Flat LEDs in lipped black pockets** near r ≈ 17.5 mm, not tilted. |
+| 3 | Window | **30 mm**, as briefed. |
+| 4 | Battery | **600 mAh Jauch LP503040JH** (protected). |
+| 5 | Colours | **Warm light-grey top, black sole.** |
+| 6 | Thin walls | **Allowed in two spots only:** the light seam and the button skin, with ribs or a frame behind them. Every other wall ≥ 1.8 mm. |
+| 7 | Closure | **Magnets only (four pairs), no clips.** This differs from the clip + magnet proposal in §6. The magnets also act as dowels: each sole magnet stands proud through a hole in the PCB into a socket in the top, which aligns the halves and clamps the board. |
+| 8 | Parts check | The owner will allow `digikey.com`, `mouser.com`, `lcsc.com` and `adafruit.com` in the environment's network settings. On 2026-10-11 they still returned 403 from this session, so they are re-checked at the electronics gate. |
+
+Changes made at the CAD gate as a consequence are listed in `docs/02-cad/cad.md`.
 
 ## 10. Reproduce
 ```bash
