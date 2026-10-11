@@ -3,3 +3,4 @@ __pycache__/
 .pytest_cache/
 *.pyc
 docs/01-concept/renders/*.png
+logs/
