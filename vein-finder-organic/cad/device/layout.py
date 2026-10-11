@@ -195,11 +195,14 @@ class Layout:
     def _board(self):
         b = self.pcb_env.difference(self.batt_cut).difference(self.usb_notch)
         b = b.buffer(-P.PCB_CORNER_R, join_style=1).buffer(P.PCB_CORNER_R, join_style=1)
-        holes = [Point(m["x"], m["y"]).buffer(P.MAG_PCB_HOLE / 2) for m in self.magnets]
-        holes += [Point(*p).buffer(P.PIN_HOLE_PCB / 2) for p in self.mask_pins]
-        holes += [Point(*p).buffer(P.PIN_HOLE_PCB / 2) for p in self.bridge_pins]
-        self.pcb_holes = holes
-        self.pcb = b.difference(unary_union(holes))
+        mag_holes = [Point(m["x"], m["y"]).buffer(P.MAG_PCB_HOLE / 2, 64) for m in self.magnets]
+        pin_holes = [Point(*p).buffer(P.PIN_HOLE_PCB / 2) for p in self.mask_pins + self.bridge_pins]
+        self.pcb_holes = mag_holes + pin_holes
+        # Edge.Cuts = outline with the magnet holes (the tail ones break the edge);
+        # the 1 mm locating-pin holes are NPTH drills
+        self.board_outline = b.difference(unary_union(mag_holes))
+        self.drills = [dict(x=float(p[0]), y=float(p[1]), d=P.PIN_HOLE_PCB) for p in self.mask_pins + self.bridge_pins]
+        self.pcb = b.difference(unary_union(self.pcb_holes))
 
     # ---------------------------------------------------------------- report
     def check(self):
@@ -240,7 +243,14 @@ class Layout:
             z_part=self.zp, pcb_t=P.PCB_T,
             leds=self.leds, ntc=self.ntc, seam_leds=self.seam_leds,
             magnets=self.magnets, mask_pins=self.mask_pins, bridge_pins=self.bridge_pins,
-            usb=self.usb, pcb_holes=[list(h.centroid.coords)[0] for h in self.pcb_holes], battery=dict(x0=P.BATT_X0, x1=P.BATT_X0 + P.BATT_W, y=P.BATT_L / 2,
+            usb=self.usb, pcb_holes=[list(h.centroid.coords)[0] for h in self.pcb_holes],
+            board_outline=[[list(map(list, r.coords)) for r in [g.exterior] + list(g.interiors)]
+                           for g in getattr(self.board_outline, "geoms", [self.board_outline])],
+            drills=self.drills, bridge_x=self.bridge_x,
+            bridge_feet=[list(map(list, f.exterior.coords)) for f in self.bridge_feet],
+            mask_outline=[[list(map(list, r.coords)) for r in [g.exterior] + list(g.interiors)]
+                          for g in getattr(self.mask_2d, "geoms", [self.mask_2d])],
+            battery=dict(x0=P.BATT_X0, x1=P.BATT_X0 + P.BATT_W, y=P.BATT_L / 2,
                                        z=list(self.batt_z)),
             button=dict(x=BUTTON_XY[0], y=BUTTON_XY[1]), check=self.check())
         (OUT / "layout.json").write_text(json.dumps(data, indent=1, default=float))
