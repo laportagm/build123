@@ -3,10 +3,11 @@
  *
  *   tap  (< 0.6 s)   off -> level 1 (40 %) -> level 2 (70 %) -> level 3 (100 %) -> off
  *   hold (>= 0.6 s)  switch bank (660 nm <-> 625 nm), make-before-break, seam flashes twice
- *   3 min without a press: off.   USB power present: LEDs off, seam shows the charge.
+ *   3 min after the last tap or hold: off (a button held down does not count).
+ *   USB power present: LEDs off, seam shows the charge.
  *   NTC above 38 C: current falls linearly to 20 % at 40 C; at 41 C the LEDs go off until
- *   the face is back under 38 C (an open NTC counts as too hot).  Cell under 3.4 V: seam
- *   warns; under 3.2 V: LEDs off.
+ *   the NTC is back at 38 C (an open or shorted NTC counts as too hot; no light before
+ *   the first reading).  Cell under 3.4 V: seam warns; under 3.2 V: LEDs off.
  *
  * Personal prototype for bench evaluation - NOT a medical device.
  */
@@ -91,7 +92,9 @@ void logic_tick(vf_state_t *s)
     button(s, &tap, &hold);
     s->anim++;
 
-    if (tap || hold || s->btn_stable)
+    /* only a tap or a hold counts as use: a button stuck down (in a bag) must not keep
+     * the light on past the auto-off */
+    if (tap || hold)
         s->idle_ticks = 0;
     else if (s->idle_ticks < UINT32_MAX)
         s->idle_ticks++;
@@ -133,8 +136,8 @@ void logic_tick(vf_state_t *s)
     if (s->on && s->batt_lock)
         s->on = false;
 
-    /* LED driver */
-    if (s->on && !s->hot_lock) {
+    /* LED driver: never without a temperature reading */
+    if (s->on && !s->hot_lock && s->t_dc != INT16_MIN) {
         uint32_t cap = (s->bank == BANK_A) ? CAP_A_PERMILLE : CAP_B_PERMILLE;
         uint32_t d = cap * LEVEL_PERMILLE[s->level] / 1000u;
         d = d * derate_permille(s->t_dc) / 1000u;

@@ -125,9 +125,19 @@ which is next to an LED pocket. Calibrate it on the bench (§8, item 4) and adju
   - Schottky 40 V ≥ OVP max 39 V.
   - Output capacitors 50 V.
   - Charger input 30 V abs max.
-- **Firmware:** 2.1 KB; host unit tests pass (levels, bank switch with make-before-break,
-  3-min auto-off on the real 15.625 ms tick, USB, thermal derate and hysteresis, battery
-  lock-out, NTC table within 0.2 °C, an open NTC locking the LEDs off).
+- **Firmware:** 2.1 KB. Host unit tests pass:
+  - levels, and the bank switch with make-before-break;
+  - 3-min auto-off on the real 15.625 ms tick, also with the button stuck down;
+  - USB;
+  - thermal derate and hysteresis, to the exact 41.0 / 38.0 °C boundaries;
+  - battery lock-out;
+  - NTC table within 0.2 °C; open and shorted sensors lock the LEDs off;
+  - no light before the first reading;
+  - 12 million ticks of random inputs against nine safety rules.
+
+  The tests catch 16 of 16 planted bugs (`make -C fw mutants`). Each build checks the
+  compiled sleep entry and watchdog. All of this is simulation: §8 items 11–16 are the
+  bench checks for the same functions. See [readiness.md](readiness.md).
 
 ## 6. IEC 62471
 
@@ -176,3 +186,9 @@ Shipping and filament (about 30 g of PETG) are not included. Prices were re-chec
 | 8 | Runtime | full brightness from full charge | ≥ 45 min (expect > 4 h) |
 | 9 | Seam and window light leaks | dark room, device on a sheet of paper | no light around the sole's edge |
 | 10 | Vein visibility | forearm, room light and dimmed | veins visible at the rim |
+| 11 | Thermal cut-off, end to end | Thermocouple on the sole's NTC window. Warm the face with a hair dryer on low, or a 45 °C water bag, at level 3. This also catches a dead NTC input (a broken joint at the MCU pin) | dims from about 38 °C; off, seam double-blinking, before the thermocouple passes 42 °C; back on after cooling below 38 °C |
+| 12 | NTC faults | On the bare board, before closing. (a) While lit, short RT1's pads with tweezers, then let go. (b) Tap with RT1 not yet fitted, or one end lifted | (a) off within 0.3 s, seam double-blinks; back on when released. (b) never lights |
+| 13 | Stuck button | Lit, then tape or clip the button down for 4 min | the bank switches once at 0.6 s; off 3 min (± 10 s) later; still off after the release |
+| 14 | Sleep and wake | Off and unplugged for > 1 min, so it is asleep (item 7 current). (a) Tap 20 times, with > 1 min between taps. (b) Plug in USB while asleep | (a) on at the first tap, 20 of 20. (b) the seam breathes within 0.1 s |
+| 15 | Watchdog | Flash the test build (`make -C fw wdt-test`, then `make -C fw flash HEX=build/fw_wdt_test.hex`). Tap. Afterwards flash the normal build again | dark 6 ± 1 s after the tap (5 s plus the 1 s watchdog), and stays dark until the next tap |
+| 16 | VOUT at turn-off | Scope C5 (VOUT) and Q1's drain at the fourth tap (off) and at the item-11 cut-off | VOUT decays with no rise toward the 36–39 V open-LED limit. If it rises, keep the gate on one tick after CTRL goes low (`logic.c`) and test again |

@@ -199,10 +199,12 @@ Each step renders the parts as they go in; the top shell is shown last.
   - Press the window flat onto the skin. Tap to light, tap again for brighter, and hold to
     switch between 660 nm and 625 nm.
   - The light shows best near the rim of the window; dim the room for the centre.
-- **Auto-off:** after 3 min without a press.
+- **Auto-off:** 3 min after the last tap or hold. Holding the button down does not keep it on.
 - **Warning patterns:**
   - Above 38 °C at the face sensor, the light dims.
   - At 41 °C it goes off and the seam double-blinks.
+  - The same pattern while the stone is cool means a temperature-sensor fault: the light
+    stays off. Check RT1 and its joints (verification §8, item 12).
   - A 1 Hz seam blink means the cell is low.
 
 **Cleaning:** wipe the sole with isopropyl alcohol. It is not waterproof.

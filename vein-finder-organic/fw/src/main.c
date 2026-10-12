@@ -201,7 +201,7 @@ int main(void)
     wdt_on();
     vf_state_t s;
     logic_init(&s);
-    uint8_t slow = 0;
+    uint8_t slow = 15;                                             /* first tick measures */
     sei();
     for (;;) {
         if (g_tick) {
@@ -218,6 +218,15 @@ int main(void)
             }
             logic_tick(&s);
             apply(&s);
+#ifdef VF_WDT_TEST
+            /* watchdog bench test only (make -C fw wdt-test; never for use): 5 s after the
+             * LEDs come on, hang with them lit.  The watchdog must reset the MCU about 1 s
+             * later, and the device must come back off. */
+            static uint16_t lit;
+            if (s.ctrl_permille && ++lit >= 320u)
+                for (;;)
+                    ;
+#endif
         }
         if (s.want_sleep) {
             deep_sleep();
