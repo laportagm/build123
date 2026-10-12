@@ -29,7 +29,7 @@ fab (JLCPCB, PCBWay, OSH Park, …). Choose:
 | Setting | Value |
 |---|---|
 | Layers | 2 |
-| Size | 85.8 × 54.5 mm (the fab reads it from the outline) |
+| Size | 85.7 × 54.4 mm (85.8 × 54.5 mm over the 0.1 mm outline line); the fab reads it from the outline |
 | **Thickness** | **1.0 mm** (not the usual 1.6 mm: the stone is sized for 1.0) |
 | Copper | 1 oz (35 µm) outer |
 | Surface finish | HASL (lead-free) or ENIG |
@@ -40,11 +40,16 @@ fab (JLCPCB, PCBWay, OSH Park, …). Choose:
 
 What the fab's checks will see:
 
-- Smallest track 0.25 mm (0.2 mm minimum gap); vias 0.6 mm pad, 0.3 mm drill.
+- Smallest track 0.25 mm (0.2 mm minimum gap); vias 0.6 mm pad, 0.3 mm drill; 0.7 mm / 0.35 mm on the power nets.
 - Holes: 1.0 mm plated (6 locating pins); plated slots 0.6 × 1.2 and 0.6 × 1.6 mm (USB-C shell).
 - Edge: 0.3 mm copper to edge, except the USB-C pads at 0.20 mm (datasheet land pattern). **Check that one against the fab's
   copper-to-board-edge minimum**; if it is larger, ask the fab whether it can pull the
-  copper back at the USB-C notch.
+  copper back at the USB-C notch. JLCPCB publishes 0.2 mm (trace to outline, routed
+  boards), which the USB-C pads just meet.
+- Silkscreen: the board labels are 1.0 mm text with a 0.16 mm stroke. The part references
+  are 0.8 mm text and the outlines 0.12 mm lines (the KiCad library standard, kept small to
+  fit), under JLCPCB's advisory 1.0 mm / 0.153 mm, so they may print thin. The build
+  guide's board figures name every part.
 - The outline is a C with four magnet holes; the two at the tail open onto the edge. The fab
   routes them like any outline.
 

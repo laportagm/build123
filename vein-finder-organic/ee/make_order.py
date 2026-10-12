@@ -20,10 +20,11 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "docs" / "07-order"
 FAB = ROOT / "docs" / "03-electronics" / "fab"
 
-# board facts for the fab order, copied by hand from the routed board and the project rules
-# (nothing re-checks them: update them whenever the board changes)
-BOARD = dict(size="85.8 × 54.5 mm", layers=2, thickness="1.0 mm", copper="1 oz (35 µm) outer",
-             track="0.25 mm (0.2 mm minimum gap)", via="0.6 mm pad, 0.3 mm drill",
+# board facts for the fab order, from the routed board and the project rules; check_fab.py
+# (check 7) compares them with the board
+BOARD = dict(size="85.7 × 54.4 mm (85.8 × 54.5 mm over the 0.1 mm outline line)", layers=2, thickness="1.0 mm",
+             copper="1 oz (35 µm) outer", track="0.25 mm (0.2 mm minimum gap)",
+             via="0.6 mm pad, 0.3 mm drill; 0.7 mm / 0.35 mm on the power nets",
              holes="1.0 mm plated (6 locating pins); plated slots 0.6 × 1.2 and 0.6 × 1.6 mm (USB-C shell)",
              edge="0.3 mm copper to edge, except the USB-C pads at 0.20 mm (datasheet land pattern)")
 
@@ -87,7 +88,7 @@ def main():
           "fab (JLCPCB, PCBWay, OSH Park, …). Choose:", "",
           "| Setting | Value |", "|---|---|",
           f"| Layers | {BOARD['layers']} |",
-          f"| Size | {BOARD['size']} (the fab reads it from the outline) |",
+          f"| Size | {BOARD['size']}; the fab reads it from the outline |",
           f"| **Thickness** | **{BOARD['thickness']}** (not the usual 1.6 mm: the stone is sized for 1.0) |",
           f"| Copper | {BOARD['copper']} |",
           "| Surface finish | HASL (lead-free) or ENIG |",
@@ -100,7 +101,12 @@ def main():
           f"- Holes: {BOARD['holes']}.",
           f"- Edge: {BOARD['edge']}. **Check that one against the fab's",
           "  copper-to-board-edge minimum**; if it is larger, ask the fab whether it can pull the",
-          "  copper back at the USB-C notch.",
+          "  copper back at the USB-C notch. JLCPCB publishes 0.2 mm (trace to outline, routed",
+          "  boards), which the USB-C pads just meet.",
+          "- Silkscreen: the board labels are 1.0 mm text with a 0.16 mm stroke. The part references",
+          "  are 0.8 mm text and the outlines 0.12 mm lines (the KiCad library standard, kept small to",
+          "  fit), under JLCPCB's advisory 1.0 mm / 0.153 mm, so they may print thin. The build",
+          "  guide's board figures name every part.",
           "- The outline is a C with four magnet holes; the two at the tail open onto the edge. The fab",
           "  routes them like any outline.", ""]
 

@@ -1,5 +1,5 @@
 ** Drc report for /home/user/build123/vein-finder-organic/ee/kicad/vein_finder.kicad_pcb **
-** Created on 2026-10-12 13:24:48 **
+** Created on 2026-10-12 15:22:35 **
 
 ** Found 12 DRC violations **
 [lib_footprint_mismatch]: Footprint 'LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder' does not match copy in library 'LED_SMD'.

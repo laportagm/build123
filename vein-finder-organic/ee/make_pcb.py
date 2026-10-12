@@ -91,9 +91,17 @@ def project_file(path: Path):
         '  (condition "A.Type == \'Pad\' && A.intersectsCourtyard(\'J1\')"))\n')
 
 
-# the label the brief asks for on everything: underside silkscreen, on the free tail
-LABELS = [("VEIN FINDER (ORGANIC) REV A 2026-10", 40.0, 1.0),
-          ("PERSONAL PROTOTYPE - NOT A MEDICAL DEVICE", 40.0, -0.6)]
+# the label the brief asks for on everything: underside silkscreen, on the free tail.
+# 1.0 mm text with a 0.16 mm stroke: JLCPCB's published minimums are 1.0 mm and 0.153 mm.
+LABELS = [("VEIN FINDER (ORGANIC) REV A 2026-10", 40.0, 1.25),
+          ("PERSONAL PROTOTYPE - NOT A MEDICAL DEVICE", 40.0, -1.0)]
+LABEL_SIZE, LABEL_STROKE = 1.0, 0.16
+
+
+def label_style(t):
+    t.SetTextSize(pcbnew.VECTOR2I(pcbnew.FromMM(LABEL_SIZE), pcbnew.FromMM(LABEL_SIZE)))
+    t.SetTextThickness(pcbnew.FromMM(LABEL_STROKE))
+    return t
 
 
 def solid_pads(board):
@@ -165,7 +173,7 @@ def route_stage(passes):
     bb.gnd_pour(layers=(pcbnew.F_Cu, pcbnew.B_Cu))
     # the label the brief asks for on everything (underside silkscreen, along the -y arm)
     for txt, x, y in LABELS:
-        bb.text(txt, x, y)
+        label_style(bb.text(txt, x, y))
     rep = bb.finish(pcb, OUT / "drc.rpt")
     print("routed; DRC:", drc_summary(rep))
 
@@ -220,8 +228,9 @@ if __name__ == "__main__":
         for txt, x, y in LABELS:
             if txt in have:
                 have[txt].SetPosition(kpt(x, y))
+                label_style(have[txt])
             else:
-                bb.text(txt, x, y)
+                label_style(bb.text(txt, x, y))
         if "CELL ON FOAM TAPE - NO PARTS" not in have:
             bt = LAYOUT["battery"]
             bb.rect(bt["x0"], -bt["y"], bt["x1"], bt["y"])                     # where the cell goes

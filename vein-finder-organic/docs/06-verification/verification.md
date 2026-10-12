@@ -118,6 +118,19 @@ which is next to an LED pocket. Calibrate it on the bench (§8, item 4) and adju
     at the board edge on purpose.
   - Every pad's position is checked against its intended placement when the board is
     built.
+- **Fabrication integrity** (`ee/check_fab.py`, read-only, 10 checks, all passing):
+  - DRC as saved; pours current.
+  - Design = PCB = schematic.
+  - The BOM, order pack, position file, Gerbers and drill files regenerate identically
+    (dates aside).
+  - The order pack's board facts = the board.
+  - Copper to the edge, measured independently: ≥ 0.300 mm, and J1 0.2002 mm.
+  - Outline: PCB = CAD = DXF.
+  - Silkscreen: a warning, because the references are under JLCPCB's advisory 1.0 mm /
+    0.153 mm.
+  - Six planted faults were all caught: a pad on the wrong net, a moved Gerber coordinate,
+    a wrong position, a wrong board thickness in the order pack and in its generator,
+    and a moved outline vertex.
 - **Electrical margins:**
   - Boost worst case at 3.0 V: 278 mA peak, against a 1.2 A limit and 1.3 A saturation.
   - VOUT 15.2 V max, 20.8 V under OVP.

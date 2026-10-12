@@ -18,8 +18,8 @@ This record covers the fix-and-verify pass of 2026-10-12. It started from `e93df
 |---|---|---|---|
 | 0 | Current state and issue register | done | — (no changes) |
 | 1 | Safety-critical firmware | PASS (simulated); hardware validation open | `6863abd` |
-| 2 | Firmware reliability | PASS (simulated); hardware validation open | this chunk |
-| 3 | PCB and manufacturing integrity | pending | |
+| 2 | Firmware reliability | PASS (simulated); hardware validation open | `ab70f86` |
+| 3 | PCB and manufacturing integrity | PASS, one warning accepted (silkscreen references) | this chunk |
 | 4 | Mechanical and electrical integration | pending | |
 | 5 | Final verification, GO / NO-GO | pending | |
 
@@ -49,15 +49,17 @@ This record covers the fix-and-verify pass of 2026-10-12. It started from `e93df
 | N05 | Auto-off and hold timing rest on the 32 kHz oscillator's accuracy | risk | 2 | documented (±10 %), bench item 17 |
 | N06 | No tests for debounce glitches or the tap/hold boundary | test gap | 2 | closed |
 | N07 | VBUS-sense input level against the MCU's high threshold with a full cell | hardware risk | 4 | |
-| N08 | Nothing checks schematic, PCB, BOM, fab files and order pack against each other; the order pack's board facts were copied by hand | gap | 3 | |
-| N09 | Silkscreen line width against the fab's minimum | fab risk | 3 | |
-| N10 | USB-C pads 0.20 mm from the board edge (the 0.3 mm rule's one exception) | documented exception | 3 | |
-| N11 | R29: the board is not rerouted | documented decision | 3 | |
+| N08 | Nothing checks schematic, PCB, BOM, fab files and order pack against each other; the order pack's board facts were copied by hand | gap | 3 | closed: `ee/check_fab.py` |
+| N09 | Silkscreen line width against the fab's minimum | fab risk | 3 | board labels enlarged; references and outlines accepted |
+| N10 | USB-C pads 0.20 mm from the board edge (the 0.3 mm rule's one exception) | documented exception | 3 | measured 0.2002 mm; meets JLCPCB's 0.2 mm |
+| N11 | R29: the board is not rerouted | documented decision | 3 | evidence recorded: closest copper 0.300 mm |
 | N12 | Brown-out detector off (default fuses) | optional improvement | 2 | not needed, reasons documented |
 | N13 | The PR text counts 30 review findings; there were 29 | doc error | 5 | |
 | N14 | With the button held down, the MCU stays out of power-down (it waits for the release); the LEDs stay off | reliability (battery drain) | 2 | accepted limitation, tested; bench item 18 |
 | N15 | At turn-off, CTRL goes low and both gates open together, while the driver runs for up to 2.5 ms more. VOUT may rise toward the 36–39 V open-LED limit. The parts are rated for it ([electronics §2](../03-electronics/electronics.md#2-circuit)) | hardware risk | 1 → bench | bench item 16 |
 | N16 | A cell-voltage reading under 18 overflowed 16 bits, giving a random voltage. A reading of 17 gave 0.658 V and a spurious battery lock | defect (error handling) | 2 | fixed |
+| N17 | The order pack gave the board size over the 0.1 mm edge line (85.8 × 54.5 mm; the outline is 85.7 × 54.4 mm), and left out the 0.7 / 0.35 mm power-net vias | doc error | 3 | fixed |
+| N18 | The board's own "PERSONAL PROTOTYPE – NOT A MEDICAL DEVICE" label was 0.8 mm text with a 0.12 mm stroke, under JLCPCB's published 1.0 mm / 0.153 mm, so it might not print legibly | defect (fab) | 3 | fixed: 1.0 / 0.16 mm |
 
 **Order of work:**
 - Chunks 1 and 2 change the same firmware files, so they go in order.
@@ -210,3 +212,88 @@ that.
   summary, possibly more at temperature extremes.
 - With the button held down the MCU idles. The current is unverified, and bench item 18
   limits it to ≤ 1 mA.
+
+## 3. PCB and manufacturing integrity
+
+**Scope:**
+- edge clearance, including the autorouter limitation (R29);
+- DRC;
+- connectivity;
+- silkscreen and placement;
+- DXF and exports;
+- consistency between schematic, PCB, BOM, order pack and fabrication files.
+
+The board was not rerouted, and no part moved.
+
+### What was inspected
+
+KiCad 7.0.11's command line has only export commands: no DRC and no ERC. DRC runs
+through the pcbnew Python API, as it did when the board was made. In place of ERC,
+the netlist is checked against `design.py`: single-pad nets and unassigned IC pins.
+
+A new read-only script, `ee/check_fab.py`, makes ten checks. On the board at `ab70f86`
+the first run found:
+
+| Check | Result |
+|---|---|
+| 1 DRC as saved | 0 errors, 0 unconnected; 12 warnings, all `lib_footprint_mismatch` on the ring LEDs (documented); same items as the committed report |
+| 2 Pours current | refill changes 0.0000 mm² |
+| 3 Design = PCB = schematic | 65 footprints, 144 pads, 40 nets; the fresh schematic export = `design.py` = the committed `.net`; no single-pad nets; every IC pin assigned |
+| 4 BOM, order pack | regenerate byte for byte |
+| 5 Position file | regenerates identically |
+| 6 Gerbers, drill | identical apart from creation dates; zip = folder |
+| 7 Order-pack facts | **2 mismatches (N17):** size quoted over the 0.1 mm edge line; the 0.7 / 0.35 mm vias on the 12 power-net vias missing |
+| 8 Copper to edge | closest outside J1: 0.300 mm (GND pour); J1 signal pads 0.2002–0.2009 mm, shell pads 0.44 mm |
+| 9 Outline | PCB vs CAD within 0.0200 mm (the 0.02 mm simplification in `make_pcb.py`); DXF = CAD exactly once its y mirror is undone; the outline is mirror-symmetric to 0.034 mm |
+| 10 Silkscreen | all text 0.8 mm with a 0.12 mm stroke and lines 0.12 mm, including the safety label (**N18**), against JLCPCB's 1.0 mm and 0.153 mm |
+
+The first run also failed checks 6 and 9 on two faults in the checker itself, not the
+board. Its date filter missed the drill files' date format, and it read the DXF without
+undoing its y mirror. Both were fixed before the results above.
+
+**Fab limits** (JLCPCB, the order pack's first example, from its capabilities and
+ordering pages; not checked against PCBWay or OSH Park):
+- trace to outline 0.2 mm on routed boards;
+- silkscreen line 0.153 mm;
+- text height 1.0 mm;
+- pad to silkscreen 0.15 mm.
+
+### Changes
+
+| Issue | Change | Files |
+|---|---|---|
+| N08 | `ee/check_fab.py`, read-only, ten checks | new |
+| N17 | The order pack quotes the outline's size (85.7 × 54.4 mm, and 85.8 × 54.5 mm over the line) and both via sizes. It also notes JLCPCB's 0.2 mm edge figure and the silkscreen sizes | `ee/make_order.py` → `docs/07-order/order.md`; `electronics.md` |
+| N18 | The two underside labels are now 1.0 mm text with a 0.16 mm stroke. Their start positions are 2.25 mm apart. `silk.tidy`, unchanged, then found free spots: the name at the tail (y = 1.25 mm), the prototype label further along it (y = −7.4 mm) | `ee/make_pcb.py` → board, `drc.rpt`, fab files |
+| N09 | The references (0.8 / 0.12 mm) and outlines (0.12 mm, KiCad library standard) are kept. Larger references would not fit, and the board figures name every part. Documented in the order pack and `electronics.md` §4 | docs |
+| N10, N11 | Measured values and the reasoning recorded | `electronics.md` §4 |
+
+**What the N18 change touched:**
+- **Board file:** only the two label texts changed (position and size). One silk line
+  endpoint moved by 1 nm when the existing clip re-ran; an unchanged re-run of the finish
+  stage does the same.
+- **Fab files:** only `B_Silkscreen.gbo` changed. The other 13 Gerber and drill files
+  differ only in their date lines. Copper, mask, paste, outline and drill are untouched.
+- **Process:**
+  - The change was first run on a scratch copy.
+  - An unchanged re-run there showed the pipeline is idempotent to within that 1 nm.
+  - The new labels were checked on a plot of the underside silkscreen.
+- **Not changed:** the BOM, the parts and the placement.
+
+### Verification
+
+| Command | Result |
+|---|---|
+| `python ee/make_pcb.py --stage finish` | DRC: 12 violations (all the documented `lib_footprint_mismatch` warnings), 0 unconnected, 0 footprint errors; R11's reference still hidden, as before |
+| `python ee/make_order.py` | order pack regenerated |
+| `python ee/check_fab.py` | **10 of 10 without failures.** Check 10 is a warning for the references only; the labels now pass |
+| Six faults planted in a scratch copy | all caught. A pad on the wrong net failed checks 1–3; a moved Gerber coordinate, check 6; a moved position, check 5; a wrong thickness in the order-pack generator, check 7; a moved DXF vertex, check 9 |
+| `git status` after the read-only checks | unchanged |
+
+### Remaining limitations
+
+- The fab's own DFM has not been run: the fab sites cannot be reached from here. Upload
+  the zip and read its report before paying.
+- The USB-C pads meet JLCPCB's 0.2 mm with 0.0002 mm to spare. Another fab may ask to
+  pull them back.
+- The references may print thin.

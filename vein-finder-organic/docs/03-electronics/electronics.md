@@ -151,9 +151,9 @@ re-checked (§5 of [cad.md](../02-cad/cad.md) and `checks.json`):
 
 | | |
 |---|---|
-| Board | 2 layers, FR-4 **1.0 mm**, 1 oz; 85.8 × 54.5 mm, 30.0 cm²; outline taken from the CAD (`build/device/layout.json`), with the four magnet holes and the USB-C notch |
+| Board | 2 layers, FR-4 **1.0 mm**, 1 oz; 85.7 × 54.4 mm (85.8 × 54.5 mm over the 0.1 mm edge line), 30.0 cm²; outline taken from the CAD (`build/device/layout.json`), with the four magnet holes and the USB-C notch |
 | Parts | 52 on top (MCU, driver, charger, status LEDs, passives, wire pads), 13 underneath (the 12 ring LEDs and the NTC) |
-| Rules | 0.2 mm clearance; tracks 0.25 mm (signals and LED strings), 0.45 mm (VBAT, VBUS, SW, VOUT), 0.3 mm (GND); vias 0.6 / 0.3 mm; copper 0.3 mm from the board edge, with one exception below |
+| Rules | 0.2 mm clearance; tracks 0.25 mm (signals and LED strings), 0.45 mm (VBAT, VBUS, SW, VOUT), 0.3 mm (GND); vias 0.6 / 0.3 mm (0.7 / 0.35 mm on the power nets); copper 0.3 mm from the board edge, with one exception below |
 | Routing | 1.59 m of track (0.94 m top, 0.65 m underside), 144 vias (72 of them GND stitching) |
 | Pours | GND on both layers, stitched: every island of either pour reaches the main underside plane |
 | **DRC** | **0 errors, 0 unconnected** (KiCad 7.0.11). 12 warnings, all of one kind, explained below |
@@ -186,6 +186,18 @@ re-checked (§5 of [cad.md](../02-cad/cad.md) and `checks.json`):
   pattern in the GCT USB4515 datasheet puts them.
 - This is below the board's own 0.3 mm rule, so check it against your fab's
   copper-to-board-edge minimum before ordering.
+- Measured on the finished board: 0.2002–0.2009 mm for the six signal pads, and 0.44 mm
+  for the shell pads. JLCPCB publishes 0.2 mm (trace to outline, routed boards), so the
+  pads just meet it.
+- The DRC rule's floor for J1's pads is 0.15 mm. `ee/check_fab.py` enforces the 0.20 mm
+  stated here on its own.
+
+**Routing and the 0.3 mm edge rule (review item R29).** Freerouting is not given the edge
+rule: it routes with its own 0.2 mm clearance, and `finish_route.py` repairs the result.
+The finished board meets the rule: DRC is clean, and an independent measurement puts the
+closest copper outside J1 at 0.300 mm (`check_fab.py`, check 8). Teaching Freerouting
+the rule would mean routing the board again, for no change in what is made, so it is not
+done.
 
 All other copper meets the 0.3 mm rule. For that, the two outermost ring LEDs (D2, D7)
 were pulled in from ±128.5° to **±126.1°**, where their pads clear the edge by 0.31 mm.
@@ -202,7 +214,13 @@ copies are cut back 0.25 mm inside the edge. The cathode marks stay. This is del
   BTN_GND, UPDI, VBAT, GND, TX, RX.
 - The cell's place on top is outlined and marked "CELL ON FOAM TAPE – NO PARTS".
 - The underside carries "VEIN FINDER (ORGANIC) REV A 2026-10" and "PERSONAL PROTOTYPE –
-  NOT A MEDICAL DEVICE".
+  NOT A MEDICAL DEVICE". Both are 1.0 mm text with a 0.16 mm stroke, which meets JLCPCB's
+  published minimums of 1.0 mm text and 0.153 mm lines. They were 0.8 / 0.12 mm until
+  2026-10-12. Enlarging them changed only the underside silkscreen.
+- The references are 0.8 mm text with a 0.12 mm stroke, and the part outlines are 0.12 mm
+  lines (the KiCad library standard). Both are under JLCPCB's advisory minimums, so they
+  may print thin. They stay that size: larger references would not fit around the
+  parts, and the board figures above name every part.
 
 **Fab files:** [`fab/`](fab/).
 - Gerbers and Excellon drill files (`vein_finder-gerbers.zip`).
@@ -210,6 +228,22 @@ copies are cut back 0.25 mm inside the edge. The cathode marks stay. This is del
 - Order 2 layers, **1.0 mm** thick, 1 oz copper, any finish.
 - Smallest features: 0.25 mm track, 0.2 mm gap, 0.3 mm via drill, 0.6 mm slots in the
   USB-C shell pads.
+
+**Integrity check:** `python ee/check_fab.py` changes nothing; it compares the committed
+files with what the board and `design.py` give now. Ten checks, all passing on
+2026-10-12:
+1. DRC as saved.
+2. Pours current.
+3. Design = PCB = schematic: 65 footprints, 144 pads, 40 nets, no single-pad nets, every IC
+   pin assigned.
+4. The BOM and order pack regenerate byte for byte.
+5. The position file regenerates identically.
+6. The Gerbers and drill files regenerate identically apart from their dates, and the zip
+   matches.
+7. The order pack's board facts match the board.
+8. Copper to the edge, measured independently.
+9. The outline: PCB = CAD within the 0.02 mm simplification, and the DXF = CAD exactly.
+10. Silkscreen against JLCPCB's minimums: a warning, for the references.
 
 **Two layout bugs were found and fixed** before these files were made:
 - Top-side parts were rotated with the wrong sign. Parts at 0° or 180° were unaffected.
@@ -315,6 +349,7 @@ positions and 500 lx room light, half shaded by the stone.
 | `docs/03-electronics/budget.py`, `optics.py` | the numbers in §5 |
 | `ee/lib/` | project symbols and footprints (`libgen.py`) |
 | `ee/finish_route.py`, `ee/silk.py` | routing finisher and GND stitching; silkscreen tidy-up |
+| `ee/check_fab.py` | read-only integrity check of the board and every fabrication output |
 | `ee/kicad/vein_finder.kicad_dru`, `fp-lib-table` | the USB-C edge-clearance exception; library table for `build/kicadlib` |
 
 ```sh
@@ -326,6 +361,8 @@ python ee/make_pcb.py --no-fab       # placement check, board, Freerouting, pour
 python ee/finish_route.py            # edge-rule rip-up, remaining joins, GND stitching
 python ee/make_pcb.py --stage finish # silkscreen, labels, fill, DRC, fab outputs
 python ee/make_bom.py                # BOM
+python ee/make_order.py              # order pack (docs/07-order)
+python ee/check_fab.py               # read-only: board, BOM, order pack and fab files agree
 python docs/03-electronics/budget.py; python docs/03-electronics/optics.py
 ```
 The KiCad 7.0 libraries and Freerouting 2.0.1 are fetched into `build/` (see README).

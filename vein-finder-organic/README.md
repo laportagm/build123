@@ -43,6 +43,7 @@ ee/finish_route.py          routing finisher: edge-rule rip-up, remaining joins,
 ee/silk.py                  silkscreen tidy-up (references, labels)
 ee/make_order.py            order pack (docs/07-order) from the BOM
 ee/make_bom.py              BOM (CSV + Markdown) with order quantities and cost
+ee/check_fab.py             read-only cross-check: DRC, nets, BOM, order pack, Gerbers, edge, outline
 ee/kicad/                   KiCad project (schematic, PCB, project rules)
 ee/lib/                     project symbols and footprints (libgen.py)
 fw/                         gate 4: ATtiny1614 firmware (src/), host tests (test/), Makefile
@@ -72,6 +73,7 @@ cd ../.. && tools/fetch.sh
 python ee/libgen.py && python ee/make_schematic.py && python ee/make_bom.py && python ee/make_order.py
 python ee/make_pcb.py --no-fab && python ee/finish_route.py && python ee/make_pcb.py --stage finish
 python ee/plot_pcb.py && (cd docs/03-electronics && python budget.py && python optics.py)
-make -C fw test && make -C fw
+python ee/check_fab.py      # read-only: the committed board, BOM, order pack and fab files agree
+make -C fw test && make -C fw && make -C fw mutants
 (cd docs/06-verification && python thermal.py && python iec62471.py)
 ```
