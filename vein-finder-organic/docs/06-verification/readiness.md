@@ -19,8 +19,8 @@ This record covers the fix-and-verify pass of 2026-10-12. It started from `e93df
 | 0 | Current state and issue register | done | — (no changes) |
 | 1 | Safety-critical firmware | PASS (simulated); hardware validation open | `6863abd` |
 | 2 | Firmware reliability | PASS (simulated); hardware validation open | `ab70f86` |
-| 3 | PCB and manufacturing integrity | PASS, one warning accepted (silkscreen references) | this chunk |
-| 4 | Mechanical and electrical integration | pending | |
+| 3 | PCB and manufacturing integrity | PASS, one warning accepted (silkscreen references) | `a6b9e90` |
+| 4 | Mechanical and electrical integration | PASS on the models; one decision open (N19); physical checks listed | this chunk |
 | 5 | Final verification, GO / NO-GO | pending | |
 
 ## 0. Starting point (`e93df07`)
@@ -48,7 +48,7 @@ This record covers the fix-and-verify pass of 2026-10-12. It started from `e93df
 | N04 | The sleep entry, wake-up and watchdog cannot be host-tested, and the watchdog could not be made to fire on the bench | verification gap | 1 | closed (static check, bench build); hardware open |
 | N05 | Auto-off and hold timing rest on the 32 kHz oscillator's accuracy | risk | 2 | documented (±10 %), bench item 17 |
 | N06 | No tests for debounce glitches or the tap/hold boundary | test gap | 2 | closed |
-| N07 | VBUS-sense input level against the MCU's high threshold with a full cell | hardware risk | 4 | |
+| N07 | VBUS-sense input level against the MCU's high threshold with a full cell | hardware risk | 4 | threshold not verified; margin documented; bench item 21, with a ready fix |
 | N08 | Nothing checks schematic, PCB, BOM, fab files and order pack against each other; the order pack's board facts were copied by hand | gap | 3 | closed: `ee/check_fab.py` |
 | N09 | Silkscreen line width against the fab's minimum | fab risk | 3 | board labels enlarged; references and outlines accepted |
 | N10 | USB-C pads 0.20 mm from the board edge (the 0.3 mm rule's one exception) | documented exception | 3 | measured 0.2002 mm; meets JLCPCB's 0.2 mm |
@@ -60,6 +60,10 @@ This record covers the fix-and-verify pass of 2026-10-12. It started from `e93df
 | N16 | A cell-voltage reading under 18 overflowed 16 bits, giving a random voltage. A reading of 17 gave 0.658 V and a spurious battery lock | defect (error handling) | 2 | fixed |
 | N17 | The order pack gave the board size over the 0.1 mm edge line (85.8 × 54.5 mm; the outline is 85.7 × 54.4 mm), and left out the 0.7 / 0.35 mm power-net vias | doc error | 3 | fixed |
 | N18 | The board's own "PERSONAL PROTOTYPE – NOT A MEDICAL DEVICE" label was 0.8 mm text with a 0.12 mm stroke, under JLCPCB's published 1.0 mm / 0.153 mm, so it might not print legibly | defect (fab) | 3 | fixed: 1.0 / 0.16 mm |
+| N19 | The sole is 0.91 mm thick under the USB-C opening's lip, under the brief's 1.6 mm. It is listed in verification §2, but was missing from the §1 summary and never put to you as a decision | requirement conflict | 4 | **open: needs your decision** (recommend: accept, bench item 20) |
+| N20 | The CAD leaves 0.15 mm of air between the NTC body and its 0.7 mm window, which weakens the coupling the 41 °C cut-off relies on | thermal integration risk | 4 | documented; bench items 4 and 11; thermal paste if the offset is large or unsteady |
+| N21 | No reverse-polarity protection on the cell pads TP1/TP2; their silkscreen labels are small | assembly risk | 4 | build-guide warning added |
+| N22 | The cell stack depends on the foam tape (1.0 or 1.6 mm, unknown) and the real cell thickness: tape + cell ≤ 7.4 mm | measurement | 4 | build-guide step and bench item 19 |
 
 **Order of work:**
 - Chunks 1 and 2 change the same firmware files, so they go in order.
@@ -297,3 +301,102 @@ ordering pages; not checked against PCBWay or OSH Park):
 - The USB-C pads meet JLCPCB's 0.2 mm with 0.0002 mm to spare. Another fab may ask to
   pull them back.
 - The references may print thin.
+
+## 4. Mechanical and electrical integration
+
+**Scope:**
+- the PCB in the enclosure;
+- LEDs against their apertures;
+- the cell, the USB-C opening, the NTC mounting;
+- wiring, fasteners (magnets and posts), clearances and assembly order.
+
+No dimension was invented. Every number below comes from `layout.json`,
+`cad/device/params.py`, `checks.json` or a part entry in `design.py`. Anything that only
+a part in hand can show is listed as a measurement.
+
+### What was inspected
+
+- **The CAD's own checks** (`build/device/checks.json`, newer than the final
+  `layout.json`):
+  - no interference among the 13 parts and stand-ins;
+  - top shell 1.80 mm minimum;
+  - sole floors;
+  - magnet pull 24.1–25.8 N.
+  These prove the enclosure against the layout.
+- **The board against the same layout:** new `ee/check_fit.py`, read-only, 7 checks. All
+  pass:
+
+| Check | Result |
+|---|---|
+| 1 Ring LEDs | all 12 LEDs' pads within 0.0025 mm of their pockets' centre lines, on the underside. The pocket leaves 0.20 mm a side radially for placement error past a maximum-size body |
+| 2 NTC | pads within 0.0025 mm. Pocket 3.10 × 1.25 mm around a 1.6 × 0.8 mm body: 0.75 mm along it, 0.225 mm across. **0.15 mm of air** under the 0.70 mm window at nominal heights (N20) |
+| 3 Seam LEDs | on the channel positions (0.0000 mm) |
+| 4 USB-C | the contact pads put the receptacle face at x = 61.100 (CAD 61.1); the shell slots match the CAD's legs. Opening 9.44 × 3.67 mm around the 8.94 × 3.17 mm shell; a 13.8 mm landing plane 0.1 mm in front of the face |
+| 5 Pins, magnets | 6 post holes at the CAD positions (1.0 mm drill; 0.64 mm square posts, diagonal 0.905 mm; printed holes 1.05 mm, reamed if tight, per the build guide). Horn magnet holes 6.75 mm round 6.35 mm magnets |
+| 6 Headroom and keep-outs | the original `room.Room` proof, re-run on the 65 as-built courtyards: every top part ≥ 0.3 mm under the shell and clear of the cell, mask, bosses, bridge feet and USB-C |
+| 7 Cell stack | board top z 5.18; foam 1.60 mm (the thicker of the two listed); cell 5.40 mm; 0.4 mm to the bridge deck |
+
+Four planted misplacements were all caught, on an in-memory copy (nothing saved):
+- an LED moved 0.05 mm;
+- the NTC moved 0.05 mm;
+- J1 moved 0.2 mm;
+- a capacitor moved onto the cell.
+
+**Other interfaces read from the CAD and the part entries:**
+- **Button:** an Omron B3F-1020, 5.0 mm tall per its listing, with 0.05 mm nominal gap to
+  the membrane. The build guide shims it with paper.
+- **Cell:** Jauch LP503040JH+PCM, with 50 mm leads to TP1/TP2 on the +y arm, next to the
+  cell's lead end.
+- **Button wires:** two 30 AWG wires of about 60 mm.
+- **USB-C:** power-only. 5.1 k on CC1 and CC2 (R1, R2) asks a USB-C source for 5 V.
+- **N07:** the USB-detect divider's margin against the MCU's input threshold. The 1614's
+  threshold was not found in the datasheet extracts that could be reached. The margin is
+  worked out for 0.7 × VDD, marked as unconfirmed.
+- **N21:** the cell pads have no reverse-polarity protection.
+
+### Changes
+
+| Issue | Change | File |
+|---|---|---|
+| — | `ee/check_fit.py`: the board as built against the CAD layout, 7 read-only checks | new |
+| N19 | The 0.91 mm lip is in §1's summary row as an open decision | `verification.md` |
+| N20 | Dry-fit step; thermal paste on RT1 if bench item 4 shows a large or unsteady offset | `build.md` §4.2 |
+| N21 | Polarity warning at the cell-soldering step | `build.md` §3 |
+| N22 | Measure tape + cell (≤ 7.4 mm) before sticking the cell | `build.md` §4.3 |
+| N07 | Margin, consequence and the contingency (R7 → 200 k, after checking the pin's injection limit) | `electronics.md` §2 |
+| — | Bench items 19 (fit before closing), 20 (USB-C plug and lip), 21 (USB detection at full charge) | `verification.md` §8 |
+
+**Not changed:** the board, the BOM, the CAD and the fab files. No fit conflict was found
+on the models.
+
+### Decision needed (N19)
+
+The USB-C opening's lower lip is 0.91 mm of PETG, under the brief's 1.6 mm wall.
+- It is set by the receptacle's height. The mid-mount part hangs 0.61 mm below the board,
+  and the plug enters just above the sole's bottom skin.
+- **Smallest change: accept it** as a fifth thin spot, like the 1.15 mm pocket behind
+  it. The strip is 9.4 × 1.5 mm, held on three sides; the tail is 6.3 mm tall there.
+  Bench item 20 checks 20 plug cycles for whitening or cracks.
+- The alternative is to move the receptacle up or deepen the sole. That changes the
+  skin, the USB-C height and the board, which is a gate-2 redesign.
+- This does not block ordering. It only matters once the sole is printed.
+
+### PHYSICAL MEASUREMENT REQUIRED
+
+| # | What | Why | Where |
+|---|---|---|---|
+| 1 | Foam tape thickness, and the cell's thickness including the PCM | tape + cell ≤ 7.4 mm, or the bridge deck touches the cell | build §4.3, bench 19 |
+| 2 | Dry fit of the soldered board in the sole | 0.20 mm a side for an LED off centre, 0.225 mm for the NTC; the board must lie flat | build §4.2, bench 19 |
+| 3 | NTC-to-face offset and its steadiness | 0.15 mm air gap; the cut-off thresholds are at the NTC | bench 4, 11 |
+| 4 | Button gap and force | 0.05 mm nominal gap; shim | build §4.4, bench 5 |
+| 5 | Post fit in the printed holes | 1.05 mm printed holes for a 0.905 mm diagonal; ream if tight | build §1 |
+| 6 | Magnet pocket fit and closure force | 0.15 mm diametral clearance, glued; 24–26 N modelled | build §4.1, bench 6 |
+| 7 | USB-C plug engagement and the lip | 0.1 mm landing in front of the face; 0.91 mm lip | bench 20 |
+| 8 | Mask tops to shell (0.10 mm) and bridge to shell (≥ 0.6 mm) | tight CAD clearances | bench 19 (closing) |
+| 9 | USB detection at full charge | unverified input threshold | bench 21 |
+
+### Remaining limitations
+
+- Printed parts will differ from the model. FDM holes come out undersize, and PETG
+  shrinks. Only items 1–8 can show the real fit.
+- N19 is waiting for your decision.

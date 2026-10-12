@@ -108,6 +108,9 @@ Work top side first, then the underside.
 ## 3. Program and test on the bench
 
 1. Solder the cell's red lead to **BAT+** (TP1) and black to **BAT−** (TP2).
+   - **The board has no reverse-polarity protection.** A reversed cell can destroy the
+     charger and the MCU. The pad labels are small, so check TP1 and TP2 against the
+     board figure before soldering.
    - Leave about 40 mm of lead.
    - The cell ships part-charged.
 2. Solder two 30 AWG wires, about 60 mm long, to **BTN** (TP8) and **BTN_GND** (TP9),
@@ -158,6 +161,15 @@ Each step renders the parts as they go in; the top shell is shown last.
    - the four magnets pass through the four board holes, which locates it;
    - the LEDs drop into their channels;
    - the NTC drops into its pocket.
+6. **Dry-fit check:** the board must lie flat, without rocking.
+   - The channels leave 0.2 mm a side for an LED soldered off centre. The NTC's pocket
+     leaves 0.22 mm a side.
+   - If the board rocks, find the part that is not in its pocket and re-seat it.
+   - Do not force the board down: the LEDs would crack the channel walls.
+7. **NTC contact:** the CAD leaves a 0.15 mm air gap between RT1 and its 0.7 mm window.
+   - If bench item 4 shows a large or unsteady offset between the NTC and the face, put a
+     small dab of thermal paste on RT1 before closing.
+   - Then repeat item 4 (verification §8).
 
 ### 4.3 Battery
 
@@ -165,6 +177,10 @@ Each step renders the parts as they go in; the top shell is shown last.
 
 1. Stick one piece of foam tape (Adafruit 5019) on the board inside the "CELL" outline
    on the silkscreen.
+   - First measure the tape and the cell. Tape plus cell must be ≤ 7.4 mm, so that the
+     bridge deck stays clear of the cell.
+   - The CAD assumes 1.6 mm tape and the cell's 5.4 mm datasheet envelope, with 0.4 mm to
+     spare.
 2. Press the cell onto it with its leads toward the +y side arm (the battery pads).
 3. Dress the leads flat along the board edge.
 

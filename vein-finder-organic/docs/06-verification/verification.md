@@ -11,7 +11,7 @@
 |---|---|---|---|
 | Palm-sized river stone, G2 surfaces | 90.2 × 58.9 × 24.7 mm, 56 g; G2 everywhere, poles included | `cad/device/verify_skin.py`, zebra renders | met |
 | Walls ≥ 1.6 mm, approved thin spots | top shell 1.80 mm min (805 k samples); thin spots 0.68 mm (seam) and 0.40 mm (button), approved in the brief | `checks.py` wall map, probes | met |
-| … sole floors | magnets 1.82 / 1.67 mm, pins 1.96–3.10 mm; **NTC window 0.70 mm** and **USB-C pocket 1.15 mm** | `checks.py sole_floors` | met with two more thin spots, both accepted on 2026-10-12 |
+| … sole floors | magnets 1.82 / 1.67 mm, pins 1.96–3.10 mm; **NTC window 0.70 mm** and **USB-C pocket 1.15 mm**; **USB-C opening lip 0.91 mm** | `checks.py sole_floors` | two thin spots accepted on 2026-10-12; the 0.91 mm lip is **open** (readiness N19) |
 | Cosmetic surfaces without supports | top-shell skin max overhang 21.0°; sole skin none (one 0.01 mm² tessellation speck) | `checks.py` overhang | met |
 | Parts fit, no interference | 13 parts and stand-ins, pairwise: none | `checks.py` interference | met |
 | Magnet closure (your choice) | 24.1–25.8 N with N35 (4 pairs) | coaxial current-loop model | met |
@@ -118,6 +118,14 @@ which is next to an LED pocket. Calibrate it on the bench (§8, item 4) and adju
     at the board edge on purpose.
   - Every pad's position is checked against its intended placement when the board is
     built.
+- **Board against the enclosure** (`ee/check_fit.py`, read-only, 7 checks, all passing):
+  - Every ring LED's pads are within 0.0025 mm of its sole pocket; so is the NTC.
+  - The seam LEDs sit in the channel.
+  - The USB-C contacts put the receptacle face at x = 61.100, the CAD's value.
+  - The post and magnet holes are at the CAD positions.
+  - The original headroom and keep-out proof passes again on the as-built courtyards.
+  - The cell stack is as modelled.
+  - Four planted misplacements were all caught.
 - **Fabrication integrity** (`ee/check_fab.py`, read-only, 10 checks, all passing):
   - DRC as saved; pours current.
   - Design = PCB = schematic.
@@ -209,3 +217,6 @@ Shipping and filament (about 30 g of PETG) are not included. Prices were re-chec
 | 16 | VOUT at turn-off | Scope C5 (VOUT) and Q1's drain at the fourth tap (off) and at the item-11 cut-off | VOUT decays with no rise toward the 36–39 V open-LED limit. If it rises, keep the gate on one tick after CTRL goes low (`logic.c`) and test again |
 | 17 | Timing | Stopwatch: from the last tap to the auto-off, three times. Press for about 0.5 s and about 0.7 s, five times each | auto-off 162–198 s (3 min ± 10 %); 0.5 s presses step the level, 0.7 s presses switch the bank |
 | 18 | Current with the button held | µA meter as in item 7. Tape the button down, then wait for the auto-off | ≤ 1 mA: at least 25 days from a full cell. This is the known limitation N14 in [firmware.md §2.1](../04-firmware/firmware.md#21-power) |
+| 19 | Fit before closing | Board in the sole (build §4.2): every LED and the NTC in its pocket. Then the seam mask and bridge on their posts. Measure foam tape + cell | board flat, no rocking; mask and bridge seated; tape + cell ≤ 7.4 mm |
+| 20 | USB-C plug | Three cables, one with a bulky plug. Insert fully, then 20 plug cycles | each latches and charges (item 3); no whitening or cracks at the 0.91 mm lip under the opening |
+| 21 | USB detected at full charge | Cell full (4.2 V). USB from a weak supply or a long thin cable (≤ 4.6 V at the board) | seam steady (full); a tap does not light the LEDs. If it fails, see electronics §2 (R7) |

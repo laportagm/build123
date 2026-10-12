@@ -68,6 +68,17 @@ therefore comes from search-engine snippets of those pages, or from aggregators.
   - NTC RT1 (10 k, B 3380 K) sits in the sole's sensor window. Its divider (R8 = 10 k)
     is powered only while it is being read.
   - A 100 k / 200 k divider tells the MCU when USB power is present (3.33 V at 5 V).
+    - **Margin not verified:** the ATtiny1614's input-high threshold was not found.
+    - If it is 0.7 × VDD (a common AVR figure, not confirmed for this part), a full
+      4.2 V cell needs 2.94 V at PA7. USB at 4.75 V gives 3.17 V. A supply sagging to
+      4.4 V gives 2.93 V, which may not register.
+    - Missing it only loses the USB-present behaviour: the LEDs may light while
+      charging, and the seam shows no charge. Charging itself is unaffected.
+    - Bench item 21 tests it. If it fails, a 3:4 divider (R7 200 k) fixes it.
+      Check the pin's injection limit first, because an empty cell then sees up to
+      3.9 V on PA7 through 75 k.
+  - There is no reverse-polarity protection on the cell pads (TP1, TP2). The build
+    guide warns about it.
   - Five amber 0603 LEDs in the mask channel light the seam, through 1 kΩ each from one
     PWM pin (about 2 mA each).
 - **Defaults when the MCU is in reset or unprogrammed.** R10 holds CTRL low, so the driver
@@ -350,6 +361,7 @@ positions and 500 lx room light, half shaded by the stone.
 | `ee/lib/` | project symbols and footprints (`libgen.py`) |
 | `ee/finish_route.py`, `ee/silk.py` | routing finisher and GND stitching; silkscreen tidy-up |
 | `ee/check_fab.py` | read-only integrity check of the board and every fabrication output |
+| `ee/check_fit.py` | read-only fit check of the board as built against the CAD layout |
 | `ee/kicad/vein_finder.kicad_dru`, `fp-lib-table` | the USB-C edge-clearance exception; library table for `build/kicadlib` |
 
 ```sh
@@ -363,6 +375,7 @@ python ee/make_pcb.py --stage finish # silkscreen, labels, fill, DRC, fab output
 python ee/make_bom.py                # BOM
 python ee/make_order.py              # order pack (docs/07-order)
 python ee/check_fab.py               # read-only: board, BOM, order pack and fab files agree
+python ee/check_fit.py               # read-only: the board as built against the CAD layout
 python docs/03-electronics/budget.py; python docs/03-electronics/optics.py
 ```
 The KiCad 7.0 libraries and Freerouting 2.0.1 are fetched into `build/` (see README).
