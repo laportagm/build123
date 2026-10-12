@@ -60,7 +60,7 @@ This record covers the fix-and-verify pass of 2026-10-12. It started from `e93df
 | N16 | A cell-voltage reading under 18 overflowed 16 bits, giving a random voltage. A reading of 17 gave 0.658 V and a spurious battery lock | defect (error handling) | 2 | fixed |
 | N17 | The order pack gave the board size over the 0.1 mm edge line (85.8 × 54.5 mm; the outline is 85.7 × 54.4 mm), and left out the 0.7 / 0.35 mm power-net vias | doc error | 3 | fixed |
 | N18 | The board's own "PERSONAL PROTOTYPE – NOT A MEDICAL DEVICE" label was 0.8 mm text with a 0.12 mm stroke, under JLCPCB's published 1.0 mm / 0.153 mm, so it might not print legibly | defect (fab) | 3 | fixed: 1.0 / 0.16 mm |
-| N19 | The sole is 0.91 mm thick under the USB-C opening's lip, under the brief's 1.6 mm. It is listed in verification §2, but was missing from the §1 summary and never put to you as a decision | requirement conflict | 4 | **open: needs your decision** (recommend: accept, bench item 20) |
+| N19 | The sole is 0.91 mm thick under the USB-C opening's lip, under the brief's 1.6 mm. It is listed in verification §2, but was missing from the §1 summary and never put to you as a decision | requirement conflict | 4 | **accepted provisionally for the first print (2026-10-12)**; bench item 20 is a required durability check (checklist 3.4) |
 | N20 | The CAD leaves 0.15 mm of air between the NTC body and its 0.7 mm window, which weakens the coupling the 41 °C cut-off relies on | thermal integration risk | 4 | documented; bench items 4 and 11; thermal paste if the offset is large or unsteady |
 | N21 | No reverse-polarity protection on the cell pads TP1/TP2; their silkscreen labels are small | assembly risk | 4 | build-guide warning added |
 | N22 | The cell stack depends on the foam tape (1.0 or 1.6 mm, unknown) and the real cell thickness: tape + cell ≤ 7.4 mm | measurement | 4 | build-guide step and bench item 19 |
@@ -369,7 +369,15 @@ Four planted misplacements were all caught, on an in-memory copy (nothing saved)
 **Not changed:** the board, the BOM, the CAD and the fab files. No fit conflict was found
 on the models.
 
-### Decision needed (N19)
+### N19: provisional decision (2026-10-12)
+
+At your instruction of 2026-10-12, the lip is **accepted provisionally for printing the
+first prototype**. Final acceptance needs bench item 20 to pass: 20 plug cycles, with no
+whitening or cracks ([checklist 3.4](../08-prototype/checklist.md)). If it fails, the
+options below come back.
+
+Background: the question answered on 2026-10-12 named only the 1.15 mm floor under the
+receptacle. The lip was in electronics §7's problem text, but not in the question.
 
 The USB-C opening's lower lip is 0.91 mm of PETG, under the brief's 1.6 mm wall.
 - It is set by the receptacle's height. The mid-mount part hangs 0.61 mm below the board,
@@ -399,7 +407,7 @@ The USB-C opening's lower lip is 0.91 mm of PETG, under the brief's 1.6 mm wall.
 
 - Printed parts will differ from the model. FDM holes come out undersize, and PETG
   shrinks. Only items 1–8 can show the real fit.
-- N19 is waiting for your decision.
+- N19 is accepted provisionally, pending bench item 20.
 
 ## 5. Final verification and GO / NO-GO
 
@@ -449,7 +457,7 @@ safety.** The bench checks in verification §8 are.
 | Documented, with a bench item | N05 (17), N07 (21), N14 (18), N15 (16), N20 (4, 11), N22 (19) |
 | Accepted, with reasons | N09 (silkscreen references), N10 (USB-C 0.20 mm), N11 (no reroute), N12 (BOD off) |
 | Warning added | N21 (cell polarity) |
-| **Open: your decision** | **N19**: 0.91 mm lip under the USB-C opening. Recommendation: accept, with bench item 20 |
+| Provisionally accepted (2026-10-12) | **N19**: 0.91 mm lip under the USB-C opening. Bench item 20 is required (checklist 3.4) |
 
 ### GO / NO-GO
 
@@ -462,13 +470,18 @@ safety.** The bench checks in verification §8 are.
 3. The cell (Digi-Key) ships by ground only.
 
 **Building the first prototype for bench evaluation: GO.** Conditions:
-1. Decide N19 before printing the sole.
+1. N19 is accepted provisionally for printing; bench item 20 must pass
+   ([checklist 3.4](../08-prototype/checklist.md)).
 2. Follow the build guide, including the steps added in this pass:
    - check the cell polarity;
    - measure tape + cell;
    - dry-fit the board in the sole;
    - add NTC paste if bench item 4 calls for it.
 3. Run the bench checks in the stages below, and stop at the first failure.
+
+**Executing it:** [docs/08-prototype/checklist.md](../08-prototype/checklist.md) sequences
+the bench items with equipment, procedures, acceptance values and failure actions. Its
+Stage 2 contains stage A below, and its Stage 3 contains stage B.
 
 **Any contact with skin, including bench items 4 and 10 on your arm: NO-GO until stages
 A and B pass.** Even then this stays a personal prototype for bench evaluation. It is

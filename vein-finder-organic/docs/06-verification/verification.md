@@ -5,7 +5,9 @@
 > the brief. It is not a safety case, and nothing here has been measured on hardware yet:
 > §8 lists the bench checks to run on the first build. The GO / NO-GO, and the order in
 > which to run the bench checks before anything touches skin, are in
-> [readiness.md](readiness.md#5-final-verification-and-go--no-go).
+> [readiness.md](readiness.md#5-final-verification-and-go--no-go). The step-by-step build
+> and test procedure, with equipment and failure actions for every item below, is the
+> [prototype checklist](../08-prototype/checklist.md).
 
 ## 1. Results against the brief
 
@@ -13,7 +15,7 @@
 |---|---|---|---|
 | Palm-sized river stone, G2 surfaces | 90.2 × 58.9 × 24.7 mm, 56 g; G2 everywhere, poles included | `cad/device/verify_skin.py`, zebra renders | met |
 | Walls ≥ 1.6 mm, approved thin spots | top shell 1.80 mm min (805 k samples); thin spots 0.68 mm (seam) and 0.40 mm (button), approved in the brief | `checks.py` wall map, probes | met |
-| … sole floors | magnets 1.82 / 1.67 mm, pins 1.96–3.10 mm; **NTC window 0.70 mm** and **USB-C pocket 1.15 mm**; **USB-C opening lip 0.91 mm** | `checks.py sole_floors` | two thin spots accepted on 2026-10-12; the 0.91 mm lip is **open** (readiness N19) |
+| … sole floors | magnets 1.82 / 1.67 mm, pins 1.96–3.10 mm; **NTC window 0.70 mm** and **USB-C pocket 1.15 mm**; **USB-C opening lip 0.91 mm** | `checks.py sole_floors` | two thin spots accepted on 2026-10-12; the 0.91 mm lip is **accepted provisionally** for the first print (readiness N19), pending item 20 |
 | Cosmetic surfaces without supports | top-shell skin max overhang 21.0°; sole skin none (one 0.01 mm² tessellation speck) | `checks.py` overhang | met |
 | Parts fit, no interference | 13 parts and stand-ins, pairwise: none | `checks.py` interference | met |
 | Magnet closure (your choice) | 24.1–25.8 N with N35 (4 pairs) | coaxial current-loop model | met |
@@ -202,7 +204,7 @@ Shipping and filament (about 30 g of PETG) are not included. Prices were re-chec
 | # | Check | How | Pass |
 |---|---|---|---|
 | 1 | LED optical power | photodiode / lux meter at 100 mm on axis, one LED at 20 mA | 660 nm ≥ 8 mW (the estimate is 12 mW) |
-| 2 | LED current at each level | 1 Ω shunt in series with R9's ground, or VOUT current | 9 / 16 / 23 mA (A), 10 / 17 / 25 mA (B) ± 10 % |
+| 2 | LED current at each level | DC voltage across R9 (8.2 Ω): I = V / 8.2 Ω. Do not add a shunt in R9's ground: it sits inside the driver's feedback loop and lowers the current by about 11 % | 9 / 16 / 23 mA (A), 10 / 17 / 25 mA (B) ± 10 % |
 | 3 | Charge current and termination | USB meter | 223–268 mA; stops near 25 mA |
 | 4 | NTC vs face temperature | thermocouple taped on the face next to the hottest LED pocket, full power on a skin phantom (or your arm) for 20 min | set the firmware limits so the face stays ≤ 41 °C |
 | 5 | Button force and click | kitchen scale under the stone | 2–5 N, click felt |
@@ -213,12 +215,12 @@ Shipping and filament (about 30 g of PETG) are not included. Prices were re-chec
 | 10 | Vein visibility | forearm, room light and dimmed | veins visible at the rim |
 | 11 | Thermal cut-off, end to end | Thermocouple on the sole's NTC window. Warm the face with a hair dryer on low, or a 45 °C water bag, at level 3. This also catches a dead NTC input (a broken joint at the MCU pin) | dims from about 38 °C; off, seam double-blinking, before the thermocouple passes 42 °C; back on after cooling below 38 °C |
 | 12 | NTC faults | On the bare board, before closing. (a) While lit, short RT1's pads with tweezers, then let go. (b) Tap with RT1 not yet fitted, or one end lifted | (a) off within 0.3 s, seam double-blinks; back on when released. (b) never lights |
-| 13 | Stuck button | Lit, then tape or clip the button down for 4 min | the bank switches once at 0.6 s; off 3 min (± 10 s) later; still off after the release |
+| 13 | Stuck button | Lit, then tape or clip the button down for 4 min | the bank switches once at 0.6 s; off 162–198 s after the switch (3 min ± 10 %, as item 17); still off after the release |
 | 14 | Sleep and wake | Off and unplugged for > 1 min, so it is asleep (item 7 current). (a) Tap 20 times, with > 1 min between taps. (b) Plug in USB while asleep | (a) on at the first tap, 20 of 20. (b) the seam breathes within 0.1 s |
 | 15 | Watchdog | Flash the test build (`make -C fw wdt-test`, then `make -C fw flash HEX=build/fw_wdt_test.hex`). Tap. Afterwards flash the normal build again | dark 6 ± 1 s after the tap (5 s plus the 1 s watchdog), and stays dark until the next tap |
 | 16 | VOUT at turn-off | Scope C5 (VOUT) and Q1's drain at the fourth tap (off) and at the item-11 cut-off | VOUT decays with no rise toward the 36–39 V open-LED limit. If it rises, keep the gate on one tick after CTRL goes low (`logic.c`) and test again |
 | 17 | Timing | Stopwatch: from the last tap to the auto-off, three times. Press for about 0.5 s and about 0.7 s, five times each | auto-off 162–198 s (3 min ± 10 %); 0.5 s presses step the level, 0.7 s presses switch the bank |
 | 18 | Current with the button held | µA meter as in item 7. Tape the button down, then wait for the auto-off | ≤ 1 mA: at least 25 days from a full cell. This is the known limitation N14 in [firmware.md §2.1](../04-firmware/firmware.md#21-power) |
 | 19 | Fit before closing | Board in the sole (build §4.2): every LED and the NTC in its pocket. Then the seam mask and bridge on their posts. Measure foam tape + cell | board flat, no rocking; mask and bridge seated; tape + cell ≤ 7.4 mm |
-| 20 | USB-C plug | Three cables, one with a bulky plug. Insert fully, then 20 plug cycles | each latches and charges (item 3); no whitening or cracks at the 0.91 mm lip under the opening |
+| 20 | USB-C plug | Three cables, one with a bulky plug. Insert fully, then 20 plug cycles | each latches and charges (item 3); no whitening or cracks at the 0.91 mm lip under the opening. **Required: it decides N19** |
 | 21 | USB detected at full charge | Cell full (4.2 V). USB from a weak supply or a long thin cable (≤ 4.6 V at the board) | seam steady (full); a tap does not light the LEDs. If it fails, see electronics §2 (R7) |
