@@ -116,8 +116,8 @@ re-checked (§5 of [cad.md](../02-cad/cad.md) and `checks.json`):
    - 1.31 mm at the edge of the horn-magnet pockets;
    - 1.34 mm under the USB-C port.
 
-   The magnet floors are now **1.82 mm** (horns) and **1.67 mm** (tail). The USB-C floor is
-   a decision, in §7.
+   The magnet floors are now **1.82 mm** (horns) and **1.67 mm** (tail). The USB-C floor
+   (1.15 mm) is accepted as a hidden thin spot (§7).
 5. **Locating pins** are now header posts.
    - They are soldered into plated 1.0 mm holes from the underside. The printed part on
      top acts as the squaring jig.
@@ -178,15 +178,15 @@ re-checked (§5 of [cad.md](../02-cad/cad.md) and `checks.json`):
    - It fills the pours and stitches every GND island to the main plane: with a via where
      both layers' pours overlap, else with a track.
 
-**Two edge-clearance exceptions**, both set as rules in `vein_finder.kicad_dru`:
+**One edge-clearance exception**, set as a rule in `vein_finder.kicad_dru`:
+- The USB-C pads sit **0.20 mm** from the board notch. That is where the receptacle's land
+  pattern in the GCT USB4515 datasheet puts them.
+- This is below the board's own 0.3 mm rule, so check it against your fab's
+  copper-to-board-edge minimum before ordering.
 
-| Where | Copper to edge | Why |
-|---|---|---|
-| USB-C pads at the board notch | 0.20 mm | the receptacle's land pattern from the GCT USB4515 datasheet |
-| Outer ring LEDs D2 and D7 (±128.5°) | 0.27 mm | they sit where the window meets the horn slot |
-
-Both are below this board's own 0.3 mm rule. Check them against your fab's
-copper-to-board-edge minimum before ordering.
+All other copper meets the 0.3 mm rule. For that, the two outermost ring LEDs (D2, D7)
+were pulled in from ±128.5° to **±126.1°**, where their pads clear the edge by 0.31 mm.
+The other ten LEDs kept their places, so the sole over every dome is unchanged.
 
 **DRC warnings (12).** These are all `lib_footprint_mismatch`, one for each ring LED. Their
 silkscreen outlines run off the board at the window and the horn slot, so the board's
@@ -245,7 +245,7 @@ positions and 500 lx room light, half shaded by the stone.
 
 | Bank | Light skin | Medium skin | Dark skin |
 |---|---|---|---|
-| 660 nm, rim ÷ room-light veil | 1.42 | 1.50 | 1.59 |
+| 660 nm, rim ÷ room-light veil | 1.42 | 1.51 | 1.59 |
 | 625 nm, rim ÷ room-light veil | 1.0–3.0 | 1.0–3.0 | 0.85–2.6 |
 
 - **These 1206 LEDs give far less light than the concept's power LEDs** (an estimated
@@ -283,9 +283,9 @@ positions and 500 lx room light, half shaded by the stone.
 
 | Brief | Problem found | Smallest change | Status |
 |---|---|---|---|
-| Walls ≥ 1.6 mm (two approved thin spots) | The tail is only 6.3 mm tall at the port. Every hand-solderable (6-pad) USB-C mid-mount is built for a 1.6 mm board and hangs 0.6 mm below this 1.0 mm board. That leaves **1.15 mm** of sole under the receptacle body (9.4 × 5 mm, hidden) and a 0.9 mm lip under the opening. | (a) Accept it: hidden, not a contact face. (b) Use a 1.6 mm board: floor 1.75 mm, but the LED ring moves out 0.26 mm (about 17 % less rim light), and the horn dowels lose 0.6 mm. (c) Use a 16-pin HRO TYPE-C-31-M-14: floor about 1.6 mm, but 0.5 mm-pitch pads, and its sink depth is unconfirmed (0.75 mm on Hroparts' page vs 1.1–1.2 mm in three 3D models). | **Your decision.** Default (a). |
-| Walls ≥ 1.6 mm | The NTC must sense the skin face. It sits in a pocket with a **0.70 mm** floor: a sensor window of 3.1 × 1.25 mm. (Gate 2 had about 1.1 mm here, also unreported.) | (a) Keep: best tracking of the face temperature. (b) An 0402 NTC gives a 1.1 mm floor (that part is not yet sourced). (c) Put the NTC on top of the board: no window, but it reads hotter than the face, so the 41 °C limit throttles early. | **Your decision.** Default (a). |
-| Rim brightness (concept: 2–13× the room veil) | The in-stock LEDs that fit the 2.0 mm ring budget are 30 mA indicator parts. The rim is about 1.5× the room-light veil. | (a) Keep the 1206 parts; dim the room or shade the window for the centre. (b) Go back to the concept's 2835 power LEDs (Lumileds LUXEON SunPlus 2835, not yet sourced). They run at the thermal cap (29–52 mW each, about 2–4× more light). The ring moves out to about 19.0 mm and the lands grow; net about 1.5–2.5× brighter. That means a CAD and PCB update. | **Your decision.** Default (a). |
+| Walls ≥ 1.6 mm (approved thin spots: seam, button) | The tail is only 6.3 mm tall at the port. Every hand-solderable (6-pad) USB-C mid-mount is built for a 1.6 mm board and hangs 0.6 mm below this 1.0 mm board. That leaves **1.15 mm** of sole under the receptacle body (9.4 × 5 mm, hidden) and a 0.9 mm lip under the opening. | (a) Accept it: hidden, not a contact face. (b) Use a 1.6 mm board: floor 1.75 mm, but the LED ring moves out 0.26 mm (about 17 % less rim light), and the horn dowels lose 0.6 mm. (c) Use a 16-pin HRO TYPE-C-31-M-14: floor about 1.6 mm, but 0.5 mm-pitch pads, and its sink depth is unconfirmed (0.75 mm on Hroparts' page vs 1.1–1.2 mm in three 3D models). | **Decided 2026-10-12: (a).** |
+| Walls ≥ 1.6 mm | The NTC must sense the skin face. It sits in a pocket with a **0.70 mm** floor: a sensor window of 3.1 × 1.25 mm. (Gate 2 had about 1.1 mm here, also unreported.) | (a) Keep: best tracking of the face temperature. (b) An 0402 NTC gives a 1.1 mm floor (that part is not yet sourced). (c) Put the NTC on top of the board: no window, but it reads hotter than the face, so the 41 °C limit throttles early. | **Decided 2026-10-12: (a).** |
+| Rim brightness (concept: 2–13× the room veil) | The in-stock LEDs that fit the 2.0 mm ring budget are 30 mA indicator parts. The rim is about 1.5× the room-light veil. | (a) Keep the 1206 parts; dim the room or shade the window for the centre. (b) Go back to the concept's 2835 power LEDs (Lumileds LUXEON SunPlus 2835, not yet sourced). They run at the thermal cap (29–52 mW each, about 2–4× more light). The ring moves out to about 19.0 mm and the lands grow; net about 1.5–2.5× brighter. That means a CAD and PCB update. | **Decided 2026-10-12: (a).** |
 | TPS61169 at Digi-Key (concept said "D") | Digi-Key shows it on backorder (12 weeks). | Order it from LCSC (in stock); Mouser is an alternative. | Done. |
 | 1 mm wire locating pins | 18 AWG bus wire is sold only as 100 ft spools (~$140). | Use header posts soldered into plated holes. | Done. |
 | N42 magnets (gate 2) | Only N35 is stocked in 1/4″ × 1/8″ and 1/4″ × 1/16″. | Accept 24–26 N closure (was 33 N). | Done. |

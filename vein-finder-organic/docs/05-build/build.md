@@ -8,6 +8,9 @@
 
 ## What you need
 
+**Ordering:** the [order pack](../07-order/order.md) has the PCB settings and cart files for
+each distributor.
+
 **Bought parts:** see [BOM](../03-electronics/bom.md):
 - one Digi-Key order: cell, ring LEDs, MCU, USB-C, magnets, header strip;
 - one LCSC order: driver, charger, passives, switch, status LEDs, NTC;

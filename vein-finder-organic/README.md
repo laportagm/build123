@@ -16,7 +16,7 @@ the display.
 |---|---|---|
 | 1 Concept | one-page concept, three forms as renders, chosen form + why | **done; reviewed 2026-10-11** (answers in `docs/01-concept/concept.md` §9) |
 | 2 CAD | parametric build123d model, STEP + print-ready 3MF, wall/fit/overhang reports | **done** — `docs/02-cad/cad.md`; updated at gate 3 for the real parts (errata: three unreported thin floors, now fixed) |
-| 3 Electronics | schematic, PCB (KiCad 7), BOM with links and prices | **done** — `docs/03-electronics/electronics.md`; routed board, DRC 0 errors / 0 unconnected; three decisions open (§7) |
+| 3 Electronics | schematic, PCB (KiCad 7), BOM with links and prices | **done** — `docs/03-electronics/electronics.md`; routed board, DRC 0 errors / 0 unconnected; the three open decisions were settled on 2026-10-12 (§7) |
 | 4 Firmware | ATtiny1614 C: 3 levels, bank switch, 3-min auto-off, 41 °C limit | **done** — `docs/04-firmware/firmware.md`, `fw/` (host tests pass) |
 | 5 Build + verification | print settings, illustrated assembly guide; walls & fits, runtime, thermal, IEC 62471, cost | **done** — `docs/05-build/build.md`, `docs/06-verification/verification.md`; bench checks listed for the first build |
 
@@ -41,6 +41,7 @@ ee/placement.py, room.py    placement proved against the shell's headroom and ke
 ee/make_pcb.py              board from the CAD outline, Freerouting, pours, DRC, Gerbers
 ee/finish_route.py          routing finisher: edge-rule rip-up, remaining joins, GND stitching
 ee/silk.py                  silkscreen tidy-up (references, labels)
+ee/make_order.py            order pack (docs/07-order) from the BOM
 ee/make_bom.py              BOM (CSV + Markdown) with order quantities and cost
 ee/kicad/                   KiCad project (schematic, PCB, project rules)
 ee/lib/                     project symbols and footprints (libgen.py)
@@ -49,6 +50,7 @@ docs/03-electronics/        electronics.md, bom, budget.py, optics.py, figures, 
 docs/04-firmware/           firmware.md
 docs/05-build/              build.md: print settings and the illustrated assembly guide
 docs/06-verification/       verification.md, thermal.py, iec62471.py
+docs/07-order/              order.md: PCB settings and cart files for Digi-Key, LCSC, Adafruit
 tools/fetch.sh              fetches KiCad 7 library files, Freerouting and avr-gcc into build/
 build/                      generated (gitignored)
 ```
@@ -67,7 +69,7 @@ cd ../../render && python cad_renders.py --spp 128 --scale 1.0
 cd ../docs/02-cad && python figures.py && python package.py
 # gates 3-5 (KiCad 7 + Java for Freerouting; tools/fetch.sh gets the rest)
 cd ../.. && tools/fetch.sh
-python ee/libgen.py && python ee/make_schematic.py && python ee/make_bom.py
+python ee/libgen.py && python ee/make_schematic.py && python ee/make_bom.py && python ee/make_order.py
 python ee/make_pcb.py --no-fab && python ee/finish_route.py && python ee/make_pcb.py --stage finish
 python ee/plot_pcb.py && (cd docs/03-electronics && python budget.py && python optics.py)
 make -C fw test && make -C fw

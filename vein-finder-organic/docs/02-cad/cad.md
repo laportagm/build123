@@ -22,8 +22,10 @@
 > - USB-C 1.34 mm.
 >
 > The magnet floors are fixed: 1.82 / 1.67 mm, with the horn dowels moved to y = ±20.0.
-> The USB-C floor (now 1.15 mm) and the NTC sensor window (0.70 mm) are decisions in
-> [electronics.md §7](../03-electronics/electronics.md#7-conflicts-and-decisions). The
+> The USB-C floor (now 1.15 mm) and the NTC sensor window (0.70 mm) were accepted as thin
+> spots on 2026-10-12 ([electronics.md §7](../03-electronics/electronics.md#7-conflicts-and-decisions)).
+> The optional window-wall relief below was not taken: the LED brightness stays as it is.
+> The two outermost LEDs were later pulled in to ±126.1° to meet the PCB's 0.3 mm edge rule. The
 > figures below are gate 2's; the gate-3 numbers are in
 > [verification.md](../06-verification/verification.md).
 
@@ -83,7 +85,7 @@ fits and interference. Every figure in this note is measured on the built solids
    - This costs rim brightness. The rim is 2.9–3.0× the concept's r = 20 mm baseline,
      against 6.6–7.2× at r = 17.5. In other words, about 2.3× less light at the rim than
      the concept's best case. That is still 2–13× the room-light veil across skin types.
-   - Not done, and needs your decision (§7): a 1.2 mm-tall relief at the base of the bore
+   - Not done (declined on 2026-10-12, §7): a 1.2 mm-tall relief at the base of the bore
      would let the board reach r ≈ 16.3 and restore most of that. It is a third thin spot
      (0.9 mm, hidden, backed by the board).
 6. **Battery moved forward**, to x = 21.0–51.5. Nothing sits in front of it now, which
@@ -299,7 +301,7 @@ Settings for all parts:
 |---|---|---|---|
 | Hidden button under a flexing printed membrane | A curved 0.45 mm skin is 5× stiffer than a flat one, giving a 16 N press. | Worry-stone thumb dish (near-flat) with a 0.40 mm skin, giving 3.0–3.6 N. | **Done**; please confirm the dish look. |
 | G2 everywhere, no flat faces | The tail tip is too thin and curved for a USB-C plug to seat. | One small flat landing at the port, 13.8 × ~6 mm, 0.9 mm deep. | **Done**. |
-| LEDs about 17.5 mm from the window centre (concept) | The 1.8 mm window wall keeps the board out, so the ring sits at 18.64 mm and the rim is about 2.3× dimmer than the concept's best case. | Optional third hidden thin spot: a 1.2 mm-tall, 0.9 mm wall relief at the bore base gets the ring to ≈ 17.7 mm. | **Your decision.** Not done; default keeps all walls ≥ 1.6 mm. |
+| LEDs about 17.5 mm from the window centre (concept) | The 1.8 mm window wall keeps the board out, so the ring sits at 18.64 mm and the rim is about 2.3× dimmer than the concept's best case. | Optional third hidden thin spot: a 1.2 mm-tall, 0.9 mm wall relief at the bore base gets the ring to ≈ 17.7 mm. | **Not taken** (2026-10-12: brightness stays as it is). |
 | Concept's LEDs (2835 packages, 2.8 mm wide radially) | The ring assumes ≤ 2.0 mm packages; 2835 parts would push it to 19.0 mm, costing about 25 % more rim light. | Pick 2.0 × 2.0 mm (or smaller) LEDs at the electronics gate. | Electronics gate. |
 
 Fixed at the electronics gate, against this layout (`build/device/layout.json`):

@@ -10,8 +10,8 @@
 | Requirement (brief) | Result | How it was checked | Status |
 |---|---|---|---|
 | Palm-sized river stone, G2 surfaces | 90.2 × 58.9 × 24.7 mm, 56 g; G2 everywhere, poles included | `cad/device/verify_skin.py`, zebra renders | met |
-| Walls ≥ 1.6 mm, two approved thin spots | top shell 1.80 mm min (805 k samples); thin spots 0.68 mm (seam) and 0.40 mm (button) | `checks.py` wall map, probes | met |
-| … sole floors | magnets 1.82 / 1.67 mm, pins 1.94–3.10 mm; **NTC window 0.70 mm** and **USB-C pocket 1.15 mm** | `checks.py sole_floors` | 2 decisions open (§6) |
+| Walls ≥ 1.6 mm, approved thin spots | top shell 1.80 mm min (805 k samples); thin spots 0.68 mm (seam) and 0.40 mm (button), approved in the brief | `checks.py` wall map, probes | met |
+| … sole floors | magnets 1.82 / 1.67 mm, pins 1.94–3.10 mm; **NTC window 0.70 mm** and **USB-C pocket 1.15 mm** | `checks.py sole_floors` | met with two more thin spots, both accepted on 2026-10-12 |
 | Cosmetic surfaces without supports | top-shell skin max overhang 21.0°; sole skin none (one 0.01 mm² tessellation speck) | `checks.py` overhang | met |
 | Parts fit, no interference | 13 parts and stand-ins, pairwise: none | `checks.py` interference | met |
 | Magnet closure (your choice) | 24.1–25.8 N with N35 (4 pairs) | coaxial current-loop model | met |
@@ -44,8 +44,8 @@ The results below come from the built solids in `build/device/checks.json`.
 | Tail magnets (56.6, ±12) | 1.67 mm | 1/16″ pair |
 | Mask-ear pins | 1.94 mm | |
 | Bridge pins | 3.10 mm | |
-| NTC | **0.70 mm** | sensor window: designed thin, decision open |
-| USB-C body pocket | **1.15 mm** | receptacle hangs 0.61 mm below the board: decision open |
+| NTC | **0.70 mm** | sensor window: designed thin; accepted 2026-10-12 |
+| USB-C body pocket | **1.15 mm** | receptacle hangs 0.61 mm below the board; hidden; accepted 2026-10-12 |
 | USB-C opening lip | 0.91 mm | edge of the port opening; the tail is 6.3 mm tall here |
 
 **LEDs against the sole:**
@@ -56,8 +56,9 @@ The results below come from the built solids in `build/device/checks.json`.
 **Clearances:** as designed in gate 2 ([cad.md §5.4](../02-cad/cad.md)). New in gate 3:
 - pin pads to LED lands: 1.13 mm;
 - NTC land to LED lands: 0.91 mm;
-- magnet holes to LED lands: 0.61 mm;
-- LED lands to each other: 2.77 mm.
+- magnet holes to LED lands: 0.62 mm;
+- LED lands to each other: 2.04 mm (between the end LED, pulled in to ±126.1° for the
+  0.3 mm edge rule, and its neighbour; 2.77 mm elsewhere).
 
 **Cell:** it sits on the board on 1.0–1.6 mm foam tape.
 - At least 2.15 mm of headroom to the shell over its whole footprint.
@@ -110,8 +111,8 @@ which is next to an LED pocket. Calibrate it on the bench (§8, item 4) and adju
   - clear of the seam mask, magnet bosses, bridge feet and USB-C;
   - under the shell's inner surface by ≥ 0.3 mm.
 - **PCB DRC** (KiCad 7.0.11, this board's rules): **0 errors, 0 unconnected items.**
-  - Rules: 0.2 mm clearance; copper 0.3 mm from the board edge, with two documented
-    exceptions (USB-C land pattern 0.20 mm, outer ring LEDs 0.27 mm). See
+  - Rules: 0.2 mm clearance; copper 0.3 mm from the board edge, with one documented
+    exception, the USB-C land pattern at 0.20 mm. See
     [electronics.md §4](../03-electronics/electronics.md).
   - 12 warnings, all `lib_footprint_mismatch`: the ring LEDs' silk outlines are cut back
     at the board edge on purpose.
