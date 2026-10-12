@@ -27,7 +27,8 @@ PRINTED = ("top_shell", "sole", "seam_mask", "bridge")
 COLOURS = {"top_shell": (0.86, 0.83, 0.78), "sole": (0.08, 0.08, 0.09), "seam_mask": (0.1, 0.1, 0.1),
            "bridge": (0.1, 0.1, 0.1), "pcb": (0.05, 0.12, 0.08), "battery": (0.55, 0.57, 0.6),
            "magnets": (0.75, 0.75, 0.78), "leds": (0.95, 0.95, 0.9), "ntc": (0.2, 0.2, 0.2),
-           "switch": (0.2, 0.2, 0.22), "usb": (0.8, 0.8, 0.82), "seam_leds": (1.0, 0.85, 0.5)}
+           "switch": (0.2, 0.2, 0.22), "usb": (0.8, 0.8, 0.82), "seam_leds": (1.0, 0.85, 0.5),
+           "pins": (0.85, 0.7, 0.3)}
 
 
 def load_or_build(force=False, only=()):

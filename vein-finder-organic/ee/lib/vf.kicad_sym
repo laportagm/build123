@@ -1,0 +1,114 @@
+(kicad_symbol_lib
+  (version 20220914)
+  (generator vf_libgen)
+  (symbol "TPS61169DCK"
+    (in_bom yes)
+    (on_board yes)
+    (property "Reference" "U" (at 0 7.81 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "TPS61169DCKR" (at 0 -7.81 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "vf:SC-70-5_HandSolder" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet"
+      "https://www.ti.com/lit/ds/symlink/tps61169.pdf"
+      (at 0 0 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Description"
+      "40 V boost white-LED driver, 1.2 MHz, 1.2 A switch, SC-70-5 (TI SNVSA40B)"
+      (at 0 0 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (symbol "TPS61169DCK_0_1"
+      (rectangle
+        (start -5.08 3.81)
+        (end 5.08 -3.81)
+        (stroke (width 0.254) (type default))
+        (fill (type background))))
+    (symbol "TPS61169DCK_1_1"
+      (pin power_in
+        line
+        (at -7.62 1.27 0)
+        (length 2.54)
+        (name "VIN" (effects (font (size 1.27 1.27))))
+        (number "5" (effects (font (size 1.27 1.27)))))
+      (pin input
+        line
+        (at -7.62 -1.27 0)
+        (length 2.54)
+        (name "CTRL" (effects (font (size 1.27 1.27))))
+        (number "4" (effects (font (size 1.27 1.27)))))
+      (pin power_out
+        line
+        (at 7.62 1.27 180)
+        (length 2.54)
+        (name "SW" (effects (font (size 1.27 1.27))))
+        (number "1" (effects (font (size 1.27 1.27)))))
+      (pin input
+        line
+        (at 7.62 -1.27 180)
+        (length 2.54)
+        (name "FB" (effects (font (size 1.27 1.27))))
+        (number "3" (effects (font (size 1.27 1.27)))))
+      (pin power_in
+        line
+        (at 0 -6.35 90)
+        (length 2.54)
+        (name "GND" (effects (font (size 1.27 1.27))))
+        (number "2" (effects (font (size 1.27 1.27)))))))
+  (symbol "BQ21040DBV"
+    (in_bom yes)
+    (on_board yes)
+    (property "Reference" "U" (at 0 9.08 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "BQ21040DBVR" (at 0 -9.08 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Package_TO_SOT_SMD:SOT-23-6"
+      (at 0 0 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet"
+      "https://www.ti.com/lit/ds/symlink/bq21040.pdf"
+      (at 0 0 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Description"
+      "Li-ion linear charger, 4.2 V, 30 V input, OVP 6.6 V, SOT-23-6 (TI SLUSCE2D)"
+      (at 0 0 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (symbol "BQ21040DBV_0_1"
+      (rectangle
+        (start -5.08 5.08)
+        (end 5.08 -5.08)
+        (stroke (width 0.254) (type default))
+        (fill (type background))))
+    (symbol "BQ21040DBV_1_1"
+      (pin power_in
+        line
+        (at -7.62 2.54 0)
+        (length 2.54)
+        (name "IN" (effects (font (size 1.27 1.27))))
+        (number "6" (effects (font (size 1.27 1.27)))))
+      (pin input
+        line
+        (at -7.62 0 0)
+        (length 2.54)
+        (name "TS" (effects (font (size 1.27 1.27))))
+        (number "1" (effects (font (size 1.27 1.27)))))
+      (pin passive
+        line
+        (at -7.62 -2.54 0)
+        (length 2.54)
+        (name "ISET" (effects (font (size 1.27 1.27))))
+        (number "4" (effects (font (size 1.27 1.27)))))
+      (pin power_out
+        line
+        (at 7.62 2.54 180)
+        (length 2.54)
+        (name "OUT" (effects (font (size 1.27 1.27))))
+        (number "2" (effects (font (size 1.27 1.27)))))
+      (pin open_collector
+        line
+        (at 7.62 0 180)
+        (length 2.54)
+        (name "~{CHG}" (effects (font (size 1.27 1.27))))
+        (number "3" (effects (font (size 1.27 1.27)))))
+      (pin power_in
+        line
+        (at 0 -7.62 90)
+        (length 2.54)
+        (name "VSS" (effects (font (size 1.27 1.27))))
+        (number "5" (effects (font (size 1.27 1.27))))))))

@@ -95,9 +95,15 @@ class Parts:
         hw, r = P.USB_LAND_HW, P.USB_LAND_R
         sk = bd.Pos(u["x_land"] + 10.0, 0) * bd.RectangleRounded(20.0, 2 * hw, r)
         land = bd.extrude(Plane.XY.offset(-5) * sk, amount=40)
-        tunnel = _stadium_yz(P.USB_W + 2 * P.USB_CLEAR, P.USB_H + 2 * P.USB_CLEAR,
-                             u["x_back"] - 0.3, 75.0, u["z_c"])
-        return land, tunnel
+        c, fc = P.USB_CLEAR, P.USB_FLOOR_CLEAR
+        x_open = u["x_face"] - P.USB_OPEN_DEPTH
+        # the plug's way in: full clearance all round
+        opening = _stadium_yz(P.USB_W + 2 * c, P.USB_H + 2 * c, x_open, 75.0, u["z_c"])
+        # behind it the body pocket keeps the side/top clearance but rests the shell on the sole
+        x_cut = u["x_face"] - P.USB_PCB_NOTCH[0]          # the shell hangs below the board only here
+        body = _stadium_yz(P.USB_W + 2 * c, P.USB_H + c + fc, x_cut - 0.3, x_open + 0.01,
+                           u["z_c"] + (c - fc) / 2)
+        return land, opening + body
 
     # ---------------------------------------------------------------- top shell
     def top_shell(self):
@@ -117,9 +123,9 @@ class Parts:
         shell = _check(shell.clean(), "shell+bosses")
         for m in self.lay.magnets:
             z0 = zp + P.PCB_T + P.BOSS_PCB_GAP
-            z_mag = zp + P.MAG_PROUD + P.MAG_GAP
+            z_mag = zp + m["proud"] + P.MAG_GAP
             cb = Pos(m["x"], m["y"], z0 - 0.05) * bd.Cylinder((P.MAG_D + P.MAG_DOWEL_CLEAR) / 2, z_mag - z0 + 0.05, align=C3)
-            pk = Pos(m["x"], m["y"], z_mag - 0.01) * bd.Cylinder((P.MAG_D + P.MAG_POCKET_CLEAR) / 2, P.MAG_H_TOP + 0.06, align=C3)
+            pk = Pos(m["x"], m["y"], z_mag - 0.01) * bd.Cylinder((P.MAG_D + P.MAG_POCKET_CLEAR) / 2, m["top_h"] + 0.06, align=C3)
             shell = shell - cb - pk
         shell = _check(shell, "shell-magnet pockets")
         # seam slot: vertical prism through the wall down to 0.7 mm
@@ -136,32 +142,52 @@ class Parts:
         zp = self.zp
         t0 = time.time()
         sole = self.sk.solid.split(Plane.XY.offset(zp), keep=Keep.BOTTOM)
-        wt, wr = P.LED_PKG
-        c = P.LED_POCKET_CLEAR
+        # LED light channels: through, the body + clearance radially, the land + 0.15 tangentially
+        pt = P.LED_LAND[0] + 2 * P.LED_POCKET_LAND
+        pr = P.LED_PKG[1] + 2 * P.LED_POCKET_CLEAR
         for led in self.lay.leds:
-            pk = Pos(led["x"], led["y"], -3.0) * Rot(0, 0, led["angle"]) * bd.Box(wr + 2 * c, wt + 2 * c, zp + 3.01, align=C3)
+            pk = Pos(led["x"], led["y"], -3.0) * Rot(0, 0, led["angle"]) * bd.Box(pr, pt, zp + 3.01, align=C3)
             sole = sole - pk
         sole = _check(sole, "sole-leds")
+        # NTC: blind pocket over its land, lying radially; the floor left is the sensor window
         n = self.lay.ntc
         ntc_d = P.NTC_PKG[2] + 0.15
-        sole = sole - Pos(n["x"], n["y"], zp - ntc_d) * Rot(0, 0, n["angle"]) * bd.Box(P.NTC_PKG[1] + 0.3, P.NTC_PKG[0] + 0.3, ntc_d + 0.01, align=C3)
-        depth = P.MAG_H_SOLE - P.MAG_PROUD + 0.05
+        sole = sole - Pos(n["x"], n["y"], zp - ntc_d) * bd.Box(P.NTC_LAND[0] + 0.3, P.NTC_LAND[1] + 0.3, ntc_d + 0.01, align=C3)
         for m in self.lay.magnets:
-            sole = sole - Pos(m["x"], m["y"], zp - depth) * bd.Cylinder((P.MAG_D + P.MAG_POCKET_CLEAR) / 2, depth + 0.01, align=C3)
+            depth = m["sole_h"] - m["proud"] + 0.05
+            if depth > 0.01:
+                sole = sole - Pos(m["x"], m["y"], zp - depth) * bd.Cylinder((P.MAG_D + P.MAG_POCKET_CLEAR) / 2, depth + 0.01, align=C3)
         sole = _check(sole, "sole-magnets")
+        # locating pins: a shallow pocket under each soldered, flush-cut pin
+        dia, dep = P.PIN_SOLE_RELIEF
+        for (x, y) in self.lay.mask_pins + self.lay.bridge_pins:
+            sole = sole - Pos(x, y, zp - dep) * bd.Cylinder(dia / 2, dep + 0.01, align=C3)
+        sole = _check(sole, "sole-pins")
         land, tunnel = self.usb_cutters()
         sole = _check(sole - land - tunnel, "sole-usb")
         self.log(f"sole {time.time() - t0:.1f}s, volume {sole.volume / 1000:.2f} cm3")
         return sole
 
     # ---------------------------------------------------------------- seam mask
+    def _pin_holes(self, body, pins, z_bottom):
+        """Blind slip-fit holes for the header-pin posts, with a shallow counterbore over the
+        top pad's solder meniscus."""
+        rd, rdep = P.PIN_FILLET_RELIEF
+        for (x, y) in pins:
+            body = body - Pos(x, y, z_bottom - 0.01) * bd.Cylinder(P.PIN_HOLE_PART / 2, P.PIN_HOLE_DEPTH + 0.01, align=C3)
+            body = body - Pos(x, y, z_bottom - 0.01) * bd.Cylinder(rd / 2, rdep + 0.01, align=C3)
+        return body
+
     def seam_mask(self):
         zp = self.zp
         z0 = zp + P.PCB_T
         body = bd.extrude(_poly_face(self.lay.mask_2d, z0), amount=20, dir=(0, 0, 1))
         body = _check(body & self.cavity(round(P.WALL + P.MASK_GAP, 3)), "mask")
-        for (x, y) in self.lay.mask_pins:
-            body = body - Pos(x, y, z0 - 0.01) * bd.Cylinder(P.PIN_HOLE_PART / 2, 1.6, align=C3)
+        for ear in self.lay.mask_ears_2d:
+            e = bd.extrude(_poly_face(ear, z0), amount=P.MASK_EAR[2], dir=(0, 0, 1))
+            body = body + (e & self.cavity(round(P.WALL + P.MASK_GAP, 3)))
+        body = _check(body.clean(), "mask+ears")
+        body = self._pin_holes(body, self.lay.mask_pins, z0)
         return _check(body, "mask-pin holes")
 
     # ---------------------------------------------------------------- button bridge
@@ -208,8 +234,7 @@ class Parts:
         for dx in (-3.25, 3.25):
             for dy in (-2.25, 2.25):
                 body = body - Pos(bx + dx, dy, g["z_deck0"] - 0.1) * bd.Cylinder(0.6, 20, align=C3)
-        for (x, y) in self.lay.bridge_pins:
-            body = body - Pos(x, y, z_pcb - 0.01) * bd.Cylinder(P.PIN_HOLE_PART / 2, 1.6, align=C3)
+        body = self._pin_holes(body, self.lay.bridge_pins, z_pcb)
         self.info["bridge"] = g
         return _check(body, "bridge")
 
@@ -235,18 +260,26 @@ class Parts:
         d["battery"] = Pos(P.BATT_X0 + P.BATT_W / 2, 0, z0) * bd.Box(P.BATT_W, P.BATT_L, P.BATT_T, align=C3)
         mags = None
         for m in self.lay.magnets:
-            ms = Pos(m["x"], m["y"], zp + P.MAG_PROUD - P.MAG_H_SOLE) * bd.Cylinder(P.MAG_D / 2, P.MAG_H_SOLE, align=C3)
-            mt = Pos(m["x"], m["y"], zp + P.MAG_PROUD + P.MAG_GAP) * bd.Cylinder(P.MAG_D / 2, P.MAG_H_TOP, align=C3)
+            ms = Pos(m["x"], m["y"], zp + m["proud"] - m["sole_h"]) * bd.Cylinder(P.MAG_D / 2, m["sole_h"], align=C3)
+            mt = Pos(m["x"], m["y"], zp + m["proud"] + P.MAG_GAP) * bd.Cylinder(P.MAG_D / 2, m["top_h"], align=C3)
             mags = (ms + mt) if mags is None else mags + ms + mt
         d["magnets"] = mags
         leds = None
         wt, wr = P.LED_PKG
         for led in self.lay.leds:
-            b = Pos(led["x"], led["y"], zp - 0.7) * Rot(0, 0, led["angle"]) * bd.Box(wr, wt, 0.7, align=C3)
+            # 1206 dome LED: body block plus the 1.6 mm dome, at the bank's maximum height
+            h, hb = led["h"], 0.8
+            b = Pos(led["x"], led["y"], zp - hb) * Rot(0, 0, led["angle"]) * bd.Box(wr, wt, hb, align=C3)
+            b = b + Pos(led["x"], led["y"], zp - h) * bd.Cylinder(0.8, h - hb + 0.01, align=C3)
             leds = b if leds is None else leds + b
         d["leds"] = leds
         n = self.lay.ntc
-        d["ntc"] = Pos(n["x"], n["y"], zp - P.NTC_PKG[2]) * bd.Box(P.NTC_PKG[1], P.NTC_PKG[0], P.NTC_PKG[2], align=C3)
+        d["ntc"] = Pos(n["x"], n["y"], zp - P.NTC_PKG[2]) * bd.Box(P.NTC_PKG[0], P.NTC_PKG[1], P.NTC_PKG[2], align=C3)
+        pins = None
+        for (x, y) in self.lay.mask_pins + self.lay.bridge_pins:
+            pn = Pos(x, y, zp) * Rot(0, 0, 45) * bd.Box(P.PIN_SQ, P.PIN_SQ, P.PCB_T + P.PIN_ABOVE, align=C3)
+            pins = pn if pins is None else pins + pn
+        d["pins"] = pins
         g = self.bridge_geometry()
         sw = Pos(g["x"], 0, g["z_ped"]) * bd.Box(*P.SWITCH_BODY, align=C3)
         sw = sw + Pos(g["x"], 0, g["z_ped"] + P.SWITCH_BODY[2]) * bd.Cylinder(1.75, P.SWITCH_H - P.SWITCH_BODY[2], align=C3)

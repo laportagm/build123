@@ -93,7 +93,7 @@ def boost_point(vin: float, vout: float, iout: float, ind: Inductor, f_sw: float
 
 def run(b: Budget):
     out = {"inputs": asdict(b), "levels": []}
-    for bank, led, cap in (("A 660 nm", b.led_a, b.i_cap_a), ("B 620 nm", b.led_b, b.i_cap_b)):
+    for bank, led, cap in (("A 660 nm", b.led_a, b.i_cap_a), ("B 625 nm", b.led_b, b.i_cap_b)):
         for lv in b.levels:
             i = cap * lv
             vout = string_voltage(led, b.n_per_bank, i, b.driver.v_fb)

@@ -4,3 +4,7 @@ __pycache__/
 *.pyc
 docs/01-concept/renders/*.png
 logs/
+ee/kicad/route/
+*.kicad_prl
+*-backups/
+fp-info-cache

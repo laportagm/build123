@@ -1,0 +1,99 @@
+(footprint "USB_C_GCT_USB4515-GF-A_MidMount"
+  (version 20221018)
+  (generator vf_libgen)
+  (layer "F.Cu")
+  (descr "GCT USB4515-GF-A USB-C power-only receptacle, mid-mount 1.6 mm offset; needs a 9.24 x 5.70 mm board cut-out (in Edge.Cuts)")
+  (attr smd)
+  (fp_text reference
+    "REF**"
+    (at 0 -3 0)
+    (layer "F.SilkS")
+    (effects (font (size 0.8 0.8) (thickness 0.12))))
+  (fp_text value
+    "USB_C_GCT_USB4515-GF-A_MidMount"
+    (at 0 3 0)
+    (layer "F.Fab")
+    (effects (font (size 0.8 0.8) (thickness 0.12))))
+  (pad "A5"
+    smd
+    roundrect
+    (at -7.35 -0.5)
+    (size 1.2 0.7)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (roundrect_rratio 0.25))
+  (pad "B5"
+    smd
+    roundrect
+    (at -7.35 0.5)
+    (size 1.2 0.7)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (roundrect_rratio 0.25))
+  (pad "B9"
+    smd
+    roundrect
+    (at -7.35 -1.52)
+    (size 1.2 0.76)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (roundrect_rratio 0.25))
+  (pad "A9"
+    smd
+    roundrect
+    (at -7.35 1.52)
+    (size 1.2 0.76)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (roundrect_rratio 0.25))
+  (pad "B12"
+    smd
+    roundrect
+    (at -7.35 -2.75)
+    (size 1.2 0.8)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (roundrect_rratio 0.25))
+  (pad "A12"
+    smd
+    roundrect
+    (at -7.35 2.75)
+    (size 1.2 0.8)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (roundrect_rratio 0.25))
+  (pad "S1"
+    thru_hole
+    oval
+    (at -2.4 -5.62 90)
+    (size 1.1 2.1)
+    (drill oval 0.6 1.6)
+    (layers "*.Cu" "*.Mask"))
+  (pad "S1"
+    thru_hole
+    oval
+    (at -2.4 5.62 90)
+    (size 1.1 2.1)
+    (drill oval 0.6 1.6)
+    (layers "*.Cu" "*.Mask"))
+  (pad "S1"
+    thru_hole
+    oval
+    (at -6.4 -5.62 90)
+    (size 1.1 1.7)
+    (drill oval 0.6 1.2)
+    (layers "*.Cu" "*.Mask"))
+  (pad "S1"
+    thru_hole
+    oval
+    (at -6.4 5.62 90)
+    (size 1.1 1.7)
+    (drill oval 0.6 1.2)
+    (layers "*.Cu" "*.Mask"))
+  (fp_line (start -8.2 -6.4) (end 0.5 -6.4) (stroke (width 0.05) (type solid)) (layer "F.CrtYd"))
+  (fp_line (start 0.5 -6.4) (end 0.5 6.4) (stroke (width 0.05) (type solid)) (layer "F.CrtYd"))
+  (fp_line (start 0.5 6.4) (end -8.2 6.4) (stroke (width 0.05) (type solid)) (layer "F.CrtYd"))
+  (fp_line (start -8.2 6.4) (end -8.2 -6.4) (stroke (width 0.05) (type solid)) (layer "F.CrtYd"))
+  (fp_line (start -7.13 -4.47) (end 0 -4.47) (stroke (width 0.1) (type solid)) (layer "F.Fab"))
+  (fp_line (start 0 -4.47) (end 0 4.47) (stroke (width 0.1) (type solid)) (layer "F.Fab"))
+  (fp_line (start 0 4.47) (end -7.13 4.47) (stroke (width 0.1) (type solid)) (layer "F.Fab"))
+  (fp_line (start -7.13 4.47) (end -7.13 -4.47) (stroke (width 0.1) (type solid)) (layer "F.Fab"))
+  (fp_text user
+    "board edge 0.85 behind face; cut-out 9.24 x 5.70"
+    (at -4 7.2 0)
+    (layer "Cmts.User")
+    (effects (font (size 0.5 0.5) (thickness 0.08)))))

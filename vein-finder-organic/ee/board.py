@@ -28,9 +28,9 @@ def dev(p):
 
 
 class BoardBuilder:
-    def __init__(self, fp_dir: Path, thickness=1.0):
+    def __init__(self, fp_dirs, thickness=1.0):
         self.b = pcbnew.BOARD()
-        self.fp_dir = Path(fp_dir)
+        self.fp_dirs = [Path(d) for d in (fp_dirs if isinstance(fp_dirs, (list, tuple)) else [fp_dirs])]
         self.nets = {}
         ds = self.b.GetDesignSettings()
         ds.SetBoardThickness(MM(thickness))
@@ -141,7 +141,11 @@ class BoardBuilder:
     # ---------------------------------------------------------------- footprints
     def footprint(self, part):
         lib, name = part.footprint.split(":")
-        fp = pcbnew.FootprintLoad(str(self.fp_dir / f"{lib}.pretty"), name)
+        fp = None
+        for d in self.fp_dirs:
+            if (d / f"{lib}.pretty" / f"{name}.kicad_mod").exists():
+                fp = pcbnew.FootprintLoad(str(d / f"{lib}.pretty"), name)
+                break
         if fp is None:
             raise FileNotFoundError(part.footprint)
         fp.SetFPID(pcbnew.LIB_ID(lib, name))
@@ -149,10 +153,13 @@ class BoardBuilder:
         fp.SetValue(part.value)
         x, y, rot = part.place
         fp.SetPosition(kpt(x, y))
-        fp.SetOrientationDegrees(-rot)
         self.b.Add(fp)
         if part.side == "B":
+            # flip first (KiCad mirrors about the x axis), then set the board orientation
             fp.Flip(fp.GetPosition(), False)
+        # top: device CCW angle -> KiCad -angle (y flipped); a flipped footprint's local x
+        # axis is mirrored as well, so there the device angle is the KiCad angle
+        fp.SetOrientationDegrees(rot if part.side == "B" else -rot)
         for pad in fp.Pads():
             num = pad.GetNumber()
             net = part.pins.get(num)
@@ -173,7 +180,7 @@ class BoardBuilder:
         if not pcbnew.ExportSpecctraDSN(self.b, str(dsn)):
             raise RuntimeError("DSN export failed")
         cmd = ["java", "-Djava.awt.headless=true", "-jar", str(jar), "--gui.enabled=false",
-               "-de", str(dsn), "-do", str(ses), "-mp", str(passes), "-mt", str(threads)]
+               "-de", str(dsn), "-do", str(ses), "-mp", str(passes), "-mt", str(threads), "-oit", "1.0"]
         r = subprocess.run(cmd, capture_output=True, text=True, timeout=3600)
         (work / "freerouting.log").write_text(r.stdout + "\n" + r.stderr)
         if not ses.exists():

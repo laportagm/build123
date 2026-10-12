@@ -83,6 +83,30 @@ class Layout:
         idx = tree.query_ball_point(np.c_[np.atleast_1d(x), np.atleast_1d(y)], 0.35)
         return np.array([z[i].max() if len(i) else np.nan for i in idx])
 
+    def skin_floor(self, x, y):
+        """Height of the sole's skin face below (x, y), from the downward-facing skin."""
+        from scipy.interpolate import LinearNDInterpolator
+        if not hasattr(self, "_floor"):
+            S, N = self.sk.outer(np.linspace(0, 1, 1344, endpoint=False), np.linspace(0.0, 0.6, 900))
+            m = (N[..., 2] < -0.05) & (S[..., 2] < self.zp)
+            self._floor = LinearNDInterpolator(S[m][:, :2], S[m][:, 2])
+        return self._floor(np.atleast_1d(x), np.atleast_1d(y))
+
+    def under_part(self, cx, cy, w_t, w_r, ang, n=7):
+        """Lowest sole thickness (waterline to skin face) under a w_t x w_r footprint."""
+        a = math.radians(ang)
+        er, et = np.array([math.cos(a), math.sin(a)]), np.array([-math.sin(a), math.cos(a)])
+        s, t = np.meshgrid(np.linspace(-0.5, 0.5, n), np.linspace(-0.5, 0.5, n))
+        pts = np.array([cx, cy]) + (s.ravel()[:, None] * w_r) * er + (t.ravel()[:, None] * w_t) * et
+        return float(np.nanmin(self.zp - self.skin_floor(pts[:, 0], pts[:, 1])))
+
+    def under_disc(self, cx, cy, r, n=24):
+        """Lowest sole thickness under a disc of radius r (centre and two rings)."""
+        th = np.linspace(0, 2 * np.pi, n, endpoint=False)
+        xs = np.r_[cx, cx + 0.5 * r * np.cos(th), cx + r * np.cos(th)]
+        ys = np.r_[cy, cy + 0.5 * r * np.sin(th), cy + r * np.sin(th)]
+        return float(np.nanmin(self.zp - self.skin_floor(xs, ys)))
+
     # ---------------------------------------------------------------- items
     def _pcb(self):
         secs = [self.section(self.zp + dz) for dz in P.PCB_LEVELS]
@@ -100,26 +124,28 @@ class Layout:
         self.batt_cut = box(x0 - c, -y1 - c, x1 + c, y1 + c).buffer(0.6, join_style=1).buffer(-0.6, join_style=1)
         self.batt_z = (self.zp + P.BATT_FOAM, self.zp + P.BATT_FOAM + P.BATT_T)
 
+    def _inner_r(self, th_deg):
+        """Distance from the window centre to the board's inner (window) edge along angle th."""
+        th = math.radians(th_deg)
+        ray = LineString([(0, 0), (30 * math.cos(th), 30 * math.sin(th))])
+        hit = ray.intersection(self.pcb_env)
+        if hit.is_empty:
+            return float("nan")
+        return min(Point(0, 0).distance(g) for g in getattr(hit, "geoms", [hit]))
+
     def _leds(self):
         """Ring radius from the board's inner edge behind the window; LEDs spread evenly
-        (mirror-symmetric, alternating banks) over the widest angle whose pads still fit."""
+        (mirror-symmetric, alternating banks) over the widest angle whose land patterns
+        still fit on the board."""
         env = self.pcb_env
-        wt, wr = P.LED_PKG
-        inner = []
-        for th in np.radians(np.arange(-110, 111, 2.0)):
-            ray = LineString([(0, 0), (30 * math.cos(th), 30 * math.sin(th))])
-            hit = ray.intersection(env)
-            if hit.is_empty:
-                continue
-            inner.append(min(Point(0, 0).distance(g) for g in getattr(hit, "geoms", [hit])))
-        self.pcb_inner_r = float(np.max(inner))
-        self.led_r = self.pcb_inner_r + P.LED_EDGE_MARGIN + wr / 2 + P.LED_PAD_MARGIN + 0.02
-        pad = (wt + 2 * P.LED_PAD_MARGIN, wr + 2 * P.LED_PAD_MARGIN)
+        lt, lr = P.LED_LAND
+        self.pcb_inner_r = float(np.nanmax([self._inner_r(a) for a in np.arange(-110, 111, 2.0)]))
+        self.led_r = self.pcb_inner_r + P.LED_EDGE_MARGIN + lr / 2 + 0.02
         shrunk = env.buffer(-P.LED_EDGE_MARGIN)
 
         def fits(a):
             cx, cy = self.led_r * math.cos(math.radians(a)), self.led_r * math.sin(math.radians(a))
-            return shrunk.contains(_rect(cx, cy, pad[0], pad[1], a))
+            return shrunk.contains(_rect(cx, cy, lt, lr, a))
 
         a_max = 90.0
         while a_max < 179 and fits(a_max + 0.5):
@@ -134,25 +160,36 @@ class Layout:
             for sgn in (1, -1):
                 aa = sgn * a
                 cx, cy = self.led_r * math.cos(math.radians(aa)), self.led_r * math.sin(math.radians(aa))
-                leds.append(dict(angle=aa, x=cx, y=cy, bank="660" if k % 2 == 0 else "620", fits=bool(fits(aa))))
+                bank = P.LED_BANK_ORDER[k % 2]
+                leds.append(dict(angle=aa, x=cx, y=cy, bank=bank, h=P.LED_H[bank], fits=bool(fits(aa))))
         self.leds = leds
+        self.led_lands = [_rect(l["x"], l["y"], lt, lr, l["angle"]) for l in leds]
 
     def _ntc(self):
-        a = 0.0
-        r = self.led_r
-        self.ntc = dict(x=r, y=0.0, angle=a)
+        """0603 NTC on the underside at theta = 0, lying radially between the two first LEDs,
+        its inner pad P.LED_EDGE_MARGIN from the window edge."""
+        lt, lr = P.NTC_LAND
+        r = self._inner_r(0.0) + P.LED_EDGE_MARGIN + lt / 2 + 0.02
+        self.ntc = dict(x=r, y=0.0, angle=90.0)          # angle: its length runs along the radius
+        self.ntc_land = _rect(r, 0.0, lt, lr, 90.0)
 
     def _magnets(self):
         mags = []
-        for (x, y) in P.MAGNETS:
+        for spec in P.MAGNETS:
+            x, y = spec["x"], spec["y"]
             boss_r = P.MAG_D / 2 + P.MAG_BOSS_WALL
             hole = Point(x, y).buffer(P.MAG_PCB_HOLE / 2)
-            mags.append(dict(x=x, y=y, hole_in_pcb=bool(self.pcb_env.buffer(-0.3).contains(hole)),
-                             pcb_ring_min=float(self.pcb_env.exterior.distance(hole)),
-                             clear_of_battery=float(hole.distance(self.batt_cut)),
-                             boss_room_above_pcb=float(np.nanmin(self.ceiling(
-                                 x + boss_r * np.cos(np.linspace(0, 6.28, 16)),
-                                 y + boss_r * np.sin(np.linspace(0, 6.28, 16))))) - (self.zp + P.PCB_T)))
+            m = dict(spec)
+            m.update(hole_in_pcb=bool(self.pcb_env.buffer(-0.3).contains(hole)),
+                     pcb_ring_min=float(self.pcb_env.exterior.distance(hole)),
+                     clear_of_battery=float(hole.distance(self.batt_cut)),
+                     boss_room_above_pcb=float(np.nanmin(self.ceiling(
+                         x + boss_r * np.cos(np.linspace(0, 6.28, 16)),
+                         y + boss_r * np.sin(np.linspace(0, 6.28, 16))))) - (self.zp + P.PCB_T),
+                     sole=self.under_disc(x, y, (P.MAG_D + P.MAG_POCKET_CLEAR) / 2))
+            m["sole_floor"] = m["sole"] - (m["sole_h"] - m["proud"] + 0.05)
+            m["top_cover"] = m["boss_room_above_pcb"] - (m["proud"] - P.PCB_T + P.MAG_GAP + m["top_h"] + 0.06)
+            mags.append(m)
         self.magnets = mags
 
     def _seam(self):
@@ -165,9 +202,18 @@ class Layout:
         frame = _sector(r_mid - h - P.MASK_T, r_mid + h + P.MASK_T, a0 - cap_deg, a1 + cap_deg)
         self.mask_channel_2d = _sector(r_mid - h, r_mid + h, a0, a1)
         self.mask_2d = frame.difference(self.mask_channel_2d)
+        # the locating pins sit in ears outside the caps, clear of the underside LED lands
         pin_a = a1 + cap_deg / 2
-        self.mask_pins = [(r_mid * math.cos(math.radians(s * pin_a)), r_mid * math.sin(math.radians(s * pin_a)))
-                          for s in (1, -1)]
+        r_out = r_mid + h + P.MASK_T
+        ew, el, _ = P.MASK_EAR
+        r_pin = r_out + el / 2
+        ears = []
+        for s_ in (1, -1):
+            ears.append(_rect(r_pin * math.cos(math.radians(s_ * pin_a)), r_pin * math.sin(math.radians(s_ * pin_a)),
+                              ew, el + 0.6, s_ * pin_a))
+        self.mask_ears_2d = [e.difference(_sector(0, r_out - 0.3, -180, 180, 360)) for e in ears]
+        self.mask_pins = [(r_pin * math.cos(math.radians(s_ * pin_a)), r_pin * math.sin(math.radians(s_ * pin_a)))
+                          for s_ in (1, -1)]
         self.seam_leds = [dict(x=r_mid * math.cos(math.radians(a)), y=r_mid * math.sin(math.radians(a)), angle=a)
                           for a in np.linspace(-P.SEAM_HALF_DEG * 0.8, P.SEAM_HALF_DEG * 0.8, P.SEAM_LED_COUNT)]
         self.slot_2d = _sector(P.SEAM_R - P.SEAM_SLOT_W / 2, P.SEAM_R + P.SEAM_SLOT_W / 2,
@@ -187,7 +233,8 @@ class Layout:
     def _usb(self):
         x_face = P.USB_X_FACE
         zc = self.zp + P.USB_ZC
-        self.usb = dict(x_face=x_face, x_back=x_face - P.USB_L, z_c=zc,
+        self.usb = dict(x_face=x_face, x_back=x_face - P.USB_L, x_tails=x_face - P.USB_TAILS,
+                        x_cut=x_face - P.USB_PCB_NOTCH[0], board_edge=x_face - P.USB_FACE_PROUD, z_c=zc,
                         z_bottom=zc - P.USB_H / 2, z_top=zc + P.USB_H / 2,
                         x_land=x_face + P.USB_LAND_DX)
         self.usb_notch = box(x_face - P.USB_PCB_NOTCH[0], -P.USB_PCB_NOTCH[1], 70.0, P.USB_PCB_NOTCH[1])
@@ -199,9 +246,10 @@ class Layout:
         pin_holes = [Point(*p).buffer(P.PIN_HOLE_PCB / 2) for p in self.mask_pins + self.bridge_pins]
         self.pcb_holes = mag_holes + pin_holes
         # Edge.Cuts = outline with the magnet holes (the tail ones break the edge);
-        # the 1 mm locating-pin holes are NPTH drills
+        # the locating pins are soldered into plated 1.0 mm holes (pad 1.7)
         self.board_outline = b.difference(unary_union(mag_holes))
-        self.drills = [dict(x=float(p[0]), y=float(p[1]), d=P.PIN_HOLE_PCB) for p in self.mask_pins + self.bridge_pins]
+        self.drills = [dict(x=float(p[0]), y=float(p[1]), d=P.PIN_HOLE_PCB, pad=P.PIN_PAD_PCB, plated=True)
+                       for p in self.mask_pins + self.bridge_pins]
         self.pcb = b.difference(unary_union(self.pcb_holes))
 
     # ---------------------------------------------------------------- report
@@ -215,6 +263,25 @@ class Layout:
         rep["leds_fit"] = all(l["fits"] for l in self.leds)
         rep["led_angles"] = sorted(round(l["angle"], 1) for l in self.leds)
         rep["leds_not_fitting"] = [round(l["angle"], 1) for l in self.leds if not l["fits"]]
+        # LED heights against the sole: the dome must not stand proud of the skin face
+        wt, wr = P.LED_PKG
+        prot = []
+        for l in self.leds:
+            th = self.under_part(l["x"], l["y"], wt + 2 * P.LED_TOL, wr + 2 * P.LED_TOL, l["angle"])
+            prot.append(dict(angle=round(l["angle"], 1), bank=l["bank"], sole=round(th, 2),
+                             recess=round(th - l["h"], 2)))
+        rep["led_recess"] = prot
+        rep["led_recess_min"] = min(p_["recess"] for p_ in prot)
+        lands = self.led_lands
+        rep["led_land_gap_min"] = round(min(a.distance(b) for i, a in enumerate(lands) for b in lands[i + 1:]), 2)
+        rep["ntc_land_fits"] = bool(env.buffer(-P.LED_EDGE_MARGIN).contains(self.ntc_land))
+        rep["ntc_to_led_land"] = round(min(self.ntc_land.distance(l) for l in lands), 2)
+        rep["ntc_sole"] = round(self.under_part(self.ntc["x"], self.ntc["y"], P.NTC_LAND[1], P.NTC_LAND[0], 0.0), 2)
+        rep["ntc_floor"] = round(rep["ntc_sole"] - P.NTC_PKG[2] - 0.15, 2)
+        pads = [Point(*q).buffer(P.PIN_PAD_PCB / 2) for q in self.mask_pins + self.bridge_pins]
+        rep["pin_pad_to_led_land"] = round(min(a.distance(b) for a in pads for b in lands + [self.ntc_land]), 2)
+        rep["pin_pads_on_board"] = [bool(env.buffer(-0.3).difference(self.batt_cut).contains(q)) for q in pads]
+        rep["mask_ears_on_board"] = [bool(env.difference(self.batt_cut).contains(e)) for e in self.mask_ears_2d]
         # battery: cut-out must lie inside the cavity with clearance at the cell's height range
         z0, z1 = self.batt_z
         cav = self.section(z0).intersection(self.section(z1))
@@ -230,7 +297,10 @@ class Layout:
         rep["led_a_max_deg"] = round(self.led_a_max, 1)
         rep["led_pitch_deg"] = round(self.led_step, 2)
         rep["usb"] = {k: round(v, 2) for k, v in self.usb.items()}
-        rep["usb_clear_of_battery_mm"] = round(self.usb["x_back"] - (P.BATT_X0 + P.BATT_W) - P.BATT_CLEAR, 2)
+        legs = [box(self.usb["x_face"] - xb - pl / 2, s_ * yl - 0.55, self.usb["x_face"] - xb + pl / 2, s_ * yl + 0.55)
+                for (xb, yl, sl, pl) in P.USB_LEGS for s_ in (1, -1)]
+        rep["usb_leg_pads_on_board"] = [bool(env.buffer(-0.15).contains(l_)) for l_ in legs]
+        rep["usb_clear_of_battery_mm"] = round(self.usb["x_tails"] - 0.3 - (P.BATT_X0 + P.BATT_W) - P.BATT_CLEAR, 2)
         rep["usb_clear_of_magnets_mm"] = round(min(
             box(self.usb["x_back"], -P.USB_W / 2, self.usb["x_face"], P.USB_W / 2).distance(Point(m["x"], m["y"]))
             - P.MAG_D / 2 for m in self.magnets), 2)
@@ -250,6 +320,7 @@ class Layout:
             bridge_feet=[list(map(list, f.exterior.coords)) for f in self.bridge_feet],
             mask_outline=[[list(map(list, r.coords)) for r in [g.exterior] + list(g.interiors)]
                           for g in getattr(self.mask_2d, "geoms", [self.mask_2d])],
+            mask_ears=[list(map(list, e.exterior.coords)) for e in self.mask_ears_2d],
             battery=dict(x0=P.BATT_X0, x1=P.BATT_X0 + P.BATT_W, y=P.BATT_L / 2,
                                        z=list(self.batt_z)),
             button=dict(x=BUTTON_XY[0], y=BUTTON_XY[1]), check=self.check())

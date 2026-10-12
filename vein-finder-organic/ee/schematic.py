@@ -27,13 +27,19 @@ def snap(v, g=GRID):
 
 # ----------------------------------------------------------------------------- library
 class SymbolLib:
-    def __init__(self, sym_dir: Path):
-        self.dir = Path(sym_dir)
+    def __init__(self, sym_dirs):
+        self.dirs = [Path(d) for d in (sym_dirs if isinstance(sym_dirs, (list, tuple)) else [sym_dirs])]
         self._libs = {}
 
     def _lib(self, name):
         if name not in self._libs:
-            self._libs[name] = parse((self.dir / f"{name}.kicad_sym").read_text())[0]
+            for d in self.dirs:
+                f = d / f"{name}.kicad_sym"
+                if f.exists():
+                    self._libs[name] = parse(f.read_text())[0]
+                    break
+            else:
+                raise FileNotFoundError(f"{name}.kicad_sym not in {self.dirs}")
         return self._libs[name]
 
     def raw(self, lib, name):
@@ -101,8 +107,8 @@ class Sheet:
         self.comments = comments
 
     def text(self, s, x, y, size=2.0, bold=False):
-        eff = ["effects", ["font", ["size", size, size]] + ([["bold", "yes"]] if bold else []), ["justify", "left", "bottom"]]
-        self.items.append(["text", Q(s), ["exclude_from_sim", "no"], ["at", snap(x), snap(y), 0], eff, ["uuid", Q(_uid())]])
+        eff = ["effects", ["font", ["size", size, size]] + (["bold"] if bold else []), ["justify", "left", "bottom"]]
+        self.items.append(["text", Q(s), ["at", snap(x), snap(y), 0], eff, ["uuid", Q(_uid())]])
 
     def rect(self, x0, y0, x1, y1):
         self.items.append(["rectangle", ["start", snap(x0), snap(y0)], ["end", snap(x1), snap(y1)],
@@ -129,7 +135,8 @@ class Sheet:
         rdx, rdy = (float(ref_at[3][1]), -float(ref_at[3][2])) if ref_at else (0, -3)
         vdx, vdy = (float(val_at[3][1]), -float(val_at[3][2])) if val_at else (0, 3)
         node = ["symbol", ["lib_id", Q(lib_id)], ["at", x, y, 0], ["unit", 1],
-                ["exclude_from_sim", "no"], ["in_bom", "no" if part.dnp else "yes"], ["on_board", "yes"],
+                ["in_bom", "no" if part.dnp else "yes"],
+                ["on_board", "yes" if part.on_board else "no"],
                 ["dnp", "yes" if part.dnp else "no"], ["uuid", Q(_uid())],
                 prop("Reference", part.ref, rdx, rdy),
                 prop("Value", part.value, vdx, vdy, hide=not show_value),

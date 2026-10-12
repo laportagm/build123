@@ -127,11 +127,11 @@ def magnet_cover(parts, shell):
     pts = S.reshape(-1, 3)
     tree = cKDTree(pts)
     for m in parts.lay.magnets:
-        z_top = zp + P.MAG_PROUD + P.MAG_GAP + P.MAG_H_TOP + 0.06
+        z_top = zp + m["proud"] + P.MAG_GAP + m["top_h"] + 0.06
         r = (P.MAG_D + P.MAG_POCKET_CLEAR) / 2
         th = np.linspace(0, 2 * np.pi, 72, endpoint=False)
         rim = np.c_[m["x"] + r * np.cos(th), m["y"] + r * np.sin(th), np.full_like(th, z_top)]
-        rim2 = np.c_[m["x"] + r * np.cos(th), m["y"] + r * np.sin(th), np.full_like(th, z_top - P.MAG_H_TOP)]
+        rim2 = np.c_[m["x"] + r * np.cos(th), m["y"] + r * np.sin(th), np.full_like(th, z_top - m["top_h"])]
         d1, _ = tree.query(np.vstack([rim, rim2]))
         out.append(round(float(d1.min()), 2))
     return out
@@ -155,7 +155,7 @@ def overhang(shape, z_bed, flip, outer_face_ids=None, limit=45.0):
     on_bed = h < 0.05
     ang = np.degrees(np.arcsin(np.clip(-nz, 0, 1)))       # 0 = vertical wall, 90 = ceiling
     over = (nz < 0) & (ang > limit) & ~on_bed
-    return dict(V=V, F=F, area=area, over=over, ang=ang, nz=nz)
+    return dict(V=V, F=F, area=area, over=over, ang=ang, nz=nz, on_bed=on_bed)
 
 
 # ----------------------------------------------------------------------------- interference
@@ -340,8 +340,8 @@ def loop_force(a, b, z, I1, I2):
     return pre * (-ellipk(m) + (a * a + b * b + z * z) / ((a - b) ** 2 + z * z) * ellipe(m))
 
 
-def magnet_pull(d=P.MAG_D, h1=P.MAG_H_SOLE, h2=P.MAG_H_TOP, gap=P.MAG_GAP, Br=1.29, n=60):
-    """Pull between two coaxial, axially magnetised discs (N42: Br ~ 1.29 T), face gap in mm.
+def magnet_pull(d=P.MAG_D, h1=3.18, h2=1.59, gap=P.MAG_GAP, Br=1.19, n=60):
+    """Pull between two coaxial, axially magnetised discs (N35: Br 1.17-1.21 T), face gap in mm.
     Each magnet = a solenoid sheet with surface current K = Br / mu0."""
     K = Br / MU0
     r = d / 2 * 1e-3
@@ -354,6 +354,42 @@ def magnet_pull(d=P.MAG_D, h1=P.MAG_H_SOLE, h2=P.MAG_H_TOP, gap=P.MAG_GAP, Br=1.
         for zb in z2:
             F += loop_force(r, r, zb - za, I1, I2)
     return F
+
+
+# ----------------------------------------------------------------------------- sole floors
+def sole_floors(parts, sole):
+    """PETG left under every blind pocket of the sole (lowest material interval along
+    verticals through the pocket footprint).  The brief's 1.6 mm wall applies; the NTC
+    floor is the designed sensor window."""
+    lay = parts.lay
+
+    def floor(pts):
+        vals = []
+        for (x, y) in pts:
+            iv = probe_vertical(sole, x, y)
+            if iv:
+                vals.append(iv[0][1] - iv[0][0])
+        return round(min(vals), 2) if vals else None
+
+    def disc(x, y, r, n=8):
+        th = np.linspace(0, 2 * np.pi, n, endpoint=False)
+        return [(x, y)] + [(x + r * math.cos(t), y + r * math.sin(t)) for t in th]
+
+    out = {}
+    for m in lay.magnets:
+        if m["sole_h"] - m["proud"] > 0:
+            out[f"magnet ({m['x']:.1f}, {m['y']:.1f})"] = floor(disc(m["x"], m["y"], 0.85 * P.MAG_D / 2))
+    n = lay.ntc
+    out["ntc (sensor window)"] = floor([(n["x"] + dx, dy) for dx in (-1.2, -0.6, 0, 0.6, 1.2) for dy in (-0.4, 0, 0.4)])
+    for i, q in enumerate(lay.mask_pins + lay.bridge_pins):
+        out[f"pin {i} ({q[0]:.1f}, {q[1]:.1f})"] = floor(disc(q[0], q[1], 0.9 * P.PIN_SOLE_RELIEF[0] / 2))
+    u = lay.usb
+    xs = np.linspace(u["x_back"], u["x_face"] - P.USB_OPEN_DEPTH - 0.1, 8)
+    ys = np.linspace(-P.USB_W / 2 + 0.3, P.USB_W / 2 - 0.3, 5)
+    out["usb body pocket"] = floor([(x, y) for x in xs for y in ys])
+    xs = np.linspace(u["x_face"] - P.USB_OPEN_DEPTH + 0.1, u["x_face"] - 0.05, 4)
+    out["usb opening lip"] = floor([(x, y) for x in xs for y in ys])
+    return out
 
 
 # ----------------------------------------------------------------------------- mass
@@ -369,8 +405,8 @@ def mass_budget(shapes, parts):
     m["seam_mask"] = vol["seam_mask"] * petg * 1.0
     m["bridge"] = vol["bridge"] * petg * 0.85
     m["pcb_fr4"] = lay.pcb.area * P.PCB_T * 1.85e-3 + lay.pcb.area * 0.07 * 8.96e-3 * 0.6
-    m["battery"] = 12.1            # Jauch LP503040JH, datasheet typ. (verify at the electronics gate)
-    m["magnets"] = len(lay.magnets) * math.pi * (P.MAG_D / 2) ** 2 * (P.MAG_H_SOLE + P.MAG_H_TOP) * 7.5e-3
+    m["battery"] = 12.1            # Jauch LP503040JH+PCM, datasheet typ.
+    m["magnets"] = sum(math.pi * (P.MAG_D / 2) ** 2 * (mg["sole_h"] + mg["top_h"]) * 7.5e-3 for mg in lay.magnets)
     m["leds_ics_passives"] = 3.0   # 12 LEDs, MCU, driver, inductor, charger, connectors: estimate
     m["usb_receptacle"] = 1.0
     m["switch_wire_tape"] = 1.0
@@ -399,7 +435,7 @@ def run(parts, shapes):
         cen = o["V"][o["F"]].mean(axis=1)
         dist, _ = skin_tree.query(cen)
         on_skin = dist < 0.08                       # facet lies on the cosmetic outer skin
-        down = o["nz"] < 0
+        down = (o["nz"] < 0) & ~o["on_bed"]               # facets resting on the bed are not overhangs
         rep[f"overhang_{name}"] = dict(
             skin_max_deg=round(float(o["ang"][down & on_skin].max()), 1) if (down & on_skin).any() else 0.0,
             skin_area_over_45_mm2=round(float(o["area"][o["over"] & on_skin].sum()), 2),
@@ -408,9 +444,15 @@ def run(parts, shapes):
     print("[checks] overhang done", round(time.time() - t0, 1), "s", flush=True)
     rep["membrane"] = membrane_force(parts)
     print("[checks] membrane", rep["membrane"], round(time.time() - t0, 1), "s", flush=True)
-    f1 = magnet_pull()
-    rep["magnets"] = dict(pair_pull_N=round(f1, 2), total_pull_N=round(4 * f1, 1),
-                          model="coaxial current loops, N42 Br 1.29 T, gap %.2f mm" % P.MAG_GAP)
+    pairs = []
+    for mg in parts.lay.magnets:
+        lo, hi = (magnet_pull(h1=mg["sole_h"], h2=mg["top_h"], Br=b) for b in P.MAG_BR)
+        pairs.append(dict(x=mg["x"], y=mg["y"], sole=mg["sole_pn"], top=mg["top_pn"], pull_N=[round(lo, 2), round(hi, 2)]))
+    rep["magnets"] = dict(pairs=pairs, total_pull_N=[round(sum(q["pull_N"][0] for q in pairs), 1),
+                                                    round(sum(q["pull_N"][1] for q in pairs), 1)],
+                          model="coaxial current loops, N35 Br %.2f-%.2f T, gap %.2f mm" % (*P.MAG_BR, P.MAG_GAP))
+    rep["sole_floors"] = sole_floors(parts, shapes["sole"])
+    print("[checks] sole floors", rep["sole_floors"], round(time.time() - t0, 1), "s", flush=True)
     rep["mass_g"] = mass_budget(shapes, parts)
     skip = {("top_shell", "magnets"), ("sole", "magnets")}
     rep["interference"] = interference(shapes, skip=())
