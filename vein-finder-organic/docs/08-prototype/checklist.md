@@ -108,7 +108,9 @@ opening's lip, under the brief's 1.6 mm wall.
   - every line is in stock at its order quantity, with the exact part number (brief:
     in-stock parts only);
   - parts plus PCB cost ≤ $75, shipping excluded (brief).
-- **Expect:** Digi-Key $26.44, LCSC $13.35, Adafruit $2.25; device $47–57 [verification §7].
+- **Expect:** Digi-Key $27.31, LCSC $13.35, Adafruit $2.25; device $47.91–57.91, with 11
+  ring LEDs of each type ([order list](order-list.md); the order pack's cart has 10: edit
+  the two LED lines after uploading). The order pack alone gives $47–57 [verification §7].
 - **If it fails:**
   - Out of stock: order the BOM's alternate for that line (`bom.md`, "alternate").
   - No alternate: stop. That is a verified blocker that needs a BOM change.
@@ -159,7 +161,9 @@ opening's lip, under the brief's 1.6 mm wall.
      - the NTC window is a closed rectangle on the sole's skin face;
      - the button skin and seam slot are intact;
      - a header post slides into every 1.05 mm hole (ream with the 1.0 mm bit if not).
-  5. Measure the lip under the USB-C opening with calipers (N19).
+  5. Measure the lip under the USB-C opening with calipers (N19), at least 0.2 mm in from
+     the landing face. The print mesh gives 0.91–0.95 mm there and 0.87 mm at the face
+     itself ([print packet](print-packet.md) S10).
 - **Accept:** every documented inspection point holds [build §1], and the posts fit
   snugly. No dimensional tolerances are documented (MISSING); fit is proved in 2.20,
   3.2 and 3.3.
@@ -253,7 +257,9 @@ Until 2.17, the board runs from the bench supply wired to the cell pads (PROPOSE
 ### 2.7 Fit RT1, then a smoke test
 - [ ] **Procedure:**
   1. Solder RT1 [build §2 step 10].
-  2. Tap: 660 nm at level 1. Tap, tap: levels 2 and 3. Tap: off.
+  2. Tap: 660 nm at level 1. Read the voltage across R9 before going higher: 66–81 mV
+     (2.9). Above that, tap off and stop: a wrong or bridged R9 would overdrive the LEDs.
+     Then tap, tap: levels 2 and 3. Tap: off.
   3. Tap on, then hold 0.7 s: 625 nm at the same level, and the seam flashes twice.
   4. Check all 6 LEDs of each string, and the faint seam line while on.
 - **Accept:** the behaviour in [firmware §1](../04-firmware/firmware.md#1-what-it-does).
@@ -480,7 +486,7 @@ These are **PROPOSED**: the documents do not specify either (MISSING).
 - **Procedure:** put the stone window-down on a cloth on the scale. Press the dish slowly
   with a fingertip and read the scale at the click. Do it 5 times.
 - **Accept:** 2–5 N (204–510 g), with the click felt [item 5].
-- **Expect:** 3.0–3.6 N (306–367 g) [verification §1].
+- **Expect:** 3.02–3.61 N (308–368 g) [checks.json `press_force_N`; verification §1].
 - **If it fails:** no click, or free play: add a shim. Too stiff: remove a shim. Then
   check the switch seat.
 
@@ -496,19 +502,21 @@ These are **PROPOSED**: the documents do not specify either (MISSING).
 ### 3.4 USB-C plug and N19 durability (item 20). **Required: this decides N19.**
 - [ ] **Equipment:** 3 USB-C cables (one with a bulky plug), inline meter, loupe, camera.
 - **Procedure:**
-  1. With each cable, plug in fully and confirm the charge current on the meter.
+  1. With the cell below full (after 3.9's runtime run, for example), plug in fully with
+     each cable and confirm on the meter that it charges: the seam breathes and the current
+     is above the 24.5 mA termination level. Record it. A full cell draws nothing; the
+     223–268 mA window holds only in the constant-current phase (2.18).
   2. Photograph the lip under the opening through the loupe.
   3. Make 20 straight in-and-out cycles with the bulky cable.
   4. Inspect and photograph the lip again.
-- **Accept:** each cable latches and charges (as in 2.18); no whitening or cracks at the
-  0.91 mm lip [item 20]. A pass confirms N19.
+- **Accept:** each cable latches and charges; no whitening or cracks at the lip
+  [item 20]. A pass confirms N19.
 - **If it fails:**
   1. N19 fails: record it, and do not use that cable.
   2. **PROPOSED**: reprint the sole at the hot end of the PETG range (245 °C) for
      better layer bonding, and repeat 3.4.
   3. If it fails again, N19 is a verified blocker for the next revision. The options
-     are to raise the receptacle or deepen the sole locally [electronics §7, options
-     b and c].
+     are N19's own: raise the receptacle or deepen the sole [readiness N19].
 
 ### 3.5 Light leaks (item 9)
 - [ ] **Procedure:** in a dark room, light level 3 window-down on white paper. Look around
@@ -540,14 +548,15 @@ These are **PROPOSED**: the documents do not specify either (MISSING).
 ### 3.7 ⚠ Face temperature at full power on the phantom (item 4)
 - [ ] **Equipment:** the phantom (3.0), 2 thermocouples, a stopwatch.
 - **Procedure:**
-  1. Tape thermocouple 1 on the face at the edge of the 660 nm pocket at +35°, the one
-     nearest the NTC. The hottest pocket is not identified in the documents (MISSING);
+  1. Tape thermocouple 1 on the face at the edge of a lit pocket nearest the NTC: for
+     660 nm the pocket at +35°, for 625 nm the pocket at +11.7° (`layout.json` LED
+     angles and banks). The hottest pocket is not identified in the documents (MISSING);
      find it with a thermal camera if you have one.
   2. Tape thermocouple 2 on the NTC window.
   3. Put the device face-down on the phantom at 33.5 °C.
   4. Run 660 nm at level 3 for 20 min, with two holds every 2.5 min. Log both
      thermocouples every minute, and note any dimming or seam double-blink.
-  5. Cool it down, then repeat on 625 nm.
+  5. Cool it down, move thermocouple 1 to the 625 nm pocket, then repeat on 625 nm.
 - **Accept:** thermocouple 1 stays **≤ 41 °C** for all 20 min, on both banks [item 4,
   brief].
 - **Expect** [verification §4]: 36.7–38.0 °C at 660 nm and 35.4–37.0 °C at 625 nm on
@@ -629,7 +638,7 @@ It stays a personal prototype.
 | M7 | 2.20 | Closed gap at the waterline | Record |
 | M8 | 3.0 | Skin-phantom specification | PROPOSED: 2–3 % agar at 33.5 °C on foam |
 | M9 | 3.0 | Thermocouple accuracy | PROPOSED: ±0.5 °C against a reference |
-| M10 | 3.7 | Which LED pocket is hottest | PROPOSED: the 660 nm pocket at +35°, or a thermal camera |
+| M10 | 3.7 | Which LED pocket is hottest | PROPOSED: the lit pocket nearest the NTC (660 nm at +35°, 625 nm at +11.7°), or a thermal camera |
 | M11 | 3.8 | 625 nm optical power minimum | Record; IEC check as for 660 nm |
 | M12 | 3.5 | Remedy for a light leak | PROPOSED: black tape or paint inside the edge |
 | M13 | 2.13 | What to do if timing is outside ±10 % | Record |

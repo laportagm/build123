@@ -1,15 +1,15 @@
 {
- "source": "docs/02-cad/3mf/*.3mf (print orientation), cad/device/params.py, docs/02-cad/pcb/layout.json, cad/device/parts.py",
- "bbox_print_xyz_mm": {
+ "source": "docs/02-cad/3mf/*.3mf (print orientation), cad/device/params.py, cad/device/parts.py, docs/02-cad/pcb/layout.json, docs/02-cad/checks.json",
+ "size_print_xyz_mm": {
   "sole": [
    89.918,
    58.659,
-   4.211
+   4.18
   ],
   "top_shell": [
    90.174,
    58.858,
-   20.521
+   20.498
   ],
   "bridge": [
    12.009,
@@ -29,9 +29,27 @@
   "pcb_magnet_hole_d": 6.75,
   "horn_sole_pocket_depth": 1.23,
   "tail_sole_pocket_depth": 0.49,
+  "sole_magnet_top_dry": [
+   1.95,
+   1.1
+  ],
+  "sole_magnet_top_cad": [
+   2.0,
+   1.15
+  ],
+  "top_magnet_face_seated": [
+   2.2,
+   1.35
+  ],
+  "top_pocket_ceiling": [
+   3.79,
+   2.94
+  ],
+  "magnet_gap_cad": 0.15,
+  "magnet_gap_both_seated": 0.25,
   "magnet_centre_dist_horns_y": 40.0,
   "magnet_centre_dist_tails_y": 24.0,
-  "magnet_centre_dist_horn_tail_x": 68.6,
+  "magnet_centre_dist_horn_tail": 69.065,
   "magnet_centre_dist_tol": 0.25,
   "led_channel_radial": 2.2,
   "led_channel_tangential": 4.7,
@@ -46,6 +64,7 @@
    0.8,
    0.95
   ],
+  "ntc_window": 0.7,
   "usb_opening": [
    9.44,
    3.67
@@ -55,9 +74,15 @@
    3.17
   ],
   "usb_opening_below_waterline": 0.855,
-  "usb_opening_width_at_waterline": 8.873,
-  "usb_shell_width_at_waterline": 8.261,
   "usb_centre_above_waterline": 0.98,
+  "usb_lip_checks_json": 0.91,
+  "usb_lip_from_landing_face": {
+   "0.0": 0.872,
+   "0.1": 0.895,
+   "0.2": 0.913,
+   "0.5": 0.941,
+   "1.0": 0.946
+  },
   "boss_underside_above_waterline": 1.05,
   "pin_hole_part": 1.05,
   "pin_post_diagonal": 0.905,
@@ -74,9 +99,14 @@
   ],
   "switch_h": 5.0,
   "switch_gap": 0.05,
+  "usb_opening_width_at_waterline": 8.873,
+  "usb_shell_width_at_waterline": 8.261,
+  "mask_top_slope_deg": [
+   52.6,
+   77.1
+  ],
+  "mask_vertical_room": 0.165,
   "bridge_deck_underside_above_feet": 7.4,
-  "bridge_deck_top_above_feet": 9.9,
-  "bridge_pedestal_top_above_feet": 12.009,
-  "sole_height_print": 4.211
+  "bridge_pedestal_top_above_feet": 12.009
  }
 }

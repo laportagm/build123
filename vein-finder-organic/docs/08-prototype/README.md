@@ -26,5 +26,6 @@ results back.
 python docs/08-prototype/print_dims.py        # print_dims.json, from docs/02-cad/3mf + params.py
 python docs/08-prototype/make_bench_sheet.py  # bench-sheet.md / .csv, bench-offset-log.csv
 ```
-`make_bench_sheet.py` stops with an error if the firmware thresholds in `logic.h` or the
-model values in `budget.json` no longer match the numbers it prints.
+`make_bench_sheet.py` stops with an error if any number it prints no longer matches its
+source: values are read from the JSON files and `logic.h`, and each literal is checked
+against the exact text of the document it cites.

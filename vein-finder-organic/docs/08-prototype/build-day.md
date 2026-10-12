@@ -17,15 +17,19 @@ This list follows the [build guide](../05-build/build.md) section by section (§
 | Mark | Meaning |
 |---|---|
 | **[CL]** | Powered from the bench supply with a current limit, wired to the cell pads: **3.70 V, 50 mA limit** for first power-up, then **300 mA** [chk Stage 2, 2.4]. |
-| **[Li]** | The lithium cell is connected or handled. Never short its leads; keep the iron off the pouch; insulate the free lead while you solder the other. |
+| **[Li]** | The lithium cell is connected or handled. Never short its leads; keep the iron off the pouch and its leads; insulate the free lead while you solder the other. |
 | ⚠ | Safety test. |
 | ⛔ | Stop condition. Stop at the first one and follow its action before anything else [chk rule 2]. |
 | **GATE** | Nothing after it starts until it passes. |
 
-**One difference from build §3, on purpose.** Build §3.1 solders the cell first. For this
-first unit, the checklist runs the board from the current-limited supply until the
-electrical safety tests pass, and the cell goes on at step 3.14 [chk 2.17]. A fault then
-trips the supply's limit instead of draining a lithium cell into it.
+**Two departures from the build guide's order, on purpose:**
+- **The cell goes on later.** Build §3.1 solders the cell first. Here the board runs from
+  the current-limited supply until the electrical safety tests pass, and the cell goes on
+  at step 3.14 [chk 2.17]. A fault then trips the supply's limit instead of draining a
+  lithium cell into it.
+- **The posts go in earlier.** Build §4.2 fits the locating posts; here they go in at
+  step 2.5, before any power. Nothing is then soldered on the board with the cell
+  connected, except the switch wires (4.4).
 
 **Design, firmware or board changes are not made at the bench.** Where a step says
 "return loop", send the data. The change is made in the repository with every gate re-run
@@ -45,14 +49,18 @@ trips the supply's limit instead of draining a lithium cell into it.
   - `fw_wdt_test.hex`: `2dde15283cf8bb845302e7041c8e6faeb90dc23687c24d615c3e916912323eba`
   - flash 2208 B (`avr-size`)
 - [ ] [Print packet](print-packet.md) done: preview checks, then the first-article checks
-  → section **P**. No limit exceeded.
+  → section **P**. No limit exceeded. Exceptions:
+  - S5, T2, T3 and B2 need the board, tape and cell: they are done at 2.0;
+  - M4 needs the populated board: it is done at 4.4.
 - [ ] The equipment in [chk §0] is on the bench.
 
 ## 1. Print (build §1)
 
 - [ ] The four parts are printed and cleaned up as in the print packet.
-- [ ] **N19 checkpoint (print).** Measure the USB-C lip (S10) and record the preview
-  layer count. Photograph the lip through the loupe; 5.5 compares against this photo.
+- [ ] **N19 checkpoint (print).**
+  - Measure the USB-C lip at least 0.2 mm in from the landing face (S10), and record the
+    preview layer count.
+  - Photograph the lip through the loupe; GATE N19 (5.4) compares against this photo.
   → **P-S10**
 
 ## 2. Solder the board (build §2)
@@ -60,19 +68,29 @@ trips the supply's limit instead of draining a lithium cell into it.
 ### 2.0 Incoming inspection [chk 2.1]
 - [ ] **Board thickness** at the edge: **0.9–1.1 mm** ("boards are 1.0 ± 0.1",
   `params.py` BOSS_PCB_GAP). ⛔ Outside: don't use the board. → **A-2.1a**
+- [ ] **Board against the shell's bosses** (T2): the board must be no thicker than the boss
+  depth you measured. If it is, the bosses will hold the halves apart by the difference.
+  Try another of the five boards; if none fits, record the expected gap for 4.5.
+  → **P-T2**
+- [ ] **Bare-board fits:** the bare board drops over the four dry magnets in the sole (S5),
+  and sits inside the shell's waterline opening without touching (T3). → **P-S5, P-T3**
 - [ ] Underside label "PERSONAL PROTOTYPE - NOT A MEDICAL DEVICE" legible (N18). The
   USB-C notch edges are clean.
-- [ ] **R9 reads 8.2 Ω**, a 1 % part (`bom.csv`): **8.12–8.28 Ω**. Short the meter leads
-  first and subtract that reading. ⛔ Outside: wrong reel. → **A-2.1b**
+- [ ] **R9 reads 8.2 Ω** within your meter's stated accuracy. Short the leads first and
+  subtract that reading; record the meter.
+  - The part is 1 % (`bom.csv`); a handheld meter cannot resolve that.
+  - ⛔ A reading off by a factor of 10 (0.82, 82 Ω): wrong reel. → **A-2.1b**
 - [ ] LED reels apart: XZM2MR55W-3 (660 nm) is for D2–D7; XZM2CRK55W-3 (625 nm) for
   D8–D13 [build §2 step 9].
 - [ ] Magnets: 2 × 8193 and 6 × 8195 are needed [chk 2.1].
 - [ ] **[Li] Cell voltage**, meter on the leads: **3.00–4.28 V**, the protection
-  circuit's window (readiness §2). ⛔ Below 3.00 V: set the cell aside and ask. → **A-2.1c**
+  circuit's window (readiness §2). ⛔ Below 3.00 V or above 4.28 V: set the cell aside and
+  ask. → **A-2.1c**
 - [ ] **[Li] Cell thickness** including its protection board, and the **foam tape**.
-  **Tape + cell ≤ 7.40 mm**, and ≤ the bridge's deck height **B2** [item 19; build §4.3].
-  ⛔ Over: use thinner tape. If none gets under, stop: the deck would press on the cell.
-  → **A-2.1d, A-2.1e**
+  - **Tape + cell ≤ 7.40 mm** [item 19; build §4.3].
+  - Tape + cell ≤ the bridge's deck height (B2, measured now).
+  - ⛔ Over: use thinner tape. If none gets under, stop: the deck would press on the cell.
+  → **A-2.1d–f, P-B2**
 
 ### 2.1 Top side [build §2 steps 1–8]
 Iron ≤ 350 °C.
@@ -100,7 +118,14 @@ Iron ≤ 350 °C.
 - [ ] Two 30 AWG wires, about 60 mm, to **TP8 (BTN)** and **TP9 (BTN_GND)**. Touching
   them together is a press. They are fitted now so that every bench test can use them.
 
-### 2.5 ⚠ Check before power [build §2 step 11; chk 2.3]
+### 2.5 Locating posts [build §4.2 steps 1–4, moved before power]
+1. Pull six posts from the header strip: two for the mask, four for the bridge. Four if
+   the mask is deferred (print packet).
+2. Push each through its plated hole from the top. Put the mask and bridge on them to
+   square them.
+3. Solder underneath, cut flush, and lift the printed parts off.
+
+### 2.6 ⚠ Check before power [build §2 step 11; chk 2.3]
 - [ ] Ohms: VBAT–GND (TP4–TP5), VBUS–GND (R5 pin 1 to GND), VOUT–GND (C5).
 - **Expect:** VBUS–GND about **300 kΩ** (R5 + R6 + R7). VBAT and VOUT readings climb as
   their capacitors charge.
@@ -130,12 +155,16 @@ Iron ≤ 350 °C.
   - ⛔ Any ring LED lights: the open-sensor protection fails. Check R8 and U1 pin 11
     (NTC_SENSE). → **A-2.6**
 - [ ] **3.4 [CL] Fit RT1, then a smoke test** [build §2 step 10; chk 2.7; firmware §1]
-  - Solder RT1.
-  - Tap: 660 nm at level 1 (40 %). Tap, tap: levels 2 and 3. Tap: off.
-  - Tap on, then hold 0.7 s: 625 nm at the same level, and the seam flashes twice.
-  - All 6 LEDs of each string are lit; a faint seam line shows while on.
+  1. **Disconnect the supply.** Solder RT1. Reconnect at 3.70 V, 300 mA.
+  2. Tap: 660 nm at level 1 (40 %). **Read the voltage across R9 now: 66–81 mV** [item 2].
+     ⛔ Above 81 mV: tap off and stop. A wrong or bridged R9 would overdrive the LEDs at
+     higher levels. → **A-2.9a**
+  3. Only then: tap, tap for levels 2 and 3; tap: off.
+  4. Tap on, then hold 0.7 s: 625 nm at the same level, and the seam flashes twice.
+  5. All 6 LEDs of each string are lit; a faint seam line shows while on.
   - ⛔ A whole string dark: one LED is reversed or open. Turn it off and on (the driver
-    latches off on an open string), then fix the LED [build §3 step 6]. → **A-2.7**
+    latches off on an open string), then fix the LED [build §3 step 6]. Disconnect the
+    supply before soldering. → **A-2.7**
 - [ ] **3.5 [CL] ⚠ NTC short** [item 12 a; chk 2.8]
   - At level 3, short RT1's pads with tweezers for about 2 s, then let go.
   - Accept: **off within 0.3 s**, seam double-blinking; back on when released.
@@ -219,7 +248,7 @@ Iron ≤ 350 °C.
   - There is **no reverse-polarity protection**.
   - Accept: a tap lights the LEDs from the cell.
   - ⛔ Reversed: stop and inspect; the charger and MCU may be damaged. → **A-2.17**
-- [ ] **3.15 [Li] USB wake and charging** [items 14 b and 3; chk 2.18]
+- [ ] **3.15 [Li] ⚠ USB wake and charging** [items 14 b and 3; chk 2.18]
   - **Item 14 b:** asleep > 1 min. Scope CH1 on VBUS (R5 pin 1), CH2 on U1 pin 8 (SEAM).
     Plug in USB. Accept: **seam PWM within 0.1 s of VBUS**, and the seam breathes.
   - **Item 3:** leave it charging; read the inline meter every 15 min.
@@ -227,8 +256,8 @@ Iron ≤ 350 °C.
       (24.5 mA, `budget.json`); then the seam is steady.
     - About 3 h is an estimate (M6).
     - **Do not leave it unattended until this has passed.**
-  - ⛔ Out of range, or it never stops: unplug. Check R3 (2.2 kΩ: I = 540 / R) and U2.
-    → **A-2.18a–b, A-2.18-t000…t240**
+  - ⛔ Out of range, or **it never stops**: unplug. Check R3 (2.2 kΩ: I = 540 / R) and U2.
+    Charger termination protects the cell. → **A-2.18a–b, A-2.18-t000…t240**
 - [ ] **3.16 [Li] USB detected at full charge** [item 21; chk 2.19]
   - Cell full. Plug in the breakout fed with **4.60 V** (or a long thin cable giving
     ≤ 4.6 V at the board). Tap.
@@ -236,24 +265,23 @@ Iron ≤ 350 °C.
   - Fail: record it. The documented fix (R7 → 200 kΩ, electronics §2) is a board change:
     return loop. → **A-2.19**
 
-**GATE A (bare board).** Every ⚠ in §2–§3 passed. Otherwise ⛔: stop and send the sheet
-(return loop).
+**GATE A (bare board).** Every step in §2–§3 passed: each pass/fail row passed, each
+record row recorded (readiness §5: stop at the first failure). Otherwise ⛔: stop and send
+the sheet (return loop).
 
 ## 4. Assemble (build §4)
 
 - [ ] **4.1 Magnets into the sole** [build §4.1]
   - Stack each sole magnet on its partner so they attract. Dot the sole magnet's free face.
   - Glue dot up: 8193 at the horns, 8195 at the tail. Let it cure.
-  - Then re-measure S3: horns **≤ 2.15 mm**, tails **≤ 1.30 mm** above the waterline face.
-    Glue under a magnet adds height.
-  - ⛔ Over: the pair will touch; re-seat it. → **P-S3g**
-- [ ] **4.2 Posts, then the board** [build §4.2; item 19]
-  1. Six posts: two for the mask, four for the bridge. Only four if the mask is deferred
-     (print packet).
-  2. Push each through its plated hole from the top. Square them with the printed parts,
-     solder underneath and cut flush. Lift the parts off.
-  3. Lay the board in the sole: the magnets through the board holes, the LEDs into the
-     channels, the NTC into its pocket.
+  - Then re-measure S3: the magnet tops must stay **below 2.20 mm (horns) and 1.35 mm
+    (tails)** above the waterline face, or they touch the top magnets. Glue under a magnet
+    adds height.
+  - ⛔ At or over: re-seat it. → **P-S3g**
+- [ ] **4.2 Board into the sole** [build §4.2 steps 5–7; item 19]. The posts went in at
+  2.5.
+  - Lay the board in: the magnets through the board holes, the LEDs into the channels, the
+    NTC into its pocket.
   - **Dry fit:** the board lies **flat, without rocking**. The channels leave 0.20 mm a
     side, the NTC pocket 0.225 mm (readiness §4).
   - ⛔ **Never force the board down**: the LEDs would crack the channel walls. Find the part
@@ -263,10 +291,12 @@ Iron ≤ 350 °C.
   - One piece of tape inside the "CELL" outline; the cell on it, leads toward the +y arm;
     dress the leads flat.
   - Don't bend or press the pouch. → **A-2.20b**
-- [ ] **4.4 Mask, switch and bridge** [build §4.4]
-  1. Mask onto its two posts, over the five amber LEDs (M4).
-  2. Switch into the bridge's seat, four legs through the holes.
+- [ ] **4.4 [Li] Mask, switch and bridge** [build §4.4]
+  1. Mask onto its two posts, over the five amber LEDs: none touched (M4). → **P-M4**
+  2. Switch into the bridge's seat, four legs through the holes. Measure B3 now. → **P-B3**
   3. Wires to two diagonally opposite legs; insulate the joints.
+     - **The board is live** (the cell is on). Solder only the switch legs, away from the
+       board. Keep the iron off the cell and its leads.
   4. Bridge onto its four posts, straddling the cell.
   5. **Shim** with the top shell on: the click must come within the first **0.3 mm**. Add
      0.1 mm paper shims (80 g/m²) under the switch until it does.
@@ -284,6 +314,12 @@ Iron ≤ 350 °C.
 
 ## 5. First use: bench and phantom only, **not on skin** (build §5; readiness §5)
 
+**Order.** This follows checklist Stage 3 with three moves:
+- the runtime test (chk 3.9) comes before GATE N19, so the gate's charging check meets a
+  cell below full;
+- the magnet test (chk 3.3) comes after the gate: a reprinted sole would void it;
+- so do the light-leak and thermal tests.
+
 - [ ] **5.0 [Li] Charge fully.** The seam breathes, then glows steady; about 3 h
   (estimate).
 - [ ] **5.1 Phantom and thermocouples** [chk 3.0, PROPOSED]
@@ -292,35 +328,50 @@ Iron ≤ 350 °C.
 - [ ] **5.2 Button force** [item 5; chk 3.2]
   - Stone window-down on a cloth on the kitchen scale; press the dish slowly; read at the
     click; 5 times.
-  - Accept **2–5 N (204–510 g)**, click felt. Expect 3.0–3.6 N (306–367 g) once shimmed.
+  - Accept **2–5 N (204–510 g)**, click felt.
+  - Expect 3.02–3.61 N (308–368 g) once shimmed (checks.json `press_force_N`).
   - Fail: shims. → **B-3.2**
-- [ ] **5.3 Magnet closure** [item 6; chk 3.3]
-  - Luggage scale, 3 pulls. Accept **≥ 15 N (1.53 kg)**.
-  - Expect 24.1–25.8 N (2.46–2.63 kg) (verification §1). → **B-3.3**
+- [ ] **5.3 Runtime** [item 8; chk 3.9]
+  - From the full charge of 5.0: 660 nm, level 3, face-up on the bench (not the phantom,
+    so derating does not lower the current). Two holds every 2.5 min [chk rule 5].
+  - Accept **≥ 45 min** at full brightness. Expect 5.1 h (660) and 4.5 h (625)
+    (verification §3).
+  - Run on to the battery cut-off if you have the time. Either way the cell is now below
+    full, which 5.4 needs. → **B-3.9**
 - [ ] **5.4 ⛔ GATE N19 — USB-C plug, bench item 20. Required: it decides N19**
   [item 20; chk 3.4; readiness N19]
-  1. With each of 3 cables (one with a bulky plug): plug in fully; it latches and charges
-     at **223–268 mA** on the inline meter.
+  1. Cell below full (after 5.3). With each of 3 cables (one with a bulky plug): plug in
+     fully. Each must latch and charge.
+     - "Charges" means the seam breathes and the inline meter shows more than **24.5 mA**,
+       the termination current.
+     - Record the current. The 223–268 mA window applies only while the charger is in
+       constant current (`budget.json`), and was already checked in 3.15.
   2. Photograph the lip through the loupe; compare with the §1 photo.
   3. **20 straight in-and-out cycles** with the bulky cable.
   4. Inspect and photograph the lip again.
   - **Pass:** no whitening and no cracks. N19 is confirmed for the lip as printed (P-S10).
   - **Fail:** N19 fails. **Stop here.** Don't use that cable. Send the photos and the
     sheet.
-    - If P-S10 measured under 0.91 mm, say so: the print, not the design, may have
-      failed.
-    - The next steps are already documented, and they are your call: chk 3.4 (a
-      PROPOSED reprint at 245 °C), then electronics §7 options b/c. Nothing changes
-      without you.
-  - **Why the gate sits here:** 5.5–5.9 depend on the sole (the NTC window, the LED
-    channels). A reprinted sole would void them, so they wait for this pass.
-    → **B-3.4a–e**
-- [ ] **5.5 Light leaks** [item 9; chk 3.5]
+    - If P-S10 (at least 0.2 mm in from the face) read under 0.91 mm, say so: the print,
+      not the design, may have failed.
+    - The next steps are your call. Checklist 3.4 proposes a reprint at 245 °C (PROPOSED).
+      The options beyond that are N19's own, in readiness N19: raise the receptacle or
+      deepen the sole, a gate-2 redesign. Nothing changes without you.
+  - **Why the gate sits here:** 5.6–5.9 depend on the sole (the magnets glued into it, its
+    edge, the NTC window, the LED channels). A reprinted sole would void them, so they wait
+    for this pass. → **B-3.4a–e**
+- [ ] **5.5 [Li] Charge fully again** before the thermal tests.
+- [ ] **5.6 Magnet closure** [item 6; chk 3.3]
+  - Luggage scale, 3 pulls. Accept **≥ 15 N (1.53 kg)**.
+  - Expect 24.1–25.8 N (2.46–2.63 kg) (verification §1). That model assumes the CAD's
+    0.15 mm magnet gap; magnets seated fully in their pockets leave 0.25 mm (print packet
+    S3), which pulls less (not modelled). → **B-3.3**
+- [ ] **5.7 Light leaks** [item 9; chk 3.5]
   - Dark room, level 3, window-down on white paper, both banks.
   - Accept: no light around the sole's edge; the seam's glow is intended. Photograph any
     leak (M12). → **B-3.5**
-- [ ] **5.6 ⚠ Thermal cut-off, end to end** [item 11; chk 3.6]. **Run it 3 times**, the
-  first of the offset repeats.
+- [ ] **5.8 ⚠ Thermal cut-off, end to end** [item 11; chk 3.6]. **3 runs (PROPOSED)**:
+  the window-to-NTC offset repeats.
   - Thermocouple taped to the NTC window. Face-up, 660 nm, level 3. Hair dryer on low
     from about 20 cm, or a 45 °C water bag (then judge only the cut-off).
   - Keep it on with two holds every 2.5 min [chk rule 5].
@@ -331,23 +382,29 @@ Iron ≤ 350 °C.
   - ⛔ No dimming or cut-off: stop; the NTC chain is faulty (e.g. U1 pin 11).
   - ⛔ Cut-off only above 42 °C: thermal paste on RT1 (N20) and repeat. Still failing:
     stop, return loop (limits). → **B-3.6-r1…r3**
-- [ ] **5.7 ⚠ Face temperature on the phantom** [item 4; chk 3.7]. Per-minute rows: the
-  offset log.
-  - Thermocouple 1 on the face at the edge of the 660 nm pocket at +35° (nearest the NTC;
-    the hottest pocket is not identified, M10). Thermocouple 2 on the NTC window.
-  - Face-down on the phantom at 33.5 °C. 660 nm, level 3, 20 min, two holds every
-    2.5 min. Log both thermocouples every minute; note any dimming or double-blink.
-  - Cool down, then the same on 625 nm.
+- [ ] **5.9 ⚠ Face temperature on the phantom** [item 4; chk 3.7]. Per-minute rows: the
+  face-to-window offset log.
+  - **Thermocouple 1 on the face at the edge of a lit pocket:**
+    - 660 nm run: the 660 nm pocket at +35°;
+    - 625 nm run: the 625 nm pocket at +11.7°.
+    These are the lit pockets nearest the NTC (`layout.json` LED angles and banks). The
+    hottest pocket is not identified (M10).
+  - Thermocouple 2 on the NTC window.
+  - Face-down on the phantom at 33.5 °C, level 3, 20 min, two holds every 2.5 min. Log
+    both thermocouples every minute; note any dimming or double-blink. Cool down between
+    banks.
   - Accept: **thermocouple 1 ≤ 41 °C for all 20 min, on both banks.**
   - Expect 36.7–38.0 °C (660 nm) and 35.4–37.0 °C (625 nm) on perfused skin
     (`thermal.json`). The phantom has no blood flow and may run warmer.
   - ⛔ Over 41 °C:
     1. Check thermocouple 1's contact.
     2. Thermal paste on RT1 (N20), then repeat.
-    3. Still over: stop, return loop. The limits in `fw/src/logic.h` and the predictions
-       in `cad/`, `calc/`, `ee/` are changed together and every gate is re-run before you
-       re-flash. → **B-3.7-A/B rows** and `bench-offset-log.csv`
-- [ ] **5.8 Optical power** [item 1; chk 3.8]
+    3. Still over: stop, return loop. The documented rule lowers `T_DERATE_DC`,
+       `T_LIMIT_DC` and `T_CUTOFF_DC` in `fw/src/logic.h` by the overshoot
+       (thermocouple 1's maximum − 41 °C; verification §4). The predictions in `cad/`,
+       `calc/` and `ee/` change with them, and every gate is re-run before you re-flash.
+    → **B-3.7-A/B rows** and `bench-offset-log.csv`
+- [ ] **5.10 ⚠ Optical power** [item 1; chk 3.8]
   - Spare LEDs at **20.0 mA** (constant current, or 5 V through 150 Ω); sensor 100 mm
     on axis; dark room; 3 LEDs of each type.
   - Set the meter's wavelength to 660 nm for XZM2MR55W-3. For XZM2CRK55W-3, Digi-Key
@@ -358,16 +415,12 @@ Iron ≤ 350 °C.
       holds to (verification §6);
     - 625 nm: record (M11).
   - Expect 12 mW, about 110 lx (660 nm); 2.2–6.6 mW (625 nm).
-  - ⛔ Above about 24 mW: no eye exposure until `iec62471.py` is re-run with the measured
-    power (return loop). → **B-3.8a–f**
-- [ ] **5.9 Runtime** [item 8; chk 3.9]
-  - Full charge. 660 nm, level 3, face-up on the bench (not the phantom, so derating
-    does not lower the current). Two holds every 2.5 min.
-  - Accept **≥ 45 min** at full brightness. Expect 5.1 h (660) and 4.5 h (625)
-    (verification §3). → **B-3.9**
+  - ⛔ Above about 2× the estimate: no eye exposure until `iec62471.py` is re-run with the
+    measured power (return loop). → **B-3.8a–f**
 
-**GATE B (phantom).** Every ⚠ in §5 passed, and GATE N19 passed. **Send the data sheet
-back now** ([return loop](return-loop.md)), whether or not you go on.
+**GATE B (phantom).** Every step in §5 passed: each pass/fail row passed, each record row
+recorded, and GATE N19 passed (readiness §5). **Send the data sheet back now**
+([return loop](return-loop.md)), whether or not you go on.
 
 ## 6. Skin: only after GATE A and GATE B (readiness §5, stage C)
 
