@@ -3,7 +3,9 @@
 > **Personal prototype for bench evaluation. Not a cleared medical device.**
 > Not for diagnosis, treatment or clinical use. This report checks the design against
 > the brief. It is not a safety case, and nothing here has been measured on hardware yet:
-> §8 lists the bench checks to run on the first build.
+> §8 lists the bench checks to run on the first build. The GO / NO-GO, and the order in
+> which to run the bench checks before anything touches skin, are in
+> [readiness.md](readiness.md#5-final-verification-and-go--no-go).
 
 ## 1. Results against the brief
 

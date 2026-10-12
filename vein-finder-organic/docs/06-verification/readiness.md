@@ -20,8 +20,8 @@ This record covers the fix-and-verify pass of 2026-10-12. It started from `e93df
 | 1 | Safety-critical firmware | PASS (simulated); hardware validation open | `6863abd` |
 | 2 | Firmware reliability | PASS (simulated); hardware validation open | `ab70f86` |
 | 3 | PCB and manufacturing integrity | PASS, one warning accepted (silkscreen references) | `a6b9e90` |
-| 4 | Mechanical and electrical integration | PASS on the models; one decision open (N19); physical checks listed | this chunk |
-| 5 | Final verification, GO / NO-GO | pending | |
+| 4 | Mechanical and electrical integration | PASS on the models; one decision open (N19); physical checks listed | `e88cdab` |
+| 5 | Final verification, GO / NO-GO | **GO** to order and to build for bench evaluation; **NO-GO** for skin until the stage A and B bench checks pass | this chunk |
 
 ## 0. Starting point (`e93df07`)
 
@@ -54,7 +54,7 @@ This record covers the fix-and-verify pass of 2026-10-12. It started from `e93df
 | N10 | USB-C pads 0.20 mm from the board edge (the 0.3 mm rule's one exception) | documented exception | 3 | measured 0.2002 mm; meets JLCPCB's 0.2 mm |
 | N11 | R29: the board is not rerouted | documented decision | 3 | evidence recorded: closest copper 0.300 mm |
 | N12 | Brown-out detector off (default fuses) | optional improvement | 2 | not needed, reasons documented |
-| N13 | The PR text counts 30 review findings; there were 29 | doc error | 5 | |
+| N13 | The PR text counts 30 review findings; there were 29 | doc error | 5 | fixed in the PR text |
 | N14 | With the button held down, the MCU stays out of power-down (it waits for the release); the LEDs stay off | reliability (battery drain) | 2 | accepted limitation, tested; bench item 18 |
 | N15 | At turn-off, CTRL goes low and both gates open together, while the driver runs for up to 2.5 ms more. VOUT may rise toward the 36–39 V open-LED limit. The parts are rated for it ([electronics §2](../03-electronics/electronics.md#2-circuit)) | hardware risk | 1 → bench | bench item 16 |
 | N16 | A cell-voltage reading under 18 overflowed 16 bits, giving a random voltage. A reading of 17 gave 0.658 V and a spurious battery lock | defect (error handling) | 2 | fixed |
@@ -400,3 +400,82 @@ The USB-C opening's lower lip is 0.91 mm of PETG, under the brief's 1.6 mm wall.
 - Printed parts will differ from the model. FDM holes come out undersize, and PETG
   shrinks. Only items 1–8 can show the real fit.
 - N19 is waiting for your decision.
+
+## 5. Final verification and GO / NO-GO
+
+### Regression run
+
+Clean build at `e88cdab`, 2026-10-12:
+
+| Command | Result |
+|---|---|
+| `make -C fw` | 2208 B, `-Werror` clean. Build checks pass: race-free power-down entry; 1 s watchdog with a SYNCBUSY wait; WDR only in main |
+| `make -C fw test` | all 23 tests pass. Random runs 3 × 4 M ticks against ten rules: 0 breaks |
+| `make -C fw mutants` | 26 / 26 planted bugs caught |
+| `make -C fw wdt-test` | builds |
+| `cd calc && python -m pytest -q` | 11 passed |
+| `python ee/check_fab.py` | 10 / 10 without failures (one warning: silkscreen references, accepted) |
+| `python ee/check_fit.py` | 7 / 7 |
+| `thermal.py`, `iec62471.py`, `budget.py`, `optics.py` | each output reproduces the committed file byte for byte |
+| `git status` | clean after every one of these runs |
+
+### What this evidence covers, and what it does not
+
+**Covered (simulation, static analysis, models):**
+- the firmware logic against its specification;
+- the structure of the compiled sleep entry and watchdog;
+- the board, fab files, BOM and order pack against each other;
+- the board against the CAD layout;
+- the enclosure's walls and interference;
+- the thermal, optical, IEC 62471 and runtime models.
+
+**Not covered:** no hardware exists, so nothing physical has been shown. That includes:
+- temperatures, and the offset between the NTC and the face;
+- LED currents, optical power and the IEC 62471 group;
+- the watchdog actually firing;
+- sleep current, and timing on the real oscillator;
+- charging, and USB detection;
+- print tolerances, fit and closure force.
+
+**Software tests and models are not evidence of physical, thermal, optical or electrical
+safety.** The bench checks in verification §8 are.
+
+### Issue register, final
+
+| Status | Issues |
+|---|---|
+| Fixed | N01, N02 (safety firmware); N16 (cell reading); N17 (order-pack facts); N18 (board label); N13 (PR text) |
+| Closed (tests or tools added) | N03, N04, N06, N08 |
+| Documented, with a bench item | N05 (17), N07 (21), N14 (18), N15 (16), N20 (4, 11), N22 (19) |
+| Accepted, with reasons | N09 (silkscreen references), N10 (USB-C 0.20 mm), N11 (no reroute), N12 (BOD off) |
+| Warning added | N21 (cell polarity) |
+| **Open: your decision** | **N19**: 0.91 mm lip under the USB-C opening. Recommendation: accept, with bench item 20 |
+
+### GO / NO-GO
+
+**Ordering the parts and the PCB: GO.** At the time of ordering:
+1. Check every line on the live distributor page. Prices and stock come from search
+   snippets, because the distributor sites could not be opened from here.
+2. Upload `vein_finder-gerbers.zip` and read the fab's DFM report:
+   - the USB-C pads sit at 0.2002 mm from the edge, against JLCPCB's 0.2 mm;
+   - the references may print thin.
+3. The cell (Digi-Key) ships by ground only.
+
+**Building the first prototype for bench evaluation: GO.** Conditions:
+1. Decide N19 before printing the sole.
+2. Follow the build guide, including the steps added in this pass:
+   - check the cell polarity;
+   - measure tape + cell;
+   - dry-fit the board in the sole;
+   - add NTC paste if bench item 4 calls for it.
+3. Run the bench checks in the stages below, and stop at the first failure.
+
+**Any contact with skin, including bench items 4 and 10 on your arm: NO-GO until stages
+A and B pass.** Even then this stays a personal prototype for bench evaluation. It is
+not a medical device.
+
+| Stage | Setup | Bench items (verification §8) |
+|---|---|---|
+| A | bare board, cell connected, nothing on skin | 12 NTC faults · 2 LED current · 16 VOUT at turn-off · 15 watchdog (test build, then the normal build again) · 13 stuck button · 14 sleep and wake · 17 timing · 7 and 18 currents · 3 and 21 charging and USB detection · 1 optical power |
+| B | assembled, on a skin phantom (not skin) | 19 fit (during assembly) · 20 USB-C plug · 5 button · 6 magnets · 9 light leaks · 11 thermal cut-off end to end · 4 NTC offset (adjust the limits in `logic.h` if needed, then re-run `make -C fw test mutants` and re-flash) · 8 runtime |
+| C | skin, only after A and B pass | 4 briefly on skin, to confirm the phantom result · 10 vein visibility |
