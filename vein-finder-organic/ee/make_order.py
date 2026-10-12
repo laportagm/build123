@@ -68,8 +68,9 @@ def main():
          "Everything needed to order one device: the board, three parts orders and one tool.",
          "The files here are made from `ee/design.py` by `ee/make_order.py`; quantities include",
          "minimum order sizes and a few spares. **Prices and stock come from search-result",
-         "snippets** (the distributor pages could not be opened from where this was made): check",
-         "each line on the live page before paying.", "",
+         "snippets** (the distributor pages could not be opened from where this was made),",
+         "re-checked on 2026-10-12; where cached copies of a page disagree, the highest price is",
+         "used. Check each line on the live page before paying.", "",
          "| Order | What | Cost (USD) |", "|---|---|---|",
          f"| PCB fab | 5 bare boards (§1) | {lo:.0f}–{hi:.0f} (estimate, NV) |"]
     sec = {"Digi-Key": 2, "LCSC": 3, "Adafruit": 4}
@@ -129,7 +130,12 @@ def main():
           ]
     if nv:
         L.append("- Lines without a verified price: " + ", ".join(f"{r['mpn']} ({r['distributor']} {r['distributor_pn']})" for r in nv) + ".")
-    L += ["- PCB thickness 1.0 mm, and the USB-C edge clearance (§1).",
+    L += ["- The cell cannot ship by air from Digi-Key (Li-ion): choose ground shipping.",
+          "- If LCSC is out of the B3F-1020 switch (one cached page said so), order the BOM's "
+          "alternate, Digi-Key SW402-ND.",
+          "- The foam tape is listed as both 1.0 mm and 1.6 mm thick: measure it before relying on "
+          "the cell height.",
+          "- PCB thickness 1.0 mm, and the USB-C edge clearance (§1).",
           "- The two magnet sizes are easy to mix up: 8193 is 1/8″ thick (horn dowels), 8195 is 1/16″.",
           "- Keep the two LED reels apart when they arrive (660 nm XZM2MR55W-3, 625 nm XZM2CRK55W-3): "
           "they look alike, and the build guide places them by reel.", ""]

@@ -21,8 +21,8 @@
 | Skin-contact surface ≤ 41 °C | model 35.4–38.0 °C at full power; firmware derates from 38 °C (NTC) and cuts off at 41 °C | `thermal.py`, firmware | met in model; NTC offset to calibrate (§8) |
 | ≥ 45 min at full brightness | 4.5 h (625 nm) / 5.1 h (660 nm) | `budget.py` | met |
 | IEC 62471 | Exempt group: retinal thermal 1.2–1.5 % and blue light 38–48 % of the exempt limits | `iec62471.py` | met (limits from secondary sources) |
-| Only in-stock parts, every part number and price looked up | every line has distributor, PN, price, stock, level | BOM | met, 1 price NV |
-| Cost ≤ $75 | $36.13 parts + $5–15 PCB = $41–51 (shipping excluded) | BOM | met |
+| Only in-stock parts, every part number and price looked up | every line has distributor, PN, price, stock, level | BOM | met; re-checked 2026-10-12 (snippets only) |
+| Cost ≤ $75 | $42.04 parts + $5–15 PCB = $47–57 (shipping excluded) | BOM | met |
 | KiCad schematic, PCB outline, BOM with links and prices | schematic (netlist round trip), routed 2-layer PCB with DRC 0 errors / 0 unconnected, Gerbers, BOM | `ee/` | met (§5) |
 | Print settings, illustrated assembly guide | [build guide](../05-build/build.md) | — | done |
 | Personal prototype label on all docs | every document, the schematic title block and the board silkscreen | — | done |
@@ -152,14 +152,15 @@ unless the true power is more than about 2× the estimate.
 
 | | USD |
 |---|---|
-| Parts, Digi-Key | 24.57 |
-| Parts, LCSC | 9.31 |
+| Parts, Digi-Key | 26.44 |
+| Parts, LCSC | 13.35 |
 | Parts, Adafruit | 2.25 |
 | PCB, 5 boards (estimate) | 5–15 |
-| **One device** | **41–51** |
+| **One device** | **47–57** |
 | UPDI programmer (tool) | 6.95 |
 
-Shipping and filament (about 30 g of PETG) are not included.
+Shipping and filament (about 30 g of PETG) are not included. Prices were re-checked on
+2026-10-12 from search snippets; where cached pages disagree the highest is used.
 
 ## 8. Bench checks for the first build
 

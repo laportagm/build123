@@ -13,7 +13,7 @@
 | Board | 2-layer FR-4, 1.0 mm, outline taken from the CAD cavity, 30.0 cm²; the cell sits on it | fits the stone |
 | Parts | 65 on the board, 2 wired (cell, switch); every one hand-solderable with an iron | soldering iron only |
 | Sourcing | every part listed at Digi-Key, LCSC or Adafruit, with a level (A/D/NV) per line | only in-stock parts, never guess |
-| Cost, one device | **$36.13 parts + $5–15 PCB = $41–51** (shipping excluded) | ≤ $75 |
+| Cost, one device | **$42.04 parts + $5–15 PCB = $47–57** (shipping excluded) | ≤ $75 |
 | Runtime, full brightness | **4.5 h** (625 nm) / **5.1 h** (660 nm) from 600 mAh | ≥ 45 min |
 | Charging | USB-C, 245 mA (223–268 mA), about 3 h; input survives 30 V | — |
 | Standby | 3.7 µA + the cell's protection circuit | — |
@@ -24,9 +24,12 @@
 
 Pages for distributors and manufacturers could not be opened from this environment: the
 proxy blocked them with HTTP 403. Every price, stock figure and part number below
-therefore comes from search-engine snippets of those pages, seen on 2026-10-11/12, or from
-aggregators. Where snippets disagreed, both values are given. **Check every line on the
-live page before ordering.**
+therefore comes from search-engine snippets of those pages, or from aggregators.
+- Every line was looked up on 2026-10-11 and re-checked on 2026-10-12.
+- Cached copies of the same page often disagree. Each line gives the range seen, and the
+  BOM prices it at the highest value found on the part's own product page.
+
+**Check every line on the live page before ordering.**
 
 ## 2. Circuit
 
@@ -87,7 +90,7 @@ Key choices:
 | USB-C | GCT USB4515-GF-A, Digi-Key 2073-USB4515-GF-ACT-ND | power-only, 6 pads at ≥ 1.0 mm pitch (easy with an iron) | A: $0.61, 11,429 in stock |
 | Cell | Jauch LP503040JH+PCM+2WIRES50MM, Digi-Key 1908-…-ND | 600 mAh protected, 42 × 30.5 × 5.4 mm | A: $10.81, 1,637 in stock |
 | Magnets | Radial Magnets 8193 (1/4 × 1/8″) and 8195 (1/4 × 1/16″), N35 | only N35 is stocked in these sizes | A |
-| Locating pins | posts from a Sullins PRPC040SAAN-RC header | 18 AWG bus wire is only sold as 100 ft spools (~$140) | A (price NV) |
+| Locating pins | posts from a Sullins PRPC040SAAN-RC header | 18 AWG bus wire is only sold as 100 ft spools (~$140) | A: $1.23 (one result shows $0.55) |
 
 The parts changed the gate-2 model as follows. All of these are in the CAD now and
 re-checked (§5 of [cad.md](../02-cad/cad.md) and `checks.json`):
@@ -263,12 +266,12 @@ positions and 500 lx room light, half shaded by the stone.
 
 | Order | Parts (USD) |
 |---|---|
-| Digi-Key: cell, 12 ring LEDs, MCU, USB-C, magnets | 24.57 |
-| LCSC: driver, charger, inductor, diode, FETs, NTC, switch, status LEDs, passives | 9.31 |
+| Digi-Key: cell, 12 ring LEDs, MCU, USB-C, magnets, header strip | 26.44 |
+| LCSC: driver, charger, inductor, diode, FETs, NTC, switch, status LEDs, passives | 13.35 |
 | Adafruit: 30 AWG wire (red, black), battery foam tape | 2.25 |
-| **Parts** | **36.13** |
+| **Parts** | **42.04** |
 | PCB, 5 boards, 1.0 mm, black mask (fab quote not reachable here) | 5–15 (estimate) |
-| **One device** | **41–51** |
+| **One device** | **47–57** |
 | Programmer (one-off tool): Adafruit UPDI Friend, Digi-Key | 6.95 |
 
 - **Order quantities** respect minimum orders (LCSC passives come in 50–100) and add a few
@@ -276,8 +279,18 @@ positions and 500 lx room light, half shaded by the stone.
 - **Shipping** from three distributors and the PCB fab is not included, because it
   depends on your location.
 - **Filament** (about 30 g PETG) is not included.
-- **One price is not verified:** the header strip, Digi-Key S1011EC-40-ND (47,494 in
-  stock, price not seen; a 40-pin strip usually costs under $1).
+- **Re-check on 2026-10-12** (all 29 lines, search snippets only):
+  - **Header strip** (Digi-Key S1011EC-40-ND): now priced at **$1.23**. One result shows
+    $0.55.
+  - **Tact switch:** the earlier $0.071 was LCSC's 5,000-piece price. At the 5-piece
+    minimum it is $0.15, and one copy shows it out of stock. Digi-Key SW402-ND is the
+    fallback.
+  - **Diode:** about $0.06 at the 10-piece minimum, not the assumed $0.05.
+  - **Digi-Key cell:** no air shipping (Li-ion).
+  - **Not recommended for new designs:** one LCSC copy each says so for the 10 µF C7, the
+    NTC and the 1 k resistors. That is fine for a prototype.
+  - **Foam tape:** its thickness is still unresolved (1.0 or 1.6 mm). Measure it.
+- **Ordering:** the [order pack](../07-order/order.md) has the PCB settings and cart files.
 
 ## 7. Conflicts and decisions
 
