@@ -34,7 +34,7 @@ One pass through this list orders, builds and tests the first prototype.
    3.6, 3.7 and 3.9.
 
 **N19, provisional resolution (2026-10-12).** The sole is 0.91 mm thick under the USB-C
-opening's lip, under the brief's 1.6 mm wall.
+opening's lip, and 0.87 mm at the landing face itself, under the brief's 1.6 mm wall.
 - It is **accepted provisionally for printing the first prototype**.
 - Final acceptance needs test **3.4** (item 20, 20 plug cycles) to pass. That test is
   required, not optional.
@@ -167,7 +167,7 @@ opening's lip, under the brief's 1.6 mm wall.
 - **Accept:** every documented inspection point holds [build §1], and the posts fit
   snugly. No dimensional tolerances are documented (MISSING); fit is proved in 2.20,
   3.2 and 3.3.
-- **Expect:** lip 0.91 mm (checks.json, "usb opening lip").
+- **Expect:** lip 0.91–0.95 mm at least 0.2 mm in; 0.87 mm at the landing face (readiness N19).
 - **If it fails:**
   - A hole in the NTC window or button skin: reprint (check the thin-wall preview).
   - A channel blocked: clear it by hand or reprint.

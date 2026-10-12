@@ -113,7 +113,7 @@ in the follow-up commit. Every fix is to the packet or the checklist; nothing in
   - the CAP change in the return loop now needs your decision;
   - the bench sheet's self-check covers every number it prints.
 
-**For your decision, about N19 (nothing changed):**
+**For your decision, about N19** (decided the same day: see the next entry):
 - N19 records the USB-C lip as 0.91 mm. That is `checks.json`'s minimum, from a probe that
   stops 0.15 mm short of the landing face (`cad/device/checks.py`).
 - On the print mesh, the lip is 0.95 mm well inside, 0.91 mm at 0.2 mm in, and **0.87 mm
@@ -128,5 +128,29 @@ in the follow-up commit. Every fix is to the packet or the checklist; nothing in
 3. Print, then the first-article checks.
 4. Build day.
 5. Send the sheet ([return loop](08-prototype/return-loop.md)).
+
+---
+
+## 2026-10-12: N19 record, edge value added
+
+**Your decision:** add the 0.87 mm edge value to N19's record.
+
+**Done.** [readiness N19](06-verification/readiness.md) now records the lip as 0.91 mm,
+and 0.87 mm at the landing face itself:
+- the register row and the final register;
+- the decision section, with an "Edge value" note giving the source and the profile:
+  0.95 mm 1 mm in, 0.91 mm 0.2 mm in, 0.87 mm at the face (`print_dims.json`);
+- the physical-measurement table.
+
+**Citations updated to match:** verification §1, §2 and item 20; the checklist's N19
+paragraph and 1.6; the README status row; packet status §1.
+
+**Unchanged:**
+- the provisional acceptance;
+- bench item 20 (GATE N19), which tests the lip as printed, edge included;
+- the first-article check, still taken at least 0.2 mm in;
+- electronics §7's settled-decision table, which points to readiness N19.
+
+No CAD, firmware, board or BOM change.
 
 **Next entry:** rev A.1, after the bench results.

@@ -17,7 +17,7 @@
 |---|---|---|---|
 | Palm-sized river stone, G2 surfaces | 90.2 × 58.9 × 24.7 mm, 56 g; G2 everywhere, poles included | `cad/device/verify_skin.py`, zebra renders | met |
 | Walls ≥ 1.6 mm, approved thin spots | top shell 1.80 mm min (805 k samples); thin spots 0.68 mm (seam) and 0.40 mm (button), approved in the brief | `checks.py` wall map, probes | met |
-| … sole floors | magnets 1.82 / 1.67 mm, pins 1.96–3.10 mm; **NTC window 0.70 mm** and **USB-C pocket 1.15 mm**; **USB-C opening lip 0.91 mm** | `checks.py sole_floors` | two thin spots accepted on 2026-10-12; the 0.91 mm lip is **accepted provisionally** for the first print (readiness N19), pending item 20 |
+| … sole floors | magnets 1.82 / 1.67 mm, pins 1.96–3.10 mm; **NTC window 0.70 mm** and **USB-C pocket 1.15 mm**; **USB-C opening lip 0.91 mm**, 0.87 mm at the landing face | `checks.py sole_floors` | two thin spots accepted on 2026-10-12; the 0.91 mm lip is **accepted provisionally** for the first print (readiness N19), pending item 20 |
 | Cosmetic surfaces without supports | top-shell skin max overhang 21.0°; sole skin none (one 0.01 mm² tessellation speck) | `checks.py` overhang | met |
 | Parts fit, no interference | 13 parts and stand-ins, pairwise: none | `checks.py` interference | met |
 | Magnet closure (your choice) | 24.1–25.8 N with N35 (4 pairs) | coaxial current-loop model | met |
@@ -52,7 +52,7 @@ The results below come from the built solids in `build/device/checks.json`.
 | Bridge pins | 3.10 mm | |
 | NTC | **0.70 mm** | sensor window: designed thin; accepted 2026-10-12 |
 | USB-C body pocket | **1.15 mm** | receptacle hangs 0.61 mm below the board; hidden; accepted 2026-10-12 |
-| USB-C opening lip | 0.91 mm | edge of the port opening; the tail is 6.3 mm tall here |
+| USB-C opening lip | 0.91 mm; 0.87 mm at the landing face | edge of the port opening; the tail is 6.3 mm tall here. The probe stops 0.15 mm short of the landing face; the edge value is from the print mesh (readiness N19) |
 
 **LEDs against the sole:**
 - 1206 domes at their maximum datasheet height; none stands proud of the skin face.
@@ -224,5 +224,5 @@ Shipping and filament (about 30 g of PETG) are not included. Prices were re-chec
 | 17 | Timing | Stopwatch: from the last tap to the auto-off, three times. Press for about 0.5 s and about 0.7 s, five times each | auto-off 162–198 s (3 min ± 10 %); 0.5 s presses step the level, 0.7 s presses switch the bank |
 | 18 | Current with the button held | µA meter as in item 7. Tape the button down, then wait for the auto-off | ≤ 1 mA: at least 25 days from a full cell. This is the known limitation N14 in [firmware.md §2.1](../04-firmware/firmware.md#21-power) |
 | 19 | Fit before closing | Board in the sole (build §4.2): every LED and the NTC in its pocket. Then the seam mask and bridge on their posts. Measure foam tape + cell | board flat, no rocking; mask and bridge seated; tape + cell ≤ 7.4 mm |
-| 20 | USB-C plug | Three cables, one with a bulky plug. Insert fully, then 20 plug cycles | each latches and charges (item 3); no whitening or cracks at the 0.91 mm lip under the opening. **Required: it decides N19** |
+| 20 | USB-C plug | Three cables, one with a bulky plug. Insert fully, then 20 plug cycles | each latches and charges (item 3); no whitening or cracks at the lip under the opening (0.91 mm; 0.87 mm at the landing face). **Required: it decides N19** |
 | 21 | USB detected at full charge | Cell full (4.2 V). USB from a weak supply or a long thin cable (≤ 4.6 V at the board) | seam steady (full); a tap does not light the LEDs. If it fails, see electronics §2 (R7) |

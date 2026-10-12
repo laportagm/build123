@@ -69,7 +69,7 @@ Layer counts below are the documented thickness divided by the layer height in Â
     0.2 mm in, and 0.87 mm at the face itself (`print_dims.json`,
     `usb_lip_from_landing_face`).
   - checks.json's 0.91 mm is its probe's minimum, which stops 0.15 mm short of the face
-    (`cad/device/checks.py`).
+    (`cad/device/checks.py`). N19's record gives both values (readiness N19).
   - Count the solid layers over the notch in the layer view. **Write the count and
     count Ã— 0.16 mm in the notes of P-S10.**
 - [ ] **NTC sensor window.** The pocket's roof is a short bridge (1.25 mm span), then solid
