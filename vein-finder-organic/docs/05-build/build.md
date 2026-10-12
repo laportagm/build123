@@ -95,7 +95,7 @@ Work top side first, then the underside.
      reversed LED darkens its whole string.
    - SunLED allows iron soldering at up to 350 °C for 3 s per joint, with no contact with
      the dome. Tin one pad, slide the LED in, then do the other pad.
-10. **RT1 (NTC, 0603)**, lying radially between the two LEDs nearest the tail side.
+10. **RT1 (NTC, 0603)**, just outside the LED ring on the tail side, lying along the ring.
 
 ### Check before power
 

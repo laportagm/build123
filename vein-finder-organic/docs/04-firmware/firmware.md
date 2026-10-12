@@ -50,7 +50,7 @@ Levels are fractions of each bank's cap, set as CTRL duty:
 - **Watchdog:** about 1 s, running whenever the device is awake. A hung loop resets the
   MCU, and R10 then keeps the LEDs off.
 - **Temperature control:** the NTC is read every 250 ms and on waking. It sits 0.7 mm
-  under the skin-contact face, between the two LEDs nearest the window's back.
+  under the skin-contact face, just outside the LED ring on the tail side.
   - The limits (38 / 40 / 41 °C) are set below the brief's 41 °C surface limit with about
     1 °C margin.
   - The offset between the NTC and the face hottest spot is **not yet measured**. Gate 5

@@ -20,7 +20,7 @@
 | LED current | 24.9 mA ceiling in hardware (22.7–27.1 mA worst case); caps 23 / 24.9 mA set by firmware | LED max 30 mA |
 | Skin-face temperature | NTC 0.7 mm under the face; firmware derates from 38 °C, off at 41 °C | ≤ 41 °C |
 | Schematic ↔ design | netlist exported by kicad-cli matches `design.py` net for net | — |
-| PCB | see §4 for the routing and DRC result | — |
+| PCB | routed on 2 layers; **DRC 0 errors, 0 unconnected** (§4) | — |
 
 Pages for distributors and manufacturers could not be opened from this environment: the
 proxy blocked them with HTTP 403. Every price, stock figure and part number below
@@ -58,9 +58,9 @@ live page before ordering.**
   - D1 is a 40 V Schottky, above the 39 V protection maximum. C5 and C6 are two 1 µF 50 V
     X7R in 1206, giving ≥ 1 µF after DC bias; the datasheet asks for 1–4.7 µF.
 - **Strings.** String A has six 660 nm LEDs, string B six 625 nm LEDs.
-  - Both start at the −y horn next to the driver (short VOUT) and walk the ring to the
-    +y horn.
-  - Two return lines (STR_A, STR_B) carry the 25 mA back to the FETs.
+  - Both start at the +y horn (VOUT) and walk the ring to the −y horn.
+  - The bank FETs sit on the −y arc, so the two return lines (STR_A, STR_B) that carry the
+    25 mA back to them are short.
 - **Sensing and indication.**
   - NTC RT1 (10 k, B 3380 K) sits in the sole's sensor window. Its divider (R8 = 10 k)
     is powered only while it is being read.
@@ -101,7 +101,10 @@ re-checked (§5 of [cad.md](../02-cad/cad.md) and `checks.json`):
    - No dome stands proud of the skin face, even at maximum height. The worst is flush.
    - The light channels now run 0.15 mm past the solder lands at each end. Without that
      the sole would need shallow reliefs over the lands, which would thin it below 1.6 mm.
-2. **NTC became 0603**, lying radially at θ = 0 between the two 625 nm LEDs.
+2. **NTC became 0603**, lying tangentially at θ = 0, just outside the LED ring
+   (r = 20.4 mm).
+   - It first lay radially between the two 625 nm LEDs, but there its inner pad was boxed
+     in by the LED lands and could not be routed.
    - Its pocket leaves **0.70 mm** of PETG under it: a sensor window. See §7.
 3. **Magnets are N35**, the only grade sold in these sizes.
    - Closure pull is **24.1–25.8 N** (gate 2 assumed N42: 33 N).
@@ -140,7 +143,77 @@ re-checked (§5 of [cad.md](../02-cad/cad.md) and `checks.json`):
 
 ## 4. PCB
 
-PCB_SECTION
+![Top](figures/pcb_top.png)
+![Underside](figures/pcb_bottom.png)
+
+| | |
+|---|---|
+| Board | 2 layers, FR-4 **1.0 mm**, 1 oz; 85.8 × 54.5 mm, 30.0 cm²; outline taken from the CAD (`build/device/layout.json`), with the four magnet holes and the USB-C notch |
+| Parts | 52 on top (MCU, driver, charger, status LEDs, passives, wire pads), 13 underneath (the 12 ring LEDs and the NTC) |
+| Rules | 0.2 mm clearance; tracks 0.25 mm (signals and LED strings), 0.45 mm (VBAT, VBUS, SW, VOUT), 0.3 mm (GND); vias 0.6 / 0.3 mm; copper 0.3 mm from the board edge, with two exceptions below |
+| Routing | 1.59 m of track (0.94 m top, 0.65 m underside), 144 vias (72 of them GND stitching) |
+| Pours | GND on both layers, stitched: every island of either pour reaches the main underside plane |
+| **DRC** | **0 errors, 0 unconnected** (KiCad 7.0.11). 12 warnings, all of one kind, explained below |
+
+**Placement.**
+- **Top:** the MCU sits on the +y arc of the window, the boost driver on the −y arc, and the
+  charger on the +y arm. The wire pads for the cell and the button are on the +y arm.
+- **Underside:** the 12 ring LEDs and the NTC. The NTC lies tangentially at θ = 0, just
+  outside the ring (r = 20.4 mm), over the sole's sensor window.
+- **Checks:** every part's courtyard is checked against the shell's headroom map and the
+  keep-outs (seam mask, magnet bosses, bridge feet, USB-C, cell) by `ee/placement.py`.
+  `make_pcb.py` also checks every pad of every part against the placement it was given,
+  to 0.001 mm.
+- **Boost loop:** U3 is turned so its VIN pin faces C7 and L1, and its SW pin faces D1.
+  That keeps the switching loop (L1, U3, D1, C5/C6) within about 8 mm.
+
+**Routing** is in two passes:
+1. **Freerouting 2.0.1**, with GND routed as an ordinary net, so every GND pad gets a real
+   connection. The pours are added afterwards, on both layers.
+2. **`ee/finish_route.py`**, which finishes the board:
+   - It rips up the tracks and vias Freerouting put closer than 0.3 mm to the edge
+     (Freerouting keeps only its 0.2 mm clearance) and routes them again. It uses a grid
+     router with exact clearance checks. When there is no free path, it rips up other
+     nets and re-routes them, and rolls back any change it cannot complete.
+   - It fills the pours and stitches every GND island to the main plane: with a via where
+     both layers' pours overlap, else with a track.
+
+**Two edge-clearance exceptions**, both set as rules in `vein_finder.kicad_dru`:
+
+| Where | Copper to edge | Why |
+|---|---|---|
+| USB-C pads at the board notch | 0.20 mm | the receptacle's land pattern from the GCT USB4515 datasheet |
+| Outer ring LEDs D2 and D7 (±128.5°) | 0.27 mm | they sit where the window meets the horn slot |
+
+Both are below this board's own 0.3 mm rule. Check them against your fab's
+copper-to-board-edge minimum before ordering.
+
+**DRC warnings (12).** These are all `lib_footprint_mismatch`, one for each ring LED. Their
+silkscreen outlines run off the board at the window and the horn slot, so the board's
+copies are cut back 0.25 mm inside the edge. The cathode marks stay. This is deliberate.
+
+**Silkscreen:**
+- Every reference is printed clear of pads, of other silk and of the edge, except R11,
+  which has no free spot (it sits beside U3; see the figure).
+- The wire and test pads carry their function instead of a number: BAT+, BAT−, BTN,
+  BTN_GND, UPDI, VBAT, GND, TX, RX.
+- The cell's place on top is outlined and marked "CELL ON FOAM TAPE – NO PARTS".
+- The underside carries "VEIN FINDER (ORGANIC) REV A 2026-10" and "PERSONAL PROTOTYPE –
+  NOT A MEDICAL DEVICE".
+
+**Fab files:** [`fab/`](fab/).
+- Gerbers and Excellon drill files (`vein_finder-gerbers.zip`).
+- A position file and top / bottom PDFs.
+- Order 2 layers, **1.0 mm** thick, 1 oz copper, any finish.
+- Smallest features: 0.25 mm track, 0.2 mm gap, 0.3 mm via drill, 0.6 mm slots in the
+  USB-C shell pads.
+
+**Two layout bugs were found and fixed** before these files were made:
+- Top-side parts were rotated with the wrong sign. Parts at 0° or 180° were unaffected.
+  The seam LEDs at ±35° came out nearly radial, and parts at 90° (U1 among them) were
+  turned 180°. This was caught when the seam LEDs' pads fell outside the mask channel.
+- A save could reset the project file to KiCad's defaults. The last draft DRC therefore ran
+  with a 0.5 mm edge rule and no net classes.
 
 ## 5. Budget
 
@@ -228,13 +301,17 @@ positions and 500 lx room light, half shaded by the stone.
 | `docs/03-electronics/bom.csv`, `bom.md` | bill of materials |
 | `docs/03-electronics/budget.py`, `optics.py` | the numbers in §5 |
 | `ee/lib/` | project symbols and footprints (`libgen.py`) |
+| `ee/finish_route.py`, `ee/silk.py` | routing finisher and GND stitching; silkscreen tidy-up |
+| `ee/kicad/vein_finder.kicad_dru`, `fp-lib-table` | the two edge-clearance exceptions; library table for `build/kicadlib` |
 
 ```sh
 cd vein-finder-organic
 python cad/device/layout.py          # CAD layout -> build/device/layout.json (board outline, LED ring)
 python ee/libgen.py                  # project symbols/footprints
 python ee/make_schematic.py          # schematic + netlist round-trip check + PDF
-python ee/make_pcb.py                # placement check, board, Freerouting, pours, DRC, fab outputs
+python ee/make_pcb.py --no-fab       # placement check, board, Freerouting, pours, first DRC
+python ee/finish_route.py            # edge-rule rip-up, remaining joins, GND stitching
+python ee/make_pcb.py --stage finish # silkscreen, labels, fill, DRC, fab outputs
 python ee/make_bom.py                # BOM
 python docs/03-electronics/budget.py; python docs/03-electronics/optics.py
 ```

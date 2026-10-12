@@ -9,10 +9,10 @@
 
 | Requirement (brief) | Result | How it was checked | Status |
 |---|---|---|---|
-| Palm-sized river stone, G2 surfaces | 90.2 × 58.9 × 24.7 mm, 53 g; G2 everywhere, poles included | `cad/device/verify_skin.py`, zebra renders | met |
+| Palm-sized river stone, G2 surfaces | 90.2 × 58.9 × 24.7 mm, 56 g; G2 everywhere, poles included | `cad/device/verify_skin.py`, zebra renders | met |
 | Walls ≥ 1.6 mm, two approved thin spots | top shell 1.80 mm min (805 k samples); thin spots 0.68 mm (seam) and 0.40 mm (button) | `checks.py` wall map, probes | met |
 | … sole floors | magnets 1.82 / 1.67 mm, pins 1.94–3.10 mm; **NTC window 0.70 mm** and **USB-C pocket 1.15 mm** | `checks.py sole_floors` | 2 decisions open (§6) |
-| Cosmetic surfaces without supports | top-shell skin max overhang 21.0°; sole skin none (one 0.007 mm² tessellation speck) | `checks.py` overhang | met |
+| Cosmetic surfaces without supports | top-shell skin max overhang 21.0°; sole skin none (one 0.01 mm² tessellation speck) | `checks.py` overhang | met |
 | Parts fit, no interference | 13 parts and stand-ins, pairwise: none | `checks.py` interference | met |
 | Magnet closure (your choice) | 24.1–25.8 N with N35 (4 pairs) | coaxial current-loop model | met |
 | Button hidden under a flexing membrane | 3.0–3.6 N press (±30 %) | shallow-shell Ritz model | met |
@@ -23,7 +23,7 @@
 | IEC 62471 | Exempt group: retinal thermal 1.2–1.5 % and blue light 38–48 % of the exempt limits | `iec62471.py` | met (limits from secondary sources) |
 | Only in-stock parts, every part number and price looked up | every line has distributor, PN, price, stock, level | BOM | met, 1 price NV |
 | Cost ≤ $75 | $36.13 parts + $5–15 PCB = $41–51 (shipping excluded) | BOM | met |
-| KiCad schematic, PCB outline, BOM with links and prices | schematic (netlist round trip), routed PCB, Gerbers, BOM | `ee/` | see §5 |
+| KiCad schematic, PCB outline, BOM with links and prices | schematic (netlist round trip), routed 2-layer PCB with DRC 0 errors / 0 unconnected, Gerbers, BOM | `ee/` | met (§5) |
 | Print settings, illustrated assembly guide | [build guide](../05-build/build.md) | — | done |
 | Personal prototype label on all docs | every document, the schematic title block and the board silkscreen | — | done |
 
@@ -91,8 +91,8 @@ LED). Skin 33.5 °C, plus 1.5 K for the device's own heat.
 | 660 nm, full | 36.7 °C | 37.2 °C | 38.0 °C |
 | 625 nm, full | 35.4–36.2 °C | 35.5–36.5 °C | 35.7–37.0 °C |
 
-**Control:** the NTC sits 0.7 mm under the face, between the two LEDs nearest the tail
-side, and is read every 250 ms. The firmware:
+**Control:** the NTC sits 0.7 mm under the face, just outside the LED ring on the tail
+side (θ = 0, r = 20.4 mm), and is read every 250 ms. The firmware:
 - derates linearly from 38 °C to 20 % at 40 °C;
 - turns the LEDs off at 41 °C;
 - resumes at 38 °C.
@@ -109,7 +109,14 @@ which is next to an LED pocket. Calibrate it on the bench (§8, item 4) and adju
   - inside the free board area;
   - clear of the seam mask, magnet bosses, bridge feet and USB-C;
   - under the shell's inner surface by ≥ 0.3 mm.
-- **PCB DRC:** DRC_RESULT
+- **PCB DRC** (KiCad 7.0.11, this board's rules): **0 errors, 0 unconnected items.**
+  - Rules: 0.2 mm clearance; copper 0.3 mm from the board edge, with two documented
+    exceptions (USB-C land pattern 0.20 mm, outer ring LEDs 0.27 mm). See
+    [electronics.md §4](../03-electronics/electronics.md).
+  - 12 warnings, all `lib_footprint_mismatch`: the ring LEDs' silk outlines are cut back
+    at the board edge on purpose.
+  - Every pad's position is checked against its intended placement when the board is
+    built.
 - **Electrical margins:**
   - Boost worst case at 3.0 V: 278 mA peak, against a 1.2 A limit and 1.3 A saturation.
   - VOUT 15.2 V max, 20.8 V under OVP.

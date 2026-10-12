@@ -8,7 +8,7 @@
 
 > **Gate-3 update (2026-10-12).** The model now carries the real parts:
 > - 1206 dome LEDs, ring at r = 18.36 mm, 625 nm parts at the thinnest sole;
-> - 0603 NTC;
+> - 0603 NTC, lying along the ring just outside it at θ = 0 (r = 20.4 mm);
 > - N35 magnets (24–26 N);
 > - header-pin locators in plated holes;
 > - GCT USB4515 mid-mount USB-C;

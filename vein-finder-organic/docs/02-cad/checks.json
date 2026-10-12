@@ -1,8 +1,8 @@
 {
  "walls": {
   "general_min": 1.7998882495027064,
-  "general_p01": 1.7999187705114217,
-  "general_median": 1.8000897995389482,
+  "general_p01": 1.7999187658048357,
+  "general_median": 1.80008983501485,
   "button_min": 0.3999726687287309,
   "n_samples": 804701,
   "general_min_at": [
@@ -12,36 +12,36 @@
   ]
  },
  "magnet_cover_mm": [
-  3.23,
-  3.23,
-  1.57,
-  1.57
+  3.5,
+  3.5,
+  1.66,
+  1.67
  ],
  "mirror_symmetry": {
   "top_shell": {
-   "y_pos": 6408.1,
-   "y_neg": 6406.72,
+   "y_pos": 6404.66,
+   "y_neg": 6403.28,
    "rel_diff": 0.00022
   },
   "sole": {
-   "y_pos": 5242.03,
-   "y_neg": 5241.75,
+   "y_pos": 5201.71,
+   "y_neg": 5201.44,
    "rel_diff": 5e-05
   },
   "seam_mask": {
-   "y_pos": 105.83,
-   "y_neg": 105.79,
-   "rel_diff": 0.00046
+   "y_pos": 134.05,
+   "y_neg": 134.0,
+   "rel_diff": 0.00031
   },
   "bridge": {
-   "y_pos": 757.54,
-   "y_neg": 757.51,
-   "rel_diff": 3e-05
+   "y_pos": 723.59,
+   "y_neg": 723.47,
+   "rel_diff": 0.00016
   },
   "pcb": {
-   "y_pos": 833.79,
-   "y_neg": 833.64,
-   "rel_diff": 0.00018
+   "y_pos": 1499.56,
+   "y_neg": 1499.41,
+   "rel_diff": 0.0001
   }
  },
  "seam_probe_z_intervals": {
@@ -83,15 +83,15 @@
   ]
  },
  "overhang_top_shell": {
-  "skin_max_deg": 21.5,
+  "skin_max_deg": 21.0,
   "skin_area_over_45_mm2": 0.0,
-  "interior_area_over_45_mm2": 2192.6,
+  "interior_area_over_45_mm2": 2186.2,
   "note": "skin = cosmetic outer surface (must be support-free); interior = supported from the build plate"
  },
  "overhang_sole": {
-  "skin_max_deg": 90.0,
+  "skin_max_deg": 67.3,
   "skin_area_over_45_mm2": 0.01,
-  "interior_area_over_45_mm2": 197.2,
+  "interior_area_over_45_mm2": 228.6,
   "note": "skin = cosmetic outer surface (must be support-free); interior = supported from the build plate"
  },
  "membrane": {
@@ -112,22 +112,81 @@
   "press_force_note": "k x (gap 0.05 + travel 0.25 mm) + switch (0.98, 1.57) N; finger patch r = 3.5 mm; E = 2000.0 MPa"
  },
  "magnets": {
-  "pair_pull_N": 8.27,
-  "total_pull_N": 33.1,
-  "model": "coaxial current loops, N42 Br 1.29 T, gap 0.15 mm"
+  "pairs": [
+   {
+    "x": -12.0,
+    "y": 20.0,
+    "sole": "8193",
+    "top": "8195",
+    "pull_N": [
+     6.81,
+     7.28
+    ]
+   },
+   {
+    "x": -12.0,
+    "y": -20.0,
+    "sole": "8193",
+    "top": "8195",
+    "pull_N": [
+     6.81,
+     7.28
+    ]
+   },
+   {
+    "x": 56.6,
+    "y": 12.0,
+    "sole": "8195",
+    "top": "8195",
+    "pull_N": [
+     5.24,
+     5.6
+    ]
+   },
+   {
+    "x": 56.6,
+    "y": -12.0,
+    "sole": "8195",
+    "top": "8195",
+    "pull_N": [
+     5.24,
+     5.6
+    ]
+   }
+  ],
+  "total_pull_N": [
+   24.1,
+   25.8
+  ],
+  "model": "coaxial current loops, N35 Br 1.17-1.21 T, gap 0.15 mm"
+ },
+ "sole_floors": {
+  "magnet (-12.0, 20.0)": 1.82,
+  "magnet (-12.0, -20.0)": 1.82,
+  "magnet (56.6, 12.0)": 1.67,
+  "magnet (56.6, -12.0)": 1.67,
+  "ntc (sensor window)": 0.7,
+  "pin 0 (13.6, 16.3)": 1.96,
+  "pin 1 (13.6, -16.3)": 1.96,
+  "pin 2 (32.2, 23.6)": 3.1,
+  "pin 3 (32.2, -23.6)": 3.1,
+  "pin 4 (37.8, 23.6)": 3.1,
+  "pin 5 (37.8, -23.6)": 3.1,
+  "usb body pocket": 1.15,
+  "usb opening lip": 0.91
  },
  "mass_g": {
-  "top_shell": 15.95,
-  "sole": 10.65,
-  "seam_mask": 0.27,
-  "bridge": 1.64,
-  "pcb_fr4": 3.71,
+  "top_shell": 15.94,
+  "sole": 10.57,
+  "seam_mask": 0.34,
+  "bridge": 1.56,
+  "pcb_fr4": 6.68,
   "battery": 12.1,
-  "magnets": 4.53,
+  "magnets": 3.78,
   "leds_ics_passives": 3.0,
   "usb_receptacle": 1.0,
   "switch_wire_tape": 1.0,
-  "total": 53.9
+  "total": 56.0
  },
  "interference": []
 }

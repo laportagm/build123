@@ -96,10 +96,12 @@ def main(names, spp, scale):
         zmid = 4.1762 + 1.0
         lo = [m for m, z in zip(mags, cz) if z < zmid]
         hi = [m for m, z in zip(mags, cz) if z >= zmid]
-        S["magnets_sole"] = bd.Compound(lo)
-        S["magnets_top"] = bd.Compound(hi)
+        # kept apart from S: only the assembly steps use the two halves
+        X = {"magnets_sole": bd.Compound(lo), "magnets_top": bd.Compound(hi)}
         PART_MAT["magnets_sole"] = PART_MAT["magnets_top"] = "metal"
-    plys = {n: ply_of(n, s) for n, s in S.items()}
+    else:
+        X = {}
+    plys = {n: ply_of(n, s) for n, s in list(S.items()) + list(X.items())}
 
     def meshes(names_, tag="", src=None):
         src = src or plys
@@ -184,9 +186,10 @@ def main(names, spp, scale):
         lift = lift or {}
         m = []
         for n in parts:
-            if n not in S:
+            src = S.get(n) or X.get(n)
+            if src is None:
                 continue
-            sh = bd.Pos(0, 0, lift.get(n, 0.0)) * S[n] if lift.get(n) else S[n]
+            sh = bd.Pos(0, 0, lift.get(n, 0.0)) * src if lift.get(n) else src
             m.append((ply_of(n, sh, f"_{name}"), MAT[PART_MAT[n]]))
         t2 = tgt + [0, 0, 4]
         return go(name, m, t2 + [-175, -165, 150], t2, 26, res, spp)
