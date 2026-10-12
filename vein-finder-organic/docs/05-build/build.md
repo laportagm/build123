@@ -107,6 +107,10 @@ Work top side first, then the underside.
 
 ## 3. Program and test on the bench
 
+> **First unit:** follow the [build-day checklist](../08-prototype/build-day.md). It
+> powers the board from a current-limited bench supply for the electrical safety tests,
+> and the cell goes on after them.
+
 1. Solder the cell's red lead to **BAT+** (TP1) and black to **BAT−** (TP2).
    - **The board has no reverse-polarity protection.** A reversed cell can destroy the
      charger and the MCU. The pad labels are small, so check TP1 and TP2 against the
@@ -197,6 +201,8 @@ Each step renders the parts as they go in; the top shell is shown last.
    - You should feel the click within the first 0.3 mm.
    - If there is free play before the click, add a paper shim (80 g/m² paper is about
      0.1 mm) under the switch.
+   - The bridge's switch seat is 0.60 mm deep, so expect about 6–7 shims (N23,
+     [print packet §5](../08-prototype/print-packet.md)).
 
 ### 4.5 Close
 

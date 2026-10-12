@@ -40,6 +40,9 @@ This record covers the fix-and-verify pass of 2026-10-12. It started from `e93df
 
 ### Issue register
 
+Issues found after this pass continue the numbering (N23 and on) in the
+[build log](../BUILD-LOG.md).
+
 | ID | Issue | Kind | Chunk | Status |
 |---|---|---|---|---|
 | N01 | A button held down kept resetting the idle count (`logic.c`), so the 3-min auto-off never fired while it was held | defect, safety-relevant | 1 | fixed |

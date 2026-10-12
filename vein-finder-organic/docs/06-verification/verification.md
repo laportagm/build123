@@ -7,7 +7,9 @@
 > which to run the bench checks before anything touches skin, are in
 > [readiness.md](readiness.md#5-final-verification-and-go--no-go). The step-by-step build
 > and test procedure, with equipment and failure actions for every item below, is the
-> [prototype checklist](../08-prototype/checklist.md).
+> [prototype checklist](../08-prototype/checklist.md). The first unit's
+> [build packet](../08-prototype/README.md) orders the steps and has a data-sheet row for
+> every measurement.
 
 ## 1. Results against the brief
 

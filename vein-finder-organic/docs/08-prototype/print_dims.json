@@ -1,0 +1,82 @@
+{
+ "source": "docs/02-cad/3mf/*.3mf (print orientation), cad/device/params.py, docs/02-cad/pcb/layout.json, cad/device/parts.py",
+ "bbox_print_xyz_mm": {
+  "sole": [
+   89.918,
+   58.659,
+   4.211
+  ],
+  "top_shell": [
+   90.174,
+   58.858,
+   20.521
+  ],
+  "bridge": [
+   12.009,
+   50.0,
+   8.4
+  ],
+  "seam_mask": [
+   9.943,
+   36.876,
+   6.608
+  ]
+ },
+ "features": {
+  "magnet_pocket_d": 6.5,
+  "dowel_counterbore_d": 6.6,
+  "magnet_d": 6.35,
+  "pcb_magnet_hole_d": 6.75,
+  "horn_sole_pocket_depth": 1.23,
+  "tail_sole_pocket_depth": 0.49,
+  "magnet_centre_dist_horns_y": 40.0,
+  "magnet_centre_dist_tails_y": 24.0,
+  "magnet_centre_dist_horn_tail_x": 68.6,
+  "magnet_centre_dist_tol": 0.25,
+  "led_channel_radial": 2.2,
+  "led_channel_tangential": 4.7,
+  "led_body_radial_max": 1.8,
+  "ntc_pocket": [
+   3.1,
+   1.25
+  ],
+  "ntc_pocket_depth": 1.1,
+  "ntc_body_max": [
+   1.6,
+   0.8,
+   0.95
+  ],
+  "usb_opening": [
+   9.44,
+   3.67
+  ],
+  "usb_shell": [
+   8.94,
+   3.17
+  ],
+  "usb_opening_below_waterline": 0.855,
+  "usb_opening_width_at_waterline": 8.873,
+  "usb_shell_width_at_waterline": 8.261,
+  "usb_centre_above_waterline": 0.98,
+  "boss_underside_above_waterline": 1.05,
+  "pin_hole_part": 1.05,
+  "pin_post_diagonal": 0.905,
+  "mask_channel": 1.3,
+  "mask_fence": 0.8,
+  "mask_gap_to_shell": 0.1,
+  "mask_ear_height": 3.0,
+  "bridge_width_x": 8.4,
+  "bridge_leg_y_span": 50.0,
+  "switch_seat": [
+   6.3,
+   6.3,
+   0.6
+  ],
+  "switch_h": 5.0,
+  "switch_gap": 0.05,
+  "bridge_deck_underside_above_feet": 7.4,
+  "bridge_deck_top_above_feet": 9.9,
+  "bridge_pedestal_top_above_feet": 12.009,
+  "sole_height_print": 4.211
+ }
+}

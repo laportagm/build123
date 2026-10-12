@@ -6,6 +6,10 @@
 
 One pass through this list orders, builds and tests the first prototype.
 
+**First unit:** the [build packet](README.md) puts these tests in build order
+([build-day checklist](build-day.md)) and records them in the
+[bench data sheet](bench-sheet.md), which replaces the results log in §5.
+
 **Where the numbers come from:**
 - Every pass/fail number comes from the repository's documents, cited as [doc §x].
 - The bench checks keep their numbers from [verification §8](../06-verification/verification.md#8-bench-checks-for-the-first-build)
@@ -159,12 +163,12 @@ opening's lip, under the brief's 1.6 mm wall.
 - **Accept:** every documented inspection point holds [build §1], and the posts fit
   snugly. No dimensional tolerances are documented (MISSING); fit is proved in 2.20,
   3.2 and 3.3.
-- **Expect:** lip about 0.9 mm.
+- **Expect:** lip 0.91 mm (checks.json, "usb opening lip").
 - **If it fails:**
   - A hole in the NTC window or button skin: reprint (check the thin-wall preview).
   - A channel blocked: clear it by hand or reprint.
-  - The lip clearly under 0.9 mm: reprint the sole before 3.4. (PROPOSED: there is no
-    documented tolerance.)
+  - The lip under 0.91 mm: record it with the slicer's layer count (print packet S10).
+    No tolerance is documented, so 3.4 then judges the lip as printed.
 
 **Gate 1:** every box in Stage 1 is ticked. Then order, and print.
 
@@ -190,7 +194,7 @@ Until 2.17, the board runs from the bench supply wired to the cell pads (PROPOSE
   - **Cell and tape:** measure the cell's voltage, the cell's thickness including its
     protection board, and the foam tape's thickness.
 - **Accept:**
-  - board 1.0 mm (tolerance MISSING; **PROPOSED** 0.9–1.1 mm);
+  - board 0.9–1.1 mm (`params.py` BOSS_PCB_GAP: "boards are 1.0 ± 0.1");
   - label legible (N18);
   - tape + cell ≤ 7.4 mm [item 19, build §4.3].
 - **Expect:** tape 1.0 or 1.6 mm; cell ≤ 5.4 mm (datasheet envelope).
@@ -302,9 +306,9 @@ Until 2.17, the board runs from the bench supply wired to the cell pads (PROPOSE
     VOUT just before the event;
   - the drains stay below the FETs' 30 V rating [electronics §2].
 - **Expect:** about 12.9 V (660 nm) or 13.5 V (625 nm) before, then a decay.
-- **If it fails:** make the fix item 16 pre-authorises: keep the gate on one tick after
-  CTRL goes low (`fw/src/logic.c`). Then run `make -C fw test mutants`, re-flash and
-  repeat this test.
+- **If it fails:** stop and send the captures ([return loop](return-loop.md)). The fix item 16
+  pre-authorises (keep the gate on one tick after CTRL goes low, `fw/src/logic.c`) is
+  made in the repository with every gate re-run; then re-flash and repeat this test.
 
 ### 2.11 ⚠ Watchdog (item 15)
 - [ ] **Procedure:**
@@ -417,7 +421,8 @@ This check is not in verification §8. The thresholds are documented in firmware
 - **Accept:** the seam is steady (full), and a tap does not light the LEDs [item 21].
 - **If it fails:** the documented fix is R7 → 200 kΩ, after checking the pin's injection
   limit [electronics §2]. It affects only the USB-present behaviour, not charging.
-  Decide whether to fix it now.
+  It is a board change: decide whether to make it, through the
+  [return loop](return-loop.md).
 
 ### 2.20 Mechanical assembly and dry fit (item 19)
 - [ ] **Procedure:** follow [build §4](../05-build/build.md#4-assemble).
@@ -475,7 +480,7 @@ These are **PROPOSED**: the documents do not specify either (MISSING).
 - **Procedure:** put the stone window-down on a cloth on the scale. Press the dish slowly
   with a fingertip and read the scale at the click. Do it 5 times.
 - **Accept:** 2–5 N (204–510 g), with the click felt [item 5].
-- **Expect:** 3.0–3.6 N (308–368 g) [verification §1].
+- **Expect:** 3.0–3.6 N (306–367 g) [verification §1].
 - **If it fails:** no click, or free play: add a shim. Too stiff: remove a shim. Then
   check the switch seat.
 
@@ -550,17 +555,19 @@ These are **PROPOSED**: the documents do not specify either (MISSING).
 - **If it fails:**
   1. Check thermocouple 1's contact.
   2. Put thermal paste on RT1 (N20) and repeat.
-  3. If it still fails, lower `T_DERATE_DC`, `T_LIMIT_DC` and `T_CUTOFF_DC` in
-     `fw/src/logic.h` by the overshoot (thermocouple 1's maximum − 41 °C)
-     [verification §4].
-  4. Update the fixed values in `test_thermal` (`fw/test/test_logic.c`), run
-     `make -C fw test mutants`, re-flash, and repeat 3.6 and 3.7.
+  3. If it still fails, stop and send the data ([return loop](return-loop.md)).
+     `T_DERATE_DC`, `T_LIMIT_DC` and `T_CUTOFF_DC` in `fw/src/logic.h` are lowered by
+     the overshoot (thermocouple 1's maximum − 41 °C) [verification §4]. The tests and
+     the predictions in `cad/`, `calc/` and `ee/` change with them, and every gate is
+     re-run.
+  4. Re-flash, then repeat 3.6 and 3.7.
 
 ### 3.8 Optical power (item 1)
 - [ ] **Equipment:**
   - an optical power meter, or a lux meter;
   - a bench supply in constant-current mode at 20.0 mA (or 5 V through 150 Ω);
-  - spare LEDs: 10 of each type were ordered and 6 are used.
+  - spare LEDs: 11 of each type are ordered, 6 fitted, so 3 for this test and 2 spare
+    ([order list](order-list.md) §1).
 - **Procedure:** in a dark room, drive one spare LED at 20 mA with the sensor 100 mm away
   on axis. Measure 3 LEDs of each type.
 - **Accept** [item 1]: 660 nm ≥ 8 mW. On axis at 100 mm, under the estimate's 40° beam
@@ -614,7 +621,7 @@ It stays a personal prototype.
 | # | Test | What the documents do not define | Handling here |
 |---|---|---|---|
 | M1 | 2.3 | A numeric "short" threshold | PROPOSED: no steady reading < 10 Ω |
-| M2 | 2.1 | PCB thickness tolerance | PROPOSED: 0.9–1.1 mm |
+| M2 | 2.1 | PCB thickness tolerance | Found in `params.py` (BOSS_PCB_GAP: "boards are 1.0 ± 0.1"); no longer missing |
 | M3 | 1.6 | Printed-part dimensional tolerances | Fit tests 2.20, 3.2 and 3.3 decide |
 | M4 | 2.4 | Current at first power-up | Record only |
 | M5 | 2.16 | Tolerance on the 3.4 / 3.2 / 3.5 V thresholds | Record; the cut-off must be > 3.00 V (cell protection) |
@@ -636,6 +643,9 @@ It stays a personal prototype.
   ±10 % oscillator.
 
 ## 5. Results log
+
+For the first unit, use the [bench data sheet](bench-sheet.md) instead: it has a row
+per measurement.
 
 | Test | Measured | Pass / fail | Date | Notes |
 |---|---|---|---|---|
