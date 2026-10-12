@@ -28,10 +28,17 @@ def dev(p):
 
 
 class BoardBuilder:
-    def __init__(self, fp_dirs, thickness=1.0):
-        self.b = pcbnew.BOARD()
+    def __init__(self, fp_dirs, thickness=1.0, board=None):
+        """board: wrap a board already loaded with LoadBoard.  Never create a second BOARD in a
+        process that loaded one: a new BOARD() takes over the project's design settings, and
+        the next Save() then writes KiCad's defaults (no net classes, 0.5 mm edge rule) into
+        the .kicad_pro."""
         self.fp_dirs = [Path(d) for d in (fp_dirs if isinstance(fp_dirs, (list, tuple)) else [fp_dirs])]
         self.nets = {}
+        if board is not None:
+            self.b = board
+            return
+        self.b = pcbnew.BOARD()
         ds = self.b.GetDesignSettings()
         ds.SetBoardThickness(MM(thickness))
         self.b.SetCopperLayerCount(2)
@@ -180,9 +187,10 @@ class BoardBuilder:
         if part.side == "B":
             # flip first (KiCad mirrors about the x axis), then set the board orientation
             fp.Flip(fp.GetPosition(), False)
-        # top: device CCW angle -> KiCad -angle (y flipped); a flipped footprint's local x
-        # axis is mirrored as well, so there the device angle is the KiCad angle
-        fp.SetOrientationDegrees(rot if part.side == "B" else -rot)
+        # KiCad's orientation is counter-clockwise as seen on screen, and the device frame is
+        # the screen with y up, so on both sides the device CCW angle is the KiCad angle
+        # (check_transform() verifies every pad against this)
+        fp.SetOrientationDegrees(rot)
         for pad in fp.Pads():
             num = pad.GetNumber()
             net = part.pins.get(num)
@@ -195,6 +203,26 @@ class BoardBuilder:
     def check_pads(self, ref):
         fp = self.b.FindFootprintByReference(ref)
         return {p.GetNumber(): dev(p.GetPosition()) for p in fp.Pads()}
+
+    def check_transform(self, part, tol=1e-3):
+        """Worst distance (mm) between each placed pad and where the intended transform puts
+        it: device = (x, y) + R(angle) (u, -v) on the top, (u, v) on the underside, with
+        (u, v) the pad's position in the library footprint (KiCad axes, v down)."""
+        lib, name = part.footprint.split(":")
+        d = next(d for d in self.fp_dirs if (d / f"{lib}.pretty" / f"{name}.kicad_mod").exists())
+        ref_fp = pcbnew.FootprintLoad(str(d / f"{lib}.pretty"), name)
+        x, y, rot = part.place
+        c, s = math.cos(math.radians(rot)), math.sin(math.radians(rot))
+        want = {}
+        for p in ref_fp.Pads():
+            u, v = pcbnew.ToMM(p.GetPosition().x), pcbnew.ToMM(p.GetPosition().y)
+            v = -v if part.side == "F" else v
+            want.setdefault(p.GetNumber(), []).append((x + c * u - s * v, y + s * u + c * v))
+        worst = 0.0
+        for p in self.b.FindFootprintByReference(part.ref).Pads():
+            px, py = dev(p.GetPosition())
+            worst = max(worst, min(math.hypot(px - a, py - b) for a, b in want[p.GetNumber()]))
+        return worst
 
     # ---------------------------------------------------------------- routing
     def route(self, work: Path, jar: Path, passes=40, threads=4):

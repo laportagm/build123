@@ -87,9 +87,10 @@ def manual():
         P[ref] = (8.6 + 2.54 * i, 21.6, 0.0, "F")
     P["TP6"] = (8.6, 24.4, 0.0, "F")
     P["TP7"] = (11.14, 24.4, 0.0, "F")
-    # boost driver on the -y front arc: inductor, IC, then diode and output caps
+    # boost driver on the -y front arc: inductor, IC, then diode and output caps.  U3 turned
+    # 180 deg: VIN (pin 5) faces C7 and L1, SW (pin 1) faces D1 and L1's SW pad, FB faces R9
     P["L1"] = (-1.0, -22.8, 0.0, "F")
-    P["U3"] = (3.4, -20.2, 0.0, "F")
+    P["U3"] = (3.4, -20.2, 180.0, "F")
     # charger on the wide front part of the +y arm
     P["U2"] = (25.0, 24.0, 0.0, "F")
     # wire pads on the +y arm behind the bridge foot: button, then battery
@@ -100,9 +101,12 @@ def manual():
     return P
 
 
-# anchors for the spiral search: (ref, (x, y)) in priority order
+# anchors for the spiral search: (ref, (x, y)[, angles to try]) in priority order.  D1 at
+# 180 deg puts its cathode (VOUT) toward C5/C6 and its anode (SW) toward L1; C7 at 180 deg
+# puts its VBAT pad next to U3's VIN.
 AUTO = [
-    ("D1", (4.0, -24.0)), ("C7", (-1.0, -19.0)), ("C5", (8.6, -23.4)), ("C6", (11.2, -23.4)),
+    ("D1", (4.0, -24.0), (180.0, 90.0)), ("C7", (-1.0, -19.0), (180.0, 90.0)),
+    ("C5", (8.6, -23.4)), ("C6", (11.2, -23.4)),
     ("R9", (6.8, -18.2)), ("R10", (-4.5, -24.0)),
     ("Q1", (8.6, -19.6)), ("Q2", (12.3, -19.6)), ("R11", (5.5, -16.8)), ("R12", (15.0, -19.0)),
     ("C3", (-4.3, 20.5)), ("C4", (-4.3, 23.4)), ("R8", (-4.5, 25.5)),
@@ -130,7 +134,9 @@ def place(verbose=True):
     probs = room.check(polys, EXEMPT)
     if probs and verbose:
         print("manual placement problems:", probs)
-    for ref, (ax, ay) in AUTO + seam_resistor_anchors():
+    for entry in AUTO + seam_resistor_anchors():
+        ref, (ax, ay) = entry[:2]
+        angles = entry[2] if len(entry) > 2 else (0.0, 90.0)
         part = parts[ref]
         done = False
         for rad in [0.0] + [0.25 * k for k in range(1, 60)]:
@@ -138,7 +144,7 @@ def place(verbose=True):
             for k in range(n):
                 t = 2 * math.pi * k / n
                 x, y = ax + rad * math.cos(t), ay + rad * math.sin(t)
-                for ang in (0.0, 90.0):
+                for ang in angles:
                     pg = courtyard(part, x, y, ang, "F")
                     trial = dict(polys)
                     trial[ref] = (pg, part.h, "F")

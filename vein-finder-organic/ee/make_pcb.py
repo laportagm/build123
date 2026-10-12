@@ -36,11 +36,25 @@ FP_DIRS = [ROOT / "build" / "kicadlib" / "fp", HERE / "lib"]
 JAR = ROOT / "build" / "kicadlib" / "tools" / "freerouting-2.0.1.jar"
 LAYOUT = json.loads((ROOT / "build" / "device" / "layout.json").read_text())
 
-POWER = ["GND", "VBAT", "VBUS", "SW", "VOUT"]
+POWER = ["VBAT", "VBUS", "SW", "VOUT"]
 LEDNETS = ["STR_A", "STR_B", "FB"] + [f"A{i}" for i in range(1, 6)] + [f"B{i}" for i in range(1, 6)]
 RULES = dict(min_clearance=0.2, min_track_width=0.2, min_via_diameter=0.5, min_via_annular_width=0.1,
              min_through_hole_diameter=0.3, min_copper_edge_clearance=0.3, min_hole_to_hole=0.25,
              min_hole_clearance=0.25, min_silk_clearance=0.0)
+
+
+FP_LIBS = ["Capacitor_SMD", "Diode_SMD", "Inductor_SMD", "LED_SMD", "Package_SO", "Package_TO_SOT_SMD",
+           "Resistor_SMD", "TestPoint"]
+
+
+def lib_tables(kicad_dir: Path):
+    """Project library tables: KiCad's own libraries as tools/fetch.sh puts them in
+    build/kicadlib, and this project's vf library."""
+    fp = ['(fp_lib_table', '  (version 7)',
+          '  (lib (name "vf")(type "KiCad")(uri "${KIPRJMOD}/../lib/vf.pretty")(options "")(descr "vein finder"))']
+    fp += [f'  (lib (name "{n}")(type "KiCad")(uri "${{KIPRJMOD}}/../../build/kicadlib/fp/{n}.pretty")(options "")(descr ""))'
+           for n in FP_LIBS]
+    (kicad_dir / "fp-lib-table").write_text("\n".join(fp + [")"]) + "\n")
 
 
 def project_file(path: Path):
@@ -58,12 +72,37 @@ def project_file(path: Path):
                                       "track_widths": [0.0, 0.25, 0.3, 0.45], "via_dimensions": [{"diameter": 0.0, "drill": 0.0}]}},
         "meta": {"filename": path.name, "version": 1},
         "net_settings": {
-            "classes": [cls("Default", 0.25, 0.6, 0.3), cls("Power", 0.45, 0.7, 0.35), cls("LED", 0.25, 0.6, 0.3)],
+            "classes": [cls("Default", 0.25, 0.6, 0.3), cls("Power", 0.45, 0.7, 0.35), cls("LED", 0.25, 0.6, 0.3),
+                        cls("Gnd", 0.3, 0.6, 0.3)],
             "meta": {"version": 3}, "net_colors": None, "netclass_assignments": None,
-            "netclass_patterns": [{"netclass": "Power", "pattern": n} for n in POWER] +
+            "netclass_patterns": [{"netclass": "Gnd", "pattern": "GND"}] +
+                                 [{"netclass": "Power", "pattern": n} for n in POWER] +
                                  [{"netclass": "LED", "pattern": n} for n in LEDNETS]},
     }
     path.write_text(json.dumps(pro, indent=2))
+    lib_tables(path.parent)
+    # custom rule: the USB-C receptacle's land pattern (GCT USB4515 datasheet) puts its
+    # pads 0.2 mm from the board notch it hangs in; everything else keeps the 0.3 mm rule
+    path.with_suffix(".kicad_dru").write_text(
+        '(version 1)\n'
+        '(rule "USB-C land pattern at the notch (USB4515 datasheet layout)"\n'
+        '  (constraint edge_clearance (min 0.15mm))\n'
+        '  (condition "A.Type == \'Pad\' && A.intersectsCourtyard(\'J1\')"))\n'
+        # the two outermost ring LEDs (+-128.5 deg) sit where the window meets the horn slot:
+        # their lands are 0.27 mm from that edge
+        '(rule "Ring LED lands at the horn slot"\n'
+        '  (constraint edge_clearance (min 0.25mm))\n'
+        '  (condition "A.Type == \'Pad\' && (A.intersectsCourtyard(\'D2\') || A.intersectsCourtyard(\'D7\'))"))\n')
+
+
+# the label the brief asks for on everything: underside silkscreen, on the free tail
+LABELS = [("VEIN FINDER (ORGANIC) REV A 2026-10", 40.0, 1.0),
+          ("PERSONAL PROTOTYPE - NOT A MEDICAL DEVICE", 40.0, -0.6)]
+
+
+def solid_pads(board):
+    for ref in ["RT1"] + [f"H{i}" for i in range(1, 7)]:
+        board.FindFootprintByReference(ref).SetZoneConnection(pcbnew.ZONE_CONNECTION_FULL)
 
 
 def build(passes=60):
@@ -91,6 +130,14 @@ def build(passes=60):
         x, y, a, side = P[p.ref]
         p.place, p.side = (x, y, a), side
         bb.footprint(p)
+        err = bb.check_transform(p)
+        if err > 1e-3:
+            raise RuntimeError(f"{p.ref}: pads {err:.3f} mm off the intended placement")
+    # the NTC's GND pad joins the underside plane solidly: a thermal relief there gets one
+    # spoke between the ring LEDs, and solid copper couples the sensor to the board.  The
+    # locating pins (GND only so that no copper floats) are solid too: their pads sit among
+    # tracks, where a relief may get a single spoke, and a header post solders fine either way.
+    solid_pads(bb.b)
     pcb = OUT / "vein_finder.kicad_pcb"
     bb.b.Save(str(pcb))
     project_file(OUT / "vein_finder.kicad_pro")      # after the save: Save() rewrites the project
@@ -110,19 +157,19 @@ def route_stage(passes):
     nc = {n: b.FindNet(n).GetNetClassName() for n in ("VBAT", "GND", "SW", "A1", "UPDI")}
     if nc["VBAT"] != "Power" or nc["A1"] != "LED":
         raise RuntimeError(f"net classes not applied: {nc}")
-    bb = BoardBuilder(FP_DIRS, thickness=1.0)
-    bb.b = b
+    bb = BoardBuilder(FP_DIRS, board=b)
     names = {n for p in D.PARTS if p.on_board for n in p.pins.values()}
     bb.nets = {n: b.FindNet(n) for n in names}            # reuse the board's nets (no duplicates)
-    # GND pours on both layers BEFORE routing: they export as Specctra planes, so the router
-    # only drops vias to them instead of running ~40 GND pads together with traces.  The
-    # underside pour also spreads the LEDs' heat toward the NTC.
-    bb.gnd_pour(layers=(pcbnew.B_Cu,))       # the underside plane: top GND pads drop a via to it
+    # GND is routed like any other net (0.3 mm), so every GND pad gets a real connection.  A
+    # pour present during routing would export as a Specctra plane: the router then assumes
+    # it is whole, while its own traces cut it into islands.  The pours come after routing,
+    # on both layers; finish_route.py stitches them.  The underside pour also spreads the
+    # LEDs' heat toward the NTC.
     bb.route(OUT / "route", JAR, passes=passes, threads=4)
-    bb.gnd_pour(layers=(pcbnew.F_Cu,))       # top pour after routing (islands without GND are removed)
+    bb.gnd_pour(layers=(pcbnew.F_Cu, pcbnew.B_Cu))
     # the label the brief asks for on everything (underside silkscreen, along the -y arm)
-    bb.text("VEIN FINDER (ORGANIC) REV A 2026-10", 36.0, -23.4)
-    bb.text("PERSONAL PROTOTYPE - NOT A MEDICAL DEVICE", 36.0, -25.0)
+    for txt, x, y in LABELS:
+        bb.text(txt, x, y)
     rep = bb.finish(pcb, OUT / "drc.rpt")
     print("routed; DRC:", drc_summary(rep))
 
@@ -169,17 +216,22 @@ if __name__ == "__main__":
         sys.exit(0)
     if a.stage == "finish":                 # re-label, re-fill and re-check a routed board
         pcb = OUT / "vein_finder.kicad_pcb"
+        project_file(OUT / "vein_finder.kicad_pro")      # before the load: rules and net classes
         b = pcbnew.LoadBoard(str(pcb))
-        bb = BoardBuilder(FP_DIRS, thickness=1.0)
-        bb.b = b
-        have = {d.GetText() for d in b.GetDrawings() if d.GetClass() == "PCB_TEXT"}
-        for txt, y in (("VEIN FINDER (ORGANIC) REV A 2026-10", -23.4), ("PERSONAL PROTOTYPE - NOT A MEDICAL DEVICE", -25.0)):
-            if txt not in have:
-                bb.text(txt, 36.0, y)
+        bb = BoardBuilder(FP_DIRS, board=b)
+        solid_pads(b)
+        have = {d.GetText(): d for d in b.GetDrawings() if d.GetClass() == "PCB_TEXT"}
+        for txt, x, y in LABELS:
+            if txt in have:
+                have[txt].SetPosition(kpt(x, y))
+            else:
+                bb.text(txt, x, y)
         if "CELL ON FOAM TAPE - NO PARTS" not in have:
             bt = LAYOUT["battery"]
             bb.rect(bt["x0"], -bt["y"], bt["x1"], bt["y"])                     # where the cell goes
             bb.text("CELL ON FOAM TAPE - NO PARTS", (bt["x0"] + bt["x1"]) / 2, 0.0, layer="F.SilkS", size=1.2, angle=90)
+        import silk
+        silk.tidy(b)
         print("DRC:", drc_summary(bb.finish(pcb, OUT / "drc.rpt")))
         if not a.no_fab:
             print("fab:", fab_outputs())
