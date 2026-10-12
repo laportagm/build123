@@ -86,4 +86,12 @@ uint16_t derate_permille(int16_t t_dc);
 #define T_SENSOR_FAULT_DC    INT16_MAX
 int16_t ntc_adc_to_dc(uint16_t adc);
 
+/* Cell voltage: the MCU runs from the cell and reads its 1.1 V reference against VDD, so
+ * VDD = 1.1 V * 1023 / reading.  A reading outside the MCU's 1.8-5.5 V range is a fault
+ * (the cell's protection keeps VDD within 3.00-4.28 V); it returns 0, "not measured", so
+ * it changes nothing.  Below 18 the division would also overflow 16 bits. */
+#define VDD_ADC_MIN          205u         /* 5.49 V */
+#define VDD_ADC_MAX          625u         /* 1.80 V */
+uint16_t vdd_mv_from_adc(uint16_t adc);
+
 #endif

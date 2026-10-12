@@ -1,7 +1,7 @@
 # Vein finder (organic) firmware - ATtiny1614.  Personal prototype, NOT a medical device.
 #   make            build fw.hex (avr-gcc 14 from build/tools, see README)
 #   make test       host unit tests of the device logic
-#   make mutants    check that the tests catch 16 planted bugs in the safety logic
+#   make mutants    check that the tests catch 26 planted bugs in the device logic
 #   make flash      program over UPDI (Adafruit UPDI Friend / any serial adapter, pymcuprog)
 #   make wdt-test   watchdog bench-test build (hangs 5 s after the LEDs come on; never for
 #                   use): make flash HEX=build/fw_wdt_test.hex, then re-flash build/fw.hex

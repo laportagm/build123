@@ -17,8 +17,8 @@ This record covers the fix-and-verify pass of 2026-10-12. It started from `e93df
 | Chunk | Scope | Status | Commit |
 |---|---|---|---|
 | 0 | Current state and issue register | done | — (no changes) |
-| 1 | Safety-critical firmware | PASS (simulated); hardware validation open | this chunk |
-| 2 | Firmware reliability | pending | |
+| 1 | Safety-critical firmware | PASS (simulated); hardware validation open | `6863abd` |
+| 2 | Firmware reliability | PASS (simulated); hardware validation open | this chunk |
 | 3 | PCB and manufacturing integrity | pending | |
 | 4 | Mechanical and electrical integration | pending | |
 | 5 | Final verification, GO / NO-GO | pending | |
@@ -46,17 +46,18 @@ This record covers the fix-and-verify pass of 2026-10-12. It started from `e93df
 | N02 | The first NTC reading came 250 ms after power-up. A tap in that window lit the LEDs at the full level with no temperature reading | defect, safety-relevant | 1 | fixed |
 | N03 | No tests for: a shorted sensor, the exact 41.0 / 38.0 °C boundaries, inputs while hot-locked, safe initial outputs, random input sequences | test gap | 1 | closed |
 | N04 | The sleep entry, wake-up and watchdog cannot be host-tested, and the watchdog could not be made to fire on the bench | verification gap | 1 | closed (static check, bench build); hardware open |
-| N05 | Auto-off and hold timing rest on the 32 kHz oscillator's accuracy | risk | 2 | |
-| N06 | No tests for debounce glitches or the tap/hold boundary | test gap | 2 | |
+| N05 | Auto-off and hold timing rest on the 32 kHz oscillator's accuracy | risk | 2 | documented (±10 %), bench item 17 |
+| N06 | No tests for debounce glitches or the tap/hold boundary | test gap | 2 | closed |
 | N07 | VBUS-sense input level against the MCU's high threshold with a full cell | hardware risk | 4 | |
 | N08 | Nothing checks schematic, PCB, BOM, fab files and order pack against each other; the order pack's board facts were copied by hand | gap | 3 | |
 | N09 | Silkscreen line width against the fab's minimum | fab risk | 3 | |
 | N10 | USB-C pads 0.20 mm from the board edge (the 0.3 mm rule's one exception) | documented exception | 3 | |
 | N11 | R29: the board is not rerouted | documented decision | 3 | |
-| N12 | Brown-out detector off (default fuses) | optional improvement | 2 | |
+| N12 | Brown-out detector off (default fuses) | optional improvement | 2 | not needed, reasons documented |
 | N13 | The PR text counts 30 review findings; there were 29 | doc error | 5 | |
-| N14 | With the button held down, the MCU stays out of power-down (it waits for the release); the LEDs stay off | reliability (battery drain) | 2 | found in chunk 1 |
+| N14 | With the button held down, the MCU stays out of power-down (it waits for the release); the LEDs stay off | reliability (battery drain) | 2 | accepted limitation, tested; bench item 18 |
 | N15 | At turn-off, CTRL goes low and both gates open together, while the driver runs for up to 2.5 ms more. VOUT may rise toward the 36–39 V open-LED limit. The parts are rated for it ([electronics §2](../03-electronics/electronics.md#2-circuit)) | hardware risk | 1 → bench | bench item 16 |
+| N16 | A cell-voltage reading under 18 overflowed 16 bits, giving a random voltage. A reading of 17 gave 0.658 V and a spurious battery lock | defect (error handling) | 2 | fixed |
 
 **Order of work:**
 - Chunks 1 and 2 change the same firmware files, so they go in order.
@@ -144,3 +145,68 @@ These are [verification §8](verification.md#8-bench-checks-for-the-first-build)
 - After the hot lock clears at 38 °C, the LEDs come back on by themselves at the same
   level, as documented.
 - A tap shorter than about 30 ms is ignored by design: two 15.6 ms samples.
+
+## 2. Firmware reliability
+
+**Scope:**
+- the 3-min auto-off and other timing;
+- debounce;
+- state transitions;
+- power management;
+- error recovery.
+
+### What was inspected
+
+`fw/src/logic.c`, `main.c` and `logic.h` again, against [firmware.md](../04-firmware/firmware.md) §1.
+
+| Area | Result |
+|---|---|
+| Auto-off | 11 520 ticks after the last tap or hold, which is exactly 180.000 s at the nominal tick (chunk 1 fixed the stuck button) |
+| Timing source | RTC and watchdog both run from the internal 32 kHz oscillator, ±10 % in the datasheet's feature list (**N05**). Not verified against the full characteristics table, which was not reached; family documents show wider spreads over temperature |
+| Debounce | two equal samples. A one-sample glitch is rejected; the shortest tap is 2 samples (31 ms); the hold starts at 38 samples (594 ms). Untested before (**N06**) |
+| States | each turn-on starts at level 1 on the last bank; a reset returns to off and 660 nm; USB removal and battery unlock leave it off until a tap. Matches the docs, which did not say all of it |
+| Power | every way of turning off ends in power-down once the button is up. A held button keeps the MCU in idle (**N14**) |
+| Error recovery | the watchdog (chunk 1); ADC hangs are covered by the watchdog. A cell reading under 18 overflowed (**N16**). Brown-out detector off (**N12**) |
+| Brown-out | the cell's protection keeps VDD within 3.00–4.28 V (cell datasheet, in `ee/design.py`), inside the MCU's 1.8–5.5 V at 3.33 MHz. No flash or EEPROM writes. So the BOD is not needed |
+
+### Changes
+
+| Issue | Change | File |
+|---|---|---|
+| N16 | The cell-voltage conversion moved into the tested logic as `vdd_mv_from_adc()`. Readings outside 1.8–5.5 V return 0, "not measured" | `fw/src/logic.c`, `logic.h`, `main.c` |
+| N06 | Nine new tests: debounce, the tap/hold boundary, exact auto-off, auto-off while hot, state memory, battery boundaries, VDD conversion, seam patterns, power | `fw/test/test_logic.c` |
+| N06 | A tenth random-test rule: it does sleep when off, unplugged and released | `fw/test/test_logic.c` |
+| N06 | Ten more mutants (26 in all) | `fw/test/mutants.py` |
+| N05, N12, N14 | Timing table with tolerances; power states; BOD decision; the stuck-button limitation | `docs/04-firmware/firmware.md` |
+| — | Bench items 17 (timing) and 18 (current with the button held) | `verification.md` |
+| — | The user guide says each turn-on starts at the lowest level on the last wavelength | `docs/05-build/build.md` |
+
+No BOM, PCB, CAD or fab-file change. N14 is documented rather than fixed. Sleeping with
+the button held would change the race-free sleep entry, and only a board can validate
+that.
+
+### Verification (simulated)
+
+| Command | Result |
+|---|---|
+| `make -C fw test` | all 23 tests pass (14 before, 9 new). Random runs 3 × 4 M ticks with ten rules, 0 breaks. The new sleep rule was exercised with 0.75–0.94 M asleep ticks per run |
+| `make -C fw mutants` | 26 / 26 caught. The new ones include one-sample debounce, a hold one tick late, a release counted as a tap, auto-off a minute early, a bank reset at turn-on, unlock above 3.5 V, a 1.56 s hot blink, never sleeping, and the old VDD guard (2 failing checks) |
+| Old VDD code, readings 1–17 | 658–59 497 mV, none of them real; a reading of 17 gives 658 mV, which locks the LEDs off |
+| `make -C fw` | 2208 B (was 2200), `-Werror` clean, build checks pass |
+| `make -C fw wdt-test` | builds |
+
+### HARDWARE VALIDATION REQUIRED
+
+| Item | Check |
+|---|---|
+| 7 | Sleep current |
+| 14 | Wake on the first tap |
+| 17 | Auto-off time and the tap/hold boundary, by stopwatch |
+| 18 | Current with the button held (N14) |
+
+### Remaining limitations
+
+- Timing is only as good as the internal oscillator: about ±10 % per the datasheet
+  summary, possibly more at temperature extremes.
+- With the button held down the MCU idles. The current is unverified, and bench item 18
+  limits it to ≤ 1 mA.

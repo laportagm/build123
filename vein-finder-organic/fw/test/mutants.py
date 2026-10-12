@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Mutation check of the safety logic:  make -C fw mutants
+"""Mutation check of the device logic:  make -C fw mutants
 
 Each mutant plants one small, plausible bug in src/logic.c (a wrong comparison, a missing
 line), builds the host tests against it and runs them.  Every mutant must make the tests
@@ -42,6 +42,17 @@ MUTANTS = [
      "        s->on = false;                     /* no light while the cell charges */", "        ;"),
     ("battery lock ignored", "    if (s->on && s->batt_lock)\n        s->on = false;\n", ""),
     ("may sleep while on", "s->want_sleep = !s->on && ", "s->want_sleep = "),
+    # reliability (chunk 2): debounce, timing, state, power
+    ("debounce on one sample", "++s->btn_count >= DEBOUNCE_TICKS", "++s->btn_count >= 1"),
+    ("hold one tick late", "s->press_ticks >= HOLD_TICKS", "s->press_ticks > HOLD_TICKS"),
+    ("release after a hold is a tap", "} else if (!s->hold_done) {", "} else {"),
+    ("auto-off a minute early", "s->idle_ticks >= AUTO_OFF_TICKS", "s->idle_ticks >= AUTO_OFF_TICKS * 2 / 3"),
+    ("turn-on resets the bank", "            s->level = 0;\n", "            s->level = 0;\n            s->bank = BANK_A;\n"),
+    ("turn-on keeps the old level", "            s->on = true;\n            s->level = 0;\n", "            s->on = true;\n"),
+    ("unlock only above 3.5 V", "s->vbat_mv >= VBAT_RESUME_MV", "s->vbat_mv > VBAT_RESUME_MV"),
+    ("hot blink every 1.56 s", "s->anim % 125u", "s->anim % 100u"),
+    ("never sleeps", "s->want_sleep = !s->on && ", "s->want_sleep = false && !s->on && "),
+    ("the old VDD guard, zero only (N16)", "    if (adc < VDD_ADC_MIN || adc > VDD_ADC_MAX)\n", "    if (adc == 0)\n"),
 ]
 
 
@@ -60,7 +71,8 @@ def main():
                             str(tmp / "logic.c"), "-lm", "-o", str(tmp / "t")], check=True)
             r = subprocess.run([str(tmp / "t")], capture_output=True, text=True)
             fails = sum(1 for line in r.stdout.splitlines() if line.startswith("FAIL"))
-            print(f"  {'caught' if r.returncode else 'SURVIVED':8s} ({fails:2d} failing checks)  {name}")
+            how = f"crashed, signal {-r.returncode}" if r.returncode < 0 else f"{fails:2d} failing checks"
+            print(f"  {'caught' if r.returncode else 'SURVIVED':8s} ({how})  {name}")
             if r.returncode == 0:
                 survived.append(name)
     print(f"{len(MUTANTS) - len(survived)}/{len(MUTANTS)} mutants caught")

@@ -153,7 +153,7 @@ static uint16_t read_vdd_mv(void)
     _delay_us(100);
     uint16_t a = adc_read(ADC_MUXPOS_INTREF_gc, ADC_REFSEL_VDDREF_gc);
     VREF.CTRLB = 0;
-    return a ? (uint16_t)((1100UL * 1023UL) / a) : 0;
+    return vdd_mv_from_adc(a);                                     /* 0 if implausible */
 }
 
 /* ------------------------------------------------------------------ outputs */

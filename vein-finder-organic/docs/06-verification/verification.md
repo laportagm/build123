@@ -125,7 +125,7 @@ which is next to an LED pocket. Calibrate it on the bench (§8, item 4) and adju
   - Schottky 40 V ≥ OVP max 39 V.
   - Output capacitors 50 V.
   - Charger input 30 V abs max.
-- **Firmware:** 2.1 KB. Host unit tests pass:
+- **Firmware:** 2.2 KB. Host unit tests pass:
   - levels, and the bank switch with make-before-break;
   - 3-min auto-off on the real 15.625 ms tick, also with the button stuck down;
   - USB;
@@ -133,10 +133,12 @@ which is next to an LED pocket. Calibrate it on the bench (§8, item 4) and adju
   - battery lock-out;
   - NTC table within 0.2 °C; open and shorted sensors lock the LEDs off;
   - no light before the first reading;
-  - 12 million ticks of random inputs against nine safety rules.
+  - debounce, the tap/hold boundary, the exact auto-off time, state memory and the seam
+    patterns;
+  - 12 million ticks of random inputs against ten rules.
 
-  The tests catch 16 of 16 planted bugs (`make -C fw mutants`). Each build checks the
-  compiled sleep entry and watchdog. All of this is simulation: §8 items 11–16 are the
+  The tests catch 26 of 26 planted bugs (`make -C fw mutants`). Each build checks the
+  compiled sleep entry and watchdog. All of this is simulation: §8 items 11–18 are the
   bench checks for the same functions. See [readiness.md](readiness.md).
 
 ## 6. IEC 62471
@@ -192,3 +194,5 @@ Shipping and filament (about 30 g of PETG) are not included. Prices were re-chec
 | 14 | Sleep and wake | Off and unplugged for > 1 min, so it is asleep (item 7 current). (a) Tap 20 times, with > 1 min between taps. (b) Plug in USB while asleep | (a) on at the first tap, 20 of 20. (b) the seam breathes within 0.1 s |
 | 15 | Watchdog | Flash the test build (`make -C fw wdt-test`, then `make -C fw flash HEX=build/fw_wdt_test.hex`). Tap. Afterwards flash the normal build again | dark 6 ± 1 s after the tap (5 s plus the 1 s watchdog), and stays dark until the next tap |
 | 16 | VOUT at turn-off | Scope C5 (VOUT) and Q1's drain at the fourth tap (off) and at the item-11 cut-off | VOUT decays with no rise toward the 36–39 V open-LED limit. If it rises, keep the gate on one tick after CTRL goes low (`logic.c`) and test again |
+| 17 | Timing | Stopwatch: from the last tap to the auto-off, three times. Press for about 0.5 s and about 0.7 s, five times each | auto-off 162–198 s (3 min ± 10 %); 0.5 s presses step the level, 0.7 s presses switch the bank |
+| 18 | Current with the button held | µA meter as in item 7. Tape the button down, then wait for the auto-off | ≤ 1 mA: at least 25 days from a full cell. This is the known limitation N14 in [firmware.md §2.1](../04-firmware/firmware.md#21-power) |

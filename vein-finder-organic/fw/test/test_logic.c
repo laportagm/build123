@@ -268,8 +268,9 @@ static void random_run(uint32_t seed, uint32_t n)
     rng = seed;
     vf_state_t s; logic_init(&s);
     bool hot = false, low = false;                     /* reference latches */
-    uint32_t btn_left = 1, vbus_left = 1, since_edge = 0, both_run = 0;
-    unsigned long bad[9] = {0}, lit = 0, hot_on = 0, low_on = 0, mbb = 0, stuck = 0, vbus_ticks = 0;
+    uint32_t btn_left = 1, vbus_left = 1, since_edge = 0, both_run = 0, released = 0, since_switch = 1000;
+    bank_t last_bank = s.bank;
+    unsigned long bad[10] = {0}, lit = 0, hot_on = 0, low_on = 0, mbb = 0, stuck = 0, vbus_ticks = 0, sleepy = 0;
     const uint32_t use_window = AUTO_OFF_TICKS + DEBOUNCE_TICKS + HOLD_TICKS;
     s.t_dc = INT16_MIN; s.vbat_mv = 0;
     for (uint32_t i = 0; i < n; i++) {
@@ -307,6 +308,9 @@ static void random_run(uint32_t seed, uint32_t n)
             }
         }
         logic_tick(&s);
+        released = s.btn_down ? 0 : released + 1;
+        since_switch = s.bank != last_bank ? 0 : since_switch + 1;
+        last_bank = s.bank;
 
         if (s.t_dc != INT16_MIN) {                     /* reference latches, from the spec */
             if (s.t_dc >= T_CUTOFF_DC) hot = true;
@@ -337,25 +341,29 @@ static void random_run(uint32_t seed, uint32_t n)
         if (s.ctrl_permille && both_run == 0 && s.gate_a != (s.bank == BANK_A)) bad[7]++;
         /* 8: the level is always one of the three */
         if (s.level > 2) bad[8]++;
+        /* 9: and it does sleep when off, unplugged, the button released (two samples) and
+         * the bank-switch flash (24 ticks) over */
+        if (!s.on && !s.vbus && released >= DEBOUNCE_TICKS && since_switch > 24 && !s.want_sleep) bad[9]++;
 
         lit += s.ctrl_permille != 0;
         hot_on += s.on && hot;
         low_on += low;
         mbb += both_run == 1;
         vbus_ticks += s.vbus;
+        sleepy += s.want_sleep;
     }
-    static const char *const RULE[9] = {
+    static const char *const RULE[10] = {
         "lit while hot/low/USB/no reading/off", "duty above the (derated) cap", "driver on with no string",
         "gate on with the driver off", "overlap longer than make-before-break", "lit 3 min after the last use",
-        "sleep while lit or busy", "wrong bank lit", "level out of range"};
-    for (int k = 0; k < 9; k++)
+        "sleep while lit or busy", "wrong bank lit", "level out of range", "no sleep when idle"};
+    for (int k = 0; k < 10; k++)
         CHECK(bad[k] == 0, "seed %u: rule %d (%s) broken on %lu ticks", (unsigned)seed, k, RULE[k], bad[k]);
     /* the run must have exercised what it checks */
-    CHECK(lit > n / 50 && hot_on > 1000 && low_on > 1000 && mbb > 20 && stuck > 3 && vbus_ticks > 10000,
-          "seed %u: coverage lit %lu, hot-while-on %lu, low %lu, bank switches %lu, stuck %lu, usb %lu",
-          (unsigned)seed, lit, hot_on, low_on, mbb, stuck, vbus_ticks);
-    printf("  random seed %u: %u ticks (%.1f h); lit %lu, hot-while-on %lu, low %lu, switches %lu, stuck %lu\n",
-           (unsigned)seed, (unsigned)n, n * (TICK_US / 1e6) / 3600.0, lit, hot_on, low_on, mbb, stuck);
+    CHECK(lit > n / 50 && hot_on > 1000 && low_on > 1000 && mbb > 20 && stuck > 3 && vbus_ticks > 10000 && sleepy > n / 50,
+          "seed %u: coverage lit %lu, hot-while-on %lu, low %lu, bank switches %lu, stuck %lu, usb %lu, asleep %lu",
+          (unsigned)seed, lit, hot_on, low_on, mbb, stuck, vbus_ticks, sleepy);
+    printf("  random seed %u: %u ticks (%.1f h); lit %lu, hot-while-on %lu, low %lu, switches %lu, stuck %lu, asleep %lu\n",
+           (unsigned)seed, (unsigned)n, n * (TICK_US / 1e6) / 3600.0, lit, hot_on, low_on, mbb, stuck, sleepy);
 }
 
 static void test_random_invariants(void)
@@ -365,11 +373,213 @@ static void test_random_invariants(void)
     random_run(12345u, 4000000u);
 }
 
+/* ------------------------------------------------------------ reliability (chunk 2) */
+
+static void test_debounce(void)
+{
+    vf_state_t s; logic_init(&s);
+    s.t_dc = 300; s.vbat_mv = 3900;
+    for (int i = 0; i < 50; i++) {                     /* one-sample glitches never count */
+        s.btn_down = true; ticks(&s, 1); s.btn_down = false; ticks(&s, 3);
+    }
+    CHECK(!s.on, "50 one-sample glitches: no tap");
+    press(&s, DEBOUNCE_TICKS);                         /* the shortest tap: two samples, 31 ms */
+    CHECK(s.on && s.level == 0, "two-sample press is a tap");
+    /* contact bounce at the press and at the release: exactly one tap */
+    static const bool BOUNCY[] = {1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0};
+    for (unsigned i = 0; i < sizeof BOUNCY / sizeof BOUNCY[0]; i++) { s.btn_down = BOUNCY[i]; ticks(&s, 1); }
+    CHECK(s.on && s.level == 1, "bouncy press: exactly one tap (level %u)", s.level);
+    /* a one-sample release glitch in the middle of a hold neither ends it nor adds a tap */
+    s.btn_down = true; ticks(&s, 20);
+    s.btn_down = false; ticks(&s, 1);
+    s.btn_down = true; ticks(&s, HOLD_TICKS);
+    s.btn_down = false; ticks(&s, 4);
+    CHECK(s.on && s.level == 1 && s.bank == BANK_B, "glitch inside a hold: one hold, no tap");
+}
+
+static void test_tap_hold_boundary(void)
+{
+    vf_state_t s; logic_init(&s);
+    s.t_dc = 300; s.vbat_mv = 3900;
+    tap(&s);                                           /* on, level 1, bank A */
+    press(&s, HOLD_TICKS - 1);
+    CHECK(s.level == 1 && s.bank == BANK_A, "%lu ms press is a tap", (HOLD_TICKS - 1) * TICK_US / 1000);
+    press(&s, HOLD_TICKS);
+    CHECK(s.level == 1 && s.bank == BANK_B, "%lu ms press is a hold", HOLD_TICKS * TICK_US / 1000);
+}
+
+static unsigned long ticks_until_off(vf_state_t *s)
+{
+    unsigned long n = 0;
+    while (s->on && n < 3ul * AUTO_OFF_TICKS) { ticks(s, 1); n++; }
+    return n;
+}
+
+static void test_auto_off_exact(void)
+{
+    /* off exactly AUTO_OFF_TICKS after the last tap or hold, and a hold restarts the count */
+    vf_state_t s; logic_init(&s);
+    s.t_dc = 300; s.vbat_mv = 3900;
+    s.btn_down = true; ticks(&s, 5);
+    s.btn_down = false; ticks(&s, DEBOUNCE_TICKS);     /* the tap lands on this last tick */
+    unsigned long n = ticks_until_off(&s);
+    CHECK(n == AUTO_OFF_TICKS && n * TICK_US == 180000000ul, "off %lu ticks (%lu ms) after the tap", n, n * TICK_US / 1000);
+    tap(&s);
+    ticks(&s, AUTO_OFF_TICKS / 2);
+    s.btn_down = true; ticks(&s, DEBOUNCE_TICKS + HOLD_TICKS - 1);   /* the hold lands on this last tick */
+    s.btn_down = false;
+    CHECK(s.on && s.bank == BANK_B, "hold half-way through");
+    n = ticks_until_off(&s);
+    CHECK(n == AUTO_OFF_TICKS, "off %lu ticks after the hold", n);
+}
+
+static void test_auto_off_while_hot(void)
+{
+    /* the auto-off also runs while the hot lock holds the LEDs off, and cooling after it
+     * does not bring the light back */
+    vf_state_t s; logic_init(&s);
+    s.t_dc = 300; s.vbat_mv = 3900;
+    tap(&s);
+    s.t_dc = T_CUTOFF_DC; ticks(&s, AUTO_OFF_TICKS);
+    CHECK(!s.on, "auto-off while hot-locked");
+    s.t_dc = 300; lit_ticks = 0; ticks(&s, 100);
+    CHECK(!s.on && lit_ticks == 0 && s.want_sleep, "cooling after the auto-off: stays off, sleeps");
+}
+
+static void test_state_memory(void)
+{
+    vf_state_t s; logic_init(&s);
+    s.t_dc = 300; s.vbat_mv = 3900;
+    tap(&s); tap(&s); hold(&s);                        /* level 2, bank B */
+    tap(&s); tap(&s);                                  /* level 3, then off */
+    CHECK(!s.on, "off by taps");
+    tap(&s);
+    CHECK(s.on && s.level == 0 && s.bank == BANK_B && s.gate_b && !s.gate_a, "turn-on: level 1, bank kept");
+    s.vbus = true; ticks(&s, 5); s.vbus = false; ticks(&s, 5);
+    CHECK(!s.on && s.want_sleep, "USB in and out: stays off, sleeps");
+    tap(&s);
+    CHECK(s.on && s.level == 0 && s.bank == BANK_B, "after USB: level 1, bank kept");
+    logic_init(&s);
+    CHECK(s.bank == BANK_A && !s.on, "a reset returns to off, bank A (660 nm)");
+}
+
+static void test_battery_boundaries(void)
+{
+    vf_state_t s; logic_init(&s);
+    s.t_dc = 300; s.vbat_mv = VBAT_CUTOFF_MV;
+    tap(&s);
+    CHECK(s.on && !s.batt_lock && s.seam == SEAM_LOW_BATT, "3.200 V: on, seam warns");
+    s.vbat_mv = VBAT_CUTOFF_MV - 1; ticks(&s, 1);
+    CHECK(!s.on && s.batt_lock && s.ctrl_permille == 0, "3.199 V: off on the same tick");
+    s.vbat_mv = VBAT_RESUME_MV - 1; ticks(&s, 1); tap(&s);
+    CHECK(!s.on && s.batt_lock, "3.499 V: still locked");
+    s.vbat_mv = VBAT_RESUME_MV; ticks(&s, 1);
+    CHECK(!s.on && !s.batt_lock, "3.500 V: unlocked, off until a tap");
+    tap(&s);
+    CHECK(s.on, "tap after the unlock: on");
+    s.vbat_mv = 0; ticks(&s, 5);
+    CHECK(s.on && !s.batt_lock, "no reading: no change");
+}
+
+static void test_vdd_conversion(void)
+{
+    /* N16: VDD = 1.1 V * 1023 / reading; implausible readings are "not measured" (0) */
+    CHECK(vdd_mv_from_adc(375) == 3000 && vdd_mv_from_adc(300) == 3751, "3.00 V and 3.75 V");
+    CHECK(vdd_mv_from_adc(VDD_ADC_MIN) == 5489 && vdd_mv_from_adc(VDD_ADC_MAX) == 1800, "range ends");
+    CHECK(vdd_mv_from_adc(VDD_ADC_MIN - 1) == 0 && vdd_mv_from_adc(VDD_ADC_MAX + 1) == 0, "just outside: 0");
+    CHECK(vdd_mv_from_adc(0) == 0 && vdd_mv_from_adc(1) == 0 && vdd_mv_from_adc(17) == 0 && vdd_mv_from_adc(1023) == 0,
+          "faults: 0 (the old code gave %u for a reading of 1)", (unsigned)(uint16_t)(1100ul * 1023ul / 1));
+    bool ok = true;
+    uint16_t prev = UINT16_MAX;
+    for (uint16_t a = VDD_ADC_MIN; a <= VDD_ADC_MAX; a++) {
+        uint16_t v = vdd_mv_from_adc(a);
+        ok &= v >= 1800 && v <= 5500 && v < prev;
+        prev = v;
+    }
+    CHECK(ok, "in range and strictly falling over the valid readings");
+}
+
+/* seam brightness over n ticks: rises = dark-to-bright changes, bright = bright ticks */
+static void seam_stats(vf_state_t *s, unsigned n, unsigned *rises, unsigned *bright)
+{
+    bool prev = s->seam_permille >= 300;
+    *rises = *bright = 0;
+    while (n--) {
+        ticks(s, 1);
+        bool b = s->seam_permille >= 300;
+        *rises += b && !prev;
+        *bright += b;
+        prev = b;
+    }
+}
+
+static void test_seam_patterns(void)
+{
+    /* the patterns the build guide describes, on the 15.625 ms tick */
+    unsigned rises, bright;
+    vf_state_t s; logic_init(&s);
+    s.t_dc = 300; s.vbat_mv = 3900;
+    s.vbus = true; s.charging = true; ticks(&s, 1);
+    uint16_t w[384];
+    for (int i = 0; i < 384; i++) { ticks(&s, 1); w[i] = s.seam_permille; }
+    bool periodic = true;
+    uint16_t lo = UINT16_MAX, hi = 0;
+    for (int i = 0; i < 192; i++) {
+        periodic &= w[i] == w[i + 192];
+        if (w[i] < lo) lo = w[i];
+        if (w[i] > hi) hi = w[i];
+    }
+    CHECK(periodic && lo == 20 && hi == 305, "charging: breathes 2-30 %% every 192 ticks (3.0 s)");
+    s.charging = false; ticks(&s, 1);
+    seam_stats(&s, 200, &rises, &bright);
+    CHECK(s.seam == SEAM_FULL && s.seam_permille == 150 && rises == 0, "full: steady");
+    s.vbus = false; tap(&s);
+    seam_stats(&s, 200, &rises, &bright);
+    CHECK(s.seam == SEAM_ON && s.seam_permille == 40 && bright == 0, "on: a faint steady line");
+    s.btn_down = true; ticks(&s, DEBOUNCE_TICKS + HOLD_TICKS - 2);  /* one tick before the hold */
+    seam_stats(&s, 30, &rises, &bright);
+    s.btn_down = false; ticks(&s, 4);
+    CHECK(rises == 2 && bright == 12, "bank switch: two flashes in 24 ticks (375 ms): %u, %u", rises, bright);
+    s.vbat_mv = 3350; ticks(&s, 1);
+    seam_stats(&s, 620, &rises, &bright);
+    CHECK(rises == 10 && bright == 310, "low cell: 10 blinks in 620 ticks (1.03 Hz): %u", rises);
+    s.vbat_mv = 3900; s.t_dc = T_CUTOFF_DC; ticks(&s, 1);
+    seam_stats(&s, 500, &rises, &bright);
+    CHECK(rises == 8 && bright == 48, "hot: a double blink every 125 ticks (1.95 s): %u, %u", rises, bright);
+}
+
+static void test_power(void)
+{
+    /* every way of turning off ends in sleep once the button is up and the flash is over */
+    vf_state_t s; logic_init(&s);
+    s.t_dc = 300; s.vbat_mv = 3900;
+    tap(&s); tap(&s); tap(&s); tap(&s);
+    CHECK(!s.on && s.want_sleep, "off by the fourth tap: sleeps");
+    tap(&s); ticks(&s, AUTO_OFF_TICKS);
+    CHECK(!s.on && s.want_sleep, "auto-off: sleeps");
+    tap(&s); s.vbat_mv = 3100; ticks(&s, 1);
+    CHECK(!s.on && s.want_sleep, "battery lock: sleeps");
+    s.vbat_mv = 3900; ticks(&s, 1);
+    tap(&s); s.vbus = true; ticks(&s, 2);
+    CHECK(!s.on && !s.want_sleep, "on USB: awake to show the charge");
+    s.vbus = false; ticks(&s, 1);
+    CHECK(s.want_sleep, "unplugged: sleeps");
+    /* N14 (known limitation): while the button is held down the MCU idles instead of
+     * sleeping; the LEDs stay off and it sleeps again on the release */
+    tap(&s); s.btn_down = true; ticks(&s, 2 * AUTO_OFF_TICKS);
+    CHECK(!s.on && !s.want_sleep, "button held: off, but no deep sleep (N14)");
+    s.btn_down = false; ticks(&s, DEBOUNCE_TICKS);
+    CHECK(!s.on && s.want_sleep, "released: sleeps");
+}
+
 int main(void)
 {
     test_levels(); test_bank_switch(); test_auto_off(); test_vbus(); test_thermal(); test_battery(); test_ntc();
     test_init_safe(); test_no_reading(); test_thermal_boundaries(); test_hot_lock_inputs(); test_ntc_faults();
-    test_stuck_button(); test_random_invariants();
+    test_stuck_button();
+    test_debounce(); test_tap_hold_boundary(); test_auto_off_exact(); test_auto_off_while_hot();
+    test_state_memory(); test_battery_boundaries(); test_vdd_conversion(); test_seam_patterns(); test_power();
+    test_random_invariants();
     if (fails) { printf("%d failure(s)\n", fails); return 1; }
     printf("all logic tests passed\n");
     return 0;

@@ -60,6 +60,13 @@ int16_t ntc_adc_to_dc(uint16_t adc)
     return 700;
 }
 
+uint16_t vdd_mv_from_adc(uint16_t adc)
+{
+    if (adc < VDD_ADC_MIN || adc > VDD_ADC_MAX)
+        return 0;
+    return (uint16_t)((1100UL * 1023UL) / adc);
+}
+
 static void button(vf_state_t *s, bool *tap, bool *hold)
 {
     *tap = *hold = false;
