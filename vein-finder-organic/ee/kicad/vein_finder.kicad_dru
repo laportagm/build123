@@ -2,6 +2,3 @@
 (rule "USB-C land pattern at the notch (USB4515 datasheet layout)"
   (constraint edge_clearance (min 0.15mm))
   (condition "A.Type == 'Pad' && A.intersectsCourtyard('J1')"))
-(rule "Ring LED lands at the horn slot"
-  (constraint edge_clearance (min 0.25mm))
-  (condition "A.Type == 'Pad' && (A.intersectsCourtyard('D2') || A.intersectsCourtyard('D7'))"))

@@ -50,7 +50,13 @@ LED_POCKET_LAND = 0.15          # tangentially the pocket runs 0.15 past the lan
 LED_COUNT = 12
 LED_BANK_ORDER = ("620", "660")   # banks at ring positions k = 0, 2, 4 and k = 1, 3, 5 (k = 0 at +-step/2):
                                   # the lower 625 nm parts take +-11.7 deg, where the sole is thinnest (1.81 mm)
-LED_EDGE_MARGIN = 0.25          # pad copper to the board edge
+LED_EDGE_MARGIN = 0.25          # pad copper to the board edge, radially (the window edge; the pads sit
+                                # off the LED's centre line, so the copper clears it by >= 0.3)
+LED_END_MARGIN = 0.31           # pad copper to the board edge at the two ends of the ring, where the
+                                # window meets the horn slot: the 0.3 mm copper-to-edge rule + 0.01
+                                # (tested on the real pads and the outline as cut: rounded, simplified)
+LED_PAD = (1.42, 1.75, 1.49)    # one land of the footprint: tangential, radial, centre offset; corners
+                                # rounded at 25 % of the short side (KiCad roundrect)
 # Murata NCP18XH103F03RB, 0603: (length, width, max height); lies radially at theta = 0
 NTC_PKG = (1.6, 0.8, 0.95)
 NTC_LAND = (2.8, 0.95)          # KiCad R_0603_1608Metric_Pad0.98x0.95mm_HandSolder

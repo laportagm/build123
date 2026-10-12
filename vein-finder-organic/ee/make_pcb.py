@@ -83,16 +83,12 @@ def project_file(path: Path):
     lib_tables(path.parent)
     # custom rule: the USB-C receptacle's land pattern (GCT USB4515 datasheet) puts its
     # pads 0.2 mm from the board notch it hangs in; everything else keeps the 0.3 mm rule
+    # (the outer ring LEDs are pulled in to clear it: cad/device/layout.py, LED_END_MARGIN)
     path.with_suffix(".kicad_dru").write_text(
         '(version 1)\n'
         '(rule "USB-C land pattern at the notch (USB4515 datasheet layout)"\n'
         '  (constraint edge_clearance (min 0.15mm))\n'
-        '  (condition "A.Type == \'Pad\' && A.intersectsCourtyard(\'J1\')"))\n'
-        # the two outermost ring LEDs (+-128.5 deg) sit where the window meets the horn slot:
-        # their lands are 0.27 mm from that edge
-        '(rule "Ring LED lands at the horn slot"\n'
-        '  (constraint edge_clearance (min 0.25mm))\n'
-        '  (condition "A.Type == \'Pad\' && (A.intersectsCourtyard(\'D2\') || A.intersectsCourtyard(\'D7\'))"))\n')
+        '  (condition "A.Type == \'Pad\' && A.intersectsCourtyard(\'J1\')"))\n')
 
 
 # the label the brief asks for on everything: underside silkscreen, on the free tail

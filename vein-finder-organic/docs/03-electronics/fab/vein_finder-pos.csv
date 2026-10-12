@@ -1,10 +1,10 @@
 Ref,Val,Package,PosX,PosY,Rot,Side
-"D2","660nm","LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder",98.569769,-85.630230,-141.500000,bottom
+"D2","660nm","LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder",99.181538,-85.164186,-143.900000,bottom
 "D3","660nm","LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder",112.627515,-81.827586,171.772727,bottom
 "D4","660nm","LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder",125.032406,-89.456413,125.045455,bottom
 "D5","660nm","LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder",125.032406,-110.543586,54.954545,bottom
 "D6","660nm","LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder",112.627515,-118.172413,8.227273,bottom
-"D7","660nm","LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder",98.569769,-114.369769,-38.500000,bottom
+"D7","660nm","LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder",99.181538,-114.835813,-36.100000,bottom
 "D8","625nm","LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder",105.205526,-82.275624,-164.863636,bottom
 "D9","625nm","LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder",119.618625,-84.359587,148.409091,bottom
 "D10","625nm","LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder",127.981067,-96.282250,101.681818,bottom

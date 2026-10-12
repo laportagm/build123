@@ -180,8 +180,16 @@ def dangling(it, others):
     """KiCad's test: an item covering both ends of a track counts only for the end nearer to
     its own anchors; a track is dangling unless both ends are covered."""
     if it.kind == "via":
-        return sum(1 for o in others if touch(it, o)) < 2
+        # a via must join copper on both layers (a pad, track or via that touches it there)
+        layers = set()
+        for o in others:
+            if touch(it, o):
+                pt = Point(it.anchors[0][1:])
+                layers |= {k for k, g in o.geoms.items() if g.distance(pt) < VIA_D / 2 + 1e-3}
+        return len(layers) < 2
     (k, ax, ay), (_, bx, by) = it.anchors
+    if math.hypot(bx - ax, by - ay) < 0.01:          # a stub of no length joins nothing
+        return True
     count = [0, 0]
     for o in others:
         if k not in o.geoms:

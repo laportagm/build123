@@ -144,10 +144,24 @@ class Layout:
         self.pcb_inner_r = float(np.nanmax([self._inner_r(a) for a in np.arange(-110, 111, 2.0)]))
         self.led_r = self.pcb_inner_r + P.LED_EDGE_MARGIN + lr / 2 + 0.02
         shrunk = env.buffer(-P.LED_EDGE_MARGIN)
+        # the ends of the ring: the real pads (rounded rectangles) against the board as it is
+        # cut, with its corners rounded as in _board() and simplified as in ee/make_pcb.py.
+        # Where the window meets the horn slot, the rounded corner comes closest.
+        cut = env.buffer(-P.PCB_CORNER_R, join_style=1).buffer(P.PCB_CORNER_R, join_style=1)
+        cut_edge = cut.simplify(0.02, preserve_topology=True).boundary
+        pw, ph, po = P.LED_PAD
+        rr = 0.25 * min(pw, ph)
+        pad0 = box(-pw / 2 + rr, -ph / 2 + rr, pw / 2 - rr, ph / 2 - rr).buffer(rr, 16)
 
         def fits(a):
             cx, cy = self.led_r * math.cos(math.radians(a)), self.led_r * math.sin(math.radians(a))
             return shrunk.contains(_rect(cx, cy, lt, lr, a))
+
+        def end_clear(a):
+            cx, cy = self.led_r * math.cos(math.radians(a)), self.led_r * math.sin(math.radians(a))
+            pads = [affinity.translate(affinity.rotate(affinity.translate(pad0, t, 0), a + 90, origin=(0, 0)), cx, cy)
+                    for t in (-po, po)]
+            return min(cut_edge.distance(q) for q in pads)
 
         a_max = 90.0
         while a_max < 179 and fits(a_max + 0.5):
@@ -159,6 +173,13 @@ class Layout:
         leds = []
         for k in range(n_half):
             a = (k + 0.5) * step
+            # only the outermost LEDs come near the rounded corner where the window meets the
+            # horn slot: pull such an LED in until its pads clear the edge rule.  The others
+            # keep the even spacing (their places set the sole's thickness over each dome).
+            while end_clear(a) < P.LED_END_MARGIN:
+                a = round(a - 0.1, 6)
+            if k == n_half - 1:
+                self.led_end_angle, self.led_end_clear = a, end_clear(a)
             for sgn in (1, -1):
                 aa = sgn * a
                 cx, cy = self.led_r * math.cos(math.radians(aa)), self.led_r * math.sin(math.radians(aa))
@@ -279,6 +300,10 @@ class Layout:
         lands = self.led_lands
         rep["led_land_gap_min"] = round(min(a.distance(b) for i, a in enumerate(lands) for b in lands[i + 1:]), 2)
         rep["ntc_land_fits"] = bool(env.buffer(-P.LED_EDGE_MARGIN).contains(self.ntc_land))
+        rep["led_end_pad_to_edge_mm"] = round(self.led_end_clear, 3)
+        rep["led_end_angle_deg"] = round(self.led_end_angle, 2)
+        rep["mag_hole_to_led_land"] = round(min(Point(m["x"], m["y"]).buffer(P.MAG_PCB_HOLE / 2, 64).distance(l)
+                                                for m in self.magnets for l in lands), 2)
         rep["ntc_to_led_land"] = round(min(self.ntc_land.distance(l) for l in lands), 2)
         rep["ntc_sole"] = round(self.under_part(self.ntc["x"], self.ntc["y"], P.NTC_LAND[0], P.NTC_LAND[1], 0.0), 2)
         rep["ntc_floor"] = round(rep["ntc_sole"] - P.NTC_PKG[2] - 0.15, 2)
