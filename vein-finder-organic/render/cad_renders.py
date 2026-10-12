@@ -8,6 +8,7 @@ Inputs: build/device/brep/*.brep (from cad/device/build.py).  Output: build/rend
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 import time
 from pathlib import Path
@@ -66,10 +67,10 @@ def cut(shape, keep_box):
         return None
 
 
-def go(name, meshes, origin, target, fov, res, spp, **kw):
+def go(name, meshes, origin, target, fov, res, spp, exposure=0.0, **kw):
     t = time.time()
-    sc = studio_scene(meshes, origin, target, fov=fov, res=res, spp=spp, **kw)
-    out = render(sc, OUT / f"{name}.png", exposure=kw.pop("exposure", 0.0) if "exposure" in kw else 0.0)
+    sc = studio_scene(meshes, origin, target, fov=fov, res=res, spp=spp, **kw)   # exposure is render's, not the scene's
+    out = render(sc, OUT / f"{name}.png", exposure=exposure)
     print(f"[render] {name} {time.time() - t:.0f}s", flush=True)
     return out
 
@@ -87,13 +88,13 @@ def zebra_env(path, n_stripes=26, w=2048, h=1024):
 def main(names, spp, scale):
     OUT.mkdir(parents=True, exist_ok=True)
     S = load()
-    zp = 4.1762
+    zp = json.loads((ROOT / "build" / "device" / "layout.json").read_text())["z_part"]   # waterline
     res = (int(1400 * scale), int(1000 * scale))
     tgt = np.array([17.0, 0.0, 10.0])
     if "magnets" in S:
         mags = S["magnets"].solids()
         cz = [m.center().Z for m in mags]
-        zmid = 4.1762 + 1.0
+        zmid = zp + 1.0                                   # PCB top: sole magnets below, top magnets above
         lo = [m for m, z in zip(mags, cz) if z < zmid]
         hi = [m for m, z in zip(mags, cz) if z >= zmid]
         # kept apart from S: only the assembly steps use the two halves

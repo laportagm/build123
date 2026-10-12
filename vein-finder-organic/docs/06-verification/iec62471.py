@@ -28,6 +28,8 @@ import math
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[1]
+OPT = json.loads((ROOT / "docs" / "03-electronics" / "optics.json").read_text())["assumptions"]
 D = 0.200
 DIE = 0.25e-3 * 1.5          # apparent source side, m
 A_SRC = DIE ** 2
@@ -50,8 +52,8 @@ def lamp(name, p_W, half_angle_deg, n_leds=6):
 
 
 def main():
-    # 660 nm: 12.3 mW at 20 mA (optics.py estimate), at the 27.1 mA worst-case ceiling
-    p660 = 12.3e-3 * 27.1 / 20.0
+    # 660 nm: optics.py's estimate (linear in current), at the 27.1 mA worst-case ceiling
+    p660 = OPT["p660_mW_at_23mA"] * 1e-3 * 27.1 / 23.0
     # 625 nm: upper bracket, 15 % wall-plug efficiency at 27.1 mA x 2.5 V (max Vf)
     p625 = 0.15 * 0.0271 * 2.5
     rows = [lamp("SunLED XZM2MR55W-3, 660 nm, 6 lit", p660, 20.0),

@@ -3,8 +3,9 @@ KiCad 7 PCB builder (pcbnew Python API) driven by design.py and the gate-2 layou
 
 Coordinates: device frame (mm, +x tail, +y left, window centre at the origin) mapped to
 the KiCad page with y flipped:  X = X0 + x,  Y = Y0 - y.  Footprint angles: a device-frame
-CCW angle a becomes KiCad -a.  Back-side parts are flipped after placement and their pad
-positions are checked numerically (`check_pads`).
+CCW angle a is the KiCad angle a on both sides (KiCad's angles are CCW as seen on screen,
+and the screen shows the device frame with y up).  Back-side parts are flipped after
+placement, and every placed pad is checked numerically (`check_transform`).
 """
 from __future__ import annotations
 

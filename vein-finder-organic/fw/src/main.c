@@ -104,13 +104,19 @@ static void rtc_init(void)
     rtc_pit(1);
 }
 
+/* WDT.CTRLA is synchronised to the WDT clock (2-3 cycles of 1.024 kHz): never write it
+ * while an earlier write is still being synchronised (sleep and wake can be ms apart) */
 static void wdt_on(void)
 {
+    while (WDT.STATUS & WDT_SYNCBUSY_bm)
+        ;
     _PROTECTED_WRITE(WDT.CTRLA, WDT_PERIOD_1KCLK_gc);              /* ~1 s */
 }
 
 static void wdt_off(void)
 {
+    while (WDT.STATUS & WDT_SYNCBUSY_bm)
+        ;
     _PROTECTED_WRITE(WDT.CTRLA, WDT_PERIOD_OFF_gc);
 }
 
@@ -171,10 +177,18 @@ static void deep_sleep(void)
     rtc_pit(0);
     wdt_off();
     set_sleep_mode(SLEEP_MODE_PWR_DOWN);                           /* ~0.1 uA; pins wake it */
-    sleep_enable();
-    sei();
-    sleep_cpu();
-    sleep_disable();
+    /* A press or USB power that arrived after the last tick has already been taken by the
+     * pin ISR, and its edge would no longer wake the part: sleep only if neither is there. */
+    cli();
+    uint8_t in = PORTA.IN;
+    if ((in & BTN) && !(in & VBUS)) {
+        sleep_enable();
+        sei();                                                     /* SLEEP runs before any pending ISR */
+        sleep_cpu();
+        sleep_disable();
+    } else {
+        sei();
+    }
     wdt_on();
     rtc_pit(1);
 }
@@ -207,6 +221,7 @@ int main(void)
         }
         if (s.want_sleep) {
             deep_sleep();
+            s.want_sleep = false;                                  /* stale: decide again on the next tick */
             slow = 15;                                             /* measure soon after waking */
         } else {
             set_sleep_mode(SLEEP_MODE_IDLE);                       /* TCA keeps running */

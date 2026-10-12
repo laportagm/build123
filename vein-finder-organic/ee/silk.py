@@ -103,7 +103,9 @@ class Side:
 
 def _place(text, side, cx, cy, spots, angles=(0.0, 90.0)):
     """Try the spots (device frame offsets from the courtyard box, sized for each angle) and
-    keep the first free one.  spots(w, h) -> [(x, y)]."""
+    keep the first free one.  spots(w, h) -> [(x, y)].  If none is free the text goes back
+    where it was (not to the last spot tried, which may be off the board)."""
+    pos0, ang0 = text.GetPosition(), text.GetTextAngleDegrees()
     for ang in angles:
         text.SetTextAngleDegrees(ang)
         text.SetPosition(kpt(cx, cy))
@@ -115,6 +117,8 @@ def _place(text, side, cx, cy, spots, angles=(0.0, 90.0)):
             if side.free(poly):
                 side.texts.append(poly)
                 return True
+    text.SetTextAngleDegrees(ang0)
+    text.SetPosition(pos0)
     return False
 
 

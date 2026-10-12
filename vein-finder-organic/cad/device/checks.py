@@ -7,7 +7,7 @@ Gate-2 verification on the real geometry.
   interference pairwise intersection volume of every part and stand-in
   mass         printed parts (PETG) + bought parts
   membrane     button press force: linear shallow-shell Ritz model of the real skin
-  magnets      closure pull of the four N42 magnet pairs (coaxial current-loop model)
+  magnets      closure pull of the four N35 magnet pairs (coaxial current-loop model)
 
 Units: mm, N, g.  Writes build/device/checks.json.
 """
@@ -456,8 +456,7 @@ def run(parts, shapes):
     rep["sole_floors"] = sole_floors(parts, shapes["sole"])
     print("[checks] sole floors", rep["sole_floors"], round(time.time() - t0, 1), "s", flush=True)
     rep["mass_g"] = mass_budget(shapes, parts)
-    skip = {("top_shell", "magnets"), ("sole", "magnets")}
-    rep["interference"] = interference(shapes, skip=())
+    rep["interference"] = interference(shapes)
     print("[checks] interference", rep["interference"], round(time.time() - t0, 1), "s", flush=True)
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "checks.json").write_text(json.dumps(rep, indent=1, default=float))

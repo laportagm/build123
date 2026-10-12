@@ -2,7 +2,7 @@
 Gate-2 parts (build123d / OpenCascade).
 
 Printed:
-  top_shell   warm-grey PETG, 1.8 mm wall; thin spots: light seam (0.7) and button skin (0.45)
+  top_shell   warm-grey PETG, 1.8 mm wall; thin spots: light seam (0.7) and button skin (0.40)
   sole        black PETG, light-tight optical sole with LED pockets, NTC and magnet pockets
   seam_mask   black PETG, light channel from the status LEDs to the seam slot
   bridge      black PETG, carries the tact switch under the button skin, stands on the PCB
@@ -33,7 +33,7 @@ def smoothstep5(t):
 
 
 def wall_thickness(x, y):
-    """Top-shell wall: 1.8 mm, thinning smoothly to 0.45 mm inside the button ellipse."""
+    """Top-shell wall: 1.8 mm, thinning smoothly to MEMBRANE_WALL (0.40 mm) inside the button ellipse."""
     a, b = P.BUTTON_AXES
     rho = np.sqrt(((x - BUTTON_XY[0]) / a) ** 2 + ((y - BUTTON_XY[1]) / b) ** 2)
     s = (rho - 1.0) * min(a, b) / P.MEMBRANE_TAPER
@@ -149,7 +149,7 @@ class Parts:
             pk = Pos(led["x"], led["y"], -3.0) * Rot(0, 0, led["angle"]) * bd.Box(pr, pt, zp + 3.01, align=C3)
             sole = sole - pk
         sole = _check(sole, "sole-leds")
-        # NTC: blind pocket over its land, lying radially; the floor left is the sensor window
+        # NTC: blind pocket over its land, lying tangentially; the floor left is the sensor window
         n = self.lay.ntc
         ntc_d = P.NTC_PKG[2] + 0.15
         sole = sole - Pos(n["x"], n["y"], zp - ntc_d) * Rot(0, 0, n["angle"]) * bd.Box(

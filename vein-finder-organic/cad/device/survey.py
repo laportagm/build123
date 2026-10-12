@@ -16,8 +16,6 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 def section_xy(solid, z, n=1600):
     import build123d as bd
-    sec = solid.intersect(bd.Plane.XY.offset(z).to_local_coords(bd.Plane.XY.offset(z)) if False else None) if False else None
-    # robust: slice with a thin box and take the face boundary
     from OCP.BRepAlgoAPI import BRepAlgoAPI_Section
     from OCP.gp import gp_Pln, gp_Pnt, gp_Dir
     s = BRepAlgoAPI_Section(solid.wrapped, gp_Pln(gp_Pnt(0, 0, z), gp_Dir(0, 0, 1)))

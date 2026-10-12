@@ -12,6 +12,9 @@ class Q(str):
     """A quoted string atom."""
 
 
+_UNESCAPE = {"n": "\n", "r": "\r"}
+
+
 def parse(text: str):
     i, n = 0, len(text)
     stack = [[]]
@@ -30,7 +33,8 @@ def parse(text: str):
             while j < n:
                 ch = text[j]
                 if ch == "\\" and j + 1 < n:
-                    buf.append(text[j + 1])
+                    nxt = text[j + 1]
+                    buf.append(_UNESCAPE.get(nxt, nxt))          # \n, \r as KiCad writes them
                     j += 2
                     continue
                 if ch == '"':
@@ -52,7 +56,7 @@ def parse(text: str):
 
 def _atom(a) -> str:
     if isinstance(a, Q):
-        return '"' + a.replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n") + '"'
+        return '"' + a.replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n").replace("\r", "\\r") + '"'
     if isinstance(a, float):
         s = f"{a:.4f}".rstrip("0").rstrip(".")
         return "0" if s in ("-0", "") else s

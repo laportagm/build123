@@ -55,6 +55,8 @@ Levels are fractions of each bank's cap, set as CTRL duty:
     1 °C margin.
   - The offset between the NTC and the face hottest spot is **not yet measured**. Gate 5
     has a bench procedure to calibrate it.
+  - An open sensor reads at full scale (below about −50 °C on the Beta model). The code
+    treats that as over-temperature: LEDs off, seam double-blinks.
 
 ## 3. Pins and peripherals
 
@@ -107,7 +109,7 @@ The default fuses are fine:
 | USB | LEDs off while USB is present, taps ignored, seam modes, sleeps once unplugged |
 | thermal | derating curve, cut-off at 41 °C, hysteresis back to 38 °C |
 | battery | warning, cut-off, lock-out and unlock |
-| NTC | table against the Beta model, worst 0.20 °C |
+| NTC | table against the Beta model, worst 0.20 °C; an open sensor locks the LEDs off |
 
 Not tested on hardware yet (no board exists): ADC readings, PWM levels and sleep current.
 Gate 5 lists the bench checks.

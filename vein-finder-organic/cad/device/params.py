@@ -57,7 +57,8 @@ LED_END_MARGIN = 0.31           # pad copper to the board edge at the two ends o
                                 # (tested on the real pads and the outline as cut: rounded, simplified)
 LED_PAD = (1.42, 1.75, 1.49)    # one land of the footprint: tangential, radial, centre offset; corners
                                 # rounded at 25 % of the short side (KiCad roundrect)
-# Murata NCP18XH103F03RB, 0603: (length, width, max height); lies radially at theta = 0
+# Murata NCP18XH103F03RB, 0603: (length, width, max height); lies tangentially at theta = 0,
+# just outside the LED ring (layout.py, _ntc)
 NTC_PKG = (1.6, 0.8, 0.95)
 NTC_LAND = (2.8, 0.95)          # KiCad R_0603_1608Metric_Pad0.98x0.95mm_HandSolder
 NTC_FLOOR = 0.7                 # PETG left between the NTC pocket and the skin face
@@ -86,7 +87,7 @@ SEAM_LED_COUNT = 5      # Lite-On LTST-C190KSKT 0603 amber LEDs on the PCB top, 
 
 # ----------------------------------------------------------------------------- button
 BUTTON_AXES = (10.0, 13.0)      # membrane semi-axes (x, y) at its thin face, inside the thumb dish
-MEMBRANE_TAPER = 2.0            # smooth (C2) run from the 0.45 mm skin to the full wall
+MEMBRANE_TAPER = 2.0            # smooth (C2) run from the 0.40 mm skin to the full wall
 SWITCH_BODY = (6.0, 6.0, 3.5)   # THT tact switch body (datasheet class)
 SWITCH_H = 5.0                  # base to actuator top (datasheet class)
 SWITCH_GAP = 0.05               # actuator top to membrane underside, nominal (shim to zero)

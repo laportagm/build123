@@ -14,13 +14,15 @@ import sys
 from pathlib import Path
 
 import numpy as np
+import shapely
 from shapely.geometry import Point, Polygon, box, shape
 from shapely.ops import unary_union
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "cad" / "device"))
 CACHE = ROOT / "build" / "device" / "room.npz"
-LAYOUT = json.loads((ROOT / "build" / "device" / "layout.json").read_text())
+LAYOUT_JSON = ROOT / "build" / "device" / "layout.json"
+LAYOUT = json.loads(LAYOUT_JSON.read_text())
 CLEAR_Z = 0.3          # part top to the shell's inner surface
 CLEAR_XY = 0.3         # part courtyard to a keep-out
 
@@ -49,7 +51,9 @@ class Room:
         cell = box(bt["x0"] - c, -bt["y"] - c, bt["x1"] + c, bt["y"] + c)   # the cell sits on the board here
         self.keepouts = dict(mask=mask, bosses=bosses, feet=feet, usb=usb, cell=cell)
         self.free_top = self.board.buffer(-0.3).difference(unary_union(list(self.keepouts.values())).buffer(CLEAR_XY))
-        if CACHE.exists():
+        # the height map comes from the CAD that also wrote layout.json: a cache older than
+        # layout.json may describe a superseded shell, so it is rebuilt
+        if CACHE.exists() and CACHE.stat().st_mtime >= LAYOUT_JSON.stat().st_mtime:
             d = np.load(CACHE)
             self.xs, self.ys, self.room = d["xs"], d["ys"], d["room"]
         else:
@@ -71,8 +75,7 @@ class Room:
         iy = (self.ys >= y0 - 0.25) & (self.ys <= y1 + 0.25)
         sub = self.room[np.ix_(iy, ix)]
         X, Y = np.meshgrid(self.xs[ix], self.ys[iy])
-        inside = np.array([poly.buffer(0.3).contains(Point(a, b)) for a, b in zip(X.ravel(), Y.ravel())],
-                          dtype=bool).reshape(X.shape)
+        inside = shapely.contains_xy(poly.buffer(0.3), X, Y)       # one buffer, vectorised
         vals = sub[inside]
         return float(np.nanmin(vals)) if vals.size else float("nan")
 

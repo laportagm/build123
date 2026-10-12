@@ -20,7 +20,8 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "docs" / "07-order"
 FAB = ROOT / "docs" / "03-electronics" / "fab"
 
-# board facts for the fab order (from the routed board; make_pcb.py checks them)
+# board facts for the fab order, copied by hand from the routed board and the project rules
+# (nothing re-checks them: update them whenever the board changes)
 BOARD = dict(size="85.8 × 54.5 mm", layers=2, thickness="1.0 mm", copper="1 oz (35 µm) outer",
              track="0.25 mm (0.2 mm minimum gap)", via="0.6 mm pad, 0.3 mm drill",
              holes="1.0 mm plated (6 locating pins); plated slots 0.6 × 1.2 and 0.6 × 1.6 mm (USB-C shell)",

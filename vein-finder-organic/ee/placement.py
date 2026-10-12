@@ -19,6 +19,7 @@ receptacle, and at most (shell headroom - 0.3 mm) tall.
 """
 from __future__ import annotations
 
+import functools
 import math
 import re
 from pathlib import Path
@@ -28,24 +29,33 @@ from shapely.geometry import box
 
 import design as D
 from room import LAYOUT, Room
+from sexp import first, parse
 
 HERE = Path(__file__).resolve().parent
 FPDIRS = [HERE.parent / "build" / "kicadlib" / "fp", HERE / "lib"]
 
 
+@functools.lru_cache(maxsize=None)
 def courtyard_local(fp):
-    """Courtyard rectangle of a footprint in its own frame (KiCad axes, y down)."""
+    """Courtyard rectangle of a footprint in its own frame (KiCad axes, y down): the bounds
+    of its F.CrtYd lines and rectangles, read with the S-expression parser."""
     lib, name = fp.split(":")
     for d in FPDIRS:
         f = d / f"{lib}.pretty" / f"{name}.kicad_mod"
         if f.exists():
-            t = f.read_text()
             xs, ys = [], []
-            for m in re.finditer(r'\(fp_(?:line|rect)[^\n]*?\(start ([-\d.]+) ([-\d.]+)\)[^\n]*?\(end ([-\d.]+) ([-\d.]+)\)'
-                                 r'[\s\S]*?\(layer "?F\.CrtYd"?\)', t):
-                a, b, c, e = map(float, m.groups())
-                xs += [a, c]
-                ys += [b, e]
+            for g in parse(f.read_text())[0]:
+                if not (isinstance(g, list) and g and g[0] in ("fp_line", "fp_rect")):
+                    continue
+                layer = first(g, "layer")
+                if layer is None or str(layer[1]) != "F.CrtYd":
+                    continue
+                for key in ("start", "end"):
+                    pt = first(g, key)
+                    xs.append(float(pt[1]))
+                    ys.append(float(pt[2]))
+            if not xs:
+                raise ValueError(f"{fp}: no F.CrtYd lines or rectangles")
             return min(xs), min(ys), max(xs), max(ys)
     raise FileNotFoundError(fp)
 
@@ -146,12 +156,11 @@ def place(verbose=True):
                 x, y = ax + rad * math.cos(t), ay + rad * math.sin(t)
                 for ang in angles:
                     pg = courtyard(part, x, y, ang, "F")
-                    trial = dict(polys)
-                    trial[ref] = (pg, part.h, "F")
-                    if not room.check({ref: trial[ref]}, EXEMPT) and not any(
+                    cand = (pg, part.h, "F")
+                    if not room.check({ref: cand}, EXEMPT) and not any(
                             pg.intersects(v[0]) for r, v in polys.items() if v[2] == "F"):
                         P[ref] = (round(x, 2), round(y, 2), ang, "F")
-                        polys[ref] = (pg, part.h, "F")
+                        polys[ref] = cand
                         done = True
                         break
                 if done:

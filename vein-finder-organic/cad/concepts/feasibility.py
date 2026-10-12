@@ -76,10 +76,12 @@ def battery_fit(st, dz, z_part, cell, on_sole=True, x_min=24.0):
     Every footprint sample must be inside the planform and clear of the window wall,
     and the top surface must leave room for cell + clearance + wall above it."""
     from matplotlib.path import Path as MplPath
+    from scipy.spatial import cKDTree
     t, w, L, m, cap = cell
     z_bot = z_part + (BAY_FOAM if on_sole else PCB_T + UNDER_BATT)
     z_need = z_bot + t + CLEAR + WALL_TOP
     inner = MplPath(st.boundary)
+    edge = cKDTree(st.boundary)                    # built once, queried for every placement
     best = None
     for orient, (lx, ly) in (("along", (L, w)), ("across", (w, L))):
         for x0 in np.arange(x_min, 64.0 - lx + 0.01, 0.5):
@@ -87,8 +89,7 @@ def battery_fit(st, dz, z_part, cell, on_sole=True, x_min=24.0):
             ys = np.linspace(-ly / 2, ly / 2, 17)
             X, Y = np.meshgrid(xs, ys)
             P = np.c_[X.ravel(), Y.ravel()]
-            from scipy.spatial import cKDTree
-            dist, _ = cKDTree(st.boundary).query(P)
+            dist, _ = edge.query(P)
             ok = inner.contains_points(P) & (dist >= WALL_TOP + CLEAR) & \
                 (np.hypot(P[:, 0], P[:, 1]) > 15.0 + WALL_TOP + CLEAR)
             if not ok.all():

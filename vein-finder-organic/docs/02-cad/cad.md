@@ -319,7 +319,7 @@ Fixed at the electronics gate, against this layout (`build/device/layout.json`):
 |---|---|
 | `step.zip` | STEP for each printed part, plus the coloured assembly |
 | `3mf/*.3mf` | print-ready meshes, already in print orientation |
-| `pcb/pcb_edge_cuts.dxf` | board outline and holes, layer Edge.Cuts, top view (y mirrored for KiCad) |
+| `pcb/pcb_edge_cuts.dxf` | board outline and magnet holes, layer Edge.Cuts, top view (y mirrored for KiCad); the locating pins are plated holes in the KiCad board, not cut-outs |
 | `pcb/layout.json` | positions of every LED, the NTC, status LEDs, magnet and pin holes, USB-C, button and battery bay |
 | `checks.json`, `g2.json` | raw verification output |
 | `renders/`, `figures/` | the images above |

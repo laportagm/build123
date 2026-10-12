@@ -5,13 +5,16 @@
  *   hold (>= 0.6 s)  switch bank (660 nm <-> 625 nm), make-before-break, seam flashes twice
  *   3 min without a press: off.   USB power present: LEDs off, seam shows the charge.
  *   NTC above 38 C: current falls linearly to 20 % at 40 C; at 41 C the LEDs go off until
- *   the face is back under 38 C.  Cell under 3.4 V: seam warns; under 3.2 V: LEDs off.
+ *   the face is back under 38 C (an open NTC counts as too hot).  Cell under 3.4 V: seam
+ *   warns; under 3.2 V: LEDs off.
  *
  * Personal prototype for bench evaluation - NOT a medical device.
  */
 #include "logic.h"
 
 #include <limits.h>
+
+static const uint16_t LEVEL_PERMILLE[3] = {400u, 700u, 1000u};
 
 void logic_init(vf_state_t *s)
 {
@@ -42,6 +45,8 @@ static const uint16_t NTC_TABLE[15] = {    /* computed by fw/tools/ntc_table.py 
 
 int16_t ntc_adc_to_dc(uint16_t adc)
 {
+    if (adc >= NTC_ADC_OPEN)                /* open sensor: fail safe, as if too hot */
+        return T_SENSOR_FAULT_DC;
     if (adc >= NTC_TABLE[0])
         return 0;
     for (uint8_t i = 1; i < 15; i++) {

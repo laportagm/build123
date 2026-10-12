@@ -127,7 +127,7 @@ class Sheet:
         def prop(name, val, dx, dy, hide=False):
             eff = ["effects", ["font", ["size", 1.27, 1.27]]]
             if hide:
-                eff.append(["hide", "yes"]) if False else eff.append("hide")
+                eff.append("hide")
             return ["property", Q(name), Q(val), ["at", snap(x + dx), snap(y + dy), 0], eff]
 
         ref_at = props.get("Reference")

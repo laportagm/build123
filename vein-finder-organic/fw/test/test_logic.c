@@ -63,8 +63,10 @@ static void test_auto_off(void)
     CHECK(s.on, "still on just before 3 min");
     ticks(&s, 20);
     CHECK(!s.on && s.ctrl_permille == 0, "off after 3 min idle");
-    unsigned ms = AUTO_OFF_TICKS * TICK_MS;
-    CHECK(ms >= 179000 && ms <= 181000, "auto-off %u ms", ms);
+    unsigned long ms = (unsigned long)AUTO_OFF_TICKS * TICK_US / 1000u;
+    CHECK(ms >= 179000 && ms <= 181000, "auto-off %lu ms", ms);
+    unsigned long hold_ms = (unsigned long)HOLD_TICKS * TICK_US / 1000u;
+    CHECK(hold_ms >= 580 && hold_ms <= 620, "hold %lu ms", hold_ms);
 }
 
 static void test_vbus(void)
@@ -129,6 +131,15 @@ static void test_ntc(void)
     }
     CHECK(worst < 0.35, "NTC table error %.2f C", worst);
     printf("  NTC conversion: worst error %.2f C over 5-65 C\n", worst);
+    /* open NTC (input at full scale): reported as a fault and locks the LEDs off */
+    CHECK(ntc_adc_to_dc(1023) == T_SENSOR_FAULT_DC && ntc_adc_to_dc(NTC_ADC_OPEN) == T_SENSOR_FAULT_DC,
+          "open NTC -> fault");
+    CHECK(ntc_adc_to_dc(NTC_ADC_OPEN - 1) == 0, "cold but plausible -> 0 C");
+    vf_state_t s; logic_init(&s);
+    s.t_dc = 300; s.vbat_mv = 3900;
+    tap(&s);
+    s.t_dc = ntc_adc_to_dc(1023); ticks(&s, 2);
+    CHECK(s.ctrl_permille == 0 && s.hot_lock && s.seam == SEAM_HOT, "open NTC: LEDs off, seam warns");
 }
 
 int main(void)

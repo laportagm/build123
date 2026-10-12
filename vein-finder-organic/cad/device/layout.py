@@ -362,7 +362,9 @@ class Layout:
         doc = ezdxf.new("R2000")
         doc.units = ezdxf.units.MM
         msp = doc.modelspace()
-        geoms = getattr(self.pcb, "geoms", [self.pcb])
+        # Edge.Cuts is the outline with the magnet holes only: the locating pins sit in plated
+        # holes (footprint pads), which must not also be routed out of the board
+        geoms = getattr(self.board_outline, "geoms", [self.board_outline])
         for g in geoms:
             for ring in [g.exterior] + list(g.interiors):
                 pts = np.asarray(ring.coords)

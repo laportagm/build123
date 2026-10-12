@@ -45,7 +45,7 @@ def rows():
         qty = max(f.qty_order, n) if f.qty_order else n
         price = f.price
         if f.ref.startswith("H"):
-            n_dev, desc = 6, "6 posts from one 40-pin header strip"
+            n_dev, desc = n, f"{n} posts from one 40-pin header strip"
             qty = 1
         else:
             n_dev, desc = n, _desc(f)

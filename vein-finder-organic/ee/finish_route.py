@@ -474,7 +474,7 @@ def connect(board, grid, items, net, starts, goals, rip_counts, txn, locked=()):
         via_hard |= grid.mask([it.geoms[k] for it in pads + fixed if k in it.geoms], via_inf)
     own = own_copper(items, net)
     via_soft = grid.mask([g for it in rippable for g in it.geoms.values()], via_inf)
-    for w in [x for x in (w0, 0.3, 0.25) if x <= w0]:
+    for w in dict.fromkeys(x for x in (w0, 0.3, 0.25) if x <= w0):     # each width once
         inf = CLR + w / 2 + MARGIN
         blk = [grid.edge(w / 2) | grid.mask([it.geoms[k] for it in other if k in it.geoms], inf) for k in (0, 1)]
         for (k, j, i) in starts | goals:
@@ -557,7 +557,7 @@ def join_net(board, grid, net, rips, log, txn, stack=()):
             rips[n] += 1
             if len(stack) > 4 or not join_net(board, grid, n, rips, log, txn, stack):
                 return False
-    return False
+    return len(clusters(snapshot(board), net)) < 2        # the last join may have finished it
 
 
 def settle(board, grid, txn, rips, log):
@@ -760,8 +760,12 @@ def stitch_gnd(board, rips, pitch=6.0, rounds=12, log=print):
             goals = poly_cells(grid, main[0], 0, 0.15) | poly_cells(grid, main[1], 1, 0.15)
             txn = Txn(board)
             res = connect(board, grid, items, "GND", starts, goals, rips, txn, locked=("GND",)) if goals else None
-            ok = res is not None and all(join_net(board, grid, rn, rips, log, txn, ("GND",)) for rn in res[1]) \
-                and settle(board, grid, txn, rips, log)
+            ok = res is not None
+            if ok:
+                for rn in res[1]:                    # count the rip-ups, as for islands below
+                    rips[rn] += 1
+                ok = all(join_net(board, grid, rn, rips, log, txn, ("GND",)) for rn in res[1]) \
+                    and settle(board, grid, txn, rips, log)
             if ok:
                 log(f"  GND pad {it.obj.GetParentFootprint().Cast().GetReference()}.{it.obj.GetNumber()}: "
                     f"{res[0]['tracks']} tracks, {res[0]['vias']} vias" + (f"; ripped {res[1]}" if res[1] else ""))

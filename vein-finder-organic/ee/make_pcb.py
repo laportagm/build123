@@ -196,7 +196,7 @@ def drc_summary(text):
     import re
     out = {}
     for key in ("violations", "unconnected pads", "footprint errors"):
-        m = re.search(rf"\*\* Found (\d+) (?:DRC )?{key}", text)
+        m = re.search(rf"\*\* Found (\d+) (?:DRC )?{key}", text, re.IGNORECASE)   # "Footprint errors"
         out[key] = int(m.group(1)) if m else None
     return out
 

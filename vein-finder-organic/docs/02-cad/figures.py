@@ -5,7 +5,7 @@ Gate-2 figures, drawn from the built model (not redrawn by hand):
   fig_section.png   true centre-line section (y = 0) through every part
 
 Palette: dataviz reference instance, light surface #fcfcfb.  Categorical slots in fixed
-order -- blue (660 nm bank), orange (620 nm bank), aqua (PCB), yellow (seam) -- validated
+order -- blue (660 nm bank), orange (625 nm bank), aqua (PCB), yellow (seam) -- validated
 with validate_palette.js (all checks pass; aqua/yellow are below 3:1 on the surface, so
 every element is also direct-labelled).  The room-above-PCB shading is a one-hue grey ramp.
 """
@@ -72,7 +72,7 @@ def fig_layout(lay, path):
     _poly(ax, lay.pcb, color=AQUA, lw=1.6, zorder=3)
     bx0, bx1, by = P.BATT_X0, P.BATT_X0 + P.BATT_W, P.BATT_L / 2
     ax.add_patch(plt.Rectangle((bx0, -by), P.BATT_W, P.BATT_L, fc="#ffffff", ec=INK, lw=1.0, zorder=3))
-    ax.text(0.5 * (bx0 + bx1), -15.5, "LiPo 600 mAh\n(on foam tape, on the sole)", ha="center", va="center",
+    ax.text(0.5 * (bx0 + bx1), -15.5, "LiPo 600 mAh\n(on foam tape, on the board)", ha="center", va="center",
             fontsize=8, color=INK2, zorder=6)
     # thumb dish and button skin
     ax.add_patch(Ellipse(BUTTON_XY, 2 * DISH["a"], 2 * DISH["b"], fc="none", ec=INK2, lw=0.9, ls=(0, (2, 2)), zorder=5))
@@ -97,7 +97,7 @@ def fig_layout(lay, path):
                 ha="center", arrowprops=dict(arrowstyle="-", color=MUTED, lw=0.7), zorder=6)
     for m in lay.magnets:
         ax.add_patch(plt.Circle((m["x"], m["y"]), P.MAG_D / 2, fc="#ffffff", ec=INK2, lw=1.0, zorder=5))
-    ax.annotate("magnet dowels ×4 (Ø6.35, N42)", xy=(-12, -23.9), xytext=(-8, -32.6), fontsize=8, color=INK2,
+    ax.annotate("magnet dowels ×4 (Ø6.35, N35)", xy=(-12, -23.9), xytext=(-8, -32.6), fontsize=8, color=INK2,
                 ha="center", arrowprops=dict(arrowstyle="-", color=MUTED, lw=0.7), zorder=6)
     u = lay.usb
     ax.add_patch(FancyBboxPatch((u["x_back"], -P.USB_W / 2), P.USB_L, P.USB_W, boxstyle="round,pad=0,rounding_size=1.2",
@@ -108,7 +108,7 @@ def fig_layout(lay, path):
     ax.text(-26.5, 25.6, "(2-layer, 1.0 mm)", color=INK2, fontsize=7.5)
     # legend for the two LED banks (identity is also by marker shape)
     ax.plot([], [], "s", mfc=BLUE, mec=SURFACE, ms=6.5, label="660 nm LED, PCB underside (bank A, ×6)")
-    ax.plot([], [], "D", mfc=ORANGE, mec=SURFACE, ms=5.5, label="620 nm LED, PCB underside (bank B, ×6)")
+    ax.plot([], [], "D", mfc=ORANGE, mec=SURFACE, ms=5.5, label="625 nm LED, PCB underside (bank B, ×6)")
     ax.plot([], [], "-", color=INK, lw=1.1, label="skin silhouette")
     ax.plot([], [], ls=(0, (4, 3)), color=MUTED, lw=0.8, label="cavity wall at PCB height")
     leg = ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.11), ncol=2, fontsize=7.5, frameon=False)
@@ -179,7 +179,7 @@ def fig_section(shapes, path, zp):
     ax.text(-8, zp + 0.35, "waterline / parting plane", color=INK2, fontsize=8)
     notes = [((54.5, 17.6), (58.0, 24.5), "wall 1.8 mm"), ((35.0, 22.2), (35.0, 28.2), "button skin 0.40 mm"),
              ((18.9, 11.4), (6.0, 18.5), "seam slot: 0.7 mm wall"), ((38.8, 18.0), (46.0, 27.6), "tact switch on the bridge"),
-             ((36.0, 7.5), (46.0, 1.0), "LiPo on foam on the sole"), ((61.7, 5.6), (63.0, 12.5), "USB-C landing"),
+             ((36.0, 7.5), (46.0, 1.0), "LiPo on foam on the board"), ((61.7, 5.6), (63.0, 12.5), "USB-C landing"),
              ((18.6, 3.8), (9.0, 1.0), "NTC pocket"), ((19.0, 7.0), (6.0, 11.5), "seam mask channel")]
     for xy, xyt, txt in notes:
         ax.annotate(txt, xy=xy, xytext=xyt, fontsize=8, color=INK2, ha="center",

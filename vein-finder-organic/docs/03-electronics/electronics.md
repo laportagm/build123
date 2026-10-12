@@ -82,9 +82,9 @@ Key choices:
 
 | Function | Part | Why | Verified |
 |---|---|---|---|
-| 660 nm LEDs | SunLED XZM2MR55W-3, 1206 dome, Digi-Key 1497-1364-1-ND | 30 mA, 1.6 mm wide radially, in stock | A: $0.462 @10, ~20,945 in stock |
-| 625 nm LEDs | SunLED XZM2CRK55W-3, 1206 dome, Digi-Key 1497-1405-1-ND | same package, 1.80 mm tall | A: $0.354 @10; stock 870–10,870 (snippets disagree) |
-| Boost driver | TI TPS61169DCKR, LCSC C71045 | 2.7 V minimum input, analog PWM dimming | A: 8,475–8,970 in stock; **Digi-Key: backorder** |
+| 660 nm LEDs | SunLED XZM2MR55W-3, 1206 dome, Digi-Key 1497-1364-1-ND | 30 mA, 1.6 mm wide radially, in stock | A: $0.48–0.54 @10, 3,264–17,861 in stock |
+| 625 nm LEDs | SunLED XZM2CRK55W-3, 1206 dome, Digi-Key 1497-1405-1-ND | same package, 1.80 mm tall | A: $0.326 @10, 16,312 in stock |
+| Boost driver | TI TPS61169DCKR, LCSC C71045 | 2.7 V minimum input, analog PWM dimming | A: 8,475–33,765 in stock; **Digi-Key: backorder** |
 | Charger | TI BQ21040DBVR, LCSC C202311 (Digi-Key 296-47315-1-ND) | 30 V input, OVP, open-drain status | A |
 | MCU | Microchip ATtiny1614-SSNR, Digi-Key ATTINY1614-SSNRCT-ND | SOIC-14, 1.8–5.5 V, UPDI | A: $0.90, 33,040 in stock |
 | USB-C | GCT USB4515-GF-A, Digi-Key 2073-USB4515-GF-ACT-ND | power-only, 6 pads at ≥ 1.0 mm pitch (easy with an iron) | A: $0.61, 11,429 in stock |
@@ -153,7 +153,7 @@ re-checked (§5 of [cad.md](../02-cad/cad.md) and `checks.json`):
 |---|---|
 | Board | 2 layers, FR-4 **1.0 mm**, 1 oz; 85.8 × 54.5 mm, 30.0 cm²; outline taken from the CAD (`build/device/layout.json`), with the four magnet holes and the USB-C notch |
 | Parts | 52 on top (MCU, driver, charger, status LEDs, passives, wire pads), 13 underneath (the 12 ring LEDs and the NTC) |
-| Rules | 0.2 mm clearance; tracks 0.25 mm (signals and LED strings), 0.45 mm (VBAT, VBUS, SW, VOUT), 0.3 mm (GND); vias 0.6 / 0.3 mm; copper 0.3 mm from the board edge, with two exceptions below |
+| Rules | 0.2 mm clearance; tracks 0.25 mm (signals and LED strings), 0.45 mm (VBAT, VBUS, SW, VOUT), 0.3 mm (GND); vias 0.6 / 0.3 mm; copper 0.3 mm from the board edge, with one exception below |
 | Routing | 1.59 m of track (0.94 m top, 0.65 m underside), 144 vias (72 of them GND stitching) |
 | Pours | GND on both layers, stitched: every island of either pour reaches the main underside plane |
 | **DRC** | **0 errors, 0 unconnected** (KiCad 7.0.11). 12 warnings, all of one kind, explained below |
@@ -315,7 +315,7 @@ positions and 500 lx room light, half shaded by the stone.
 | `docs/03-electronics/budget.py`, `optics.py` | the numbers in §5 |
 | `ee/lib/` | project symbols and footprints (`libgen.py`) |
 | `ee/finish_route.py`, `ee/silk.py` | routing finisher and GND stitching; silkscreen tidy-up |
-| `ee/kicad/vein_finder.kicad_dru`, `fp-lib-table` | the two edge-clearance exceptions; library table for `build/kicadlib` |
+| `ee/kicad/vein_finder.kicad_dru`, `fp-lib-table` | the USB-C edge-clearance exception; library table for `build/kicadlib` |
 
 ```sh
 cd vein-finder-organic
