@@ -22,11 +22,15 @@ PCB_LEVELS = (0.0, 0.35, 0.7, 1.0, 1.3)   # heights above the waterline the outl
 PCB_CORNER_R = 1.0
 
 # ----------------------------------------------------------------------------- battery
-# Jauch LP503040JH, 600 mAh, protected (datasheet max incl. PCM): 5.4 x 30.5 x 42.0
+# Jauch LP503040JH, 600 mAh, protected (Digi-Key: 42.0 x 30.5 x 5.4 incl. PCM).
+# Gate 3: the cell sits ON the board, on foam tape.  The gate-2 board had a bay cut-out
+# for a cell on 0.4 mm tape on the sole; the only tape sold at the four distributors is
+# 1.0-1.6 mm (Adafruit 5019), and the cut-out split the board into halves that could not
+# be routed.  The board under the cell is a component keep-out (traces only).
 BATT_T, BATT_W, BATT_L = 5.4, 30.5, 42.0
 BATT_X0 = 21.0          # front edge; the cell lies across (42 mm along y)
-BATT_FOAM = 1.6         # double-sided foam tape on the sole (Adafruit 5019: 1.0-1.6 mm, see BOM)
-BATT_CLEAR = 0.4        # PCB cut-out clearance around the cell
+BATT_FOAM = 1.6         # double-sided foam tape on the board (Adafruit 5019: 1.0-1.6 mm)
+BATT_CLEAR = 0.4        # component keep-out margin around the cell on the board
 BATT_TOP_CLEAR = 0.4    # cell top to anything above it
 
 # ----------------------------------------------------------------------------- LEDs

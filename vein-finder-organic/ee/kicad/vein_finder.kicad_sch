@@ -1,7 +1,7 @@
 (kicad_sch
   (version 20230121)
   (generator eeschema)
-  (uuid "3b00838e-7e9e-4449-853b-55e98a3feb20")
+  (uuid "4c495d07-00c4-411f-8a56-6368ecb66324")
   (paper "A3")
   (title_block
     (title "Vein finder (organic) - main board")
@@ -923,73 +923,73 @@
     (end 149.86 128.27)
     (stroke (width 0.15) (type dash))
     (fill (type none))
-    (uuid "053aadfc-e17a-4580-8852-b020bea7d85a"))
+    (uuid "9bb8bf07-6b63-4263-9210-846595a20af5"))
   (text "USB-C input, charger, cell"
     (at 16.51 25.4 0)
     (effects (font (size 2 2) bold) (justify left bottom))
-    (uuid "2441c460-f32c-4056-9816-e5b9b185b0cb"))
+    (uuid "1f1995ff-7b3e-428c-8c5a-84b341e9e6fc"))
   (rectangle
     (start 154.94 20.32)
     (end 289.56 128.27)
     (stroke (width 0.15) (type dash))
     (fill (type none))
-    (uuid "4ec2f748-ba76-47d9-8eda-19b80b1b93ac"))
+    (uuid "795483c2-dbb5-4f63-93c0-ced8a4b692ae"))
   (text "Microcontroller, button, programming"
     (at 157.48 25.4 0)
     (effects (font (size 2 2) bold) (justify left bottom))
-    (uuid "33011e2a-74b1-46a8-879e-7348af9714ba"))
+    (uuid "c97c8163-1629-4047-a3be-12602501082c"))
   (rectangle
     (start 294.64 20.32)
     (end 410.21 128.27)
     (stroke (width 0.15) (type dash))
     (fill (type none))
-    (uuid "d8bc95a9-d357-460b-9c55-2aee0021ad7f"))
+    (uuid "fd2b61f8-60c5-42e8-adb4-8903c376fffe"))
   (text "Boost LED driver and bank select"
     (at 297.18 25.4 0)
     (effects (font (size 2 2) bold) (justify left bottom))
-    (uuid "b6848617-f126-40c0-9383-61b1d0d5d990"))
+    (uuid "524de080-fa0d-4eb2-a651-cd2503781372"))
   (rectangle
     (start 15.24 138.43)
     (end 214.63 281.94)
     (stroke (width 0.15) (type dash))
     (fill (type none))
-    (uuid "f08da3aa-2b10-4221-918a-9a123c970747"))
+    (uuid "9053b27e-8730-4ddb-b3d1-91aff6dad621"))
   (text "LED ring (PCB underside): string A 660 nm, string B 625 nm"
     (at 16.51 143.51 0)
     (effects (font (size 2 2) bold) (justify left bottom))
-    (uuid "b1a14e04-862f-4297-97b0-66e7cd6521c8"))
+    (uuid "faa2fe37-195e-404a-9925-99b4d1a312fb"))
   (rectangle
     (start 219.71 138.43)
     (end 299.72 281.94)
     (stroke (width 0.15) (type dash))
     (fill (type none))
-    (uuid "bdb24dad-c9f3-4c28-b8de-7f62063e81de"))
+    (uuid "12b89566-3d70-4dcd-99ac-1fa88e5d3627"))
   (text "Status seam"
     (at 222.25 143.51 0)
     (effects (font (size 2 2) bold) (justify left bottom))
-    (uuid "9530df79-a21c-424c-810e-8b6a35f4ceb2"))
+    (uuid "261b99d1-09eb-4ee7-8394-e866408717df"))
   (rectangle
     (start 304.8 138.43)
     (end 410.21 237.49)
     (stroke (width 0.15) (type dash))
     (fill (type none))
-    (uuid "d8ab2700-2978-4f9c-a771-03e348fde526"))
+    (uuid "b6233b4a-2456-4c6d-ba10-15a9bb61a294"))
   (text "Temperature sense, locating pins"
     (at 307.34 143.51 0)
     (effects (font (size 2 2) bold) (justify left bottom))
-    (uuid "b6a17c8a-7abf-4042-8343-9cd52239cae5"))
+    (uuid "d7f84aa7-f484-43e4-9c4a-221434391aad"))
   (text "BQ21040: I_CHG = 540 / 2.2k = 245 mA (0.41C); 4.20 V; IN 30 V abs max, OVP 6.6 V"
     (at 16.51 124.46 0)
     (effects (font (size 1.5 1.5)) (justify left bottom))
-    (uuid "1481ea47-b971-4597-b9f2-cce4fc164b03"))
+    (uuid "747230bc-54ea-4e6d-a14c-fb3471772423"))
   (text "I_LED max = VREF / R9 = 204 mV / 8.2 = 24.9 mA (22.9-26.8); CTRL PWM 20 kHz"
     (at 297.18 124.46 0)
     (effects (font (size 1.5 1.5)) (justify left bottom))
-    (uuid "51b2e58a-2669-4d96-ab6c-2d0f29367f70"))
+    (uuid "a6339c53-4081-4c7f-aef6-a5282124e9eb"))
   (text "RT1 sits in the sole's 0.7 mm sensor window"
     (at 307.34 234.95 0)
     (effects (font (size 1.5 1.5)) (justify left bottom))
-    (uuid "c388443e-c55a-4ee4-80a4-f4907774ebb5"))
+    (uuid "58cc0aa6-c072-40e7-80cf-76ee7180110c"))
   (symbol
     (lib_id "Connector:USB_C_Receptacle_PowerOnly_6P")
     (at 35.56 59.69 0)
@@ -997,7 +997,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "213e4bb5-3bf8-4fee-a940-de0c1d047f78")
+    (uuid "7ce08ad8-c804-4b75-a97a-e0c23cf8897e")
     (property "Reference" "J1" (at 35.56 43.18 0) (effects (font (size 1.27 1.27))))
     (property "Value" "USB-C power-only" (at 35.56 45.72 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -1023,78 +1023,78 @@
       "A: $0.61 @1, 11,429 in stock (digikey.com snippet); Mouser $0.67, 4,086 (snippet, PN NV)"
       (at 35.56 59.69 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "A12" (uuid "446cf0b4-d785-4534-8c1e-d79e6842fbf7"))
-    (pin "A5" (uuid "afc2b1d8-f44e-499a-b083-1e8cb39a4dea"))
-    (pin "A9" (uuid "daddb5cf-7579-47de-b39a-5bebca38495c"))
-    (pin "B12" (uuid "6d82152e-a780-42f5-8190-c82f2548f426"))
-    (pin "B5" (uuid "5e60f6d7-3be1-4aac-a6e9-314f83697967"))
-    (pin "B9" (uuid "89d62ca8-0ced-4de8-9c8d-d0264c295aef"))
-    (pin "S1" (uuid "4d3cb0af-bf59-4ec5-a398-15c5e55f444a"))
+    (pin "A12" (uuid "417c0750-d768-4630-96a5-1df53a9c5d20"))
+    (pin "A5" (uuid "880c21a6-55bc-4650-9c1c-564d1ba89136"))
+    (pin "A9" (uuid "e02d4b6c-b118-4121-a57a-c9adb09f058f"))
+    (pin "B12" (uuid "9f677b35-80fe-48f9-a619-ee71a90a9af0"))
+    (pin "B5" (uuid "b762eb4b-6536-4bec-adee-5d4fbe8af0dd"))
+    (pin "B9" (uuid "e0d0c99f-89e3-40cf-b5a9-f479652782b8"))
+    (pin "S1" (uuid "a251021b-054c-40c4-9106-ee1d35035d19"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "J1") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "J1") (unit 1)))))
   (wire
     (pts (xy 35.56 77.47) (xy 35.56 80.01))
     (stroke (width 0) (type default))
-    (uuid "a50ef393-c29a-4221-94de-f79f29bdc556"))
+    (uuid "05ca08e3-6549-41b6-bbf4-d2af4ac7f488"))
   (label "GND"
     (at 35.56 80.01 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "f62ab258-a890-45ea-828e-f92f67b1b265"))
+    (uuid "5a9f87a8-5786-45f5-8f39-3353d77c3478"))
   (wire
     (pts (xy 50.8 64.77) (xy 53.34 64.77))
     (stroke (width 0) (type default))
-    (uuid "ff8a8ff4-b7bb-4b94-843b-7c2079c46a0c"))
+    (uuid "9cc10890-9c5a-4d93-b38b-5935ec09dd3a"))
   (label "CC1"
     (at 53.34 64.77 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "e6dfc305-3c6a-40cc-883d-6b18cbb2d112"))
+    (uuid "aa1f554f-2d9a-40c0-91fc-f8e34faee089"))
   (wire
     (pts (xy 50.8 52.07) (xy 53.34 52.07))
     (stroke (width 0) (type default))
-    (uuid "8ff647b3-6f4e-4221-ad6d-5f7bfdca82fd"))
+    (uuid "b7e37458-8bb6-42c9-92f9-fdefa73d697d"))
   (label "VBUS"
     (at 53.34 52.07 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "b76e33ea-790a-4309-857c-f7daf3690cc5"))
+    (uuid "551ef0a1-585f-4401-861f-be17bd79fd37"))
   (wire
     (pts (xy 35.56 77.47) (xy 35.56 80.01))
     (stroke (width 0) (type default))
-    (uuid "6f771b5d-6f77-452a-b127-a087a159a9a7"))
+    (uuid "8109db09-44a6-454c-a648-e7131b1df546"))
   (label "GND"
     (at 35.56 80.01 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "cbebc987-9aff-459d-b700-011f7a6e6b87"))
+    (uuid "1f519987-d388-4f43-a5ba-79f835280a46"))
   (wire
     (pts (xy 50.8 67.31) (xy 53.34 67.31))
     (stroke (width 0) (type default))
-    (uuid "0d699ca2-6f69-4b07-a347-6dc214452292"))
+    (uuid "505e3f4b-3ec6-4b81-aae7-be1957d2f1b4"))
   (label "CC2"
     (at 53.34 67.31 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "74ebcc3e-a335-43a6-9f17-c889be466e47"))
+    (uuid "53e87099-2a6e-46f2-9005-a44759f0bd00"))
   (wire
     (pts (xy 50.8 52.07) (xy 53.34 52.07))
     (stroke (width 0) (type default))
-    (uuid "1ae75f61-4cb7-4fae-86c6-0d675a6a8432"))
+    (uuid "949c6582-2444-439a-963b-fb10d2836717"))
   (label "VBUS"
     (at 53.34 52.07 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "80d9bfe6-a177-426a-85a7-da585d7d8314"))
+    (uuid "26cdb0b4-e16e-43de-8bef-6544d63108d6"))
   (wire
     (pts (xy 27.94 77.47) (xy 27.94 80.01))
     (stroke (width 0) (type default))
-    (uuid "b3c341b3-f616-4786-b45c-ec5cf3f0ab6c"))
+    (uuid "875a66d6-fc10-4ab2-a1d2-4340ad0405bc"))
   (label "GND"
     (at 27.94 80.01 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "3f43edc4-fe73-4f3e-b050-5ae8aab8ded4"))
+    (uuid "313af70a-faed-4ebc-971b-859ca1d98170"))
   (symbol
     (lib_id "Device:R")
     (at 35.56 100.33 0)
@@ -1102,7 +1102,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "f7ea09a6-a603-4a6c-b01e-51cb5e7ff972")
+    (uuid "0a67866d-0ba4-4120-b36a-2257d4109c81")
     (property "Reference" "R1" (at 38.1 100.33 0) (effects (font (size 1.27 1.27))))
     (property "Value" "5.1k" (at 35.56 100.33 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -1122,28 +1122,28 @@
       "A: $0.0012-0.0016 @100+, 2.4-4.0 M in stock (snippets)"
       (at 35.56 100.33 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "c6144124-6483-42c2-bd14-948900d43719"))
-    (pin "2" (uuid "209ccbe2-1990-4ad6-bb3b-8d62a4193844"))
+    (pin "1" (uuid "b07c4a50-2887-455f-b72b-ca65758746ab"))
+    (pin "2" (uuid "e81f3612-64dc-465f-8b8a-c61262010b0d"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "R1") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "R1") (unit 1)))))
   (wire
     (pts (xy 35.56 96.52) (xy 35.56 93.98))
     (stroke (width 0) (type default))
-    (uuid "2b39ff0d-efb6-4539-bad5-3b319cb01807"))
+    (uuid "afad4292-b1e1-41fb-8927-8644af11c248"))
   (label "CC1"
     (at 35.56 93.98 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "cbebbab3-10a0-4e97-91b9-913806f0620a"))
+    (uuid "32ae3e74-8fe5-4006-bd9c-b9f95bb67245"))
   (wire
     (pts (xy 35.56 104.14) (xy 35.56 106.68))
     (stroke (width 0) (type default))
-    (uuid "0f9ddb23-a85b-456a-9b53-16abcb19ab74"))
+    (uuid "0b69bf5e-a58e-48b8-8a50-3f08ac8cb610"))
   (label "GND"
     (at 35.56 106.68 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "6ff4f671-879e-4fd3-8194-c624d53dec9d"))
+    (uuid "6551a721-bbdb-4489-a774-3c596a391e2c"))
   (symbol
     (lib_id "Device:R")
     (at 49.53 100.33 0)
@@ -1151,7 +1151,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "f2f1a853-e7cc-4515-a472-24527145f66b")
+    (uuid "0dc74803-7dc0-4b9c-a80e-d2e9a0a7636b")
     (property "Reference" "R2" (at 52.07 100.33 0) (effects (font (size 1.27 1.27))))
     (property "Value" "5.1k" (at 49.53 100.33 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -1168,28 +1168,28 @@
       (at 49.53 100.33 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see R1" (at 49.53 100.33 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "635368a1-a6e3-4a34-91a7-bf29e9a12a1d"))
-    (pin "2" (uuid "42f42b07-11c6-408d-a2c6-33629b8af8c4"))
+    (pin "1" (uuid "a1b6735b-27ec-4193-9a4d-edc27400c14c"))
+    (pin "2" (uuid "97e0ff52-f36f-4cbc-bbeb-9365ca25d3fc"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "R2") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "R2") (unit 1)))))
   (wire
     (pts (xy 49.53 96.52) (xy 49.53 93.98))
     (stroke (width 0) (type default))
-    (uuid "9d0ad21d-efd3-4520-aa20-edfa4399a11a"))
+    (uuid "f9b821a6-9e91-4049-9d2e-3dfe64b003c8"))
   (label "CC2"
     (at 49.53 93.98 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "f0ad2bb8-7417-44f1-be36-6377ff2b572c"))
+    (uuid "e1b848b8-4244-439f-b95c-fe09374f6796"))
   (wire
     (pts (xy 49.53 104.14) (xy 49.53 106.68))
     (stroke (width 0) (type default))
-    (uuid "365be38a-b7c0-484b-a936-856ef3926d66"))
+    (uuid "5000eb6c-386d-4fe7-b7a8-96bb3d54ce14"))
   (label "GND"
     (at 49.53 106.68 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "db0e1628-590c-4994-99e4-1f60f5cd668a"))
+    (uuid "559c1800-b2f0-45d5-a9fa-ee7c3f8b212c"))
   (symbol
     (lib_id "vf:BQ21040DBV")
     (at 95.25 59.69 0)
@@ -1197,7 +1197,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "4532e391-367a-49e9-9b07-515e9c9f32c1")
+    (uuid "5762d316-5b9b-4176-b812-ff44949b2ec8")
     (property "Reference" "U2" (at 95.25 50.8 0) (effects (font (size 1.27 1.27))))
     (property "Value" "BQ21040DBVR" (at 95.25 68.58 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -1223,68 +1223,68 @@
       "A: $0.3148-0.3303 @5+ (MOQ 5), 960-2,860 in stock (snippets); datasheet SLUSCE2D read"
       (at 95.25 59.69 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "6" (uuid "16fb8cf3-964b-4a2c-8e24-6c689ad5dca7"))
-    (pin "1" (uuid "81fc328a-a908-4fed-884f-3d3d50fe5ebd"))
-    (pin "4" (uuid "f473d4c1-fa64-40dc-9364-3011c450bea3"))
-    (pin "2" (uuid "afff4a82-d479-4406-afd4-460451e7f441"))
-    (pin "3" (uuid "9796d5b5-3e6b-44d2-b73a-f772986697b2"))
-    (pin "5" (uuid "ca7b0fbd-f757-466b-892d-b21d0b781a54"))
+    (pin "6" (uuid "b1fa229d-643a-4521-932a-180701c9cc32"))
+    (pin "1" (uuid "73d628a5-980b-4cab-844e-22b571817744"))
+    (pin "4" (uuid "e1787b24-a925-43ad-9e2b-42de1ebbafa4"))
+    (pin "2" (uuid "35c20d69-3b86-4914-84ff-939b49fdcb0f"))
+    (pin "3" (uuid "9390ece6-241d-4570-a1c9-cb416f83787e"))
+    (pin "5" (uuid "0adaf057-9668-4a14-9607-667fb4c173db"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "U2") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "U2") (unit 1)))))
   (wire
     (pts (xy 87.63 57.15) (xy 85.09 57.15))
     (stroke (width 0) (type default))
-    (uuid "293ae462-d13b-4780-b323-e2259d5f2da1"))
+    (uuid "e82a0dd6-59f9-45d2-a6a4-d3c8e01a186f"))
   (label "VBUS"
     (at 85.09 57.15 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "dba3be0f-4306-4ec5-b48b-5dc1c9224ee2"))
+    (uuid "6b562aae-9384-43ac-a1c2-de790b4ee207"))
   (wire
     (pts (xy 87.63 59.69) (xy 85.09 59.69))
     (stroke (width 0) (type default))
-    (uuid "46770aaa-dc92-4895-9e89-2bfdf5f17700"))
+    (uuid "cd1cff55-825d-4435-a881-89476afd2f88"))
   (label "TS"
     (at 85.09 59.69 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "3cc43690-4700-483e-ba6f-712279b4f9da"))
+    (uuid "783c8bd1-e883-4c21-b019-6ebd0499a5f9"))
   (wire
     (pts (xy 87.63 62.23) (xy 85.09 62.23))
     (stroke (width 0) (type default))
-    (uuid "9ddf615e-fc3e-4fcb-b69f-870c8b7ff0c5"))
+    (uuid "5e9f0dcf-1cef-479f-98b0-f6b26188fc84"))
   (label "ISET"
     (at 85.09 62.23 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "fb55b34f-ecc0-4032-a502-5cceafbbb30c"))
+    (uuid "b951b4c8-43d8-4c99-bae2-8e8b6df4bf7f"))
   (wire
     (pts (xy 102.87 57.15) (xy 105.41 57.15))
     (stroke (width 0) (type default))
-    (uuid "30a14b81-3d65-4156-9a7a-d055d441441b"))
+    (uuid "5e172632-313c-4929-8789-049431b40b45"))
   (label "VBAT"
     (at 105.41 57.15 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "d2831aaa-58bf-47e1-8431-de49454a1649"))
+    (uuid "ab1842f3-6a40-4d96-adea-ca2faf5bd65c"))
   (wire
     (pts (xy 102.87 59.69) (xy 105.41 59.69))
     (stroke (width 0) (type default))
-    (uuid "311f51f7-2059-447c-98df-d3e6e4fb29a2"))
+    (uuid "627a86a5-d82f-4b36-bdf2-196a0f63c35d"))
   (label "CHG_STAT"
     (at 105.41 59.69 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "fb39d893-4b91-4146-871c-6b8b0eee9e5f"))
+    (uuid "c0f8d563-640c-4251-9968-1b50b543a4b1"))
   (wire
     (pts (xy 95.25 67.31) (xy 95.25 69.85))
     (stroke (width 0) (type default))
-    (uuid "160c4e09-4513-43e4-b7e2-e6c3e209d48a"))
+    (uuid "e4eb3a48-e72d-40be-bff7-0e4c73595242"))
   (label "GND"
     (at 95.25 69.85 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "2af9e0f7-15fa-4c52-b756-cd7e603a9841"))
+    (uuid "f3f4a1e9-f74e-40e4-9b36-0ecc032a96cb"))
   (symbol
     (lib_id "Device:R")
     (at 80.01 100.33 0)
@@ -1292,7 +1292,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "dc80276f-4cda-43d1-bcca-082891b5fcfd")
+    (uuid "36fd50a9-2181-460c-adcc-2b9d81af5b75")
     (property "Reference" "R3" (at 82.55 100.33 0) (effects (font (size 1.27 1.27))))
     (property "Value" "2.2k" (at 80.01 100.33 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -1312,28 +1312,28 @@
       "A: $0.0013-0.0015 @100+, 0.47-3.7 M in stock (snippets)"
       (at 80.01 100.33 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "d8f9aaf5-0e51-4e31-85be-618964f442a6"))
-    (pin "2" (uuid "548d6d97-9c7d-4637-89ef-9792256bb564"))
+    (pin "1" (uuid "38105e1d-6a0a-40a6-92f8-2696129339ba"))
+    (pin "2" (uuid "fabe1884-86ce-4392-a1b6-dc3b70fd5736"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "R3") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "R3") (unit 1)))))
   (wire
     (pts (xy 80.01 96.52) (xy 80.01 93.98))
     (stroke (width 0) (type default))
-    (uuid "c4878ebc-d8e6-4889-86cc-1e067279e685"))
+    (uuid "eb9f0145-54f0-42ab-9a78-985e72550f84"))
   (label "ISET"
     (at 80.01 93.98 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "f58e4da3-b273-4477-aa53-c9d053d38381"))
+    (uuid "49362925-dae0-4522-95b4-d511c1ff75fa"))
   (wire
     (pts (xy 80.01 104.14) (xy 80.01 106.68))
     (stroke (width 0) (type default))
-    (uuid "230a4474-239a-4f5b-90c1-2a8f05facc13"))
+    (uuid "47550926-6560-4656-82db-39afa84e73ec"))
   (label "GND"
     (at 80.01 106.68 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "89233651-cfa4-4d26-9e9f-f665a225b0df"))
+    (uuid "7ddbd3c1-6a29-4f1a-b33c-fa9a6d05daed"))
   (symbol
     (lib_id "Device:R")
     (at 95.25 100.33 0)
@@ -1341,7 +1341,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "5d3c9e41-c540-41c8-ab8f-faae3e196c65")
+    (uuid "1d2b85e8-f2fe-4578-8eea-b24ae94f315a")
     (property "Reference" "R4" (at 97.79 100.33 0) (effects (font (size 1.27 1.27))))
     (property "Value" "10k" (at 95.25 100.33 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -1361,28 +1361,28 @@
       "A: $0.0014 @100+, 9.03 M in stock (snippet)"
       (at 95.25 100.33 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "197700c2-2185-4b0d-a649-ffb850a3fd6f"))
-    (pin "2" (uuid "09cb41a9-1618-44d9-ac05-8f036fd5ac06"))
+    (pin "1" (uuid "c20290de-7e98-403d-93e8-ab9fd7cc74dc"))
+    (pin "2" (uuid "97f9101a-6e05-4d42-9c49-a5f147b8f613"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "R4") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "R4") (unit 1)))))
   (wire
     (pts (xy 95.25 96.52) (xy 95.25 93.98))
     (stroke (width 0) (type default))
-    (uuid "89ae3477-44b1-45bf-8698-0239698a531c"))
+    (uuid "0e66e307-729d-4844-b74f-e07a042b584a"))
   (label "TS"
     (at 95.25 93.98 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "1e74c534-e5f6-4e81-be43-5394d95bc6ca"))
+    (uuid "3c0ce77f-57f7-4adc-a643-ff6b212a6b38"))
   (wire
     (pts (xy 95.25 104.14) (xy 95.25 106.68))
     (stroke (width 0) (type default))
-    (uuid "f49287a3-996b-4966-9237-3c780cbc3f8c"))
+    (uuid "dfa9fbd4-cb52-46bf-8b2d-df130c61975d"))
   (label "GND"
     (at 95.25 106.68 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "29a91441-6c04-4682-b1a7-acb9d62a3085"))
+    (uuid "01ee0f4b-9e20-4420-9257-cfe03d5391fc"))
   (symbol
     (lib_id "Device:C")
     (at 68.58 74.93 0)
@@ -1390,7 +1390,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "a478ef90-8815-4262-8cdf-2dbc579d17c6")
+    (uuid "2b29e3ad-b03f-4666-b1a5-33496afc7562")
     (property "Reference" "C1" (at 68.58 72.39 0) (effects (font (size 1.27 1.27))))
     (property "Value" "1u 25V" (at 68.58 77.47 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -1410,28 +1410,28 @@
       "A: $0.0064 @50+ (MOQ 50), 6.3 M in stock (snippet)"
       (at 68.58 74.93 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "29734687-14c8-4995-a021-2be59338166f"))
-    (pin "2" (uuid "1e17f153-bd93-4f8f-be9f-8226ff2dd3c8"))
+    (pin "1" (uuid "7e467c73-9a74-47fb-b2f3-e545e4997c0b"))
+    (pin "2" (uuid "010aa1cc-984a-4e2d-b274-fae216ce59bb"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "C1") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "C1") (unit 1)))))
   (wire
     (pts (xy 68.58 71.12) (xy 68.58 68.58))
     (stroke (width 0) (type default))
-    (uuid "c0feaf4d-96b4-4bd3-8f70-fe60ab668f66"))
+    (uuid "ed372f7a-6e8d-4d1e-8959-805db9c68a98"))
   (label "VBUS"
     (at 68.58 68.58 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "26257042-f01c-43be-8008-f8ad489fd5f3"))
+    (uuid "98b69ee1-8a7d-4875-b99f-1f4aeea11635"))
   (wire
     (pts (xy 68.58 78.74) (xy 68.58 81.28))
     (stroke (width 0) (type default))
-    (uuid "2061d52a-38db-46b5-9487-b061b1e48514"))
+    (uuid "52c7a76b-296d-46aa-a193-d086ba76b0d0"))
   (label "GND"
     (at 68.58 81.28 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "3578cfa4-0453-4c67-ae8e-5f6c582bd9ee"))
+    (uuid "bc7ba9e8-6e39-4c21-a431-eb6af8a92a67"))
   (symbol
     (lib_id "Device:C")
     (at 124.46 74.93 0)
@@ -1439,7 +1439,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "f05bcb6b-879d-41a7-be4a-245e2eb7a28f")
+    (uuid "fa28ef23-732a-438d-88c5-f56ff4e50a1d")
     (property "Reference" "C2" (at 125.73 72.39 0) (effects (font (size 1.27 1.27))))
     (property "Value" "1u 25V" (at 125.73 77.47 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -1456,28 +1456,28 @@
       (at 124.46 74.93 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see C1" (at 124.46 74.93 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "6b1dbca8-6d32-4b3f-a346-e2554433eb1d"))
-    (pin "2" (uuid "b92ea8eb-d3ad-4504-b005-d8fb6de9f5fe"))
+    (pin "1" (uuid "ffa901f9-7942-4e3d-b426-8508a627dd7f"))
+    (pin "2" (uuid "7657b981-5573-4f42-b48b-e03b528a3617"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "C2") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "C2") (unit 1)))))
   (wire
     (pts (xy 124.46 71.12) (xy 124.46 68.58))
     (stroke (width 0) (type default))
-    (uuid "dc379613-214e-418c-baa0-be4e0e4646df"))
+    (uuid "a073cebe-2cc1-413d-a48a-393480f0d9f2"))
   (label "VBAT"
     (at 124.46 68.58 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "b575ae28-a353-4e77-b30f-1299ddf88fc0"))
+    (uuid "5c7a375c-f21f-4a15-bd21-7d743ca9956a"))
   (wire
     (pts (xy 124.46 78.74) (xy 124.46 81.28))
     (stroke (width 0) (type default))
-    (uuid "4124ee04-7da0-4dfc-bac8-db0b2e85d45a"))
+    (uuid "cb7184ae-9e84-416e-9496-8f954953892d"))
   (label "GND"
     (at 124.46 81.28 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "3bde820b-503c-4e74-a393-5a69f6793418"))
+    (uuid "7d3d7468-2fe0-4e06-a1fc-0779961b4ef0"))
   (symbol
     (lib_id "Device:R")
     (at 68.58 107.95 0)
@@ -1485,7 +1485,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "d1b87111-fd2b-462e-b5ab-2a31e6096a78")
+    (uuid "776b2626-8eb4-4626-8280-c5882ee980e5")
     (property "Reference" "R5" (at 71.12 107.95 0) (effects (font (size 1.27 1.27))))
     (property "Value" "100k" (at 68.58 107.95 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -1505,28 +1505,28 @@
       "A: about $0.001 @100+, 1.5-2.3 M in stock (snippets)"
       (at 68.58 107.95 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "b3ee1ffc-1049-4633-95fa-330780475e95"))
-    (pin "2" (uuid "9d83f735-97a7-4bb4-8ac0-9da7b5594e49"))
+    (pin "1" (uuid "d5b0d0a3-26fe-4de5-bc09-af2ad7a4aed1"))
+    (pin "2" (uuid "9b655bbd-c731-46f7-a765-7ba0bffc7314"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "R5") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "R5") (unit 1)))))
   (wire
     (pts (xy 68.58 104.14) (xy 68.58 101.6))
     (stroke (width 0) (type default))
-    (uuid "34b98323-48ab-41c3-907f-1b0d52037d48"))
+    (uuid "f88af098-5605-428f-8b78-d5c599700e45"))
   (label "VBUS"
     (at 68.58 101.6 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "1adfccdb-07af-4856-9fb7-c14c0707bf90"))
+    (uuid "307a59c3-d1db-42a4-a7f8-55e53d3ffbc5"))
   (wire
     (pts (xy 68.58 111.76) (xy 68.58 114.3))
     (stroke (width 0) (type default))
-    (uuid "895306de-b576-4621-aa10-55295516c44f"))
+    (uuid "29b23569-3e0d-41b6-81f2-264c63b8712e"))
   (label "VBUS_SENSE"
     (at 68.58 114.3 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "fc78b6de-03b8-41ae-acef-a9e507cb70ee"))
+    (uuid "9eddda70-b548-4272-a9a5-7b497fcf3118"))
   (symbol
     (lib_id "Device:R")
     (at 68.58 118.11 0)
@@ -1534,7 +1534,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "36078441-0cdf-48bb-9e47-cb843f2ce9b2")
+    (uuid "90043880-bb44-42ee-b9b2-d5613dc8c4c5")
     (property "Reference" "R6" (at 71.12 118.11 0) (effects (font (size 1.27 1.27))))
     (property "Value" "100k" (at 68.58 118.11 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -1551,28 +1551,28 @@
       (at 68.58 118.11 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see R5" (at 68.58 118.11 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "9c68ebb7-f0b0-4291-8f2f-569fbed05789"))
-    (pin "2" (uuid "10e1a268-f611-443a-9010-b44c8ed8400a"))
+    (pin "1" (uuid "a1fc3239-41a5-4038-a0d6-35a87c4dae65"))
+    (pin "2" (uuid "ae672444-1579-400f-8849-9e4ff1bbc342"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "R6") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "R6") (unit 1)))))
   (wire
     (pts (xy 68.58 114.3) (xy 68.58 111.76))
     (stroke (width 0) (type default))
-    (uuid "c8095cad-2d8a-42cf-95e5-c8825c9e5318"))
+    (uuid "06c1fe58-a29b-4f32-a980-bbfcfe27a257"))
   (label "VBUS_SENSE"
     (at 68.58 111.76 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "afe63a31-abc2-4bd4-be40-38b93872c233"))
+    (uuid "de14a29f-7376-4bbe-a906-125eeb0e7f0a"))
   (wire
     (pts (xy 68.58 121.92) (xy 68.58 124.46))
     (stroke (width 0) (type default))
-    (uuid "9c2953d2-05ef-4293-99c1-a81a57fe2fb1"))
+    (uuid "f38e3cd3-73b4-43b3-a8bc-02705f9f7389"))
   (label "VDIV_MID"
     (at 68.58 124.46 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "8236cf31-f74e-4422-8777-ac55ee467209"))
+    (uuid "54a0a7d8-9877-4487-a4bb-4dc08235804a"))
   (symbol
     (lib_id "Device:R")
     (at 82.55 118.11 0)
@@ -1580,7 +1580,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "cf8c26d9-3e8a-4419-88b0-71630fe7f3c3")
+    (uuid "1166be03-8b26-44c7-b231-1f6c87d3ad0c")
     (property "Reference" "R7" (at 85.09 118.11 0) (effects (font (size 1.27 1.27))))
     (property "Value" "100k" (at 82.55 118.11 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -1597,28 +1597,28 @@
       (at 82.55 118.11 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see R5" (at 82.55 118.11 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "94faea94-446b-4151-838a-0f436d725e93"))
-    (pin "2" (uuid "6f517c77-a2ab-40df-abcb-a1a0d633850e"))
+    (pin "1" (uuid "3fd5c2d6-84ac-4d73-87bf-29160509216c"))
+    (pin "2" (uuid "395b1315-348c-44ac-b650-fb77169b7677"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "R7") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "R7") (unit 1)))))
   (wire
     (pts (xy 82.55 114.3) (xy 82.55 111.76))
     (stroke (width 0) (type default))
-    (uuid "a17aaa49-0bd4-4927-b25d-268d146d6505"))
+    (uuid "4fba4fe3-e4d3-4657-b426-bef40a9740cd"))
   (label "VDIV_MID"
     (at 82.55 111.76 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "3f4eedb1-cc26-4d31-a268-f591453e4f19"))
+    (uuid "b7bb11a7-393b-4d87-bc4a-dba9aeb0bb58"))
   (wire
     (pts (xy 82.55 121.92) (xy 82.55 124.46))
     (stroke (width 0) (type default))
-    (uuid "ef2b8aee-ee0c-4128-87a0-0ad51c853358"))
+    (uuid "695152be-f5c2-4ff6-b70b-431ef44168d2"))
   (label "GND"
     (at 82.55 124.46 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "917df6f6-163c-4e19-bd67-a1574e8742c8"))
+    (uuid "9dd93917-354c-482d-9224-e044576d3c67"))
   (symbol
     (lib_id "Device:Battery_Cell")
     (at 139.7 100.33 0)
@@ -1626,7 +1626,7 @@
     (in_bom yes)
     (on_board no)
     (dnp no)
-    (uuid "89b3188e-8ad9-45bb-baf9-72784fd4187b")
+    (uuid "791e2966-225a-4064-b975-ec8591d96ccd")
     (property "Reference" "BT1" (at 142.24 97.79 0) (effects (font (size 1.27 1.27))))
     (property "Value" "LiPo 600 mAh" (at 142.24 100.33 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 139.7 100.33 0) (effects (font (size 1.27 1.27)) hide))
@@ -1652,28 +1652,28 @@
       "A: $10.81 @1, 1,637 in stock (snippet; other snapshots 93-1,811); datasheet 10/2022"
       (at 139.7 100.33 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "a8a5bed9-abae-43e0-ada0-67d91db1798b"))
-    (pin "2" (uuid "7c6349d7-a01c-4914-8428-34bd7b28ba7a"))
+    (pin "1" (uuid "6ee015a0-3f8f-44bf-ad2a-b3ebb47d5677"))
+    (pin "2" (uuid "0a870a4b-63f5-4025-b08e-c28553fbbf86"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "BT1") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "BT1") (unit 1)))))
   (wire
     (pts (xy 139.7 95.25) (xy 139.7 92.71))
     (stroke (width 0) (type default))
-    (uuid "d421e138-92b8-4f7d-99d1-5b42dec15247"))
+    (uuid "c5303923-9f09-486c-a239-fa36ea528c18"))
   (label "VBAT"
     (at 139.7 92.71 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "9b8436a2-519a-4da9-abc9-046a605089f2"))
+    (uuid "242e029c-0fbb-4016-a10a-d1dd267289a5"))
   (wire
     (pts (xy 139.7 102.87) (xy 139.7 105.41))
     (stroke (width 0) (type default))
-    (uuid "63b94aae-8c49-43c8-b0da-67131a3b088f"))
+    (uuid "9132fb3c-0a0f-4744-8938-9c0dda6e3b2d"))
   (label "GND"
     (at 139.7 105.41 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "6d17cbab-f548-4284-be79-eb137d03b762"))
+    (uuid "ca3062f9-c7d4-4ec0-8f70-339ddab79e47"))
   (symbol
     (lib_id "Connector:TestPoint")
     (at 124.46 100.33 0)
@@ -1681,7 +1681,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "7c89eb43-b3d9-4b13-bc2c-bbd45dbc1fb3")
+    (uuid "b20b7c94-4f0e-46d2-81ec-6e8cb98a1e1d")
     (property "Reference" "TP1" (at 124.46 93.98 0) (effects (font (size 1.27 1.27))))
     (property "Value" "BAT+" (at 124.46 95.25 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -1689,18 +1689,18 @@
       (at 124.46 100.33 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "~" (at 124.46 100.33 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "1c2cab07-b973-4ea1-a1f2-dbbd26add3ed"))
+    (pin "1" (uuid "56c181af-7965-4809-99c2-6f0e65f0c531"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "TP1") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "TP1") (unit 1)))))
   (wire
     (pts (xy 124.46 100.33) (xy 124.46 102.87))
     (stroke (width 0) (type default))
-    (uuid "bba723a9-104f-4a76-b56b-077f3607a655"))
+    (uuid "33e748d9-b34b-42d3-a636-d4d4aa1f0e93"))
   (label "VBAT"
     (at 124.46 102.87 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "4a80f061-9f7d-4ead-a64c-cb577eee1482"))
+    (uuid "2a185bf4-0b33-485d-a424-020848990b3b"))
   (symbol
     (lib_id "Connector:TestPoint")
     (at 124.46 111.76 0)
@@ -1708,7 +1708,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "2718947b-3cc5-47e8-a5c8-fa8b7f4cbef6")
+    (uuid "590e5961-a03d-485b-960c-fbd02fcc6500")
     (property "Reference" "TP2" (at 124.46 105.41 0) (effects (font (size 1.27 1.27))))
     (property "Value" "BAT-" (at 124.46 106.68 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -1716,18 +1716,18 @@
       (at 124.46 111.76 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "~" (at 124.46 111.76 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "49f3959b-9258-4011-8cae-2454997b5ede"))
+    (pin "1" (uuid "b12dd774-b460-4dbe-a94f-624626461ff7"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "TP2") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "TP2") (unit 1)))))
   (wire
     (pts (xy 124.46 111.76) (xy 124.46 114.3))
     (stroke (width 0) (type default))
-    (uuid "0b685183-1ddb-49c0-841d-9a6b4fc842f6"))
+    (uuid "fb1067e5-7ec8-4d2f-82ec-f9462d25a27e"))
   (label "GND"
     (at 124.46 114.3 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "a329d349-2795-48ea-85f6-45d6cd53ecbf"))
+    (uuid "6e393b69-1549-4f7f-ae51-85406c967667"))
   (symbol
     (lib_id "MCU_Microchip_ATtiny:ATtiny1614-SS")
     (at 209.55 69.85 0)
@@ -1735,7 +1735,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "220d2310-e4b7-43a5-9df7-d9480f99328f")
+    (uuid "fb9f9b9f-5d4b-40f8-b9dd-47397f6c6e73")
     (property "Reference" "U1" (at 196.85 53.34 0) (effects (font (size 1.27 1.27))))
     (property "Value" "ATtiny1614" (at 212.09 86.36 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -1761,148 +1761,148 @@
       "A: $0.90 @1, 33,040 in stock (digikey.com snippet)"
       (at 209.55 69.85 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "481f7ec0-f448-466d-ab3d-12240f121bf3"))
-    (pin "10" (uuid "55e6f39a-934a-4bd0-a8ae-b95484ad209c"))
-    (pin "11" (uuid "ebac55a2-7509-4c94-be75-d5d710bf0dc9"))
-    (pin "12" (uuid "cf983264-0886-4328-abca-0a8168806260"))
-    (pin "13" (uuid "db4a2b85-d5c3-428d-b4a7-c3a7548805c5"))
-    (pin "14" (uuid "bcc6653f-32f7-4b4c-86d7-425e18673595"))
-    (pin "2" (uuid "288227da-8da3-44e4-9974-fcc1b53ec41d"))
-    (pin "3" (uuid "f4d7e8d1-4b0d-4493-aa87-bfa8047e3489"))
-    (pin "4" (uuid "32d4ee1e-5681-4acb-a2e7-637341908ec3"))
-    (pin "5" (uuid "b022b62e-7869-434f-88d9-2b613ef06a7a"))
-    (pin "6" (uuid "5eea132a-4ab7-4e63-9fce-d75016afb4da"))
-    (pin "7" (uuid "a7504262-321a-420e-ab4d-bd4deca522ba"))
-    (pin "8" (uuid "14398f5d-b337-4660-911c-20ba75ac656c"))
-    (pin "9" (uuid "33a5778e-29ad-4c83-8651-6d2ee78c919e"))
+    (pin "1" (uuid "d82f835f-fcf9-4c2c-9c0c-7c587f7d0ca6"))
+    (pin "10" (uuid "9849310d-9971-4b88-8991-a6c0b56f023d"))
+    (pin "11" (uuid "7a758f62-3d3b-4e17-9c5e-64f2adfef18a"))
+    (pin "12" (uuid "73ecd2ed-c48a-47ea-a1a3-0e928a8e1323"))
+    (pin "13" (uuid "b86dd5e3-8589-4793-8161-8b4a7d3bb92f"))
+    (pin "14" (uuid "69bef007-eb7c-4388-9f0d-e80ef35e5e02"))
+    (pin "2" (uuid "1b53dc46-425e-4e44-afde-f125dbaa23dc"))
+    (pin "3" (uuid "c35c9228-30d4-400c-945a-45c978c39c40"))
+    (pin "4" (uuid "b3a564bf-f162-4d1a-acc6-33d9681d759b"))
+    (pin "5" (uuid "6b5ea7e3-c7a4-4070-9655-93696a36ee1b"))
+    (pin "6" (uuid "f7b4c227-12e4-4eab-8e82-cd1890dae08d"))
+    (pin "7" (uuid "ef0438f8-d39e-49db-ba8a-8649888aa137"))
+    (pin "8" (uuid "2e91e936-6b08-4545-aa04-c922b55867b2"))
+    (pin "9" (uuid "1bb51fe5-8d4f-4d72-a266-91a70bc6cce2"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "U1") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "U1") (unit 1)))))
   (wire
     (pts (xy 209.55 52.07) (xy 209.55 49.53))
     (stroke (width 0) (type default))
-    (uuid "29f1ca24-b800-446c-a1ec-872e43ad428c"))
+    (uuid "9e3be218-0d5a-45c7-9e71-c73d1d58085a"))
   (label "VBAT"
     (at 209.55 49.53 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "db0925f5-73ff-4861-a611-67d0498468ed"))
+    (uuid "3f661c81-9c57-41ff-a710-85571dc3ac3e"))
   (wire
     (pts (xy 224.79 59.69) (xy 227.33 59.69))
     (stroke (width 0) (type default))
-    (uuid "80f8e5c2-5d9e-456e-9d93-a5c93e4929b9"))
+    (uuid "bae113eb-e165-4508-ab2f-8f199476aba3"))
   (label "UPDI"
     (at 227.33 59.69 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "db697315-f5e6-4d5c-b2cb-514b2a1c3a1f"))
+    (uuid "04c173a3-1f8e-436f-b932-4dce18a16bbb"))
   (wire
     (pts (xy 224.79 62.23) (xy 227.33 62.23))
     (stroke (width 0) (type default))
-    (uuid "9a8ca14a-40fd-4f53-9254-ac3ddcd5ce9a"))
+    (uuid "d3db80a3-8196-4471-a2e5-148a917f4feb"))
   (label "NTC_SENSE"
     (at 227.33 62.23 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "61cb5493-7532-413f-9c51-58f09c7afb42"))
+    (uuid "ae2df706-79cf-46b2-9d9c-3f2158786e85"))
   (wire
     (pts (xy 224.79 64.77) (xy 227.33 64.77))
     (stroke (width 0) (type default))
-    (uuid "d677d842-1333-4015-90cc-29fde97773b9"))
+    (uuid "c7d9d39a-8f5b-45a6-b7d2-d975cb79a410"))
   (label "NTC_EN"
     (at 227.33 64.77 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "880329f4-746e-4028-97e3-041519da7ccf"))
+    (uuid "e9bdc877-b4f9-48ed-95d3-f5eeaa36a060"))
   (wire
     (pts (xy 224.79 67.31) (xy 227.33 67.31))
     (stroke (width 0) (type default))
-    (uuid "e32c9705-56ba-47f4-836b-0bbdcf629fae"))
+    (uuid "d37b0588-0f28-40d9-9311-cdb9c8529832"))
   (label "GATE_A"
     (at 227.33 67.31 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "dcf654d6-ed22-4cd0-9a38-0dc4aa1b25c2"))
+    (uuid "ae509c41-a218-4518-aa58-82b854634090"))
   (wire
     (pts (xy 209.55 87.63) (xy 209.55 90.17))
     (stroke (width 0) (type default))
-    (uuid "dfd40000-3456-4252-9124-3d0f087eb496"))
+    (uuid "d901eef6-9702-4062-9dc1-b55594116a01"))
   (label "GND"
     (at 209.55 90.17 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "fa8cb6dd-7b15-43d3-9ab3-51c9f2bd6028"))
+    (uuid "dc640349-c702-4b60-b4c3-820f0a909a16"))
   (wire
     (pts (xy 224.79 69.85) (xy 227.33 69.85))
     (stroke (width 0) (type default))
-    (uuid "1ae99244-82c5-4ef2-8c2a-508cca64a5e3"))
+    (uuid "8805b53a-9766-4e41-9758-22557d3cbd42"))
   (label "GATE_B"
     (at 227.33 69.85 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "86fed480-9e89-405a-bcf4-1665a9f74802"))
+    (uuid "31fbb885-250b-4489-8278-082d10f0c06e"))
   (wire
     (pts (xy 224.79 72.39) (xy 227.33 72.39))
     (stroke (width 0) (type default))
-    (uuid "eb7ed0d4-4026-4e0a-a48e-ec6b9b0f5461"))
+    (uuid "5db482c4-4292-4a13-8d2a-bb4aaf2edcfc"))
   (label "CHG_STAT"
     (at 227.33 72.39 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "ee4c7df7-4716-4577-8cac-db0ea5d94730"))
+    (uuid "492eb747-1a2e-4bde-a35a-cd8c9939b9d8"))
   (wire
     (pts (xy 224.79 74.93) (xy 227.33 74.93))
     (stroke (width 0) (type default))
-    (uuid "e2b42348-166b-4b51-bfbb-2261699e4c53"))
+    (uuid "2b4327f6-0545-4c42-b663-e04cbd708515"))
   (label "BTN"
     (at 227.33 74.93 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "d7ca852c-db83-4970-9460-d51fe4eba42b"))
+    (uuid "6fb790c5-5fae-4d7a-9de7-f2da89500a61"))
   (wire
     (pts (xy 224.79 77.47) (xy 227.33 77.47))
     (stroke (width 0) (type default))
-    (uuid "efd37293-5d05-41a9-ab29-099a545c433d"))
+    (uuid "666d4762-ef62-4720-a436-ae454fb49255"))
   (label "VBUS_SENSE"
     (at 227.33 77.47 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "ae55edd4-7d3f-4899-ade6-5e03dc3a0734"))
+    (uuid "20c7123d-e7f9-420d-9311-bfb50c881fc7"))
   (wire
     (pts (xy 194.31 67.31) (xy 191.77 67.31))
     (stroke (width 0) (type default))
-    (uuid "f0f6a7be-b25b-4f5a-adca-f6f8ecd54111"))
+    (uuid "0172eeee-b8a9-49e4-8736-d12b16237c95"))
   (label "DBG_RX"
     (at 191.77 67.31 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "8536b4ae-1265-437d-9dd1-59a07df4fe42"))
+    (uuid "85836934-5f95-4f14-bd5f-ac7e8d318492"))
   (wire
     (pts (xy 194.31 64.77) (xy 191.77 64.77))
     (stroke (width 0) (type default))
-    (uuid "7c891a9b-2254-45ee-9216-a34deec3016e"))
+    (uuid "07bc30ad-f9ef-4964-8d59-581858e8b815"))
   (label "DBG_TX"
     (at 191.77 64.77 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "5aa84f92-59a6-4b7f-b7cc-8178ee39761e"))
+    (uuid "626b884c-8a1b-433c-b309-9fdeaaffbd15"))
   (wire
     (pts (xy 194.31 62.23) (xy 191.77 62.23))
     (stroke (width 0) (type default))
-    (uuid "1182a2c1-54e9-4c2e-9528-867aac52fb9d"))
+    (uuid "9e844db7-1a13-48a7-b497-b105442d064b"))
   (label "SEAM_PWM"
     (at 191.77 62.23 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "17935013-aba6-4c4f-9f90-e761687cc3af"))
+    (uuid "83a806d9-79ae-436e-aec3-64ad7e0153ec"))
   (wire
     (pts (xy 194.31 59.69) (xy 191.77 59.69))
     (stroke (width 0) (type default))
-    (uuid "95d51644-1189-4fcd-98b8-cc23892d6675"))
+    (uuid "a0933d00-662f-4241-b9a0-a76038bd68e9"))
   (label "LED_CTRL"
     (at 191.77 59.69 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "7502e8c4-bc8f-4989-8e58-cf1ff105fd3c"))
+    (uuid "c8305f78-311b-433e-8c7c-04dcf7bde457"))
   (symbol
     (lib_id "Device:C")
     (at 175.26 54.61 0)
@@ -1910,7 +1910,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "d2902d03-e45c-49ef-97ec-367bb93b9b71")
+    (uuid "12636935-1468-4f1b-bc75-81ebf0b4cc7a")
     (property "Reference" "C3" (at 175.26 52.07 0) (effects (font (size 1.27 1.27))))
     (property "Value" "100n" (at 175.26 57.15 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -1930,28 +1930,28 @@
       "A: $0.015 @100+, 7.8-13.3 M in stock (snippets)"
       (at 175.26 54.61 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "529ac29c-5af6-42e3-85fc-2c458ff7f7f3"))
-    (pin "2" (uuid "86ce9eb0-04b6-43a7-8b21-78fe47fa97e9"))
+    (pin "1" (uuid "21ecca47-14a0-42c5-93ec-855d5f28ff3c"))
+    (pin "2" (uuid "7a138082-9f96-4dd6-86ce-2e58f412b550"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "C3") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "C3") (unit 1)))))
   (wire
     (pts (xy 175.26 50.8) (xy 175.26 48.26))
     (stroke (width 0) (type default))
-    (uuid "c480f074-0d1e-4e0f-bc02-32e7f186b53d"))
+    (uuid "7c3110d0-65cb-4cff-a60d-48d9ec834469"))
   (label "VBAT"
     (at 175.26 48.26 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "dee1a684-8086-4ba8-b85a-59348344a0f3"))
+    (uuid "36d2b60f-0e30-4162-8a2c-5a8f8c07157e"))
   (wire
     (pts (xy 175.26 58.42) (xy 175.26 60.96))
     (stroke (width 0) (type default))
-    (uuid "89e1ab34-3c4e-4f32-a6e0-fba88f5763bb"))
+    (uuid "889fb2e1-0f0c-467d-883e-b51dc1b883d6"))
   (label "GND"
     (at 175.26 60.96 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "c1d6f1f5-e7b5-449c-a685-8bb8a0c64c43"))
+    (uuid "7ac8efcc-84ab-47af-9d65-77c70471f415"))
   (symbol
     (lib_id "Device:C")
     (at 187.96 54.61 0)
@@ -1959,7 +1959,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "964fc047-d74c-41b0-bcc5-23ae6a7f8421")
+    (uuid "e110006c-3950-406b-8cfa-74b8eb7cde0e")
     (property "Reference" "C4" (at 187.96 52.07 0) (effects (font (size 1.27 1.27))))
     (property "Value" "1u 25V" (at 187.96 57.15 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -1976,28 +1976,28 @@
       (at 187.96 54.61 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see C1" (at 187.96 54.61 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "0db1fab9-43f8-46e7-b5b9-8f335bc9c9d1"))
-    (pin "2" (uuid "c72a3d5a-5c71-4f07-a141-2f9a09fdd62a"))
+    (pin "1" (uuid "3df65061-35b4-4bb2-b81c-d087c4071fa4"))
+    (pin "2" (uuid "567686ca-50a4-4689-967d-067841547ebd"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "C4") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "C4") (unit 1)))))
   (wire
     (pts (xy 187.96 50.8) (xy 187.96 48.26))
     (stroke (width 0) (type default))
-    (uuid "60e5c730-1ae3-44e8-bf77-1463cba92383"))
+    (uuid "faa623b4-a7e3-4f07-abcb-6e66f3b1e7b1"))
   (label "VBAT"
     (at 187.96 48.26 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "fe458be6-d0c5-40b7-858d-3f9f38df33ca"))
+    (uuid "cd97f365-251c-4c98-b82e-c34d97d34286"))
   (wire
     (pts (xy 187.96 58.42) (xy 187.96 60.96))
     (stroke (width 0) (type default))
-    (uuid "f955ea6b-110d-4e63-9476-700144c0275b"))
+    (uuid "3dea904e-eff9-48c0-b852-40b9db20bb35"))
   (label "GND"
     (at 187.96 60.96 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "cf60b111-81a0-49ad-8709-56323f480236"))
+    (uuid "a6f6e410-1532-45a7-9910-84999720d0cc"))
   (symbol
     (lib_id "Connector:TestPoint")
     (at 250.19 35.56 0)
@@ -2005,7 +2005,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "6da8411e-03d2-4858-9ba0-a1954b9e2925")
+    (uuid "8ae0a04c-d616-489d-92b9-04057207e7e5")
     (property "Reference" "TP3" (at 250.19 29.21 0) (effects (font (size 1.27 1.27))))
     (property "Value" "UPDI" (at 250.19 30.48 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2013,18 +2013,18 @@
       (at 250.19 35.56 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "~" (at 250.19 35.56 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "be57e3b4-cf7e-4a51-b0f3-495dc783cb8c"))
+    (pin "1" (uuid "a8512005-fbac-401c-9ecd-afe197f79096"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "TP3") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "TP3") (unit 1)))))
   (wire
     (pts (xy 250.19 35.56) (xy 250.19 38.1))
     (stroke (width 0) (type default))
-    (uuid "b20c19e4-55d8-402c-83b0-17554ba0fe8f"))
+    (uuid "c7edeeb7-2b5e-45dd-8745-552ef1b962a7"))
   (label "UPDI"
     (at 250.19 38.1 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "abf88a31-f698-440c-9bbe-50c093722810"))
+    (uuid "c81bc924-59c0-4e36-afc7-dbf55165e49e"))
   (symbol
     (lib_id "Connector:TestPoint")
     (at 262.89 35.56 0)
@@ -2032,7 +2032,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "901692c3-cf60-47b3-9b12-348c4038885a")
+    (uuid "fc4b3a20-c517-4174-901f-1315d025a738")
     (property "Reference" "TP4" (at 262.89 29.21 0) (effects (font (size 1.27 1.27))))
     (property "Value" "VBAT" (at 262.89 30.48 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2040,18 +2040,18 @@
       (at 262.89 35.56 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "~" (at 262.89 35.56 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "74e6889d-adca-46e7-ba58-416239ba803d"))
+    (pin "1" (uuid "48d86a8b-4154-4a67-88a0-39b51ef42800"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "TP4") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "TP4") (unit 1)))))
   (wire
     (pts (xy 262.89 35.56) (xy 262.89 38.1))
     (stroke (width 0) (type default))
-    (uuid "bc043f97-45fd-47cb-9125-59aefc1a455b"))
+    (uuid "78b96f1d-9045-407e-bf35-6e80fba59398"))
   (label "VBAT"
     (at 262.89 38.1 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "9363f22f-aa22-458b-b5ca-c966280f8151"))
+    (uuid "c5ec508d-6f7a-413b-b9ae-5ff4dd7c3ffa"))
   (symbol
     (lib_id "Connector:TestPoint")
     (at 275.59 35.56 0)
@@ -2059,7 +2059,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "2b58477c-9eb1-4220-86e3-9bfc524d29d5")
+    (uuid "3fa51e81-356d-4883-a2e1-dade3b0c50a2")
     (property "Reference" "TP5" (at 275.59 29.21 0) (effects (font (size 1.27 1.27))))
     (property "Value" "GND" (at 275.59 30.48 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2067,18 +2067,18 @@
       (at 275.59 35.56 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "~" (at 275.59 35.56 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "472e4cc4-11f0-4edb-9e22-b01a6c8cb9a3"))
+    (pin "1" (uuid "01dc4c6e-04f2-4001-8636-58144290b262"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "TP5") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "TP5") (unit 1)))))
   (wire
     (pts (xy 275.59 35.56) (xy 275.59 38.1))
     (stroke (width 0) (type default))
-    (uuid "cff15d94-822d-4d80-a7a5-cc0945b0eb87"))
+    (uuid "00ae905d-63a6-4e50-9dc6-78125a8d5212"))
   (label "GND"
     (at 275.59 38.1 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "57ceece5-f5bc-4ee9-b6d5-edd677f7c202"))
+    (uuid "b8e62443-05e6-43a8-bce0-30eb10a48960"))
   (symbol
     (lib_id "Connector:TestPoint")
     (at 250.19 48.26 0)
@@ -2086,7 +2086,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "2278811e-8818-47fe-949e-2a3e4f75c8eb")
+    (uuid "16572b54-0e1a-40c3-ba23-4e31cd398c4b")
     (property "Reference" "TP6" (at 250.19 41.91 0) (effects (font (size 1.27 1.27))))
     (property "Value" "TX" (at 250.19 43.18 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2094,18 +2094,18 @@
       (at 250.19 48.26 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "~" (at 250.19 48.26 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "1ce42328-1381-48bf-b8d5-bf798263090a"))
+    (pin "1" (uuid "ed97bb04-0b49-4595-a8fc-61b52b3560e7"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "TP6") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "TP6") (unit 1)))))
   (wire
     (pts (xy 250.19 48.26) (xy 250.19 50.8))
     (stroke (width 0) (type default))
-    (uuid "dae52d5d-ba27-4644-817f-a101178ba50f"))
+    (uuid "9d462111-4d1c-45b7-bd98-a31b4a196f7b"))
   (label "DBG_TX"
     (at 250.19 50.8 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "3e484d42-7a5f-441e-a13d-33a1d69fde45"))
+    (uuid "a5ddf7f9-d007-434a-a9a5-35c997c46a97"))
   (symbol
     (lib_id "Connector:TestPoint")
     (at 262.89 48.26 0)
@@ -2113,7 +2113,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "043f8c8e-e1aa-45e6-a0a2-ed6f12fa4763")
+    (uuid "aa87756b-cd45-4d6f-8546-2329f297e70a")
     (property "Reference" "TP7" (at 262.89 41.91 0) (effects (font (size 1.27 1.27))))
     (property "Value" "RX" (at 262.89 43.18 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2121,18 +2121,18 @@
       (at 262.89 48.26 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "~" (at 262.89 48.26 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "f69fcd41-df45-40d0-a856-91ba02f34ebf"))
+    (pin "1" (uuid "4af27e84-e4f4-4b4b-826e-cec15a3ec4eb"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "TP7") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "TP7") (unit 1)))))
   (wire
     (pts (xy 262.89 48.26) (xy 262.89 50.8))
     (stroke (width 0) (type default))
-    (uuid "ce9dec0b-ad7a-4462-887e-a035af8bbf13"))
+    (uuid "c70131a1-c7b0-4c84-a65d-6464abdb5e02"))
   (label "DBG_RX"
     (at 262.89 50.8 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "5334d175-cb9e-4da4-bc75-39943124cbe2"))
+    (uuid "cbcf84c0-c665-4e8c-9b56-7cf42f54f324"))
   (symbol
     (lib_id "Switch:SW_Push")
     (at 255.27 111.76 0)
@@ -2140,7 +2140,7 @@
     (in_bom yes)
     (on_board no)
     (dnp no)
-    (uuid "5edc0de6-fc0f-455a-86e1-0338e7069025")
+    (uuid "340f0e69-02e8-4c30-82fb-d0d78a8176fb")
     (property "Reference" "SW1" (at 256.54 109.22 0) (effects (font (size 1.27 1.27))))
     (property "Value" "B3F-1020" (at 255.27 113.03 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 255.27 111.76 0) (effects (font (size 1.27 1.27)) hide))
@@ -2160,28 +2160,28 @@
       "A: from $0.071, 1,940 in stock (snippet); 5.0 mm, 0.98 N, 0.25 mm travel"
       (at 255.27 111.76 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "c9a2410d-871e-44b5-b9ae-8530a4278d43"))
-    (pin "2" (uuid "59be2cd6-7ec0-4075-90f6-722c84bf2a44"))
+    (pin "1" (uuid "a96d984f-fb0f-438c-990c-9865472e52d3"))
+    (pin "2" (uuid "f99c1531-ca70-4572-905c-05e44f14eb1d"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "SW1") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "SW1") (unit 1)))))
   (wire
     (pts (xy 250.19 111.76) (xy 247.65 111.76))
     (stroke (width 0) (type default))
-    (uuid "a8e4aa8a-0a00-400a-9b80-b5035013284c"))
+    (uuid "f8550b3e-fcac-4ff8-9410-26f183492262"))
   (label "BTN"
     (at 247.65 111.76 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "d836a934-4678-4bbf-b55b-5bab9ec1b99a"))
+    (uuid "bc6f1539-701c-49c8-a03a-5d667a977e4a"))
   (wire
     (pts (xy 260.35 111.76) (xy 262.89 111.76))
     (stroke (width 0) (type default))
-    (uuid "9532ea3b-6b45-465f-992f-369a0e409b62"))
+    (uuid "84eebc07-b193-42da-90e6-bb57d4b266fa"))
   (label "GND"
     (at 262.89 111.76 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "bf9d853f-b1c3-4799-82ad-2ef2aa899fe7"))
+    (uuid "3718a4c4-4135-40c5-a83c-f6335a66037b"))
   (symbol
     (lib_id "Connector:TestPoint")
     (at 240.03 111.76 0)
@@ -2189,7 +2189,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "42a85516-bed2-43c9-a606-967319a82fef")
+    (uuid "5629aa6b-2d8a-420e-afd2-91d7fac19fe2")
     (property "Reference" "TP8" (at 240.03 105.41 0) (effects (font (size 1.27 1.27))))
     (property "Value" "BTN" (at 240.03 106.68 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2197,18 +2197,18 @@
       (at 240.03 111.76 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "~" (at 240.03 111.76 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "06197e48-4c34-4e1e-a65c-a20c329b5555"))
+    (pin "1" (uuid "54bffd0e-5222-4d39-a03c-d8a4abcc447f"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "TP8") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "TP8") (unit 1)))))
   (wire
     (pts (xy 240.03 111.76) (xy 240.03 114.3))
     (stroke (width 0) (type default))
-    (uuid "f731cee1-7241-4a73-8b8d-3bfeb8b11e63"))
+    (uuid "65e7a069-2180-40ec-a694-29995f03db7b"))
   (label "BTN"
     (at 240.03 114.3 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "97af8cc4-c619-4542-a7e3-8889cde62e1c"))
+    (uuid "ccbfffcb-153f-4c56-a56b-57ac74741c6a"))
   (symbol
     (lib_id "Connector:TestPoint")
     (at 270.51 111.76 0)
@@ -2216,7 +2216,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "53b05cbb-1ab0-4844-bb4f-3fa52fa9f196")
+    (uuid "24053e9d-e74d-4090-bce4-78868c0e455d")
     (property "Reference" "TP9" (at 270.51 105.41 0) (effects (font (size 1.27 1.27))))
     (property "Value" "BTN_GND" (at 270.51 106.68 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2224,18 +2224,18 @@
       (at 270.51 111.76 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "~" (at 270.51 111.76 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "8575d698-3777-4a0b-bf26-e99270d93bf0"))
+    (pin "1" (uuid "39b8ff95-b8e1-4dc2-ab33-7b50b551a3d8"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "TP9") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "TP9") (unit 1)))))
   (wire
     (pts (xy 270.51 111.76) (xy 270.51 114.3))
     (stroke (width 0) (type default))
-    (uuid "4634b5ac-eff9-40e7-bb64-7fba4d6facea"))
+    (uuid "9017fc0e-b86b-451b-903d-e3d4cc90748c"))
   (label "GND"
     (at 270.51 114.3 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "e0c03302-b643-4247-9a2a-c1151f2b8384"))
+    (uuid "374f7fef-8f52-4f97-b9ac-17ce1d6695bb"))
   (symbol
     (lib_id "Device:Thermistor_NTC")
     (at 330.2 177.8 0)
@@ -2243,7 +2243,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "0e4b9923-dd8a-4e8d-8c80-01ada9a01485")
+    (uuid "d5a7918c-221e-443a-ad89-bdf16edcd149")
     (property "Reference" "RT1" (at 325.12 177.8 0) (effects (font (size 1.27 1.27))))
     (property "Value" "10k NTC" (at 332.74 177.8 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2263,28 +2263,28 @@
       "A: ~$0.03 @10, 510-722 k in stock (snippets)"
       (at 330.2 177.8 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "fd1883c6-0791-4400-a6f2-54501506c244"))
-    (pin "2" (uuid "e09729ba-6aac-412c-8423-541c32c3a2d8"))
+    (pin "1" (uuid "fef3037a-4b94-48be-b238-7afe99a09165"))
+    (pin "2" (uuid "b66fac66-bed5-49ce-9451-bb28fbc67224"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "RT1") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "RT1") (unit 1)))))
   (wire
     (pts (xy 330.2 173.99) (xy 330.2 171.45))
     (stroke (width 0) (type default))
-    (uuid "f230773d-d4cc-4813-ba68-530fcc0d54f2"))
+    (uuid "e1d67b8a-133a-44d5-86af-1a25286d9d97"))
   (label "NTC_SENSE"
     (at 330.2 171.45 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "0f029e5a-6c4f-43e3-829c-cde257ec9bce"))
+    (uuid "71800947-5b74-4ef9-a332-ad434476bd51"))
   (wire
     (pts (xy 330.2 181.61) (xy 330.2 184.15))
     (stroke (width 0) (type default))
-    (uuid "aac04818-6104-44e5-a764-65c2dda57dfd"))
+    (uuid "9ef45e19-4785-4f6e-86e1-d2550e767772"))
   (label "GND"
     (at 330.2 184.15 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "04fcd722-c2d3-4086-a923-ad30e873074a"))
+    (uuid "318d9a02-3696-4d8a-88dc-e7eadf474e6b"))
   (symbol
     (lib_id "Device:R")
     (at 330.2 160.02 0)
@@ -2292,7 +2292,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "6b5f544a-3b5d-408c-b78e-ab370eb8d1be")
+    (uuid "d4f953c4-5849-4a57-996b-3ddfabd358b8")
     (property "Reference" "R8" (at 332.74 160.02 0) (effects (font (size 1.27 1.27))))
     (property "Value" "10k" (at 330.2 160.02 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2309,28 +2309,28 @@
       (at 330.2 160.02 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see R4" (at 330.2 160.02 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "d5c8bccb-2386-4999-8055-96e139624cfa"))
-    (pin "2" (uuid "9680bbb7-f896-441b-9da2-d852e9ceb660"))
+    (pin "1" (uuid "a47f1055-3dab-49a2-a887-3eff942b7e83"))
+    (pin "2" (uuid "fa9f5dff-1de5-4035-a8ae-de8fc128cc5d"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "R8") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "R8") (unit 1)))))
   (wire
     (pts (xy 330.2 156.21) (xy 330.2 153.67))
     (stroke (width 0) (type default))
-    (uuid "1ab599f3-b576-47c3-b6a8-b11db364092c"))
+    (uuid "a9cf415b-52a7-45e4-900c-6b1033fa56b2"))
   (label "NTC_EN"
     (at 330.2 153.67 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "36a86a1b-dff4-4c38-b22f-278ebd885cea"))
+    (uuid "323cc8c3-a798-445c-b96d-6651dda6029c"))
   (wire
     (pts (xy 330.2 163.83) (xy 330.2 166.37))
     (stroke (width 0) (type default))
-    (uuid "0e2f04f5-05b3-4a45-bcbe-7426671efb26"))
+    (uuid "b4bd5068-93c0-4a8c-ad84-511730159c2c"))
   (label "NTC_SENSE"
     (at 330.2 166.37 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "8488869b-a35d-4ef8-948d-4c5d4acd5295"))
+    (uuid "3ccc4dfb-6c27-4e72-99ab-48c1d413ba82"))
   (symbol
     (lib_id "vf:TPS61169DCK")
     (at 340.36 64.77 0)
@@ -2338,7 +2338,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "3aec81be-7a4b-41f3-a303-b08453e3b3b4")
+    (uuid "f53723e7-5a88-4981-8d85-661aadb346fd")
     (property "Reference" "U3" (at 340.36 57.15 0) (effects (font (size 1.27 1.27))))
     (property "Value" "TPS61169" (at 340.36 72.39 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2364,58 +2364,58 @@
       "A: 8,475-8,970 in stock, $0.16-0.33 @5+ (MOQ 5; two snapshots); Digi-Key 296-40821-1-ND on backorder"
       (at 340.36 64.77 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "5" (uuid "350edabb-5d2c-4247-99fe-a6ee3b3b063c"))
-    (pin "4" (uuid "6c6d11d7-d54c-488e-b273-c06d2aa92d9c"))
-    (pin "1" (uuid "c2bba1b9-e5d0-4012-b28c-ed9fb6428034"))
-    (pin "3" (uuid "53ff9825-39e4-4852-b715-5b1f8f710e18"))
-    (pin "2" (uuid "69c273e3-e7d9-43ca-922e-1e3970e993d6"))
+    (pin "5" (uuid "f165dad5-ef11-44ed-9ae2-b56ea3df11f6"))
+    (pin "4" (uuid "288a3bbf-fa09-4e95-8fb7-ad0e197d7010"))
+    (pin "1" (uuid "6e5e0a54-b307-44ae-b7e9-b8302ed08e6d"))
+    (pin "3" (uuid "796eafdf-85f2-47c5-bce1-cf11bafe52ab"))
+    (pin "2" (uuid "a9443b76-c507-464a-a4bb-1ce4aeaf5bc2"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "U3") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "U3") (unit 1)))))
   (wire
     (pts (xy 332.74 63.5) (xy 330.2 63.5))
     (stroke (width 0) (type default))
-    (uuid "869c9471-7877-4883-ab71-a2dcec16ff61"))
+    (uuid "9494c219-5966-4c84-8d86-aa3ad96b60b3"))
   (label "VBAT"
     (at 330.2 63.5 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "d69bb056-4413-4d22-96fc-c6a69bc79f31"))
+    (uuid "6577c800-5cd3-4310-9f99-610e439d839b"))
   (wire
     (pts (xy 332.74 66.04) (xy 330.2 66.04))
     (stroke (width 0) (type default))
-    (uuid "e2fe6670-c614-4ee8-8e74-bad30ff949e4"))
+    (uuid "5ff03a5b-c10f-4dc5-bfc0-860917dcf5bf"))
   (label "LED_CTRL"
     (at 330.2 66.04 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "14e5df18-e76d-431e-ae3e-bbc19824f900"))
+    (uuid "2164a9a7-5c97-405d-85a9-648ca69efe12"))
   (wire
     (pts (xy 347.98 63.5) (xy 350.52 63.5))
     (stroke (width 0) (type default))
-    (uuid "aefbea93-ebac-4179-a893-886a1307c282"))
+    (uuid "2cd922d1-809f-4299-a445-7f950e7fa6e7"))
   (label "SW"
     (at 350.52 63.5 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "a4d86f64-b249-4b64-b493-d00e804dbe34"))
+    (uuid "22924c64-03e3-4bf6-9232-41944fe89f30"))
   (wire
     (pts (xy 347.98 66.04) (xy 350.52 66.04))
     (stroke (width 0) (type default))
-    (uuid "14e29b36-9f13-45d5-a9ea-f0018e280b18"))
+    (uuid "81cc9bc7-6111-4153-859a-3ba087270d1e"))
   (label "FB"
     (at 350.52 66.04 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "23962db1-954e-4f1b-867f-b0a8e7bbab2b"))
+    (uuid "e948c9ad-8956-47a8-b822-8c2e02b35874"))
   (wire
     (pts (xy 340.36 71.12) (xy 340.36 73.66))
     (stroke (width 0) (type default))
-    (uuid "6cdd42af-a54b-4f25-95d3-f320886f1068"))
+    (uuid "42d6fdfd-96dd-44dc-8f4d-9089df74d464"))
   (label "GND"
     (at 340.36 73.66 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "5a40991d-8272-48ef-af27-40fa88368fc4"))
+    (uuid "708c8cf9-9bb0-468a-b161-01d226868c17"))
   (symbol
     (lib_id "Device:L")
     (at 320.04 44.45 0)
@@ -2423,7 +2423,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "2910b0f2-e6c0-442f-8395-d4029008a694")
+    (uuid "ec05ab0a-e193-490e-84d1-03e11fd94db8")
     (property "Reference" "L1" (at 318.77 44.45 0) (effects (font (size 1.27 1.27))))
     (property "Value" "10u" (at 322.58 44.45 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2443,28 +2443,28 @@
       "A: $0.0594 @10+, 1,459 in stock (snippet); Isat 1.30 A, DCR 0.18 ohm"
       (at 320.04 44.45 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "6c64665e-9372-4494-b6ff-e453ad5c30ce"))
-    (pin "2" (uuid "d27a7629-e24e-4be1-bda0-5869cd105247"))
+    (pin "1" (uuid "b6817679-d5f5-4f91-97a9-4de633b348f9"))
+    (pin "2" (uuid "c6eb632a-dcb2-4754-92c0-bcd4f61c2c38"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "L1") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "L1") (unit 1)))))
   (wire
     (pts (xy 320.04 40.64) (xy 320.04 38.1))
     (stroke (width 0) (type default))
-    (uuid "af35a69b-6887-425d-aef7-7e32cd13bca7"))
+    (uuid "806b5a80-0596-4512-a601-7ac66e87794e"))
   (label "VBAT"
     (at 320.04 38.1 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "b3270676-fe50-4339-a78f-d43a518b9778"))
+    (uuid "27b4ce4e-eadd-486d-8ece-9bd593550f89"))
   (wire
     (pts (xy 320.04 48.26) (xy 320.04 50.8))
     (stroke (width 0) (type default))
-    (uuid "b75171f6-a951-409f-975a-b57e9f007ff1"))
+    (uuid "53ae8538-aaa7-4fb0-9ca8-8f3be0c3cdeb"))
   (label "SW"
     (at 320.04 50.8 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "b26067f9-9abf-4150-b7f1-946d343e00dc"))
+    (uuid "0f82ed53-e149-4a40-9781-293f9e32209e"))
   (symbol
     (lib_id "Device:D_Schottky")
     (at 364.49 44.45 0)
@@ -2472,7 +2472,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "53fec485-f8dd-480f-9434-fa1d4e11c7c7")
+    (uuid "ce47e863-1d94-4052-b22f-e85442c492bf")
     (property "Reference" "D1" (at 364.49 41.91 0) (effects (font (size 1.27 1.27))))
     (property "Value" "MBR0540" (at 364.49 46.99 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2492,28 +2492,28 @@
       "A: 47,700-145,260 in stock (snippets); qty-10 price NV ($0.025-0.031 at volume), $0.05 assumed"
       (at 364.49 44.45 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "ffe5f4b6-1936-49e2-84e4-9673e2d0ac65"))
-    (pin "2" (uuid "24c15180-3292-4903-b3f8-5d663f374ae1"))
+    (pin "1" (uuid "932bbcec-7c32-4bac-a9be-ce005f47408d"))
+    (pin "2" (uuid "f5fab360-d7fb-4952-9e59-7023fa296102"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "D1") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "D1") (unit 1)))))
   (wire
     (pts (xy 360.68 44.45) (xy 358.14 44.45))
     (stroke (width 0) (type default))
-    (uuid "e9f618a0-1b01-4952-8de6-92d8c2d442a9"))
+    (uuid "8eb55abb-ef93-4b07-9d1f-f14af7482cc3"))
   (label "VOUT"
     (at 358.14 44.45 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "bec30bde-3021-4341-8326-ca3f3347e0a3"))
+    (uuid "08f477ba-c77e-40fb-a703-5f72f6eae883"))
   (wire
     (pts (xy 368.3 44.45) (xy 370.84 44.45))
     (stroke (width 0) (type default))
-    (uuid "6d739e22-f197-4938-a4de-90b0faf19bad"))
+    (uuid "311c9039-ee60-4355-a00e-75462328e3d0"))
   (label "SW"
     (at 370.84 44.45 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "f7ddfcb7-eea0-4fa6-b3e8-58f5000284bd"))
+    (uuid "cbf62531-469b-4570-963e-882ec35e4f94"))
   (symbol
     (lib_id "Device:C")
     (at 384.81 54.61 0)
@@ -2521,7 +2521,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "cf0dc114-cdb5-4941-9bca-e87cb3086784")
+    (uuid "a35eb2b7-3f9a-40ce-a0dd-3ca627c30528")
     (property "Reference" "C5" (at 386.08 52.07 0) (effects (font (size 1.27 1.27))))
     (property "Value" "1u 50V" (at 386.08 57.15 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2541,28 +2541,28 @@
       "A: $0.0221 @10+, 573,070 in stock (snippet)"
       (at 384.81 54.61 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "e88e7547-4293-48db-9d71-63a194eee7d7"))
-    (pin "2" (uuid "9f78e78d-2519-4be4-96e3-9b3084824864"))
+    (pin "1" (uuid "7a3fd87a-4c55-48e5-8fd2-4141fdfbe497"))
+    (pin "2" (uuid "16bca946-7703-4718-ac24-f4af567588e9"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "C5") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "C5") (unit 1)))))
   (wire
     (pts (xy 384.81 50.8) (xy 384.81 48.26))
     (stroke (width 0) (type default))
-    (uuid "bf39d19b-083f-4e6b-82a7-1ca3d9a24f6e"))
+    (uuid "387b5a32-1dc2-425f-ae81-3eeafb0551f0"))
   (label "VOUT"
     (at 384.81 48.26 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "91b159fd-aa81-45d7-a492-77982880f8d5"))
+    (uuid "a191b6cf-663f-45f7-a6f3-51a689f5beb6"))
   (wire
     (pts (xy 384.81 58.42) (xy 384.81 60.96))
     (stroke (width 0) (type default))
-    (uuid "41594291-c3b6-4d61-aee4-c8c5ed76434a"))
+    (uuid "ae964275-5c0d-48b9-bee9-2854828a2df3"))
   (label "GND"
     (at 384.81 60.96 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "a27b660c-6d4d-4b0d-a65f-1fb3e01d0210"))
+    (uuid "36be8db8-f3ae-4ecd-ada4-ebbcb4305595"))
   (symbol
     (lib_id "Device:C")
     (at 397.51 54.61 0)
@@ -2570,7 +2570,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "09c45915-41c3-4ff2-a2d7-d0a78d27847e")
+    (uuid "6fa12de7-3e53-4786-a647-fa687fed748c")
     (property "Reference" "C6" (at 398.78 52.07 0) (effects (font (size 1.27 1.27))))
     (property "Value" "1u 50V" (at 398.78 57.15 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2587,28 +2587,28 @@
       (at 397.51 54.61 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see C5" (at 397.51 54.61 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "fb94fafb-f247-4a88-90b4-d3fe902fb5ad"))
-    (pin "2" (uuid "a759b706-5425-4be0-b254-0787e8b28cdb"))
+    (pin "1" (uuid "b083396d-d9c8-4bb4-a4f1-193e39cb357e"))
+    (pin "2" (uuid "888e2a42-bca4-45ab-b3e0-ed8f92bd4b93"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "C6") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "C6") (unit 1)))))
   (wire
     (pts (xy 397.51 50.8) (xy 397.51 48.26))
     (stroke (width 0) (type default))
-    (uuid "ddbf44a3-c9c7-4813-bf7e-3b61396e3c06"))
+    (uuid "4997624d-0c73-424e-8b0f-45eee05906c7"))
   (label "VOUT"
     (at 397.51 48.26 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "ad01eb8f-2c63-4159-a35a-c3d73b4815a2"))
+    (uuid "4c29333e-e21c-41b3-a65b-b76dbbc07c64"))
   (wire
     (pts (xy 397.51 58.42) (xy 397.51 60.96))
     (stroke (width 0) (type default))
-    (uuid "626f477b-fc00-454a-804c-9557266d4b1b"))
+    (uuid "4f535064-6932-4311-9518-971e7f7a2964"))
   (label "GND"
     (at 397.51 60.96 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "89a19529-bf49-4e1a-9906-13f560bf33b8"))
+    (uuid "277c5098-b339-49b4-8736-2ae02cc32e26"))
   (symbol
     (lib_id "Device:C")
     (at 304.8 54.61 0)
@@ -2616,7 +2616,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "43744404-814c-424a-8a60-0deab19f4b20")
+    (uuid "b8f3b1f9-a696-4085-a4c6-4991678e6188")
     (property "Reference" "C7" (at 304.8 52.07 0) (effects (font (size 1.27 1.27))))
     (property "Value" "10u 25V" (at 304.8 57.15 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2636,28 +2636,28 @@
       "A: $0.0191 @20+, 484,120 in stock (snippet; 'not recommended for new designs')"
       (at 304.8 54.61 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "2ae673d5-2585-4544-9389-24b386d5e370"))
-    (pin "2" (uuid "2052e234-d32d-4216-aaf3-6c2daac4a0db"))
+    (pin "1" (uuid "a318b1d3-a283-4f22-8a68-2d3e51f9a36d"))
+    (pin "2" (uuid "dceadb9a-e6b6-492f-84ba-048da4abc180"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "C7") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "C7") (unit 1)))))
   (wire
     (pts (xy 304.8 50.8) (xy 304.8 48.26))
     (stroke (width 0) (type default))
-    (uuid "4f8f83b3-8876-466a-9574-cd4fabb49e73"))
+    (uuid "d24fcafc-6fae-4b8d-8249-f5ea42162852"))
   (label "VBAT"
     (at 304.8 48.26 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "128b28dd-e032-433a-bf70-8ad8f5d54817"))
+    (uuid "461b3e7b-0c71-4122-8b60-0b5d3ebcb720"))
   (wire
     (pts (xy 304.8 58.42) (xy 304.8 60.96))
     (stroke (width 0) (type default))
-    (uuid "cca9a9e7-2168-48db-8163-e690dfd240c3"))
+    (uuid "dc829c71-fda2-4374-a5e9-5b4e31ad2b51"))
   (label "GND"
     (at 304.8 60.96 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "66e7d778-68b3-43c6-a5ae-b66f16294b9f"))
+    (uuid "c9794ff7-28fa-4783-85a8-7e952ee1420d"))
   (symbol
     (lib_id "Device:R")
     (at 359.41 111.76 0)
@@ -2665,7 +2665,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "9c1019af-ce9b-494b-adc8-9967b094002b")
+    (uuid "fe45cc53-a154-45bf-a95c-5aa243613d74")
     (property "Reference" "R9" (at 361.95 111.76 0) (effects (font (size 1.27 1.27))))
     (property "Value" "8.2" (at 359.41 111.76 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2685,28 +2685,28 @@
       "A: $0.0035 @100+, 2,300-8,600 in stock (snippets)"
       (at 359.41 111.76 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "566190c9-02d2-4faf-8ca4-eb98c213afab"))
-    (pin "2" (uuid "ccd16c3c-7bd7-4a15-b537-6b8118334d71"))
+    (pin "1" (uuid "426d649d-caf9-434f-baee-2a84cbd7e881"))
+    (pin "2" (uuid "3de6d683-b2d7-4771-b04d-2e68d54969c9"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "R9") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "R9") (unit 1)))))
   (wire
     (pts (xy 359.41 107.95) (xy 359.41 105.41))
     (stroke (width 0) (type default))
-    (uuid "7edd5797-2c0a-406c-ab7b-8ce26a32e307"))
+    (uuid "b9385e29-5b5e-4688-9998-efc77374464c"))
   (label "FB"
     (at 359.41 105.41 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "ad4af640-c2c3-4580-9c82-89a47d6a14fc"))
+    (uuid "d5d0791f-c257-478d-8d38-36bf04516d35"))
   (wire
     (pts (xy 359.41 115.57) (xy 359.41 118.11))
     (stroke (width 0) (type default))
-    (uuid "b502faf3-e9a8-4505-aef5-b8ec14d55bc4"))
+    (uuid "6e092916-ee52-4f9a-bfb2-dae60bff351a"))
   (label "GND"
     (at 359.41 118.11 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "fe45a85c-70bf-4092-ab54-0bd6f485d535"))
+    (uuid "464e710a-a81d-4f0c-a219-2b174b3b2153"))
   (symbol
     (lib_id "Device:R")
     (at 317.5 95.25 0)
@@ -2714,7 +2714,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "f13c0493-1369-4871-8634-d2abef07c1bd")
+    (uuid "c868b911-176f-413b-a35d-3a84303d9c68")
     (property "Reference" "R10" (at 320.04 95.25 0) (effects (font (size 1.27 1.27))))
     (property "Value" "100k" (at 317.5 95.25 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2731,28 +2731,28 @@
       (at 317.5 95.25 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see R5" (at 317.5 95.25 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "6744a578-fede-4dea-8063-743e0094fe96"))
-    (pin "2" (uuid "429302ea-ba42-4191-9c26-5ba79ca7ad54"))
+    (pin "1" (uuid "47a7b737-8f77-47f5-8816-e49be0daa73d"))
+    (pin "2" (uuid "b266895c-1a0c-4a4d-bc61-e08eae733af3"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "R10") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "R10") (unit 1)))))
   (wire
     (pts (xy 317.5 91.44) (xy 317.5 88.9))
     (stroke (width 0) (type default))
-    (uuid "ccda831a-3b41-4703-83d3-7a9438e320ed"))
+    (uuid "e398daa0-b874-4758-8064-a3ab61cf03d5"))
   (label "LED_CTRL"
     (at 317.5 88.9 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "329da6c6-d0f2-45cf-9391-4496b3871f80"))
+    (uuid "beb78308-fb0a-4553-9c2c-e86363e91165"))
   (wire
     (pts (xy 317.5 99.06) (xy 317.5 101.6))
     (stroke (width 0) (type default))
-    (uuid "4cc54afb-de4c-4888-8fab-1aee9fcd975a"))
+    (uuid "578d0cb3-8acd-444f-9f16-ebcafad07c29"))
   (label "GND"
     (at 317.5 101.6 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "d3d81f5a-93fe-4cc0-8e8f-125a25bdd731"))
+    (uuid "5b2fbf7a-ec9b-4206-baaa-f618809d4f0b"))
   (symbol
     (lib_id "Transistor_FET:AO3400A")
     (at 379.73 90.17 0)
@@ -2760,7 +2760,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "b3fb522c-7241-47f7-9a1f-613ee6551ad4")
+    (uuid "6f74924c-73cb-4be8-b10b-1d188c4ee871")
     (property "Reference" "Q1" (at 384.81 88.9 0) (effects (font (size 1.27 1.27))))
     (property "Value" "AO3400A" (at 384.81 90.17 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2780,38 +2780,38 @@
       "A: $0.076-0.083 @5+, 100 k-1.14 M in stock (snippets); 30 V, 48 mOhm @ 2.5 V"
       (at 379.73 90.17 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "acbc588d-c17b-4dc0-92ce-a62f747eae4b"))
-    (pin "2" (uuid "d97325ef-6007-488e-956f-91201a8bde2f"))
-    (pin "3" (uuid "2ff99b16-40e1-4e33-a510-6f0ef45c87a7"))
+    (pin "1" (uuid "8a74eecf-146c-4e1b-8423-78409b631f08"))
+    (pin "2" (uuid "3ea14023-83c7-4791-b61f-926c7c9959b5"))
+    (pin "3" (uuid "559334ed-9314-4cfc-b07d-dfc80e64a277"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "Q1") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "Q1") (unit 1)))))
   (wire
     (pts (xy 374.65 90.17) (xy 372.11 90.17))
     (stroke (width 0) (type default))
-    (uuid "cb0741c3-3489-425d-bdea-ade6c26b7652"))
+    (uuid "b2569dac-ddab-4a5f-87b6-05478d8a2151"))
   (label "GATE_A"
     (at 372.11 90.17 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "c5e454c0-8f58-4060-b059-caea6b569d2b"))
+    (uuid "a86b5af0-8565-4847-93e4-81598d0349e7"))
   (wire
     (pts (xy 382.27 95.25) (xy 382.27 97.79))
     (stroke (width 0) (type default))
-    (uuid "6613fb43-f233-4ab7-a10e-5ad08545e532"))
+    (uuid "23f590d7-7f5a-40d2-b727-7f63bc865e0e"))
   (label "FB"
     (at 382.27 97.79 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "c3dbc443-f9f0-4b00-ab7d-f6d952456d49"))
+    (uuid "6173bfb0-49ed-4e9a-a9c9-df23baa9139d"))
   (wire
     (pts (xy 382.27 85.09) (xy 382.27 82.55))
     (stroke (width 0) (type default))
-    (uuid "7cd892c9-0ecd-44e2-8f1a-853ab353b00f"))
+    (uuid "0d92da37-2196-4eca-a105-079bbfb3d70c"))
   (label "STR_A"
     (at 382.27 82.55 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "6afafc88-f5a1-454f-9126-44a7906c5cd7"))
+    (uuid "82bec641-8c45-4ed1-b78d-87e6acc403b5"))
   (symbol
     (lib_id "Transistor_FET:AO3400A")
     (at 397.51 90.17 0)
@@ -2819,7 +2819,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "12b0d95e-8ccc-4b68-b25c-ba06943d598a")
+    (uuid "8eff7e93-9c21-4fe3-a3ac-78275984011b")
     (property "Reference" "Q2" (at 402.59 88.9 0) (effects (font (size 1.27 1.27))))
     (property "Value" "AO3400A" (at 402.59 90.17 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2836,38 +2836,38 @@
       (at 397.51 90.17 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see Q1" (at 397.51 90.17 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "730b33c3-2d93-4202-b429-1b9a0f199054"))
-    (pin "2" (uuid "d552a536-f2a9-4d1c-998e-7c162a2045c6"))
-    (pin "3" (uuid "b48a727c-422f-4119-ad70-6113ea16a28e"))
+    (pin "1" (uuid "4d00d35e-8091-4148-b099-a2d140024e3b"))
+    (pin "2" (uuid "4f20e285-1501-4314-b403-40b9c5e9a3e5"))
+    (pin "3" (uuid "279067be-5dbf-4f51-bcb5-0ebd87142d37"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "Q2") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "Q2") (unit 1)))))
   (wire
     (pts (xy 392.43 90.17) (xy 389.89 90.17))
     (stroke (width 0) (type default))
-    (uuid "172a51fb-80db-4ec0-86ad-66236606bc4d"))
+    (uuid "ece34b63-53bb-422f-b935-935e9a14cb71"))
   (label "GATE_B"
     (at 389.89 90.17 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "95f5894e-ee62-49da-a1a0-772c82ccbba4"))
+    (uuid "5bb5838e-6009-44f0-a675-beb912c1573d"))
   (wire
     (pts (xy 400.05 95.25) (xy 400.05 97.79))
     (stroke (width 0) (type default))
-    (uuid "eb03c48f-471b-47c2-9221-50e05519518d"))
+    (uuid "54deeb05-6e54-4430-9749-125c2015246a"))
   (label "FB"
     (at 400.05 97.79 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "4c9af71b-d5e9-481e-8164-111c0a983e37"))
+    (uuid "2b1fc5d5-18a9-4c7a-ab60-6b84940b3b58"))
   (wire
     (pts (xy 400.05 85.09) (xy 400.05 82.55))
     (stroke (width 0) (type default))
-    (uuid "fb7613fa-5103-470c-b589-3916b4707b96"))
+    (uuid "c8a7c482-f206-40bc-a3a6-6a8e8afe8b00"))
   (label "STR_B"
     (at 400.05 82.55 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "9375a174-360a-499c-9416-f3bc97327292"))
+    (uuid "bc1515d4-35fe-4722-86c0-6c76c2d8938b"))
   (symbol
     (lib_id "Device:R")
     (at 372.11 111.76 0)
@@ -2875,7 +2875,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "f02657ef-a2f0-40b6-9b97-ebbe27f25d4c")
+    (uuid "023b8665-6fcc-4401-9d0e-6191678cd485")
     (property "Reference" "R11" (at 374.65 111.76 0) (effects (font (size 1.27 1.27))))
     (property "Value" "100k" (at 372.11 111.76 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2892,28 +2892,28 @@
       (at 372.11 111.76 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see R5" (at 372.11 111.76 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "f003226d-5676-425d-be31-988e7d9d3850"))
-    (pin "2" (uuid "3da1a716-163a-40f8-97dc-dd776ab27722"))
+    (pin "1" (uuid "c74ea391-45b2-4a43-b172-d20b3cb2ad58"))
+    (pin "2" (uuid "2d632399-4152-49e8-b97d-4c049c4668e5"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "R11") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "R11") (unit 1)))))
   (wire
     (pts (xy 372.11 107.95) (xy 372.11 105.41))
     (stroke (width 0) (type default))
-    (uuid "416c7fb3-7079-49a1-b564-1935aa20c075"))
+    (uuid "ab215ea6-9ce6-46f6-aa2f-7d455ebf8d94"))
   (label "GATE_A"
     (at 372.11 105.41 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "d62fa459-efb7-43d0-9aa5-e936939e3a56"))
+    (uuid "c33c9751-3097-4d30-a498-4bdc88c7ee16"))
   (wire
     (pts (xy 372.11 115.57) (xy 372.11 118.11))
     (stroke (width 0) (type default))
-    (uuid "0ac3a9d8-e396-4e3f-a21b-15c47f9fd086"))
+    (uuid "51579321-3286-4bb1-974c-aaaca482ca05"))
   (label "GND"
     (at 372.11 118.11 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "5b09bb8d-704b-4201-8820-6178fba0f197"))
+    (uuid "10c8f1ea-8ca4-427e-b96f-d9b5f5832de6"))
   (symbol
     (lib_id "Device:R")
     (at 389.89 111.76 0)
@@ -2921,7 +2921,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "203de2e5-b203-4239-b15c-212aa03fe759")
+    (uuid "6577c933-8688-4c52-9716-95a4203b9ca1")
     (property "Reference" "R12" (at 392.43 111.76 0) (effects (font (size 1.27 1.27))))
     (property "Value" "100k" (at 389.89 111.76 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2938,28 +2938,28 @@
       (at 389.89 111.76 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see R5" (at 389.89 111.76 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "729a5f51-65fc-45d9-afbd-7796fda10d1b"))
-    (pin "2" (uuid "2b03f1b5-2ac3-4395-b78f-8ff29b07ac4d"))
+    (pin "1" (uuid "e0487e24-1d58-4f77-a7b2-d100b7101c42"))
+    (pin "2" (uuid "ede31849-8c42-4c3d-bcb2-4b1549f0c6ee"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "R12") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "R12") (unit 1)))))
   (wire
     (pts (xy 389.89 107.95) (xy 389.89 105.41))
     (stroke (width 0) (type default))
-    (uuid "71c26c14-4f5f-47b7-857e-6a9e5d1b6d16"))
+    (uuid "5db66e00-15ec-46d6-af82-423db9d32621"))
   (label "GATE_B"
     (at 389.89 105.41 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "9553a269-a7b2-4ad4-9dab-de34ed733698"))
+    (uuid "8cc5b1bb-fb11-4f94-9890-6810e55c4887"))
   (wire
     (pts (xy 389.89 115.57) (xy 389.89 118.11))
     (stroke (width 0) (type default))
-    (uuid "ef88dc77-bfcf-4d42-97b9-0e60f149a7c6"))
+    (uuid "69dfaaeb-f8f2-4cf1-8833-a4a7e045d372"))
   (label "GND"
     (at 389.89 118.11 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "1750dd47-61ca-4ad4-a03f-47daca5c6a9d"))
+    (uuid "688da55e-eae5-4e83-9f6a-97d840089f85"))
   (symbol
     (lib_id "Device:LED")
     (at 44.45 160.02 0)
@@ -2967,7 +2967,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "ba2d882d-cf57-4117-a49d-108a6be07e91")
+    (uuid "54a6f97b-0867-4f30-b038-ab933b868f26")
     (property "Reference" "D2" (at 44.45 157.48 0) (effects (font (size 1.27 1.27))))
     (property "Value" "660nm" (at 44.45 162.56 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -2993,28 +2993,28 @@
       "A: $0.67 @1, $0.462 @10, ~20,945 in stock (snippets); 660 nm, 30 mA max, 2.10 mm max"
       (at 44.45 160.02 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "29af1900-5ea9-45b1-bd51-0505cc95f02d"))
-    (pin "2" (uuid "cdf58c27-0a81-4b57-afa8-4152d67f6148"))
+    (pin "1" (uuid "00316db0-72b1-4e97-b4ea-2ab5d5455a1a"))
+    (pin "2" (uuid "2cba1a8a-04a5-466d-b310-4c362694cbea"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "D2") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "D2") (unit 1)))))
   (wire
     (pts (xy 40.64 160.02) (xy 38.1 160.02))
     (stroke (width 0) (type default))
-    (uuid "95882d2b-86af-4626-88ce-706dac14a4f8"))
+    (uuid "f3b49c39-a902-4897-8abe-7d9b40f6fd54"))
   (label "A1"
     (at 38.1 160.02 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "416378d9-174f-408a-acac-daaa14d1ba80"))
+    (uuid "3743d23c-6b50-4073-817f-e7b9087557df"))
   (wire
     (pts (xy 48.26 160.02) (xy 50.8 160.02))
     (stroke (width 0) (type default))
-    (uuid "e0bc3b8a-065e-4053-a6b2-8a7eb3545a53"))
+    (uuid "3a48b291-42bf-4ef7-a19b-2711aaef1865"))
   (label "VOUT"
     (at 50.8 160.02 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "84d9c210-95f7-4afa-bceb-9d0341f59878"))
+    (uuid "e570013b-1b3e-4ee8-bac2-7f3df0d21c94"))
   (symbol
     (lib_id "Device:LED")
     (at 44.45 180.34 0)
@@ -3022,7 +3022,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "0806b9da-f30d-4731-93e9-cb601366f06c")
+    (uuid "ffb54d9d-3fa8-4469-8a21-5f58073a7823")
     (property "Reference" "D3" (at 44.45 177.8 0) (effects (font (size 1.27 1.27))))
     (property "Value" "660nm" (at 44.45 182.88 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -3048,28 +3048,28 @@
       "see first 660 nm LED"
       (at 44.45 180.34 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "a2e88709-a1ee-475e-9337-7ab88ac0bed8"))
-    (pin "2" (uuid "19b3c219-3340-42e4-8c93-5b2cb87638cb"))
+    (pin "1" (uuid "94993520-bc27-4e72-95db-90ad56129781"))
+    (pin "2" (uuid "c94a2d82-6709-4e63-a44a-dbf119450cbd"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "D3") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "D3") (unit 1)))))
   (wire
     (pts (xy 40.64 180.34) (xy 38.1 180.34))
     (stroke (width 0) (type default))
-    (uuid "b8590348-42d4-4910-b105-e14058e61061"))
+    (uuid "8d090162-7ad3-4346-81ae-711ef5690712"))
   (label "A2"
     (at 38.1 180.34 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "3a8e59f5-4913-4a0d-9ea4-0e07115780aa"))
+    (uuid "2a486cc6-505e-4cd5-ad30-47e9eff204d2"))
   (wire
     (pts (xy 48.26 180.34) (xy 50.8 180.34))
     (stroke (width 0) (type default))
-    (uuid "b9322980-9a59-4fa4-8a97-db5454b1d027"))
+    (uuid "82356455-cbfb-4437-80ac-c42f14ca61c6"))
   (label "A1"
     (at 50.8 180.34 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "545bb9eb-9824-4bfb-97ea-7f97323d6b61"))
+    (uuid "06e9f399-3183-41c7-b5a0-ae0d4c4a92bd"))
   (symbol
     (lib_id "Device:LED")
     (at 44.45 199.39 0)
@@ -3077,7 +3077,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "bf38255f-780a-4642-9b15-00396386c39a")
+    (uuid "92cf6117-8878-4653-9492-5c8f535286e0")
     (property "Reference" "D4" (at 44.45 196.85 0) (effects (font (size 1.27 1.27))))
     (property "Value" "660nm" (at 44.45 201.93 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -3103,28 +3103,28 @@
       "see first 660 nm LED"
       (at 44.45 199.39 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "a3bef367-a072-4b62-abd4-f237c7cf660a"))
-    (pin "2" (uuid "f5cf3ce1-3388-4c4b-9bed-d0c3ee7a4186"))
+    (pin "1" (uuid "a95a0245-f8f8-48c3-aaaa-db6a2f33b806"))
+    (pin "2" (uuid "8ab5fbd5-b6fe-46de-8f91-eb5c2e7b8856"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "D4") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "D4") (unit 1)))))
   (wire
     (pts (xy 40.64 199.39) (xy 38.1 199.39))
     (stroke (width 0) (type default))
-    (uuid "82914fc2-ac29-4fd5-a2c3-15df2de5530d"))
+    (uuid "6ce74c62-2725-4938-b6d1-95db315d4141"))
   (label "A3"
     (at 38.1 199.39 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "a8313369-1923-43a5-aec1-b31fd70aaddf"))
+    (uuid "a9a1d951-9726-444a-ae31-a45f8d67cbbe"))
   (wire
     (pts (xy 48.26 199.39) (xy 50.8 199.39))
     (stroke (width 0) (type default))
-    (uuid "0c87e862-d889-4cfc-bbea-5851967741e1"))
+    (uuid "5be12b5c-9deb-4041-af07-40cdbbeea2a9"))
   (label "A2"
     (at 50.8 199.39 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "e20d299f-82a9-4a14-99ca-40bcd47f0d35"))
+    (uuid "ded591d2-f680-419b-9247-1b242364a70a"))
   (symbol
     (lib_id "Device:LED")
     (at 44.45 219.71 0)
@@ -3132,7 +3132,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "724ebde0-dafd-4d2f-ba5d-2701bf83ca67")
+    (uuid "b66d2595-e1b9-4716-b311-8b7db64c240f")
     (property "Reference" "D5" (at 44.45 217.17 0) (effects (font (size 1.27 1.27))))
     (property "Value" "660nm" (at 44.45 222.25 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -3158,28 +3158,28 @@
       "see first 660 nm LED"
       (at 44.45 219.71 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "a1cf1e11-eb52-4002-a90f-bbc6b34c8a3f"))
-    (pin "2" (uuid "2af11565-b2ab-42a9-8caa-e95a3a72cd1f"))
+    (pin "1" (uuid "ea633c0d-927f-4afc-a1c9-5f50d58489ff"))
+    (pin "2" (uuid "2883b167-29eb-47e4-baff-90062b9f6c2d"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "D5") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "D5") (unit 1)))))
   (wire
     (pts (xy 40.64 219.71) (xy 38.1 219.71))
     (stroke (width 0) (type default))
-    (uuid "500b8f03-9a9b-413f-a8e1-4c3edc10ffd9"))
+    (uuid "37d2ceb2-6057-469e-a829-77e52e05e1a1"))
   (label "A4"
     (at 38.1 219.71 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "f7caadf3-a953-4961-8100-67c732d24584"))
+    (uuid "cd447b86-b55d-4cf3-a6ff-4edaa5fb0193"))
   (wire
     (pts (xy 48.26 219.71) (xy 50.8 219.71))
     (stroke (width 0) (type default))
-    (uuid "4936b620-3743-4a8a-b679-9941e2df65e0"))
+    (uuid "41f9ada5-bc57-40ad-9693-20184e69ce2f"))
   (label "A3"
     (at 50.8 219.71 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "f3170747-fa16-4c13-a557-bd8751cbd008"))
+    (uuid "6ea18466-04c9-405f-b1be-b4ca1f5b41c7"))
   (symbol
     (lib_id "Device:LED")
     (at 44.45 240.03 0)
@@ -3187,7 +3187,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "3ae3bb94-0a24-4f39-8de9-212bf9166f9a")
+    (uuid "d9e40682-740c-41d5-b594-dfe4e1f26b83")
     (property "Reference" "D6" (at 44.45 237.49 0) (effects (font (size 1.27 1.27))))
     (property "Value" "660nm" (at 44.45 242.57 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -3213,28 +3213,28 @@
       "see first 660 nm LED"
       (at 44.45 240.03 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "1054a553-45c9-44a5-a6e8-3a8fc4113c93"))
-    (pin "2" (uuid "c6f44cd6-e059-4a1f-a3b0-21f17bb9adbd"))
+    (pin "1" (uuid "8d74fd78-7078-43bd-af3d-a3aaa2306771"))
+    (pin "2" (uuid "1e586a6e-8d21-4fa3-8795-b6851915b8c9"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "D6") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "D6") (unit 1)))))
   (wire
     (pts (xy 40.64 240.03) (xy 38.1 240.03))
     (stroke (width 0) (type default))
-    (uuid "87e27920-b957-4729-8cd7-ed35c1238bee"))
+    (uuid "cb562eaf-e9be-409e-b7c8-37ebcde278f1"))
   (label "A5"
     (at 38.1 240.03 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "3ffc3831-ccdf-4486-ba7d-b0647b1978eb"))
+    (uuid "18a89b0b-f3cd-435a-b3c1-91dd9732aa07"))
   (wire
     (pts (xy 48.26 240.03) (xy 50.8 240.03))
     (stroke (width 0) (type default))
-    (uuid "0eaf6916-b6ea-4302-9f62-063a48178c93"))
+    (uuid "e7b8389d-71dd-4b42-af21-b9932fdaf541"))
   (label "A4"
     (at 50.8 240.03 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "5b812b9e-2208-4f6b-af55-c3ab0b894d3c"))
+    (uuid "da75bddf-248b-4ab0-96bd-ba73650500cf"))
   (symbol
     (lib_id "Device:LED")
     (at 44.45 260.35 0)
@@ -3242,7 +3242,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "fc685d21-aab9-4dd3-b40f-c86665c93690")
+    (uuid "cbb9ebfd-8705-4c7c-97cb-fe9a8ed0fa11")
     (property "Reference" "D7" (at 44.45 257.81 0) (effects (font (size 1.27 1.27))))
     (property "Value" "660nm" (at 44.45 262.89 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -3268,28 +3268,28 @@
       "see first 660 nm LED"
       (at 44.45 260.35 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "627c4d92-caf1-431e-8e5d-8d6c0761dc3c"))
-    (pin "2" (uuid "7e446c96-86c1-4616-862c-5324bbbddf1e"))
+    (pin "1" (uuid "23e4e0f5-3d61-4fbd-9c5e-de677e569e4c"))
+    (pin "2" (uuid "4c8ff9f1-8a3b-4cc9-b258-c0538baaf781"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "D7") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "D7") (unit 1)))))
   (wire
     (pts (xy 40.64 260.35) (xy 38.1 260.35))
     (stroke (width 0) (type default))
-    (uuid "2561cb79-79c9-4c9f-ae74-2fb55d9993dc"))
+    (uuid "90f2615b-a358-464b-93c8-6e1f2005afe1"))
   (label "STR_A"
     (at 38.1 260.35 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "8ac9cb64-a960-4889-a7fc-fd12a4cae82b"))
+    (uuid "e674344d-488e-43ec-886f-e0b6b2bec622"))
   (wire
     (pts (xy 48.26 260.35) (xy 50.8 260.35))
     (stroke (width 0) (type default))
-    (uuid "b419a4f6-98a9-412c-84e0-b7b417eb8342"))
+    (uuid "c17eb068-8d9f-4876-9de7-d086cc9fcfd5"))
   (label "A5"
     (at 50.8 260.35 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "5f2c6cf6-c528-4600-983f-586ddbc1c215"))
+    (uuid "eb909ea6-69a9-4fb3-bee4-f9c131f84474"))
   (symbol
     (lib_id "Device:LED")
     (at 139.7 160.02 0)
@@ -3297,7 +3297,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "0c227da8-acee-4087-b3ab-0bb761a15e1a")
+    (uuid "fee21787-26a1-47ba-b5b7-2c44970510a7")
     (property "Reference" "D8" (at 139.7 157.48 0) (effects (font (size 1.27 1.27))))
     (property "Value" "625nm" (at 139.7 162.56 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -3320,28 +3320,28 @@
       "A: $0.51 @1, $0.354 @10; stock 870-10,870 (snippets disagree); 625 nm, 30 mA max, 1.80 mm max"
       (at 139.7 160.02 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "d64b81b6-57c4-43ee-9899-8fe53daf2496"))
-    (pin "2" (uuid "9fdf73fa-3e5d-43cb-ba62-57f6b41e819c"))
+    (pin "1" (uuid "f18df23c-261f-43fa-8304-fbb4eae15fdd"))
+    (pin "2" (uuid "ad0ef945-d7f9-4e9f-9e17-e9aaefe8aaf7"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "D8") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "D8") (unit 1)))))
   (wire
     (pts (xy 135.89 160.02) (xy 133.35 160.02))
     (stroke (width 0) (type default))
-    (uuid "c8a0fbc6-c68e-414f-8e48-9554bbd22c30"))
+    (uuid "d061f5f4-f148-4d13-a64f-d17d6e1b493a"))
   (label "B1"
     (at 133.35 160.02 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "110003ff-7ace-40bc-9815-a120ede00c3e"))
+    (uuid "53fa9c81-20cc-4595-8318-6793b2b2644f"))
   (wire
     (pts (xy 143.51 160.02) (xy 146.05 160.02))
     (stroke (width 0) (type default))
-    (uuid "b9593629-df12-40f5-94d9-9ef4758ab109"))
+    (uuid "3a62c3a7-fafb-4742-bccf-96a65a6f05f0"))
   (label "VOUT"
     (at 146.05 160.02 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "8364791c-63c0-4ba7-9374-983449db29c5"))
+    (uuid "db1bc1ea-5913-467d-b9c2-008970c2b22c"))
   (symbol
     (lib_id "Device:LED")
     (at 139.7 180.34 0)
@@ -3349,7 +3349,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "8c85967e-2961-421c-b140-ff70e3009d10")
+    (uuid "ec2a5f51-62f3-4cf6-9419-b5ca8f52e7b1")
     (property "Reference" "D9" (at 139.7 177.8 0) (effects (font (size 1.27 1.27))))
     (property "Value" "625nm" (at 139.7 182.88 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -3372,28 +3372,28 @@
       "see first 625 nm LED"
       (at 139.7 180.34 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "25a1612f-a142-4ddc-a022-a2466441878b"))
-    (pin "2" (uuid "4b367d02-9816-465e-8c4d-574d2ebb6b2c"))
+    (pin "1" (uuid "ad398bdf-1627-42fd-b77d-412801ae9071"))
+    (pin "2" (uuid "4e286d36-5425-4666-a02a-eba351f32cc1"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "D9") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "D9") (unit 1)))))
   (wire
     (pts (xy 135.89 180.34) (xy 133.35 180.34))
     (stroke (width 0) (type default))
-    (uuid "0565e2b5-dcef-4637-aa7c-2c26d0af3ddf"))
+    (uuid "d7dbf91c-17f8-46d8-953d-6c1411748867"))
   (label "B2"
     (at 133.35 180.34 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "890e33af-7c4c-44d1-a8ed-1af11b8b3bb9"))
+    (uuid "f8b9bc1b-48a5-431e-83f1-c179ca5b28b6"))
   (wire
     (pts (xy 143.51 180.34) (xy 146.05 180.34))
     (stroke (width 0) (type default))
-    (uuid "9bcba12f-e233-47ea-90af-cfb05584dbdc"))
+    (uuid "684e26da-b385-4f18-863b-17acb3b85bbc"))
   (label "B1"
     (at 146.05 180.34 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "03ceb3ab-8664-4ed5-a086-d87d4c8538d0"))
+    (uuid "0be82bdd-ce14-467c-ab39-b30bd98da71e"))
   (symbol
     (lib_id "Device:LED")
     (at 139.7 199.39 0)
@@ -3401,7 +3401,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "d7fcf707-7804-4daf-873f-770e17b44344")
+    (uuid "c0d76fb7-1a46-44c7-a397-f7ac54214507")
     (property "Reference" "D10" (at 139.7 196.85 0) (effects (font (size 1.27 1.27))))
     (property "Value" "625nm" (at 139.7 201.93 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -3424,28 +3424,28 @@
       "see first 625 nm LED"
       (at 139.7 199.39 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "6c8e1f04-1ed3-41b9-bc4d-fe685dfecaf4"))
-    (pin "2" (uuid "8195fe83-ae60-4cfd-b414-1ba71267f2ed"))
+    (pin "1" (uuid "d44dfefd-ac0e-42e8-b370-70e277cd0832"))
+    (pin "2" (uuid "b56147d3-4167-4209-b218-e137d3b0fb68"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "D10") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "D10") (unit 1)))))
   (wire
     (pts (xy 135.89 199.39) (xy 133.35 199.39))
     (stroke (width 0) (type default))
-    (uuid "412cf99b-c0c3-4bbe-95c9-3f7a5d5998e3"))
+    (uuid "bd717468-c780-4943-b479-79ade254e408"))
   (label "B3"
     (at 133.35 199.39 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "8dbf2de5-6807-4de1-826d-3ccb169321a4"))
+    (uuid "c8e0f34e-b43a-4c9d-8555-3aacd5a9bd8a"))
   (wire
     (pts (xy 143.51 199.39) (xy 146.05 199.39))
     (stroke (width 0) (type default))
-    (uuid "343e68ad-c8ed-43bd-ad40-d3b7d78d5f66"))
+    (uuid "25b7fc16-ef93-4688-a395-a6d09120f3f5"))
   (label "B2"
     (at 146.05 199.39 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "745e531f-2525-45b5-ae61-206c74860668"))
+    (uuid "cbc169a9-1f57-432b-89b3-584e0b3aef62"))
   (symbol
     (lib_id "Device:LED")
     (at 139.7 219.71 0)
@@ -3453,7 +3453,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "f3dea6ce-3083-4119-b1a4-214c4cb6644d")
+    (uuid "f3d346b7-6b3f-4e74-91f3-fd2f304ccc52")
     (property "Reference" "D11" (at 139.7 217.17 0) (effects (font (size 1.27 1.27))))
     (property "Value" "625nm" (at 139.7 222.25 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -3476,28 +3476,28 @@
       "see first 625 nm LED"
       (at 139.7 219.71 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "269c4093-2891-4492-88d2-f904c33d025c"))
-    (pin "2" (uuid "89268e3a-c7e3-4142-9751-9ed229f051fe"))
+    (pin "1" (uuid "87c473eb-8a43-4dbd-b571-d2e4dc40e59f"))
+    (pin "2" (uuid "a114abc5-2ea8-4d9c-ab4b-a7e688d4e771"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "D11") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "D11") (unit 1)))))
   (wire
     (pts (xy 135.89 219.71) (xy 133.35 219.71))
     (stroke (width 0) (type default))
-    (uuid "4ec5329f-2ca7-470f-aa0c-fbd562ef0be6"))
+    (uuid "b4cf276e-ee01-4caf-9690-8510842288a7"))
   (label "B4"
     (at 133.35 219.71 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "9e9ef97f-105b-4c59-ba5c-53209a16e15f"))
+    (uuid "cfd5b8ca-d47b-46c4-a75f-c1aea35e79db"))
   (wire
     (pts (xy 143.51 219.71) (xy 146.05 219.71))
     (stroke (width 0) (type default))
-    (uuid "50af2bf8-f10e-4c9e-8f31-3c8eca53b0f2"))
+    (uuid "93b8271d-8474-4eb4-a59e-aa3b23572ae2"))
   (label "B3"
     (at 146.05 219.71 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "7c3408fd-26ee-413c-b3dc-bd92d192db4e"))
+    (uuid "d34d7cd9-0f76-436c-b4d5-6dcb04c97ffb"))
   (symbol
     (lib_id "Device:LED")
     (at 139.7 240.03 0)
@@ -3505,7 +3505,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "b1070936-1433-4d44-a930-21f51d951a56")
+    (uuid "3e5e64df-0bc7-4139-9624-6247d53679e8")
     (property "Reference" "D12" (at 139.7 237.49 0) (effects (font (size 1.27 1.27))))
     (property "Value" "625nm" (at 139.7 242.57 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -3528,28 +3528,28 @@
       "see first 625 nm LED"
       (at 139.7 240.03 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "adbcaca3-8872-43c5-8aeb-25b42b342f96"))
-    (pin "2" (uuid "73683b5d-a9e8-4279-9e3d-4b38b51b7197"))
+    (pin "1" (uuid "416bf920-c9e2-4d88-83cf-6c30c4251ad5"))
+    (pin "2" (uuid "0683909e-20d8-4bd1-a02c-af7c95483522"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "D12") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "D12") (unit 1)))))
   (wire
     (pts (xy 135.89 240.03) (xy 133.35 240.03))
     (stroke (width 0) (type default))
-    (uuid "24f249f7-5bb1-4dbb-907b-e3bf122df097"))
+    (uuid "c046ea39-4db2-4d70-b99a-b8f0f7c23274"))
   (label "B5"
     (at 133.35 240.03 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "6f1ce2a2-d5bf-4806-8494-8bc445d3ba04"))
+    (uuid "c30b72db-7a44-41d4-8a50-431fd7a30ec1"))
   (wire
     (pts (xy 143.51 240.03) (xy 146.05 240.03))
     (stroke (width 0) (type default))
-    (uuid "c1eaf17a-a877-456a-b1ef-ae5d4f1ff4a4"))
+    (uuid "39e16cf1-5ca0-42af-b75d-56e626d85955"))
   (label "B4"
     (at 146.05 240.03 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "742e2b8c-87dc-4544-bc20-cb4d9ed06a68"))
+    (uuid "4c18804a-51cd-44da-83c0-781c27c9053d"))
   (symbol
     (lib_id "Device:LED")
     (at 139.7 260.35 0)
@@ -3557,7 +3557,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "b5216370-5a97-4fc9-a6ec-7250942d5220")
+    (uuid "199e6eed-fd18-4d5a-bb65-e495f58256c5")
     (property "Reference" "D13" (at 139.7 257.81 0) (effects (font (size 1.27 1.27))))
     (property "Value" "625nm" (at 139.7 262.89 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -3580,28 +3580,28 @@
       "see first 625 nm LED"
       (at 139.7 260.35 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "9eec416d-6542-4aeb-bd81-2a854131c017"))
-    (pin "2" (uuid "1114267a-bf29-4889-be40-db4460801653"))
+    (pin "1" (uuid "21e0a0c6-ae1c-4c0b-b78c-fa8352ded4b4"))
+    (pin "2" (uuid "b4517fd9-17dd-470e-81c8-1d1fc05c367d"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "D13") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "D13") (unit 1)))))
   (wire
     (pts (xy 135.89 260.35) (xy 133.35 260.35))
     (stroke (width 0) (type default))
-    (uuid "76524510-cdbb-4771-9aa3-defc8844ef38"))
+    (uuid "b6f6fdf9-fa27-400e-84aa-dd87d7994ff6"))
   (label "STR_B"
     (at 133.35 260.35 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "6dc93ec5-1ee8-45df-84e9-dc9086ee2a63"))
+    (uuid "f9c17e81-5c0a-45f8-8248-f72472841543"))
   (wire
     (pts (xy 143.51 260.35) (xy 146.05 260.35))
     (stroke (width 0) (type default))
-    (uuid "ae2d48fb-d36a-4b9f-8f17-a23ab67b2a3a"))
+    (uuid "4fa1f444-1004-4163-8bba-55b3c94a01c9"))
   (label "B5"
     (at 146.05 260.35 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "d8b2a9d9-5b7f-47ee-9ff8-bb9fb3a587b9"))
+    (uuid "ea6f2c24-b2d9-433b-a4e7-6dc88728da2a"))
   (symbol
     (lib_id "Device:LED")
     (at 265.43 160.02 0)
@@ -3609,7 +3609,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "6bfe5e69-5c58-4909-a1b6-072dfe1d8efc")
+    (uuid "06bdfe4b-3142-488a-a207-33277ca7899e")
     (property "Reference" "D14" (at 265.43 157.48 0) (effects (font (size 1.27 1.27))))
     (property "Value" "amber" (at 265.43 162.56 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -3629,28 +3629,28 @@
       "A: $0.0221 @20+ (MOQ 20), 54-56 k in stock (snippets); 591 nm"
       (at 265.43 160.02 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "556119e7-4aff-463d-b491-b0b1ce58679c"))
-    (pin "2" (uuid "219153a4-1502-4e60-9641-f145601f0977"))
+    (pin "1" (uuid "de96fbef-0107-4079-9eac-28986026d941"))
+    (pin "2" (uuid "816ec46e-a799-4b71-8a2e-388d6837c934"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "D14") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "D14") (unit 1)))))
   (wire
     (pts (xy 261.62 160.02) (xy 259.08 160.02))
     (stroke (width 0) (type default))
-    (uuid "0cd99ab8-4a9c-490b-a432-10682ca95eb5"))
+    (uuid "7ed35337-12fb-41b8-aca0-b796fac2bc5e"))
   (label "GND"
     (at 259.08 160.02 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "c4435674-8843-4b1c-a7e9-bfe1756f0a7d"))
+    (uuid "3a7adf38-8d8e-43b3-a2ae-b84f870b5a93"))
   (wire
     (pts (xy 269.24 160.02) (xy 271.78 160.02))
     (stroke (width 0) (type default))
-    (uuid "c3eb0fb4-3215-407a-b891-9aabe416ee1c"))
+    (uuid "3716b18f-2e59-447f-9417-baf2b30cd6e4"))
   (label "SEAM1"
     (at 271.78 160.02 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "d3ee309b-d174-4dff-b319-3e9dc78f8924"))
+    (uuid "3dcc93ca-4485-42ae-93db-2aab5ffbcc2e"))
   (symbol
     (lib_id "Device:R")
     (at 234.95 154.94 0)
@@ -3658,7 +3658,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "d33731a5-a6a2-4b64-9605-5db80590ee11")
+    (uuid "ca703ff3-6d7a-4de8-86c6-d0122ae8617c")
     (property "Reference" "R13" (at 237.49 154.94 0) (effects (font (size 1.27 1.27))))
     (property "Value" "1k" (at 234.95 154.94 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -3678,28 +3678,28 @@
       "A: $0.0011 @100+, ~9.9 M in stock (snippet)"
       (at 234.95 154.94 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "65b0e848-f1a0-4e47-af87-234bcf69dda7"))
-    (pin "2" (uuid "9d9df0ce-e514-4aff-a299-f05249bbf901"))
+    (pin "1" (uuid "21494b94-04b6-496b-9846-c1176734a3be"))
+    (pin "2" (uuid "f0c2cf78-d0a8-4fa6-859c-bf1eb0c6f2d9"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "R13") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "R13") (unit 1)))))
   (wire
     (pts (xy 234.95 151.13) (xy 234.95 148.59))
     (stroke (width 0) (type default))
-    (uuid "9df2068b-7ef2-4f8b-8476-da3d70e72ccd"))
+    (uuid "a0e3d97d-483f-4ebd-a71a-2c3bc1dfef81"))
   (label "SEAM_PWM"
     (at 234.95 148.59 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "d2aa52b8-7c6d-4eb3-9a51-c7c1d1916d06"))
+    (uuid "7a192d62-d2ff-440a-b019-9147404e782c"))
   (wire
     (pts (xy 234.95 158.75) (xy 234.95 161.29))
     (stroke (width 0) (type default))
-    (uuid "61796bbd-979a-4beb-9168-221a7ee9e813"))
+    (uuid "de8f88b0-550b-4b88-b7b3-43bc952ec251"))
   (label "SEAM1"
     (at 234.95 161.29 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "ed277b08-c2aa-45df-9590-09c56f64bf9a"))
+    (uuid "e430870c-bccd-4416-820b-67e721c361a3"))
   (symbol
     (lib_id "Device:LED")
     (at 265.43 185.42 0)
@@ -3707,7 +3707,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "9f40335a-d394-4fbf-aa21-454af31a26a4")
+    (uuid "70b07110-a9eb-4a66-bf61-5edefb71e07c")
     (property "Reference" "D15" (at 265.43 182.88 0) (effects (font (size 1.27 1.27))))
     (property "Value" "amber" (at 265.43 187.96 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -3724,28 +3724,28 @@
       (at 265.43 185.42 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see D14" (at 265.43 185.42 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "5269d2b8-0104-490c-97b5-adfb18c3b1b5"))
-    (pin "2" (uuid "f529283f-157d-4cde-bc8f-8894bba0dc51"))
+    (pin "1" (uuid "8a2ee32f-dac2-440b-aee3-aa4619a8f491"))
+    (pin "2" (uuid "d24612ff-4510-48ff-9aad-a5021235ed82"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "D15") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "D15") (unit 1)))))
   (wire
     (pts (xy 261.62 185.42) (xy 259.08 185.42))
     (stroke (width 0) (type default))
-    (uuid "c30b29d5-444c-4913-a53e-e8585a06854f"))
+    (uuid "3eb11202-cf7a-4cdd-8343-a0482a2b75bc"))
   (label "GND"
     (at 259.08 185.42 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "d1fdbee1-98a4-4783-9011-e33a0caa42e4"))
+    (uuid "11f5df0d-f024-4d89-b511-e485c4f10b67"))
   (wire
     (pts (xy 269.24 185.42) (xy 271.78 185.42))
     (stroke (width 0) (type default))
-    (uuid "2b206b41-d327-4d3b-880d-12746f7414f2"))
+    (uuid "eb9fc524-56ce-4a6f-a6ed-ecfb2d252802"))
   (label "SEAM2"
     (at 271.78 185.42 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "0b719d33-d4a5-4dc6-9b94-5900d538c6ef"))
+    (uuid "7a9c4017-5536-4e1e-9b21-30cb5c260349"))
   (symbol
     (lib_id "Device:R")
     (at 234.95 180.34 0)
@@ -3753,7 +3753,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "d7a923eb-da04-429e-a1b9-6c945557b9ba")
+    (uuid "186659bb-831c-44c1-9145-56c036356888")
     (property "Reference" "R14" (at 237.49 180.34 0) (effects (font (size 1.27 1.27))))
     (property "Value" "1k" (at 234.95 180.34 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -3770,28 +3770,28 @@
       (at 234.95 180.34 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see R13" (at 234.95 180.34 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "177a3ce5-1120-4752-a496-833354397409"))
-    (pin "2" (uuid "d2f33e76-2ca1-4fc4-9c55-e9dbe8472ee2"))
+    (pin "1" (uuid "fd30d7cf-b609-4879-8c5a-55ac82147ca4"))
+    (pin "2" (uuid "69119976-03d6-4d39-a292-81dd4d475f36"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "R14") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "R14") (unit 1)))))
   (wire
     (pts (xy 234.95 176.53) (xy 234.95 173.99))
     (stroke (width 0) (type default))
-    (uuid "65a379e5-9159-42bd-b4da-7c4fb182bb96"))
+    (uuid "67c64452-8dc4-4ac9-9549-01a010c7a1fe"))
   (label "SEAM_PWM"
     (at 234.95 173.99 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "32ee290f-45ae-47fe-a39f-051f9af1383b"))
+    (uuid "c8a73cc1-916a-45ca-95ce-4c5bc0cf1e94"))
   (wire
     (pts (xy 234.95 184.15) (xy 234.95 186.69))
     (stroke (width 0) (type default))
-    (uuid "c0452059-248d-49c0-ac41-ade2af18a394"))
+    (uuid "486e07e5-dc34-43c5-be5a-9b3035168e56"))
   (label "SEAM2"
     (at 234.95 186.69 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "eeaa5b3c-a6e5-4cc3-a253-e017ce6c401e"))
+    (uuid "502ba621-37bc-4437-87c5-9c90283c8315"))
   (symbol
     (lib_id "Device:LED")
     (at 265.43 209.55 0)
@@ -3799,7 +3799,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "1d413ea5-78c6-4ce4-974a-543e1b4ddf7f")
+    (uuid "56d83d43-c015-4839-9636-4bc567ba62ef")
     (property "Reference" "D16" (at 265.43 207.01 0) (effects (font (size 1.27 1.27))))
     (property "Value" "amber" (at 265.43 212.09 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -3816,28 +3816,28 @@
       (at 265.43 209.55 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see D14" (at 265.43 209.55 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "df6d9d18-02e6-40cb-8e20-487c5b9baf0c"))
-    (pin "2" (uuid "a60c02a7-9d06-430c-820f-bbc78be8cb0a"))
+    (pin "1" (uuid "93c952b0-0ca3-411f-a193-097e8e42b303"))
+    (pin "2" (uuid "b73c8349-1760-45ce-812c-598386909927"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "D16") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "D16") (unit 1)))))
   (wire
     (pts (xy 261.62 209.55) (xy 259.08 209.55))
     (stroke (width 0) (type default))
-    (uuid "fe5e0f7b-7ef0-4889-9cf1-a9e41b8f7a0b"))
+    (uuid "d5dc885c-3d0b-4736-8c69-c2195d268347"))
   (label "GND"
     (at 259.08 209.55 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "992158c2-78e1-47b1-a8ce-53e67c916cce"))
+    (uuid "b0c88c0e-bf21-4d3d-957a-9e9216424aea"))
   (wire
     (pts (xy 269.24 209.55) (xy 271.78 209.55))
     (stroke (width 0) (type default))
-    (uuid "ce93d5ed-aaa3-46a3-875e-1c41b68e9f6d"))
+    (uuid "7f5b4de8-df09-48be-9419-a151f2c8adb7"))
   (label "SEAM3"
     (at 271.78 209.55 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "f44c53de-9df5-4354-ab9f-1d4aa7121472"))
+    (uuid "c5483382-dde7-4e05-afd4-47a5b3f33462"))
   (symbol
     (lib_id "Device:R")
     (at 234.95 204.47 0)
@@ -3845,7 +3845,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "7be5b45e-76d7-469f-9233-197d224773a7")
+    (uuid "ba206f38-1775-40d6-8735-59be91568998")
     (property "Reference" "R15" (at 237.49 204.47 0) (effects (font (size 1.27 1.27))))
     (property "Value" "1k" (at 234.95 204.47 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -3862,28 +3862,28 @@
       (at 234.95 204.47 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see R13" (at 234.95 204.47 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "20609bce-f6f4-4d55-99d9-7c078062005a"))
-    (pin "2" (uuid "aa9ddb89-cb80-43a0-bf19-8b01e252e216"))
+    (pin "1" (uuid "d706789e-697b-4133-bac1-59a5bccfe543"))
+    (pin "2" (uuid "0730a175-607a-4199-8386-fea9021fbc29"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "R15") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "R15") (unit 1)))))
   (wire
     (pts (xy 234.95 200.66) (xy 234.95 198.12))
     (stroke (width 0) (type default))
-    (uuid "db0e46ef-4f67-4d26-ac96-0ac5a150de28"))
+    (uuid "45a47762-b516-4e1b-915b-5952d094a2d3"))
   (label "SEAM_PWM"
     (at 234.95 198.12 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "7d90e28c-3420-484b-a8c6-cf05cdfe8b45"))
+    (uuid "aec82ad0-21ab-4088-a8bd-67acfa3a3440"))
   (wire
     (pts (xy 234.95 208.28) (xy 234.95 210.82))
     (stroke (width 0) (type default))
-    (uuid "5981a626-7cdd-409c-894a-03467a849d3a"))
+    (uuid "fb7ba251-ad28-4dfc-8cbd-a5779941c2d0"))
   (label "SEAM3"
     (at 234.95 210.82 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "dc1a3733-34bf-4ac5-8bd2-b78f1323bac2"))
+    (uuid "ed41b313-a8d9-45aa-8143-2c67d934f82b"))
   (symbol
     (lib_id "Device:LED")
     (at 265.43 234.95 0)
@@ -3891,7 +3891,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "0af45abe-3b0b-4b66-83c5-aad6c757c15a")
+    (uuid "7753f5ee-9297-4fe0-b643-93baa7f1fbc0")
     (property "Reference" "D17" (at 265.43 232.41 0) (effects (font (size 1.27 1.27))))
     (property "Value" "amber" (at 265.43 237.49 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -3908,28 +3908,28 @@
       (at 265.43 234.95 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see D14" (at 265.43 234.95 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "fc33085c-10ce-436e-bb04-f7f20b95e6ea"))
-    (pin "2" (uuid "0db623be-b166-416f-b3c5-cbddb70057b3"))
+    (pin "1" (uuid "3108c8d0-b5f8-4cf4-a14d-e05be0c4174c"))
+    (pin "2" (uuid "81beaaa9-e450-4f8c-be4e-0fb5990099bf"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "D17") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "D17") (unit 1)))))
   (wire
     (pts (xy 261.62 234.95) (xy 259.08 234.95))
     (stroke (width 0) (type default))
-    (uuid "7a353412-3c52-41e0-94cb-01f0584a6185"))
+    (uuid "f222fc48-6b84-4d6c-ae60-2e5ae2419101"))
   (label "GND"
     (at 259.08 234.95 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "3d5292dc-25a9-4042-947c-874eded66cf2"))
+    (uuid "f247913b-256b-4a0d-b7af-f0a97025db1c"))
   (wire
     (pts (xy 269.24 234.95) (xy 271.78 234.95))
     (stroke (width 0) (type default))
-    (uuid "670178a4-d13d-4ac6-9c4e-290ebf8c7e0f"))
+    (uuid "66ecc23d-8e70-40e7-b2aa-c29904505331"))
   (label "SEAM4"
     (at 271.78 234.95 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "83a6f926-4f21-4ae0-b2be-1fe5b5ede693"))
+    (uuid "87d789e1-154b-4381-a3c5-f58f1daed1c9"))
   (symbol
     (lib_id "Device:R")
     (at 234.95 229.87 0)
@@ -3937,7 +3937,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "3ac50bbd-553c-436d-b90a-39bc46b4b94c")
+    (uuid "84548634-19fa-4f19-88ce-b30fa92af940")
     (property "Reference" "R16" (at 237.49 229.87 0) (effects (font (size 1.27 1.27))))
     (property "Value" "1k" (at 234.95 229.87 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -3954,28 +3954,28 @@
       (at 234.95 229.87 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see R13" (at 234.95 229.87 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "af30b203-922e-4c49-9bd3-73348fc48008"))
-    (pin "2" (uuid "2c0aeb02-c23e-4200-9f91-54fb8f3e7b24"))
+    (pin "1" (uuid "32cd72e6-f278-487c-a51f-757873255a25"))
+    (pin "2" (uuid "97f8f8a5-4508-4868-b958-5fb8f19e5b9f"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "R16") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "R16") (unit 1)))))
   (wire
     (pts (xy 234.95 226.06) (xy 234.95 223.52))
     (stroke (width 0) (type default))
-    (uuid "5e7ace7c-b98c-4ede-b263-fa86d2530953"))
+    (uuid "9fbea784-e1c7-4258-a589-fb54e4719c05"))
   (label "SEAM_PWM"
     (at 234.95 223.52 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "275b4526-8bf4-41cf-a6cd-ead8d8fca7b1"))
+    (uuid "c9fc3309-8ce6-4b4d-9c4a-111cab641bec"))
   (wire
     (pts (xy 234.95 233.68) (xy 234.95 236.22))
     (stroke (width 0) (type default))
-    (uuid "88ad4fef-525e-432a-9935-875bfee487e5"))
+    (uuid "5f360113-17e5-4f97-bbbc-1a6d2db8b6cf"))
   (label "SEAM4"
     (at 234.95 236.22 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "4870b0a8-891b-43ca-aef3-68423f6b2cbb"))
+    (uuid "db2d9a42-f066-413f-ab32-89e898126b42"))
   (symbol
     (lib_id "Device:LED")
     (at 265.43 260.35 0)
@@ -3983,7 +3983,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "2379f802-093e-420d-a237-fe0facdff545")
+    (uuid "8866f206-bfa7-4514-ab10-ec37cfaf3f75")
     (property "Reference" "D18" (at 265.43 257.81 0) (effects (font (size 1.27 1.27))))
     (property "Value" "amber" (at 265.43 262.89 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -4000,28 +4000,28 @@
       (at 265.43 260.35 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see D14" (at 265.43 260.35 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "b6025549-17fb-4afe-81bf-b23865277cd5"))
-    (pin "2" (uuid "7bf2e8db-009f-4c21-885a-f3c4300807fc"))
+    (pin "1" (uuid "4674edfb-79f5-4704-80c6-37f0ba859d51"))
+    (pin "2" (uuid "9251ec74-923d-4230-b78d-07ed88adb512"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "D18") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "D18") (unit 1)))))
   (wire
     (pts (xy 261.62 260.35) (xy 259.08 260.35))
     (stroke (width 0) (type default))
-    (uuid "14d7c31b-7b0d-474a-83e3-62c8e6499180"))
+    (uuid "a5328084-f7a8-4e80-b6d3-0f1d45b1f893"))
   (label "GND"
     (at 259.08 260.35 180)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "c6510289-0694-4364-8c49-cd8fc62d0db7"))
+    (uuid "fadc8791-e785-4d15-a95f-e32c507e3f4d"))
   (wire
     (pts (xy 269.24 260.35) (xy 271.78 260.35))
     (stroke (width 0) (type default))
-    (uuid "584eb091-aaa7-480c-8383-164f84600d1c"))
+    (uuid "e11456df-c507-4c7e-b8f7-f9731325a90d"))
   (label "SEAM5"
     (at 271.78 260.35 0)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "18fca56c-1609-499e-ada3-f0cce6c831e4"))
+    (uuid "6aa65493-67ee-44b6-9682-158ea216b7d0"))
   (symbol
     (lib_id "Device:R")
     (at 234.95 255.27 0)
@@ -4029,7 +4029,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "1703d4e7-ddef-4b83-a998-4870b3470638")
+    (uuid "b9530b48-c29b-486f-88fc-7b5944d3ad34")
     (property "Reference" "R17" (at 237.49 255.27 0) (effects (font (size 1.27 1.27))))
     (property "Value" "1k" (at 234.95 255.27 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -4046,28 +4046,28 @@
       (at 234.95 255.27 0)
       (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see R13" (at 234.95 255.27 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "d5c8bd79-d741-4328-993b-559ccb997e39"))
-    (pin "2" (uuid "4d12eb0c-a828-4e16-9899-9eb7ea0a7135"))
+    (pin "1" (uuid "6907ed5f-19d6-4813-92e4-610057496e34"))
+    (pin "2" (uuid "5eb7165d-1bfc-4997-a6c0-beb417b8d01c"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "R17") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "R17") (unit 1)))))
   (wire
     (pts (xy 234.95 251.46) (xy 234.95 248.92))
     (stroke (width 0) (type default))
-    (uuid "5b9dd908-e579-411e-96ec-779c8404051c"))
+    (uuid "3f3fc8ba-6207-4d05-93ec-7b58a83b7c64"))
   (label "SEAM_PWM"
     (at 234.95 248.92 90)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid "66472161-9dc8-45ac-834e-e3ceeba66b6a"))
+    (uuid "561d8f31-e741-49f1-a5cb-4ae2b9f02ea5"))
   (wire
     (pts (xy 234.95 259.08) (xy 234.95 261.62))
     (stroke (width 0) (type default))
-    (uuid "391a77e1-f9c5-4d12-a7a8-e5bf3f2a8a9b"))
+    (uuid "83a6b3ef-509c-43b6-b10d-fba8e986a449"))
   (label "SEAM5"
     (at 234.95 261.62 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "8d8d5b52-c2f8-4abb-a1f2-6b267ffbad3c"))
+    (uuid "e906c03c-ba12-4502-9934-87e0db4072ec"))
   (symbol
     (lib_id "Connector:TestPoint")
     (at 325.12 199.39 0)
@@ -4075,7 +4075,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "9b2348ab-60e7-4fbd-9303-ae850c5a4add")
+    (uuid "0c072440-fbb4-41d7-86de-8c1cc702eec8")
     (property "Reference" "H1" (at 325.12 193.04 0) (effects (font (size 1.27 1.27))))
     (property "Value" "locating pin" (at 325.12 194.31 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -4098,18 +4098,18 @@
       "A: 47,494 in stock (snippet); price NV; 5.84 mm posts"
       (at 325.12 199.39 0)
       (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "b759b853-a873-4c83-ba07-1d8357734dd9"))
+    (pin "1" (uuid "6c18e00f-f9ec-46a1-8fdd-329b1ef43e43"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "H1") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "H1") (unit 1)))))
   (wire
     (pts (xy 325.12 199.39) (xy 325.12 201.93))
     (stroke (width 0) (type default))
-    (uuid "a4afcfe1-51ca-4c54-acad-a6ae2eeef19b"))
+    (uuid "a6d0cf8a-736b-4cc3-9d24-ffe0a8b2de6e"))
   (label "GND"
     (at 325.12 201.93 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "d11c9a47-9e3b-4add-8b74-38eb1aa5af98"))
+    (uuid "19c1c476-4d4b-43c8-987a-06b8ae772ee9"))
   (symbol
     (lib_id "Connector:TestPoint")
     (at 350.52 199.39 0)
@@ -4117,7 +4117,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "87aee605-4e75-4ec5-b1b0-c66ac3202a49")
+    (uuid "c76b5499-f775-45d7-bf7e-639226442822")
     (property "Reference" "H2" (at 350.52 193.04 0) (effects (font (size 1.27 1.27))))
     (property "Value" "locating pin" (at 350.52 194.31 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -4126,18 +4126,18 @@
       (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "~" (at 350.52 199.39 0) (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see H1" (at 350.52 199.39 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "09e5ef24-2287-4d10-9578-0ebecbc24485"))
+    (pin "1" (uuid "d2b5b09b-91d0-4152-af8f-f186b7d05543"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "H2") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "H2") (unit 1)))))
   (wire
     (pts (xy 350.52 199.39) (xy 350.52 201.93))
     (stroke (width 0) (type default))
-    (uuid "9a505028-74d2-4cdd-9ade-9a4876e71c71"))
+    (uuid "906dd821-5964-4bdf-9beb-d9c64c70b4c9"))
   (label "GND"
     (at 350.52 201.93 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "88ffeee8-d4bd-4223-a936-6864184cbe97"))
+    (uuid "cbbe06f0-65f0-4e34-a84d-669437294cc3"))
   (symbol
     (lib_id "Connector:TestPoint")
     (at 374.65 199.39 0)
@@ -4145,7 +4145,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "e2193b7e-4c0e-4690-a423-7a9ab8ba2654")
+    (uuid "f7ee50dc-2184-4415-8746-e7868702e04c")
     (property "Reference" "H3" (at 374.65 193.04 0) (effects (font (size 1.27 1.27))))
     (property "Value" "locating pin" (at 374.65 194.31 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -4154,18 +4154,18 @@
       (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "~" (at 374.65 199.39 0) (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see H1" (at 374.65 199.39 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "bf249c38-0d80-4132-b8be-95eb4ebba2f6"))
+    (pin "1" (uuid "e32629f3-daa5-4cd6-91bc-0cf8ae3cea5b"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "H3") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "H3") (unit 1)))))
   (wire
     (pts (xy 374.65 199.39) (xy 374.65 201.93))
     (stroke (width 0) (type default))
-    (uuid "cf2fecef-319f-4e5d-9e08-c14f32ab8d6f"))
+    (uuid "15bb17a9-4164-4af3-9c8e-b7d0a59816ad"))
   (label "GND"
     (at 374.65 201.93 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "800e2e74-e767-40de-88a6-68e37e2590ae"))
+    (uuid "bc024c91-eff1-4a9f-a49d-d50aa2c875a1"))
   (symbol
     (lib_id "Connector:TestPoint")
     (at 325.12 219.71 0)
@@ -4173,7 +4173,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "d3398200-3f2e-44c3-b44f-b8170447beec")
+    (uuid "9afad859-bef5-4106-8608-c2d39c56062b")
     (property "Reference" "H4" (at 325.12 213.36 0) (effects (font (size 1.27 1.27))))
     (property "Value" "locating pin" (at 325.12 214.63 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -4182,18 +4182,18 @@
       (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "~" (at 325.12 219.71 0) (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see H1" (at 325.12 219.71 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "c09e26b1-7717-4e43-98ed-af91f39bf378"))
+    (pin "1" (uuid "0132d1a5-d593-4b18-837b-45849551c424"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "H4") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "H4") (unit 1)))))
   (wire
     (pts (xy 325.12 219.71) (xy 325.12 222.25))
     (stroke (width 0) (type default))
-    (uuid "b33a96d9-0b4e-40b8-bb55-ca0c48988943"))
+    (uuid "caa697f8-5963-4150-bbca-b8271c7674c4"))
   (label "GND"
     (at 325.12 222.25 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "139dccd5-9fc8-464d-951f-d94db2692a06"))
+    (uuid "1b375494-ee2a-4e45-bbbc-5954a27af112"))
   (symbol
     (lib_id "Connector:TestPoint")
     (at 350.52 219.71 0)
@@ -4201,7 +4201,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "9a295a04-e767-42f4-b3d1-bbeb1b21bd66")
+    (uuid "49042814-2813-4217-9037-b684a4e1f716")
     (property "Reference" "H5" (at 350.52 213.36 0) (effects (font (size 1.27 1.27))))
     (property "Value" "locating pin" (at 350.52 214.63 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -4210,18 +4210,18 @@
       (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "~" (at 350.52 219.71 0) (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see H1" (at 350.52 219.71 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "14e59e28-0823-42a8-aea3-44472dc4a51c"))
+    (pin "1" (uuid "5797bbed-3a5a-471d-b326-09216e93cce1"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "H5") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "H5") (unit 1)))))
   (wire
     (pts (xy 350.52 219.71) (xy 350.52 222.25))
     (stroke (width 0) (type default))
-    (uuid "ff783366-04d0-4f52-af55-83735f7a9f1a"))
+    (uuid "37c7b39b-4122-4f23-8f1a-e8992851be05"))
   (label "GND"
     (at 350.52 222.25 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "a03a9cad-2606-4984-8fee-a0b8c891e344"))
+    (uuid "1fc5cbb3-2adb-4646-8a16-971749630318"))
   (symbol
     (lib_id "Connector:TestPoint")
     (at 374.65 219.71 0)
@@ -4229,7 +4229,7 @@
     (in_bom yes)
     (on_board yes)
     (dnp no)
-    (uuid "45ece73d-b571-4f9b-8a02-aa4105410a4b")
+    (uuid "09d809f5-e517-42cd-b4cb-20a80a8b025b")
     (property "Reference" "H6" (at 374.65 213.36 0) (effects (font (size 1.27 1.27))))
     (property "Value" "locating pin" (at 374.65 214.63 0) (effects (font (size 1.27 1.27))))
     (property "Footprint"
@@ -4238,16 +4238,16 @@
       (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "~" (at 374.65 219.71 0) (effects (font (size 1.27 1.27)) hide))
     (property "Verified" "see H1" (at 374.65 219.71 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "13f85154-c183-469c-8517-7d9d639b118f"))
+    (pin "1" (uuid "95e7bca5-8a96-40ad-a6e3-b7802d4941c9"))
     (instances
-      (project "vein_finder" (path "/3b00838e-7e9e-4449-853b-55e98a3feb20" (reference "H6") (unit 1)))))
+      (project "vein_finder" (path "/4c495d07-00c4-411f-8a56-6368ecb66324" (reference "H6") (unit 1)))))
   (wire
     (pts (xy 374.65 219.71) (xy 374.65 222.25))
     (stroke (width 0) (type default))
-    (uuid "16666214-024e-45e5-a6ff-dc915d760ef3"))
+    (uuid "d1a99f63-a20d-4d48-b3a3-228ddd303bab"))
   (label "GND"
     (at 374.65 222.25 270)
     (fields_autoplaced)
     (effects (font (size 1 1)) (justify right bottom))
-    (uuid "d7b1de11-ce37-49f9-8b65-f04cf08f4269"))
+    (uuid "f27aeb0f-0ec7-455a-bd34-944302a96d8a"))
   (sheet_instances (path "/" (page "1"))))

@@ -45,7 +45,7 @@ MAT.update({
 })
 PART_MAT = {"top_shell": "stone", "sole": "sole", "seam_mask": "black_part", "bridge": "black_part",
             "pcb": "pcb", "battery": "battery", "magnets": "metal", "leds": "led_red", "ntc": "switch",
-            "switch": "switch", "usb": "metal", "seam_leds": "warm"}
+            "switch": "switch", "usb": "metal", "seam_leds": "warm", "pins": "warm"}
 
 
 def load():
@@ -90,6 +90,15 @@ def main(names, spp, scale):
     zp = 4.1762
     res = (int(1400 * scale), int(1000 * scale))
     tgt = np.array([17.0, 0.0, 10.0])
+    if "magnets" in S:
+        mags = S["magnets"].solids()
+        cz = [m.center().Z for m in mags]
+        zmid = 4.1762 + 1.0
+        lo = [m for m, z in zip(mags, cz) if z < zmid]
+        hi = [m for m, z in zip(mags, cz) if z >= zmid]
+        S["magnets_sole"] = bd.Compound(lo)
+        S["magnets_top"] = bd.Compound(hi)
+        PART_MAT["magnets_sole"] = PART_MAT["magnets_top"] = "metal"
     plys = {n: ply_of(n, s) for n, s in S.items()}
 
     def meshes(names_, tag="", src=None):
@@ -110,7 +119,7 @@ def main(names, spp, scale):
 
     def exploded():
         off = {"sole": 0, "leds": 9, "ntc": 9, "pcb": 9, "magnets": 9, "usb": 9, "battery": 20,
-               "seam_leds": 9, "seam_mask": 30, "bridge": 42, "switch": 54, "top_shell": 78}
+               "seam_leds": 9, "pins": 9, "seam_mask": 30, "bridge": 42, "switch": 54, "top_shell": 78}
         ex = {}
         for n, s in S.items():
             ex[n] = ply_of(n, bd.Pos(0, 0, off[n]) * s, "_x")
@@ -169,6 +178,29 @@ def main(names, spp, scale):
             print(f"[render] {nm}", flush=True)
         return out
     jobs["cad_zebra"] = zebra
+
+    # assembly guide: the build-up in five steps, same camera
+    def asm(name, parts, lift=None):
+        lift = lift or {}
+        m = []
+        for n in parts:
+            if n not in S:
+                continue
+            sh = bd.Pos(0, 0, lift.get(n, 0.0)) * S[n] if lift.get(n) else S[n]
+            m.append((ply_of(n, sh, f"_{name}"), MAT[PART_MAT[n]]))
+        t2 = tgt + [0, 0, 4]
+        return go(name, m, t2 + [-175, -165, 150], t2, 26, res, spp)
+    jobs["asm_1_sole"] = lambda: asm("asm_1_sole", ["sole", "magnets_sole"])
+    jobs["asm_2_board"] = lambda: asm("asm_2_board", ["sole", "magnets_sole", "pcb", "leds", "ntc", "usb", "pins", "seam_leds"],
+                                      {"pcb": 12, "leds": 12, "ntc": 12, "usb": 12, "pins": 12, "seam_leds": 12})
+    jobs["asm_3_battery"] = lambda: asm("asm_3_battery", ["sole", "magnets_sole", "pcb", "leds", "ntc", "usb", "pins",
+                                                          "seam_leds", "battery"], {"battery": 14})
+    jobs["asm_4_mask_bridge"] = lambda: asm("asm_4_mask_bridge", ["sole", "magnets_sole", "pcb", "leds", "ntc", "usb", "pins",
+                                                                  "seam_leds", "battery", "seam_mask", "bridge", "switch"],
+                                            {"seam_mask": 10, "bridge": 14, "switch": 14})
+    jobs["asm_5_close"] = lambda: asm("asm_5_close", ["sole", "magnets_sole", "pcb", "leds", "ntc", "usb", "pins", "seam_leds",
+                                                      "battery", "seam_mask", "bridge", "switch", "top_shell", "magnets_top"],
+                                      {"top_shell": 38, "magnets_top": 38})
 
     for n in (names or list(jobs)):
         jobs[n]()

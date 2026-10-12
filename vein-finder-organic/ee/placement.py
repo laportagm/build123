@@ -72,7 +72,7 @@ def manual():
     for led in LAYOUT["leds"]:
         P[D.LED_REF[round(led["angle"], 1)]] = (led["x"], led["y"], led["angle"] + 90.0, "B")
     n = LAYOUT["ntc"]
-    P["RT1"] = (n["x"], n["y"], 0.0, "B")                     # pads along the radius
+    P["RT1"] = (n["x"], n["y"], n["angle"], "B")              # pads along the tangent, outside the ring
     # status LEDs in the mask channel, tangential
     for i, s in enumerate(LAYOUT["seam_leds"]):
         P[f"D{14 + i}"] = (s["x"], s["y"], s["angle"] + 90.0, "F")
@@ -103,8 +103,8 @@ def manual():
 # anchors for the spiral search: (ref, (x, y)) in priority order
 AUTO = [
     ("D1", (4.0, -24.0)), ("C7", (-1.0, -19.0)), ("C5", (8.6, -23.4)), ("C6", (11.2, -23.4)),
-    ("R9", (6.8, -18.2)), ("Q1", (8.6, -19.6)), ("Q2", (12.3, -19.6)), ("R10", (-4.5, -24.0)),
-    ("R11", (5.5, -16.8)), ("R12", (15.0, -19.0)),
+    ("R9", (6.8, -18.2)), ("R10", (-4.5, -24.0)),
+    ("Q1", (8.6, -19.6)), ("Q2", (12.3, -19.6)), ("R11", (5.5, -16.8)), ("R12", (15.0, -19.0)),
     ("C3", (-4.3, 20.5)), ("C4", (-4.3, 23.4)), ("R8", (-4.5, 25.5)),
     ("C1", (21.6, 23.6)), ("C2", (28.6, 23.0)), ("R3", (28.6, 25.2)), ("R4", (21.6, 25.6)),
     ("R1", (44.0, -23.0)), ("R2", (47.5, -23.0)), ("R5", (40.5, -23.4)), ("R6", (42.5, -25.0)), ("R7", (46.0, -24.5)),

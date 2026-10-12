@@ -118,9 +118,9 @@ class BoardBuilder:
         self.b.Add(z)
         return z
 
-    def gnd_pour(self, net="GND", clearance=0.25, min_width=0.2):
+    def gnd_pour(self, net="GND", clearance=0.25, min_width=0.2, layers=(pcbnew.F_Cu, pcbnew.B_Cu)):
         bb = self.b.GetBoardEdgesBoundingBox()
-        for layer in (pcbnew.F_Cu, pcbnew.B_Cu):
+        for layer in layers:
             z = pcbnew.ZONE(self.b)
             z.SetLayer(layer)
             z.SetNet(self.net(net))
@@ -137,6 +137,29 @@ class BoardBuilder:
                            (bb.GetRight() + m, bb.GetBottom() + m), (bb.GetLeft() - m, bb.GetBottom() + m)):
                 ol.Append(x, y)
             self.b.Add(z)
+
+    def text(self, s, x, y, layer="B.SilkS", size=0.8, angle=0.0):
+        t = pcbnew.PCB_TEXT(self.b)
+        t.SetText(s)
+        t.SetLayer(self.b.GetLayerID(layer))
+        t.SetTextSize(pcbnew.VECTOR2I(MM(size), MM(size)))
+        t.SetTextThickness(MM(size * 0.15))
+        t.SetPosition(kpt(x, y))
+        t.SetTextAngleDegrees(angle)
+        if layer.startswith("B."):
+            t.SetMirrored(True)
+        self.b.Add(t)
+        return t
+
+    def rect(self, x0, y0, x1, y1, layer="F.SilkS", width=0.15):
+        for (a, b) in (((x0, y0), (x1, y0)), ((x1, y0), (x1, y1)), ((x1, y1), (x0, y1)), ((x0, y1), (x0, y0))):
+            sh = pcbnew.PCB_SHAPE(self.b)
+            sh.SetShape(pcbnew.SHAPE_T_SEGMENT)
+            sh.SetLayer(self.b.GetLayerID(layer))
+            sh.SetWidth(MM(width))
+            sh.SetStart(kpt(*a))
+            sh.SetEnd(kpt(*b))
+            self.b.Add(sh)
 
     # ---------------------------------------------------------------- footprints
     def footprint(self, part):
@@ -180,7 +203,8 @@ class BoardBuilder:
         if not pcbnew.ExportSpecctraDSN(self.b, str(dsn)):
             raise RuntimeError("DSN export failed")
         cmd = ["java", "-Djava.awt.headless=true", "-jar", str(jar), "--gui.enabled=false",
-               "-de", str(dsn), "-do", str(ses), "-mp", str(passes), "-mt", str(threads), "-oit", "1.0"]
+               "-de", str(dsn), "-do", str(ses), "-mp", str(passes), "-mt", str(threads), "-oit", "1.0",
+               f"--router.max_passes={passes}", "--router.job_timeout=00:20:00"]
         r = subprocess.run(cmd, capture_output=True, text=True, timeout=3600)
         (work / "freerouting.log").write_text(r.stdout + "\n" + r.stderr)
         if not ses.exists():

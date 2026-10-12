@@ -6,6 +6,27 @@
 
 ![Hero](renders/cad_hero.jpg)
 
+> **Gate-3 update (2026-10-12).** The model now carries the real parts:
+> - 1206 dome LEDs, ring at r = 18.36 mm, 625 nm parts at the thinnest sole;
+> - 0603 NTC;
+> - N35 magnets (24–26 N);
+> - header-pin locators in plated holes;
+> - GCT USB4515 mid-mount USB-C;
+> - a 1.3 mm mask channel;
+> - the cell sitting on the board on foam tape; the board no longer has a bay cut-out.
+>
+> **Errata:** this gate's wall check sampled only the top shell. Three sole floors were
+> thinner than 1.6 mm and went unreported:
+> - tail magnets 0.67 mm;
+> - horn-magnet pocket edge 1.31 mm;
+> - USB-C 1.34 mm.
+>
+> The magnet floors are fixed: 1.82 / 1.67 mm, with the horn dowels moved to y = ±20.0.
+> The USB-C floor (now 1.15 mm) and the NTC sensor window (0.70 mm) are decisions in
+> [electronics.md §7](../03-electronics/electronics.md#7-conflicts-and-decisions). The
+> figures below are gate 2's; the gate-3 numbers are in
+> [verification.md](../06-verification/verification.md).
+
 ## 1. Summary
 
 The approved form A "Pebble" is now a parametric build123d model of four printed parts:

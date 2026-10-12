@@ -1,0 +1,74 @@
+[
+ {
+  "bank": "660",
+  "skin": "light (I-II)",
+  "f_abs": 0.47,
+  "T_face_C": [
+   36.7
+  ],
+  "margin_to_41C": [
+   4.3
+  ]
+ },
+ {
+  "bank": "660",
+  "skin": "medium (III-IV)",
+  "f_abs": 0.625,
+  "T_face_C": [
+   37.2
+  ],
+  "margin_to_41C": [
+   3.8
+  ]
+ },
+ {
+  "bank": "660",
+  "skin": "dark (V-VI)",
+  "f_abs": 0.841,
+  "T_face_C": [
+   38.0
+  ],
+  "margin_to_41C": [
+   3.0
+  ]
+ },
+ {
+  "bank": "625",
+  "skin": "light (I-II)",
+  "f_abs": 0.533,
+  "T_face_C": [
+   35.4,
+   36.2
+  ],
+  "margin_to_41C": [
+   5.6,
+   4.8
+  ]
+ },
+ {
+  "bank": "625",
+  "skin": "medium (III-IV)",
+  "f_abs": 0.695,
+  "T_face_C": [
+   35.5,
+   36.5
+  ],
+  "margin_to_41C": [
+   5.5,
+   4.5
+  ]
+ },
+ {
+  "bank": "625",
+  "skin": "dark (V-VI)",
+  "f_abs": 0.894,
+  "T_face_C": [
+   35.7,
+   37.0
+  ],
+  "margin_to_41C": [
+   5.3,
+   4.0
+  ]
+ }
+]

@@ -214,6 +214,11 @@ whole-lamp and field-of-view rules, comes at the verification gate.
 * Snap clips and magnet positions are indicative until the CAD gate.
 
 ## 8. Preliminary parts and cost (to be re-verified at the electronics gate)
+
+> **Superseded at gate 3** by [the verified BOM](../03-electronics/bom.md). Corrections to this table:
+> - The TPS61169DCKR is on **backorder** at Digi-Key; it is ordered from LCSC.
+> - The LEDs are 1206 parts, because the 2.0 mm ring budget rules out the 2835 parts listed here.
+> - The magnets are N35, the only grade stocked in these sizes.
 Direct access to digikey.com, mouser.com, lcsc.com and adafruit.com is blocked in this
 environment. Every price below comes from **search-indexed listings and may be stale**.
 

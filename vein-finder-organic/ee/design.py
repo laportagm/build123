@@ -238,10 +238,10 @@ for ref, gate in (("R11", "GATE_A"), ("R12", "GATE_B")):
         verify="see R5", h=0.55)
 
 # the two strings: VOUT -> 6 LEDs -> Q drain.  Ring positions come from the CAD layout.
-# Each string starts at the -y horn, next to the driver (short VOUT), and walks the ring to
-# the +y horn; STR_A / STR_B carry the 25 mA back to the bank FETs at the driver.
+# Both strings start at the +y horn (one VOUT line crosses the board from the driver) and
+# walk the ring to the -y horn, where their ends meet the bank FETs next to the driver.
 _banks = {"660": [], "620": []}
-for led in sorted(LAYOUT["leds"], key=lambda l: (l["bank"], l["angle"])):
+for led in sorted(LAYOUT["leds"], key=lambda l: (l["bank"], -l["angle"])):
     _banks[led["bank"]].append(led)
 LED_REF = {}
 for bank, net_end, prefix, n0 in (("660", "STR_A", "A", 1), ("620", "STR_B", "B", 7)):

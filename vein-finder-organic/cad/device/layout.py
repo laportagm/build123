@@ -121,8 +121,10 @@ class Layout:
         y1 = P.BATT_L / 2
         c = P.BATT_CLEAR
         self.batt_rect = box(x0, -y1, x1, y1)
+        # component keep-out on the board top (the cell sits on the board on foam tape)
         self.batt_cut = box(x0 - c, -y1 - c, x1 + c, y1 + c).buffer(0.6, join_style=1).buffer(-0.6, join_style=1)
-        self.batt_z = (self.zp + P.BATT_FOAM, self.zp + P.BATT_FOAM + P.BATT_T)
+        z0 = self.zp + P.PCB_T + P.BATT_FOAM
+        self.batt_z = (z0, z0 + P.BATT_T)
 
     def _inner_r(self, th_deg):
         """Distance from the window centre to the board's inner (window) edge along angle th."""
@@ -166,12 +168,14 @@ class Layout:
         self.led_lands = [_rect(l["x"], l["y"], lt, lr, l["angle"]) for l in leds]
 
     def _ntc(self):
-        """0603 NTC on the underside at theta = 0, lying radially between the two first LEDs,
-        its inner pad P.LED_EDGE_MARGIN from the window edge."""
+        """0603 NTC on the underside at theta = 0, lying tangentially just outside the LED ring
+        (between and behind the two first LEDs): both pads face open board, so both can be
+        routed.  (Lying radially inside the ring, its inner pad was boxed in by the window
+        edge and the neighbouring LED lands.)"""
         lt, lr = P.NTC_LAND
-        r = self._inner_r(0.0) + P.LED_EDGE_MARGIN + lt / 2 + 0.02
-        self.ntc = dict(x=r, y=0.0, angle=90.0)          # angle: its length runs along the radius
-        self.ntc_land = _rect(r, 0.0, lt, lr, 90.0)
+        r = self.led_r + P.LED_LAND[1] / 2 + 0.2 + lr / 2 + 0.45     # + 0.45: courtyards clear the LEDs
+        self.ntc = dict(x=r, y=0.0, angle=90.0)          # angle: direction of the pad axis
+        self.ntc_land = _rect(r, 0.0, lt, lr, 0.0)
 
     def _magnets(self):
         mags = []
@@ -240,7 +244,7 @@ class Layout:
         self.usb_notch = box(x_face - P.USB_PCB_NOTCH[0], -P.USB_PCB_NOTCH[1], 70.0, P.USB_PCB_NOTCH[1])
 
     def _board(self):
-        b = self.pcb_env.difference(self.batt_cut).difference(self.usb_notch)
+        b = self.pcb_env.difference(self.usb_notch)
         b = b.buffer(-P.PCB_CORNER_R, join_style=1).buffer(P.PCB_CORNER_R, join_style=1)
         mag_holes = [Point(m["x"], m["y"]).buffer(P.MAG_PCB_HOLE / 2, 64) for m in self.magnets]
         pin_holes = [Point(*p).buffer(P.PIN_HOLE_PCB / 2) for p in self.mask_pins + self.bridge_pins]
@@ -276,12 +280,12 @@ class Layout:
         rep["led_land_gap_min"] = round(min(a.distance(b) for i, a in enumerate(lands) for b in lands[i + 1:]), 2)
         rep["ntc_land_fits"] = bool(env.buffer(-P.LED_EDGE_MARGIN).contains(self.ntc_land))
         rep["ntc_to_led_land"] = round(min(self.ntc_land.distance(l) for l in lands), 2)
-        rep["ntc_sole"] = round(self.under_part(self.ntc["x"], self.ntc["y"], P.NTC_LAND[1], P.NTC_LAND[0], 0.0), 2)
+        rep["ntc_sole"] = round(self.under_part(self.ntc["x"], self.ntc["y"], P.NTC_LAND[0], P.NTC_LAND[1], 0.0), 2)
         rep["ntc_floor"] = round(rep["ntc_sole"] - P.NTC_PKG[2] - 0.15, 2)
         pads = [Point(*q).buffer(P.PIN_PAD_PCB / 2) for q in self.mask_pins + self.bridge_pins]
         rep["pin_pad_to_led_land"] = round(min(a.distance(b) for a in pads for b in lands + [self.ntc_land]), 2)
-        rep["pin_pads_on_board"] = [bool(env.buffer(-0.3).difference(self.batt_cut).contains(q)) for q in pads]
-        rep["mask_ears_on_board"] = [bool(env.difference(self.batt_cut).contains(e)) for e in self.mask_ears_2d]
+        rep["pin_pads_on_board"] = [bool(env.buffer(-0.3).contains(q) and not q.intersects(self.batt_cut)) for q in pads]
+        rep["mask_ears_on_board"] = [bool(env.contains(e) and not e.intersects(self.batt_cut)) for e in self.mask_ears_2d]
         # battery: cut-out must lie inside the cavity with clearance at the cell's height range
         z0, z1 = self.batt_z
         cav = self.section(z0).intersection(self.section(z1))
@@ -292,7 +296,7 @@ class Layout:
         rep["magnets"] = [{k: (round(v, 2) if isinstance(v, float) else v) for k, v in m.items()} for m in self.magnets]
         rep["mask_on_pcb"] = bool(env.contains(self.mask_2d))
         rep["mask_clear_of_battery"] = bool(not self.mask_2d.intersects(self.batt_cut))
-        solid_board = self.pcb_env.difference(self.batt_cut)
+        solid_board = self.pcb_env.difference(self.batt_cut)          # feet stay off the cell's keep-out
         rep["bridge_feet_on_pcb"] = [bool(solid_board.contains(f)) for f in self.bridge_feet]
         rep["led_a_max_deg"] = round(self.led_a_max, 1)
         rep["led_pitch_deg"] = round(self.led_step, 2)

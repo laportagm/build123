@@ -58,7 +58,7 @@ def project_file(path: Path):
                                       "track_widths": [0.0, 0.25, 0.3, 0.45], "via_dimensions": [{"diameter": 0.0, "drill": 0.0}]}},
         "meta": {"filename": path.name, "version": 1},
         "net_settings": {
-            "classes": [cls("Default", 0.25, 0.6, 0.3), cls("Power", 0.45, 0.7, 0.35), cls("LED", 0.3, 0.6, 0.3)],
+            "classes": [cls("Default", 0.25, 0.6, 0.3), cls("Power", 0.45, 0.7, 0.35), cls("LED", 0.25, 0.6, 0.3)],
             "meta": {"version": 3}, "net_colors": None, "netclass_assignments": None,
             "netclass_patterns": [{"netclass": "Power", "pattern": n} for n in POWER] +
                                  [{"netclass": "LED", "pattern": n} for n in LEDNETS]},
@@ -75,8 +75,15 @@ def build(passes=60):
     for p in D.PARTS:
         for n in p.pins.values():
             bb.net(n)
-    # outline (the CAD's board, with the magnet holes and the USB-C cut-out)
-    bb.outline(LAYOUT["board_outline"])
+    # outline (the CAD's board, with the magnet holes and the USB-C cut-out), simplified to
+    # 0.02 mm: the CAD ring has ~1800 vertices, which stalls Freerouting; 0.02 mm is far
+    # inside the 0.3 mm board-to-cavity clearance
+    from shapely.geometry import Polygon
+    rings = []
+    for poly in LAYOUT["board_outline"]:
+        q = Polygon(poly[0], poly[1:]).simplify(0.02, preserve_topology=True)
+        rings.append([list(q.exterior.coords)] + [list(i.coords) for i in q.interiors])
+    bb.outline(rings)
     # footprints
     for p in D.PARTS:
         if not p.on_board:
@@ -107,10 +114,15 @@ def route_stage(passes):
     bb.b = b
     names = {n for p in D.PARTS if p.on_board for n in p.pins.values()}
     bb.nets = {n: b.FindNet(n) for n in names}            # reuse the board's nets (no duplicates)
+    # GND pours on both layers BEFORE routing: they export as Specctra planes, so the router
+    # only drops vias to them instead of running ~40 GND pads together with traces.  The
+    # underside pour also spreads the LEDs' heat toward the NTC.
+    bb.gnd_pour(layers=(pcbnew.B_Cu,))       # the underside plane: top GND pads drop a via to it
     bb.route(OUT / "route", JAR, passes=passes, threads=4)
-    # pours after routing (Freerouting routes GND as ordinary traces): GND on both layers;
-    # the underside pour also spreads the LEDs' heat toward the NTC
-    bb.gnd_pour()
+    bb.gnd_pour(layers=(pcbnew.F_Cu,))       # top pour after routing (islands without GND are removed)
+    # the label the brief asks for on everything (underside silkscreen, along the -y arm)
+    bb.text("VEIN FINDER (ORGANIC) REV A 2026-10", 36.0, -23.4)
+    bb.text("PERSONAL PROTOTYPE - NOT A MEDICAL DEVICE", 36.0, -25.0)
     rep = bb.finish(pcb, OUT / "drc.rpt")
     print("routed; DRC:", drc_summary(rep))
 
@@ -154,6 +166,23 @@ if __name__ == "__main__":
     a = ap.parse_args()
     if a.stage == "route":
         route_stage(a.passes)
+        sys.exit(0)
+    if a.stage == "finish":                 # re-label, re-fill and re-check a routed board
+        pcb = OUT / "vein_finder.kicad_pcb"
+        b = pcbnew.LoadBoard(str(pcb))
+        bb = BoardBuilder(FP_DIRS, thickness=1.0)
+        bb.b = b
+        have = {d.GetText() for d in b.GetDrawings() if d.GetClass() == "PCB_TEXT"}
+        for txt, y in (("VEIN FINDER (ORGANIC) REV A 2026-10", -23.4), ("PERSONAL PROTOTYPE - NOT A MEDICAL DEVICE", -25.0)):
+            if txt not in have:
+                bb.text(txt, 36.0, y)
+        if "CELL ON FOAM TAPE - NO PARTS" not in have:
+            bt = LAYOUT["battery"]
+            bb.rect(bt["x0"], -bt["y"], bt["x1"], bt["y"])                     # where the cell goes
+            bb.text("CELL ON FOAM TAPE - NO PARTS", (bt["x0"] + bt["x1"]) / 2, 0.0, layer="F.SilkS", size=1.2, angle=90)
+        print("DRC:", drc_summary(bb.finish(pcb, OUT / "drc.rpt")))
+        if not a.no_fab:
+            print("fab:", fab_outputs())
         sys.exit(0)
     P, rep = build(a.passes)
     print("DRC:", drc_summary(rep))

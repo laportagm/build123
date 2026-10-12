@@ -44,7 +44,10 @@ class Room:
         feet = unary_union([Polygon(f) for f in L["bridge_feet"]])
         u = L["usb"]
         usb = box(u["x_tails"] - 0.6, -P.USB_W / 2 - 1.9, u["x_face"], P.USB_W / 2 + 1.9)   # body, tails, leg pads
-        self.keepouts = dict(mask=mask, bosses=bosses, feet=feet, usb=usb)
+        bt = L["battery"]
+        c = P.BATT_CLEAR
+        cell = box(bt["x0"] - c, -bt["y"] - c, bt["x1"] + c, bt["y"] + c)   # the cell sits on the board here
+        self.keepouts = dict(mask=mask, bosses=bosses, feet=feet, usb=usb, cell=cell)
         self.free_top = self.board.buffer(-0.3).difference(unary_union(list(self.keepouts.values())).buffer(CLEAR_XY))
         if CACHE.exists():
             d = np.load(CACHE)

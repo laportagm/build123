@@ -380,7 +380,9 @@ def sole_floors(parts, sole):
         if m["sole_h"] - m["proud"] > 0:
             out[f"magnet ({m['x']:.1f}, {m['y']:.1f})"] = floor(disc(m["x"], m["y"], 0.85 * P.MAG_D / 2))
     n = lay.ntc
-    out["ntc (sensor window)"] = floor([(n["x"] + dx, dy) for dx in (-1.2, -0.6, 0, 0.6, 1.2) for dy in (-0.4, 0, 0.4)])
+    a = math.radians(n["angle"])
+    out["ntc (sensor window)"] = floor([(n["x"] + u * math.cos(a) - v * math.sin(a), n["y"] + u * math.sin(a) + v * math.cos(a))
+                                        for u in (-1.2, -0.6, 0, 0.6, 1.2) for v in (-0.35, 0, 0.35)])
     for i, q in enumerate(lay.mask_pins + lay.bridge_pins):
         out[f"pin {i} ({q[0]:.1f}, {q[1]:.1f})"] = floor(disc(q[0], q[1], 0.9 * P.PIN_SOLE_RELIEF[0] / 2))
     u = lay.usb

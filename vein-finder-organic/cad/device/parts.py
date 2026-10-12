@@ -152,7 +152,8 @@ class Parts:
         # NTC: blind pocket over its land, lying radially; the floor left is the sensor window
         n = self.lay.ntc
         ntc_d = P.NTC_PKG[2] + 0.15
-        sole = sole - Pos(n["x"], n["y"], zp - ntc_d) * bd.Box(P.NTC_LAND[0] + 0.3, P.NTC_LAND[1] + 0.3, ntc_d + 0.01, align=C3)
+        sole = sole - Pos(n["x"], n["y"], zp - ntc_d) * Rot(0, 0, n["angle"]) * bd.Box(
+            P.NTC_LAND[0] + 0.3, P.NTC_LAND[1] + 0.3, ntc_d + 0.01, align=C3)
         for m in self.lay.magnets:
             depth = m["sole_h"] - m["proud"] + 0.05
             if depth > 0.01:
@@ -194,7 +195,7 @@ class Parts:
     def bridge_geometry(self):
         zp = self.zp
         bx = self.lay.bridge_x
-        z_batt_top = zp + P.BATT_FOAM + P.BATT_T
+        z_batt_top = zp + P.PCB_T + P.BATT_FOAM + P.BATT_T
         z_deck0 = z_batt_top + P.BATT_TOP_CLEAR
         z_deck1 = z_deck0 + 2.5
         # membrane underside on the button axis: outer skin minus the thin wall, along the normal
@@ -256,7 +257,7 @@ class Parts:
         zp = self.zp
         d = {}
         d["pcb"] = self.pcb()
-        z0 = zp + P.BATT_FOAM
+        z0 = zp + P.PCB_T + P.BATT_FOAM
         d["battery"] = Pos(P.BATT_X0 + P.BATT_W / 2, 0, z0) * bd.Box(P.BATT_W, P.BATT_L, P.BATT_T, align=C3)
         mags = None
         for m in self.lay.magnets:
@@ -274,7 +275,7 @@ class Parts:
             leds = b if leds is None else leds + b
         d["leds"] = leds
         n = self.lay.ntc
-        d["ntc"] = Pos(n["x"], n["y"], zp - P.NTC_PKG[2]) * bd.Box(P.NTC_PKG[0], P.NTC_PKG[1], P.NTC_PKG[2], align=C3)
+        d["ntc"] = Pos(n["x"], n["y"], zp - P.NTC_PKG[2]) * Rot(0, 0, n["angle"]) * bd.Box(P.NTC_PKG[0], P.NTC_PKG[1], P.NTC_PKG[2], align=C3)
         pins = None
         for (x, y) in self.lay.mask_pins + self.lay.bridge_pins:
             pn = Pos(x, y, zp) * Rot(0, 0, 45) * bd.Box(P.PIN_SQ, P.PIN_SQ, P.PCB_T + P.PIN_ABOVE, align=C3)
