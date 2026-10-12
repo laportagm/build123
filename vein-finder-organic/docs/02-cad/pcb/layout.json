@@ -85,17 +85,17 @@
    "fits": true
   },
   {
-   "angle": 128.5,
-   "x": -11.430230782942308,
-   "y": 14.36976951056579,
+   "angle": 126.1,
+   "x": -10.818461036343544,
+   "y": 14.83581316757611,
    "bank": "660",
    "h": 2.1,
    "fits": true
   },
   {
-   "angle": -128.5,
-   "x": -11.430230782942308,
-   "y": -14.36976951056579,
+   "angle": -126.1,
+   "x": -10.818461036343544,
+   "y": -14.83581316757611,
    "bank": "660",
    "h": 2.1,
    "fits": true
@@ -11632,7 +11632,7 @@
   "led_ring_r": 18.36,
   "leds_fit": true,
   "led_angles": [
-   -128.5,
+   -126.1,
    -105.1,
    -81.8,
    -58.4,
@@ -11643,7 +11643,7 @@
    58.4,
    81.8,
    105.1,
-   128.5
+   126.1
   ],
   "leds_not_fitting": [],
   "led_recess": [
@@ -11708,21 +11708,24 @@
     "recess": 1.11
    },
    {
-    "angle": 128.5,
+    "angle": 126.1,
     "bank": "660",
-    "sole": 2.45,
-    "recess": 0.35
+    "sole": 2.5,
+    "recess": 0.4
    },
    {
-    "angle": -128.5,
+    "angle": -126.1,
     "bank": "660",
-    "sole": 2.45,
-    "recess": 0.35
+    "sole": 2.5,
+    "recess": 0.4
    }
   ],
   "led_recess_min": 0.0,
-  "led_land_gap_min": 2.77,
+  "led_land_gap_min": 2.04,
   "ntc_land_fits": true,
+  "led_end_pad_to_edge_mm": 0.312,
+  "led_end_angle_deg": 126.1,
+  "mag_hole_to_led_land": 0.62,
   "ntc_to_led_land": 0.69,
   "ntc_sole": 1.8,
   "ntc_floor": 0.7,
