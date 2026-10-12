@@ -143,7 +143,7 @@ and 0.87 mm at the landing face itself:
 - the physical-measurement table.
 
 **Citations updated to match:** verification §1, §2 and item 20; the checklist's N19
-paragraph and 1.6; the README status row; packet status §1.
+paragraph and 1.6; the README status row; packet status §1; print packet §2.
 
 **Unchanged:**
 - the provisional acceptance;
