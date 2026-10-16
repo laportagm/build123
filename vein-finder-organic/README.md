@@ -19,8 +19,9 @@ the display.
 | 3 Electronics | schematic, PCB (KiCad 7), BOM with links and prices | **done** — `docs/03-electronics/electronics.md`; routed board, DRC 0 errors / 0 unconnected; the three open decisions were settled on 2026-10-12 (§7) |
 | 4 Firmware | ATtiny1614 C: 3 levels, bank switch, 3-min auto-off, 41 °C limit | **done** — `docs/04-firmware/firmware.md`, `fw/` (host tests pass) |
 | 5 Build + verification | print settings, illustrated assembly guide; walls & fits, runtime, thermal, IEC 62471, cost | **done** — `docs/05-build/build.md`, `docs/06-verification/verification.md`; bench checks listed for the first build |
-| Readiness (2026-10-12) | fixes, evidence and GO / NO-GO | **GO** to order and build for bench evaluation; **NO-GO** for skin until the bench safety checks pass; the 0.91 mm USB-C lip is accepted provisionally, pending bench item 20 — `docs/06-verification/readiness.md` |
+| Readiness (2026-10-12) | fixes, evidence and GO / NO-GO | **GO** to order and build for bench evaluation; **NO-GO** for skin until the bench safety checks pass; the USB-C lip (0.91 mm; 0.87 mm at the landing face) is accepted provisionally, pending bench item 20 — `docs/06-verification/readiness.md` |
 | Prototype checklist | order, build and test the first prototype, step by step | **ready** — `docs/08-prototype/checklist.md` |
+| Build packet (2026-10-12) | status, order list, print packet, build-day checklist, bench data sheet, return loop for the first unit | **ready; nothing built yet** — `docs/08-prototype/README.md`; log in `docs/BUILD-LOG.md` |
 
 ## Layout
 ```
@@ -55,7 +56,9 @@ docs/04-firmware/           firmware.md
 docs/05-build/              build.md: print settings and the illustrated assembly guide
 docs/06-verification/       verification.md, thermal.py, iec62471.py
 docs/07-order/              order.md: PCB settings and cart files for Digi-Key, LCSC, Adafruit
-docs/08-prototype/          checklist.md: build and test checklist for the first prototype
+docs/08-prototype/          checklist.md (procedures); the first unit's build packet (README.md): status,
+                            order list, print packet, build-day list, bench data sheet, return loop
+docs/BUILD-LOG.md           dated log of the physical build and its revisions (continues the N-register)
 tools/fetch.sh              fetches KiCad 7 library files, Freerouting and avr-gcc into build/
 build/                      generated (gitignored)
 ```
@@ -81,4 +84,5 @@ python ee/check_fab.py      # read-only: the committed board, BOM, order pack an
 python ee/check_fit.py      # read-only: the board as built meets the enclosure's layout
 make -C fw test && make -C fw && make -C fw mutants
 (cd docs/06-verification && python thermal.py && python iec62471.py)
+python docs/08-prototype/print_dims.py && python docs/08-prototype/make_bench_sheet.py   # build packet
 ```

@@ -6,6 +6,10 @@
 
 One pass through this list orders, builds and tests the first prototype.
 
+**First unit:** the [build packet](README.md) puts these tests in build order
+([build-day checklist](build-day.md)) and records them in the
+[bench data sheet](bench-sheet.md), which replaces the results log in §5.
+
 **Where the numbers come from:**
 - Every pass/fail number comes from the repository's documents, cited as [doc §x].
 - The bench checks keep their numbers from [verification §8](../06-verification/verification.md#8-bench-checks-for-the-first-build)
@@ -30,7 +34,7 @@ One pass through this list orders, builds and tests the first prototype.
    3.6, 3.7 and 3.9.
 
 **N19, provisional resolution (2026-10-12).** The sole is 0.91 mm thick under the USB-C
-opening's lip, under the brief's 1.6 mm wall.
+opening's lip, and 0.87 mm at the landing face itself, under the brief's 1.6 mm wall.
 - It is **accepted provisionally for printing the first prototype**.
 - Final acceptance needs test **3.4** (item 20, 20 plug cycles) to pass. That test is
   required, not optional.
@@ -104,7 +108,9 @@ opening's lip, under the brief's 1.6 mm wall.
   - every line is in stock at its order quantity, with the exact part number (brief:
     in-stock parts only);
   - parts plus PCB cost ≤ $75, shipping excluded (brief).
-- **Expect:** Digi-Key $26.44, LCSC $13.35, Adafruit $2.25; device $47–57 [verification §7].
+- **Expect:** Digi-Key $27.31, LCSC $13.35, Adafruit $2.25; device $47.91–57.91, with 11
+  ring LEDs of each type ([order list](order-list.md); the order pack's cart has 10: edit
+  the two LED lines after uploading). The order pack alone gives $47–57 [verification §7].
 - **If it fails:**
   - Out of stock: order the BOM's alternate for that line (`bom.md`, "alternate").
   - No alternate: stop. That is a verified blocker that needs a BOM change.
@@ -155,16 +161,18 @@ opening's lip, under the brief's 1.6 mm wall.
      - the NTC window is a closed rectangle on the sole's skin face;
      - the button skin and seam slot are intact;
      - a header post slides into every 1.05 mm hole (ream with the 1.0 mm bit if not).
-  5. Measure the lip under the USB-C opening with calipers (N19).
+  5. Measure the lip under the USB-C opening with calipers (N19), at least 0.2 mm in from
+     the landing face. The print mesh gives 0.91–0.95 mm there and 0.87 mm at the face
+     itself ([print packet](print-packet.md) S10).
 - **Accept:** every documented inspection point holds [build §1], and the posts fit
   snugly. No dimensional tolerances are documented (MISSING); fit is proved in 2.20,
   3.2 and 3.3.
-- **Expect:** lip about 0.9 mm.
+- **Expect:** lip 0.91–0.95 mm at least 0.2 mm in; 0.87 mm at the landing face (readiness N19).
 - **If it fails:**
   - A hole in the NTC window or button skin: reprint (check the thin-wall preview).
   - A channel blocked: clear it by hand or reprint.
-  - The lip clearly under 0.9 mm: reprint the sole before 3.4. (PROPOSED: there is no
-    documented tolerance.)
+  - The lip under 0.91 mm: record it with the slicer's layer count (print packet S10).
+    No tolerance is documented, so 3.4 then judges the lip as printed.
 
 **Gate 1:** every box in Stage 1 is ticked. Then order, and print.
 
@@ -190,7 +198,7 @@ Until 2.17, the board runs from the bench supply wired to the cell pads (PROPOSE
   - **Cell and tape:** measure the cell's voltage, the cell's thickness including its
     protection board, and the foam tape's thickness.
 - **Accept:**
-  - board 1.0 mm (tolerance MISSING; **PROPOSED** 0.9–1.1 mm);
+  - board 0.9–1.1 mm (`params.py` BOSS_PCB_GAP: "boards are 1.0 ± 0.1");
   - label legible (N18);
   - tape + cell ≤ 7.4 mm [item 19, build §4.3].
 - **Expect:** tape 1.0 or 1.6 mm; cell ≤ 5.4 mm (datasheet envelope).
@@ -249,7 +257,9 @@ Until 2.17, the board runs from the bench supply wired to the cell pads (PROPOSE
 ### 2.7 Fit RT1, then a smoke test
 - [ ] **Procedure:**
   1. Solder RT1 [build §2 step 10].
-  2. Tap: 660 nm at level 1. Tap, tap: levels 2 and 3. Tap: off.
+  2. Tap: 660 nm at level 1. Read the voltage across R9 before going higher: 66–81 mV
+     (2.9). Above that, tap off and stop: a wrong or bridged R9 would overdrive the LEDs.
+     Then tap, tap: levels 2 and 3. Tap: off.
   3. Tap on, then hold 0.7 s: 625 nm at the same level, and the seam flashes twice.
   4. Check all 6 LEDs of each string, and the faint seam line while on.
 - **Accept:** the behaviour in [firmware §1](../04-firmware/firmware.md#1-what-it-does).
@@ -302,9 +312,9 @@ Until 2.17, the board runs from the bench supply wired to the cell pads (PROPOSE
     VOUT just before the event;
   - the drains stay below the FETs' 30 V rating [electronics §2].
 - **Expect:** about 12.9 V (660 nm) or 13.5 V (625 nm) before, then a decay.
-- **If it fails:** make the fix item 16 pre-authorises: keep the gate on one tick after
-  CTRL goes low (`fw/src/logic.c`). Then run `make -C fw test mutants`, re-flash and
-  repeat this test.
+- **If it fails:** stop and send the captures ([return loop](return-loop.md)). The fix item 16
+  pre-authorises (keep the gate on one tick after CTRL goes low, `fw/src/logic.c`) is
+  made in the repository with every gate re-run; then re-flash and repeat this test.
 
 ### 2.11 ⚠ Watchdog (item 15)
 - [ ] **Procedure:**
@@ -417,7 +427,8 @@ This check is not in verification §8. The thresholds are documented in firmware
 - **Accept:** the seam is steady (full), and a tap does not light the LEDs [item 21].
 - **If it fails:** the documented fix is R7 → 200 kΩ, after checking the pin's injection
   limit [electronics §2]. It affects only the USB-present behaviour, not charging.
-  Decide whether to fix it now.
+  It is a board change: decide whether to make it, through the
+  [return loop](return-loop.md).
 
 ### 2.20 Mechanical assembly and dry fit (item 19)
 - [ ] **Procedure:** follow [build §4](../05-build/build.md#4-assemble).
@@ -475,7 +486,7 @@ These are **PROPOSED**: the documents do not specify either (MISSING).
 - **Procedure:** put the stone window-down on a cloth on the scale. Press the dish slowly
   with a fingertip and read the scale at the click. Do it 5 times.
 - **Accept:** 2–5 N (204–510 g), with the click felt [item 5].
-- **Expect:** 3.0–3.6 N (308–368 g) [verification §1].
+- **Expect:** 3.02–3.61 N (308–368 g) [checks.json `press_force_N`; verification §1].
 - **If it fails:** no click, or free play: add a shim. Too stiff: remove a shim. Then
   check the switch seat.
 
@@ -491,19 +502,21 @@ These are **PROPOSED**: the documents do not specify either (MISSING).
 ### 3.4 USB-C plug and N19 durability (item 20). **Required: this decides N19.**
 - [ ] **Equipment:** 3 USB-C cables (one with a bulky plug), inline meter, loupe, camera.
 - **Procedure:**
-  1. With each cable, plug in fully and confirm the charge current on the meter.
+  1. With the cell below full (after 3.9's runtime run, for example), plug in fully with
+     each cable and confirm on the meter that it charges: the seam breathes and the current
+     is above the 24.5 mA termination level. Record it. A full cell draws nothing; the
+     223–268 mA window holds only in the constant-current phase (2.18).
   2. Photograph the lip under the opening through the loupe.
   3. Make 20 straight in-and-out cycles with the bulky cable.
   4. Inspect and photograph the lip again.
-- **Accept:** each cable latches and charges (as in 2.18); no whitening or cracks at the
-  0.91 mm lip [item 20]. A pass confirms N19.
+- **Accept:** each cable latches and charges; no whitening or cracks at the lip
+  [item 20]. A pass confirms N19.
 - **If it fails:**
   1. N19 fails: record it, and do not use that cable.
   2. **PROPOSED**: reprint the sole at the hot end of the PETG range (245 °C) for
      better layer bonding, and repeat 3.4.
   3. If it fails again, N19 is a verified blocker for the next revision. The options
-     are to raise the receptacle or deepen the sole locally [electronics §7, options
-     b and c].
+     are N19's own: raise the receptacle or deepen the sole [readiness N19].
 
 ### 3.5 Light leaks (item 9)
 - [ ] **Procedure:** in a dark room, light level 3 window-down on white paper. Look around
@@ -535,14 +548,15 @@ These are **PROPOSED**: the documents do not specify either (MISSING).
 ### 3.7 ⚠ Face temperature at full power on the phantom (item 4)
 - [ ] **Equipment:** the phantom (3.0), 2 thermocouples, a stopwatch.
 - **Procedure:**
-  1. Tape thermocouple 1 on the face at the edge of the 660 nm pocket at +35°, the one
-     nearest the NTC. The hottest pocket is not identified in the documents (MISSING);
+  1. Tape thermocouple 1 on the face at the edge of a lit pocket nearest the NTC: for
+     660 nm the pocket at +35°, for 625 nm the pocket at +11.7° (`layout.json` LED
+     angles and banks). The hottest pocket is not identified in the documents (MISSING);
      find it with a thermal camera if you have one.
   2. Tape thermocouple 2 on the NTC window.
   3. Put the device face-down on the phantom at 33.5 °C.
   4. Run 660 nm at level 3 for 20 min, with two holds every 2.5 min. Log both
      thermocouples every minute, and note any dimming or seam double-blink.
-  5. Cool it down, then repeat on 625 nm.
+  5. Cool it down, move thermocouple 1 to the 625 nm pocket, then repeat on 625 nm.
 - **Accept:** thermocouple 1 stays **≤ 41 °C** for all 20 min, on both banks [item 4,
   brief].
 - **Expect** [verification §4]: 36.7–38.0 °C at 660 nm and 35.4–37.0 °C at 625 nm on
@@ -550,17 +564,19 @@ These are **PROPOSED**: the documents do not specify either (MISSING).
 - **If it fails:**
   1. Check thermocouple 1's contact.
   2. Put thermal paste on RT1 (N20) and repeat.
-  3. If it still fails, lower `T_DERATE_DC`, `T_LIMIT_DC` and `T_CUTOFF_DC` in
-     `fw/src/logic.h` by the overshoot (thermocouple 1's maximum − 41 °C)
-     [verification §4].
-  4. Update the fixed values in `test_thermal` (`fw/test/test_logic.c`), run
-     `make -C fw test mutants`, re-flash, and repeat 3.6 and 3.7.
+  3. If it still fails, stop and send the data ([return loop](return-loop.md)).
+     `T_DERATE_DC`, `T_LIMIT_DC` and `T_CUTOFF_DC` in `fw/src/logic.h` are lowered by
+     the overshoot (thermocouple 1's maximum − 41 °C) [verification §4]. The tests and
+     the predictions in `cad/`, `calc/` and `ee/` change with them, and every gate is
+     re-run.
+  4. Re-flash, then repeat 3.6 and 3.7.
 
 ### 3.8 Optical power (item 1)
 - [ ] **Equipment:**
   - an optical power meter, or a lux meter;
   - a bench supply in constant-current mode at 20.0 mA (or 5 V through 150 Ω);
-  - spare LEDs: 10 of each type were ordered and 6 are used.
+  - spare LEDs: 11 of each type are ordered, 6 fitted, so 3 for this test and 2 spare
+    ([order list](order-list.md) §1).
 - **Procedure:** in a dark room, drive one spare LED at 20 mA with the sensor 100 mm away
   on axis. Measure 3 LEDs of each type.
 - **Accept** [item 1]: 660 nm ≥ 8 mW. On axis at 100 mm, under the estimate's 40° beam
@@ -614,7 +630,7 @@ It stays a personal prototype.
 | # | Test | What the documents do not define | Handling here |
 |---|---|---|---|
 | M1 | 2.3 | A numeric "short" threshold | PROPOSED: no steady reading < 10 Ω |
-| M2 | 2.1 | PCB thickness tolerance | PROPOSED: 0.9–1.1 mm |
+| M2 | 2.1 | PCB thickness tolerance | Found in `params.py` (BOSS_PCB_GAP: "boards are 1.0 ± 0.1"); no longer missing |
 | M3 | 1.6 | Printed-part dimensional tolerances | Fit tests 2.20, 3.2 and 3.3 decide |
 | M4 | 2.4 | Current at first power-up | Record only |
 | M5 | 2.16 | Tolerance on the 3.4 / 3.2 / 3.5 V thresholds | Record; the cut-off must be > 3.00 V (cell protection) |
@@ -622,7 +638,7 @@ It stays a personal prototype.
 | M7 | 2.20 | Closed gap at the waterline | Record |
 | M8 | 3.0 | Skin-phantom specification | PROPOSED: 2–3 % agar at 33.5 °C on foam |
 | M9 | 3.0 | Thermocouple accuracy | PROPOSED: ±0.5 °C against a reference |
-| M10 | 3.7 | Which LED pocket is hottest | PROPOSED: the 660 nm pocket at +35°, or a thermal camera |
+| M10 | 3.7 | Which LED pocket is hottest | PROPOSED: the lit pocket nearest the NTC (660 nm at +35°, 625 nm at +11.7°), or a thermal camera |
 | M11 | 3.8 | 625 nm optical power minimum | Record; IEC check as for 660 nm |
 | M12 | 3.5 | Remedy for a light leak | PROPOSED: black tape or paint inside the edge |
 | M13 | 2.13 | What to do if timing is outside ±10 % | Record |
@@ -636,6 +652,9 @@ It stays a personal prototype.
   ±10 % oscillator.
 
 ## 5. Results log
+
+For the first unit, use the [bench data sheet](bench-sheet.md) instead: it has a row
+per measurement.
 
 | Test | Measured | Pass / fail | Date | Notes |
 |---|---|---|---|---|

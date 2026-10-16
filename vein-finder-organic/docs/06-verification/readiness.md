@@ -40,6 +40,9 @@ This record covers the fix-and-verify pass of 2026-10-12. It started from `e93df
 
 ### Issue register
 
+Issues found after this pass continue the numbering (N23 and on) in the
+[build log](../BUILD-LOG.md).
+
 | ID | Issue | Kind | Chunk | Status |
 |---|---|---|---|---|
 | N01 | A button held down kept resetting the idle count (`logic.c`), so the 3-min auto-off never fired while it was held | defect, safety-relevant | 1 | fixed |
@@ -60,7 +63,7 @@ This record covers the fix-and-verify pass of 2026-10-12. It started from `e93df
 | N16 | A cell-voltage reading under 18 overflowed 16 bits, giving a random voltage. A reading of 17 gave 0.658 V and a spurious battery lock | defect (error handling) | 2 | fixed |
 | N17 | The order pack gave the board size over the 0.1 mm edge line (85.8 × 54.5 mm; the outline is 85.7 × 54.4 mm), and left out the 0.7 / 0.35 mm power-net vias | doc error | 3 | fixed |
 | N18 | The board's own "PERSONAL PROTOTYPE – NOT A MEDICAL DEVICE" label was 0.8 mm text with a 0.12 mm stroke, under JLCPCB's published 1.0 mm / 0.153 mm, so it might not print legibly | defect (fab) | 3 | fixed: 1.0 / 0.16 mm |
-| N19 | The sole is 0.91 mm thick under the USB-C opening's lip, under the brief's 1.6 mm. It is listed in verification §2, but was missing from the §1 summary and never put to you as a decision | requirement conflict | 4 | **accepted provisionally for the first print (2026-10-12)**; bench item 20 is a required durability check (checklist 3.4) |
+| N19 | The sole is 0.91 mm thick under the USB-C opening's lip, and 0.87 mm at the landing face itself, under the brief's 1.6 mm. It is listed in verification §2, but was missing from the §1 summary and never put to you as a decision | requirement conflict | 4 | **accepted provisionally for the first print (2026-10-12)**; bench item 20 is a required durability check (checklist 3.4); 0.87 mm edge value added 2026-10-12 |
 | N20 | The CAD leaves 0.15 mm of air between the NTC body and its 0.7 mm window, which weakens the coupling the 41 °C cut-off relies on | thermal integration risk | 4 | documented; bench items 4 and 11; thermal paste if the offset is large or unsteady |
 | N21 | No reverse-polarity protection on the cell pads TP1/TP2; their silkscreen labels are small | assembly risk | 4 | build-guide warning added |
 | N22 | The cell stack depends on the foam tape (1.0 or 1.6 mm, unknown) and the real cell thickness: tape + cell ≤ 7.4 mm | measurement | 4 | build-guide step and bench item 19 |
@@ -380,6 +383,7 @@ Background: the question answered on 2026-10-12 named only the 1.15 mm floor und
 receptacle. The lip was in electronics §7's problem text, but not in the question.
 
 The USB-C opening's lower lip is 0.91 mm of PETG, under the brief's 1.6 mm wall.
+It thins to **0.87 mm at the landing face itself** (see "Edge value" below).
 - It is set by the receptacle's height. The mid-mount part hangs 0.61 mm below the board,
   and the plug enters just above the sole's bottom skin.
 - **Smallest change: accept it** as a fifth thin spot, like the 1.15 mm pocket behind
@@ -388,6 +392,19 @@ The USB-C opening's lower lip is 0.91 mm of PETG, under the brief's 1.6 mm wall.
 - The alternative is to move the receptacle up or deepen the sole. That changes the
   skin, the USB-C height and the board, which is a gate-2 redesign.
 - This does not block ordering. It only matters once the sole is printed.
+
+**Edge value (added 2026-10-12, at your instruction).**
+- The 0.91 mm is `checks.json`'s minimum. Its probe stops 0.15 mm short of the landing
+  face (`cad/device/checks.py`).
+- On the print mesh (`docs/08-prototype/print_dims.json`, `usb_lip_from_landing_face`),
+  the lip is:
+  - 0.95 mm, 1 mm in from the face;
+  - 0.91 mm, 0.2 mm in;
+  - **0.87 mm at the landing face itself.**
+- The provisional acceptance and bench item 20 are unchanged. Item 20 tests the lip as
+  printed, edge included.
+- The first-article check measures it at least 0.2 mm in from the face (print packet
+  S10).
 
 ### PHYSICAL MEASUREMENT REQUIRED
 
@@ -399,7 +416,7 @@ The USB-C opening's lower lip is 0.91 mm of PETG, under the brief's 1.6 mm wall.
 | 4 | Button gap and force | 0.05 mm nominal gap; shim | build §4.4, bench 5 |
 | 5 | Post fit in the printed holes | 1.05 mm printed holes for a 0.905 mm diagonal; ream if tight | build §1 |
 | 6 | Magnet pocket fit and closure force | 0.15 mm diametral clearance, glued; 24–26 N modelled | build §4.1, bench 6 |
-| 7 | USB-C plug engagement and the lip | 0.1 mm landing in front of the face; 0.91 mm lip | bench 20 |
+| 7 | USB-C plug engagement and the lip | 0.1 mm landing in front of the face; 0.91 mm lip, 0.87 mm at the landing face | bench 20 |
 | 8 | Mask tops to shell (0.10 mm) and bridge to shell (≥ 0.6 mm) | tight CAD clearances | bench 19 (closing) |
 | 9 | USB detection at full charge | unverified input threshold | bench 21 |
 
@@ -457,7 +474,7 @@ safety.** The bench checks in verification §8 are.
 | Documented, with a bench item | N05 (17), N07 (21), N14 (18), N15 (16), N20 (4, 11), N22 (19) |
 | Accepted, with reasons | N09 (silkscreen references), N10 (USB-C 0.20 mm), N11 (no reroute), N12 (BOD off) |
 | Warning added | N21 (cell polarity) |
-| Provisionally accepted (2026-10-12) | **N19**: 0.91 mm lip under the USB-C opening. Bench item 20 is required (checklist 3.4) |
+| Provisionally accepted (2026-10-12) | **N19**: 0.91 mm lip under the USB-C opening, 0.87 mm at the landing face. Bench item 20 is required (checklist 3.4) |
 
 ### GO / NO-GO
 
