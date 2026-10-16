@@ -1,0 +1,4253 @@
+(kicad_sch
+  (version 20230121)
+  (generator eeschema)
+  (uuid "2089f64b-be8a-4d2d-9b7c-6b17eef74cde")
+  (paper "A3")
+  (title_block
+    (title "Vein finder (organic) - main board")
+    (date "2026-10-12")
+    (rev "A")
+    (company "Personal prototype for bench evaluation - NOT a medical device")
+    (comment 1 "Personal prototype for bench evaluation - NOT a medical device")
+    (comment 2 "Generated from ee/design.py (gate 3); nets by label")
+    (comment 3 "LED ring and NTC on the PCB underside; ring positions from the CAD layout"))
+  (lib_symbols
+    (symbol "Connector:USB_C_Receptacle_PowerOnly_6P"
+      (pin_names (offset 1.016))
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "J" (at 0 16.51 0) (effects (font (size 1.27 1.27)) (justify bottom)))
+      (property "Value"
+        "USB_C_Receptacle_PowerOnly_6P"
+        (at 0 13.97 0)
+        (effects (font (size 1.27 1.27)) (justify bottom)))
+      (property "Footprint" "" (at 3.81 2.54 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet"
+        "https://www.usb.org/sites/default/files/documents/usb_type-c.zip"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (property "ki_keywords"
+        "usb universal serial bus type-C power-only charging-only 6P 6C"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (property "ki_description"
+        "USB Power-Only 6P Type-C Receptacle connector"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (property "ki_fp_filters" "USB*C*Receptacle*" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "USB_C_Receptacle_PowerOnly_6P_0_0"
+        (rectangle
+          (start -0.254 -12.7)
+          (end 0.254 -11.684)
+          (stroke (width 0) (type default))
+          (fill (type none)))
+        (rectangle
+          (start 10.16 -7.366)
+          (end 9.144 -7.874)
+          (stroke (width 0) (type default))
+          (fill (type none)))
+        (rectangle
+          (start 10.16 -4.826)
+          (end 9.144 -5.334)
+          (stroke (width 0) (type default))
+          (fill (type none)))
+        (rectangle
+          (start 10.16 7.874)
+          (end 9.144 7.366)
+          (stroke (width 0) (type default))
+          (fill (type none))))
+      (symbol "USB_C_Receptacle_PowerOnly_6P_0_1"
+        (rectangle
+          (start -10.16 12.7)
+          (end 10.16 -12.7)
+          (stroke (width 0.254) (type default))
+          (fill (type background)))
+        (arc
+          (start -8.89 -1.27)
+          (mid -6.985 -3.1667)
+          (end -5.08 -1.27)
+          (stroke (width 0.508) (type default))
+          (fill (type none)))
+        (arc
+          (start -7.62 -1.27)
+          (mid -6.985 -1.9023)
+          (end -6.35 -1.27)
+          (stroke (width 0.254) (type default))
+          (fill (type none)))
+        (arc
+          (start -7.62 -1.27)
+          (mid -6.985 -1.9023)
+          (end -6.35 -1.27)
+          (stroke (width 0.254) (type default))
+          (fill (type outline)))
+        (rectangle
+          (start -7.62 -1.27)
+          (end -6.35 6.35)
+          (stroke (width 0.254) (type default))
+          (fill (type outline)))
+        (arc
+          (start -6.35 6.35)
+          (mid -6.985 6.9823)
+          (end -7.62 6.35)
+          (stroke (width 0.254) (type default))
+          (fill (type none)))
+        (arc
+          (start -6.35 6.35)
+          (mid -6.985 6.9823)
+          (end -7.62 6.35)
+          (stroke (width 0.254) (type default))
+          (fill (type outline)))
+        (arc
+          (start -5.08 6.35)
+          (mid -6.985 8.2467)
+          (end -8.89 6.35)
+          (stroke (width 0.508) (type default))
+          (fill (type none)))
+        (circle
+          (center -2.54 3.683)
+          (radius 0.635)
+          (stroke (width 0.254) (type default))
+          (fill (type outline)))
+        (circle (center 0 -3.302) (radius 1.27) (stroke (width 0) (type default)) (fill (type outline)))
+        (polyline
+          (pts (xy -8.89 -1.27) (xy -8.89 6.35))
+          (stroke (width 0.508) (type default))
+          (fill (type none)))
+        (polyline
+          (pts (xy -5.08 6.35) (xy -5.08 -1.27))
+          (stroke (width 0.508) (type default))
+          (fill (type none)))
+        (polyline (pts (xy 0 -3.302) (xy 0 6.858)) (stroke (width 0.508) (type default)) (fill (type none)))
+        (polyline
+          (pts (xy 0 -0.762) (xy -2.54 1.778) (xy -2.54 3.048))
+          (stroke (width 0.508) (type default))
+          (fill (type none)))
+        (polyline
+          (pts (xy 0 0.508) (xy 2.54 3.048) (xy 2.54 4.318))
+          (stroke (width 0.508) (type default))
+          (fill (type none)))
+        (polyline
+          (pts (xy -1.27 6.858) (xy 0 9.398) (xy 1.27 6.858) (xy -1.27 6.858))
+          (stroke (width 0.254) (type default))
+          (fill (type outline)))
+        (rectangle
+          (start 1.905 4.318)
+          (end 3.175 5.588)
+          (stroke (width 0.254) (type default))
+          (fill (type outline))))
+      (symbol "USB_C_Receptacle_PowerOnly_6P_1_1"
+        (pin passive
+          line
+          (at 0 -17.78 90)
+          (length 5.08)
+          (name "GND" (effects (font (size 1.27 1.27))))
+          (number "A12" (effects (font (size 1.27 1.27)))))
+        (pin bidirectional
+          line
+          (at 15.24 -5.08 180)
+          (length 5.08)
+          (name "CC1" (effects (font (size 1.27 1.27))))
+          (number "A5" (effects (font (size 1.27 1.27)))))
+        (pin passive
+          line
+          (at 15.24 7.62 180)
+          (length 5.08)
+          (name "VBUS" (effects (font (size 1.27 1.27))))
+          (number "A9" (effects (font (size 1.27 1.27)))))
+        (pin passive
+          line
+          (at 0 -17.78 90)
+          (length 5.08)
+          hide
+          (name "GND" (effects (font (size 1.27 1.27))))
+          (number "B12" (effects (font (size 1.27 1.27)))))
+        (pin bidirectional
+          line
+          (at 15.24 -7.62 180)
+          (length 5.08)
+          (name "CC2" (effects (font (size 1.27 1.27))))
+          (number "B5" (effects (font (size 1.27 1.27)))))
+        (pin passive
+          line
+          (at 15.24 7.62 180)
+          (length 5.08)
+          hide
+          (name "VBUS" (effects (font (size 1.27 1.27))))
+          (number "B9" (effects (font (size 1.27 1.27)))))
+        (pin passive
+          line
+          (at -7.62 -17.78 90)
+          (length 5.08)
+          (name "SHIELD" (effects (font (size 1.27 1.27))))
+          (number "S1" (effects (font (size 1.27 1.27)))))))
+    (symbol "Device:R"
+      (pin_numbers hide)
+      (pin_names (offset 0))
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "R" (at 2.032 0 90) (effects (font (size 1.27 1.27))))
+      (property "Value" "R" (at 0 0 90) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at -1.778 0 90) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "~" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_keywords" "R res resistor" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_description" "Resistor" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_fp_filters" "R_*" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "R_0_1"
+        (rectangle
+          (start -1.016 -2.54)
+          (end 1.016 2.54)
+          (stroke (width 0.254) (type default))
+          (fill (type none))))
+      (symbol "R_1_1"
+        (pin passive
+          line
+          (at 0 3.81 270)
+          (length 1.27)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27)))))
+        (pin passive
+          line
+          (at 0 -3.81 90)
+          (length 1.27)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27)))))))
+    (symbol "vf:BQ21040DBV"
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "U" (at 0 9.08 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "BQ21040DBVR" (at 0 -9.08 0) (effects (font (size 1.27 1.27))))
+      (property "Footprint"
+        "Package_TO_SOT_SMD:SOT-23-6"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet"
+        "https://www.ti.com/lit/ds/symlink/bq21040.pdf"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (property "Description"
+        "Li-ion linear charger, 4.2 V, 30 V input, OVP 6.6 V, SOT-23-6 (TI SLUSCE2D)"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (symbol "BQ21040DBV_0_1"
+        (rectangle
+          (start -5.08 5.08)
+          (end 5.08 -5.08)
+          (stroke (width 0.254) (type default))
+          (fill (type background))))
+      (symbol "BQ21040DBV_1_1"
+        (pin power_in
+          line
+          (at -7.62 2.54 0)
+          (length 2.54)
+          (name "IN" (effects (font (size 1.27 1.27))))
+          (number "6" (effects (font (size 1.27 1.27)))))
+        (pin input
+          line
+          (at -7.62 0 0)
+          (length 2.54)
+          (name "TS" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27)))))
+        (pin passive
+          line
+          (at -7.62 -2.54 0)
+          (length 2.54)
+          (name "ISET" (effects (font (size 1.27 1.27))))
+          (number "4" (effects (font (size 1.27 1.27)))))
+        (pin power_out
+          line
+          (at 7.62 2.54 180)
+          (length 2.54)
+          (name "OUT" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27)))))
+        (pin open_collector
+          line
+          (at 7.62 0 180)
+          (length 2.54)
+          (name "~{CHG}" (effects (font (size 1.27 1.27))))
+          (number "3" (effects (font (size 1.27 1.27)))))
+        (pin power_in
+          line
+          (at 0 -7.62 90)
+          (length 2.54)
+          (name "VSS" (effects (font (size 1.27 1.27))))
+          (number "5" (effects (font (size 1.27 1.27)))))))
+    (symbol "Device:C"
+      (pin_numbers hide)
+      (pin_names (offset 0.254))
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "C" (at 0.635 2.54 0) (effects (font (size 1.27 1.27)) (justify left)))
+      (property "Value" "C" (at 0.635 -2.54 0) (effects (font (size 1.27 1.27)) (justify left)))
+      (property "Footprint" "" (at 0.9652 -3.81 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "~" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_keywords" "cap capacitor" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_description"
+        "Unpolarized capacitor"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (property "ki_fp_filters" "C_*" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "C_0_1"
+        (polyline
+          (pts (xy -2.032 -0.762) (xy 2.032 -0.762))
+          (stroke (width 0.508) (type default))
+          (fill (type none)))
+        (polyline
+          (pts (xy -2.032 0.762) (xy 2.032 0.762))
+          (stroke (width 0.508) (type default))
+          (fill (type none))))
+      (symbol "C_1_1"
+        (pin passive
+          line
+          (at 0 3.81 270)
+          (length 2.794)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27)))))
+        (pin passive
+          line
+          (at 0 -3.81 90)
+          (length 2.794)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27)))))))
+    (symbol "Device:Battery_Cell"
+      (pin_numbers hide)
+      (pin_names (offset 0) hide)
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "BT" (at 2.54 2.54 0) (effects (font (size 1.27 1.27)) (justify left)))
+      (property "Value" "Battery_Cell" (at 2.54 0 0) (effects (font (size 1.27 1.27)) (justify left)))
+      (property "Footprint" "" (at 0 1.524 90) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "~" (at 0 1.524 90) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_keywords" "battery cell" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_description" "Single-cell battery" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "Battery_Cell_0_1"
+        (rectangle
+          (start -2.286 1.778)
+          (end 2.286 1.524)
+          (stroke (width 0) (type default))
+          (fill (type outline)))
+        (rectangle
+          (start -1.524 1.016)
+          (end 1.524 0.508)
+          (stroke (width 0) (type default))
+          (fill (type outline)))
+        (polyline (pts (xy 0 0.762) (xy 0 0)) (stroke (width 0) (type default)) (fill (type none)))
+        (polyline (pts (xy 0 1.778) (xy 0 2.54)) (stroke (width 0) (type default)) (fill (type none)))
+        (polyline
+          (pts (xy 0.762 3.048) (xy 1.778 3.048))
+          (stroke (width 0.254) (type default))
+          (fill (type none)))
+        (polyline
+          (pts (xy 1.27 3.556) (xy 1.27 2.54))
+          (stroke (width 0.254) (type default))
+          (fill (type none))))
+      (symbol "Battery_Cell_1_1"
+        (pin passive
+          line
+          (at 0 5.08 270)
+          (length 2.54)
+          (name "+" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27)))))
+        (pin passive
+          line
+          (at 0 -2.54 90)
+          (length 2.54)
+          (name "-" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27)))))))
+    (symbol "Connector:TestPoint"
+      (pin_numbers hide)
+      (pin_names (offset 0.762) hide)
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "TP" (at 0 6.858 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "TestPoint" (at 0 5.08 0) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 5.08 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "~" (at 5.08 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_keywords" "test point tp" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_description" "test point" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_fp_filters" "Pin* Test*" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "TestPoint_0_1"
+        (circle (center 0 3.302) (radius 0.762) (stroke (width 0) (type default)) (fill (type none))))
+      (symbol "TestPoint_1_1"
+        (pin passive
+          line
+          (at 0 0 90)
+          (length 2.54)
+          (name "1" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27)))))))
+    (symbol "MCU_Microchip_ATtiny:ATtiny1614-SS"
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference"
+        "U"
+        (at -12.7 16.51 0)
+        (effects (font (size 1.27 1.27)) (justify left bottom)))
+      (property "Value"
+        "ATtiny1614-SS"
+        (at 2.54 -16.51 0)
+        (effects (font (size 1.27 1.27)) (justify left top)))
+      (property "Footprint"
+        "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27) italic) hide))
+      (property "Datasheet"
+        "http://ww1.microchip.com/downloads/en/DeviceDoc/ATtiny1614-data-sheet-40001995A.pdf"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (property "ki_keywords"
+        "AVR 8bit Microcontroller tinyAVR"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (property "ki_description"
+        "20MHz, 16kB Flash, 2kB SRAM, 256B EEPROM, SOIC-14"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (property "ki_fp_filters"
+        "SOIC*3.9x8.7mm*P1.27mm*"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (symbol "ATtiny1614-SS_0_1"
+        (rectangle
+          (start -12.7 -15.24)
+          (end 12.7 15.24)
+          (stroke (width 0.254) (type default))
+          (fill (type background))))
+      (symbol "ATtiny1614-SS_1_1"
+        (pin power_in
+          line
+          (at 0 17.78 270)
+          (length 2.54)
+          (name "VCC" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27)))))
+        (pin bidirectional
+          line
+          (at 15.24 10.16 180)
+          (length 2.54)
+          (name "~{RESET}/PA0" (effects (font (size 1.27 1.27))))
+          (number "10" (effects (font (size 1.27 1.27)))))
+        (pin bidirectional
+          line
+          (at 15.24 7.62 180)
+          (length 2.54)
+          (name "PA1" (effects (font (size 1.27 1.27))))
+          (number "11" (effects (font (size 1.27 1.27)))))
+        (pin bidirectional
+          line
+          (at 15.24 5.08 180)
+          (length 2.54)
+          (name "PA2" (effects (font (size 1.27 1.27))))
+          (number "12" (effects (font (size 1.27 1.27)))))
+        (pin bidirectional
+          line
+          (at 15.24 2.54 180)
+          (length 2.54)
+          (name "PA3" (effects (font (size 1.27 1.27))))
+          (number "13" (effects (font (size 1.27 1.27)))))
+        (pin power_in
+          line
+          (at 0 -17.78 90)
+          (length 2.54)
+          (name "GND" (effects (font (size 1.27 1.27))))
+          (number "14" (effects (font (size 1.27 1.27)))))
+        (pin bidirectional
+          line
+          (at 15.24 0 180)
+          (length 2.54)
+          (name "PA4" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27)))))
+        (pin bidirectional
+          line
+          (at 15.24 -2.54 180)
+          (length 2.54)
+          (name "PA5" (effects (font (size 1.27 1.27))))
+          (number "3" (effects (font (size 1.27 1.27)))))
+        (pin bidirectional
+          line
+          (at 15.24 -5.08 180)
+          (length 2.54)
+          (name "PA6" (effects (font (size 1.27 1.27))))
+          (number "4" (effects (font (size 1.27 1.27)))))
+        (pin bidirectional
+          line
+          (at 15.24 -7.62 180)
+          (length 2.54)
+          (name "PA7" (effects (font (size 1.27 1.27))))
+          (number "5" (effects (font (size 1.27 1.27)))))
+        (pin bidirectional
+          line
+          (at -15.24 2.54 0)
+          (length 2.54)
+          (name "PB3" (effects (font (size 1.27 1.27))))
+          (number "6" (effects (font (size 1.27 1.27)))))
+        (pin bidirectional
+          line
+          (at -15.24 5.08 0)
+          (length 2.54)
+          (name "PB2" (effects (font (size 1.27 1.27))))
+          (number "7" (effects (font (size 1.27 1.27)))))
+        (pin bidirectional
+          line
+          (at -15.24 7.62 0)
+          (length 2.54)
+          (name "PB1" (effects (font (size 1.27 1.27))))
+          (number "8" (effects (font (size 1.27 1.27)))))
+        (pin bidirectional
+          line
+          (at -15.24 10.16 0)
+          (length 2.54)
+          (name "PB0" (effects (font (size 1.27 1.27))))
+          (number "9" (effects (font (size 1.27 1.27)))))))
+    (symbol "Switch:SW_Push"
+      (pin_numbers hide)
+      (pin_names (offset 1.016) hide)
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "SW" (at 1.27 2.54 0) (effects (font (size 1.27 1.27)) (justify left)))
+      (property "Value" "SW_Push" (at 0 -1.524 0) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 5.08 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "~" (at 0 5.08 0) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_keywords"
+        "switch normally-open pushbutton push-button"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (property "ki_description"
+        "Push button switch, generic, two pins"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (symbol "SW_Push_0_1"
+        (circle (center -2.032 0) (radius 0.508) (stroke (width 0) (type default)) (fill (type none)))
+        (polyline (pts (xy 0 1.27) (xy 0 3.048)) (stroke (width 0) (type default)) (fill (type none)))
+        (polyline (pts (xy 2.54 1.27) (xy -2.54 1.27)) (stroke (width 0) (type default)) (fill (type none)))
+        (circle (center 2.032 0) (radius 0.508) (stroke (width 0) (type default)) (fill (type none)))
+        (pin passive
+          line
+          (at -5.08 0 0)
+          (length 2.54)
+          (name "1" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27)))))
+        (pin passive
+          line
+          (at 5.08 0 180)
+          (length 2.54)
+          (name "2" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27)))))))
+    (symbol "Device:Thermistor_NTC"
+      (pin_numbers hide)
+      (pin_names (offset 0))
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "TH" (at -4.445 0 90) (effects (font (size 1.27 1.27))))
+      (property "Value" "Thermistor_NTC" (at 3.175 0 90) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 1.27 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "~" (at 0 1.27 0) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_keywords"
+        "thermistor NTC resistor sensor RTD"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (property "ki_description"
+        "Temperature dependent resistor, negative temperature coefficient"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (property "ki_fp_filters"
+        "*NTC* *Thermistor* PIN?ARRAY* bornier* *Terminal?Block* R_*"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (symbol "Thermistor_NTC_0_1"
+        (arc
+          (start -3.048 2.159)
+          (mid -3.0495 2.3143)
+          (end -3.175 2.413)
+          (stroke (width 0) (type default))
+          (fill (type none)))
+        (arc
+          (start -3.048 2.159)
+          (mid -2.9736 1.9794)
+          (end -2.794 1.905)
+          (stroke (width 0) (type default))
+          (fill (type none)))
+        (arc
+          (start -3.048 2.794)
+          (mid -2.9736 2.6144)
+          (end -2.794 2.54)
+          (stroke (width 0) (type default))
+          (fill (type none)))
+        (arc
+          (start -2.794 1.905)
+          (mid -2.6144 1.9794)
+          (end -2.54 2.159)
+          (stroke (width 0) (type default))
+          (fill (type none)))
+        (arc
+          (start -2.794 2.54)
+          (mid -2.4393 2.5587)
+          (end -2.159 2.794)
+          (stroke (width 0) (type default))
+          (fill (type none)))
+        (arc
+          (start -2.794 3.048)
+          (mid -2.9736 2.9736)
+          (end -3.048 2.794)
+          (stroke (width 0) (type default))
+          (fill (type none)))
+        (arc
+          (start -2.54 2.794)
+          (mid -2.6144 2.9736)
+          (end -2.794 3.048)
+          (stroke (width 0) (type default))
+          (fill (type none)))
+        (rectangle
+          (start -1.016 2.54)
+          (end 1.016 -2.54)
+          (stroke (width 0.254) (type default))
+          (fill (type none)))
+        (polyline
+          (pts (xy -2.54 2.159) (xy -2.54 2.794))
+          (stroke (width 0) (type default))
+          (fill (type none)))
+        (polyline
+          (pts (xy -1.778 2.54) (xy -1.778 1.524) (xy 1.778 -1.524) (xy 1.778 -2.54))
+          (stroke (width 0) (type default))
+          (fill (type none)))
+        (polyline
+          (pts
+            (xy -2.54 -3.683)
+            (xy -2.54 -1.397)
+            (xy -2.794 -2.159)
+            (xy -2.286 -2.159)
+            (xy -2.54 -1.397)
+            (xy -2.54 -1.651))
+          (stroke (width 0) (type default))
+          (fill (type outline)))
+        (polyline
+          (pts
+            (xy -1.778 -1.397)
+            (xy -1.778 -3.683)
+            (xy -2.032 -2.921)
+            (xy -1.524 -2.921)
+            (xy -1.778 -3.683)
+            (xy -1.778 -3.429))
+          (stroke (width 0) (type default))
+          (fill (type outline))))
+      (symbol "Thermistor_NTC_1_1"
+        (pin passive
+          line
+          (at 0 3.81 270)
+          (length 1.27)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27)))))
+        (pin passive
+          line
+          (at 0 -3.81 90)
+          (length 1.27)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27)))))))
+    (symbol "vf:TPS61169DCK"
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "U" (at 0 7.81 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "TPS61169DCKR" (at 0 -7.81 0) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "vf:SC-70-5_HandSolder" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet"
+        "https://www.ti.com/lit/ds/symlink/tps61169.pdf"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (property "Description"
+        "40 V boost white-LED driver, 1.2 MHz, 1.2 A switch, SC-70-5 (TI SNVSA40B)"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (symbol "TPS61169DCK_0_1"
+        (rectangle
+          (start -5.08 3.81)
+          (end 5.08 -3.81)
+          (stroke (width 0.254) (type default))
+          (fill (type background))))
+      (symbol "TPS61169DCK_1_1"
+        (pin power_in
+          line
+          (at -7.62 1.27 0)
+          (length 2.54)
+          (name "VIN" (effects (font (size 1.27 1.27))))
+          (number "5" (effects (font (size 1.27 1.27)))))
+        (pin input
+          line
+          (at -7.62 -1.27 0)
+          (length 2.54)
+          (name "CTRL" (effects (font (size 1.27 1.27))))
+          (number "4" (effects (font (size 1.27 1.27)))))
+        (pin power_out
+          line
+          (at 7.62 1.27 180)
+          (length 2.54)
+          (name "SW" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27)))))
+        (pin input
+          line
+          (at 7.62 -1.27 180)
+          (length 2.54)
+          (name "FB" (effects (font (size 1.27 1.27))))
+          (number "3" (effects (font (size 1.27 1.27)))))
+        (pin power_in
+          line
+          (at 0 -6.35 90)
+          (length 2.54)
+          (name "GND" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27)))))))
+    (symbol "Device:L"
+      (pin_numbers hide)
+      (pin_names (offset 1.016) hide)
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "L" (at -1.27 0 90) (effects (font (size 1.27 1.27))))
+      (property "Value" "L" (at 1.905 0 90) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "~" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_keywords"
+        "inductor choke coil reactor magnetic"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (property "ki_description" "Inductor" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_fp_filters"
+        "Choke_* *Coil* Inductor_* L_*"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (symbol "L_0_1"
+        (arc
+          (start 0 -2.54)
+          (mid 0.6323 -1.905)
+          (end 0 -1.27)
+          (stroke (width 0) (type default))
+          (fill (type none)))
+        (arc
+          (start 0 -1.27)
+          (mid 0.6323 -0.635)
+          (end 0 0)
+          (stroke (width 0) (type default))
+          (fill (type none)))
+        (arc
+          (start 0 0)
+          (mid 0.6323 0.635)
+          (end 0 1.27)
+          (stroke (width 0) (type default))
+          (fill (type none)))
+        (arc
+          (start 0 1.27)
+          (mid 0.6323 1.905)
+          (end 0 2.54)
+          (stroke (width 0) (type default))
+          (fill (type none))))
+      (symbol "L_1_1"
+        (pin passive
+          line
+          (at 0 3.81 270)
+          (length 1.27)
+          (name "1" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27)))))
+        (pin passive
+          line
+          (at 0 -3.81 90)
+          (length 1.27)
+          (name "2" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27)))))))
+    (symbol "Device:D_Schottky"
+      (pin_numbers hide)
+      (pin_names (offset 1.016) hide)
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "D" (at 0 2.54 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "D_Schottky" (at 0 -2.54 0) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "~" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_keywords" "diode Schottky" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_description" "Schottky diode" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_fp_filters"
+        "TO-???* *_Diode_* *SingleDiode* D_*"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (symbol "D_Schottky_0_1"
+        (polyline (pts (xy 1.27 0) (xy -1.27 0)) (stroke (width 0) (type default)) (fill (type none)))
+        (polyline
+          (pts (xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27))
+          (stroke (width 0.254) (type default))
+          (fill (type none)))
+        (polyline
+          (pts
+            (xy -1.905 0.635)
+            (xy -1.905 1.27)
+            (xy -1.27 1.27)
+            (xy -1.27 -1.27)
+            (xy -0.635 -1.27)
+            (xy -0.635 -0.635))
+          (stroke (width 0.254) (type default))
+          (fill (type none))))
+      (symbol "D_Schottky_1_1"
+        (pin passive
+          line
+          (at -3.81 0 0)
+          (length 2.54)
+          (name "K" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27)))))
+        (pin passive
+          line
+          (at 3.81 0 180)
+          (length 2.54)
+          (name "A" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27)))))))
+    (symbol "Transistor_FET:AO3400A"
+      (pin_names hide)
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "Q" (at 5.08 1.905 0) (effects (font (size 1.27 1.27)) (justify left)))
+      (property "Value" "AO3400A" (at 5.08 0 0) (effects (font (size 1.27 1.27)) (justify left)))
+      (property "Footprint"
+        "Package_TO_SOT_SMD:SOT-23"
+        (at 5.08 -1.905 0)
+        (effects (font (size 1.27 1.27) italic) (justify left) hide))
+      (property "Datasheet"
+        "http://www.aosmd.com/pdfs/datasheet/AO3400A.pdf"
+        (at 5.08 -3.81 0)
+        (effects (font (size 1.27 1.27)) (justify left) hide))
+      (property "ki_keywords" "N-Channel MOSFET" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_description"
+        "30V Vds, 5.7A Id, N-Channel MOSFET, SOT-23"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (property "ki_fp_filters" "SOT?23*" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "AO3400A_0_1"
+        (polyline (pts (xy 0.254 0) (xy -2.54 0)) (stroke (width 0) (type default)) (fill (type none)))
+        (polyline
+          (pts (xy 0.254 1.905) (xy 0.254 -1.905))
+          (stroke (width 0.254) (type default))
+          (fill (type none)))
+        (polyline
+          (pts (xy 0.762 -1.27) (xy 0.762 -2.286))
+          (stroke (width 0.254) (type default))
+          (fill (type none)))
+        (polyline
+          (pts (xy 0.762 0.508) (xy 0.762 -0.508))
+          (stroke (width 0.254) (type default))
+          (fill (type none)))
+        (polyline
+          (pts (xy 0.762 2.286) (xy 0.762 1.27))
+          (stroke (width 0.254) (type default))
+          (fill (type none)))
+        (polyline (pts (xy 2.54 2.54) (xy 2.54 1.778)) (stroke (width 0) (type default)) (fill (type none)))
+        (polyline
+          (pts (xy 2.54 -2.54) (xy 2.54 0) (xy 0.762 0))
+          (stroke (width 0) (type default))
+          (fill (type none)))
+        (polyline
+          (pts (xy 0.762 -1.778) (xy 3.302 -1.778) (xy 3.302 1.778) (xy 0.762 1.778))
+          (stroke (width 0) (type default))
+          (fill (type none)))
+        (polyline
+          (pts (xy 1.016 0) (xy 2.032 0.381) (xy 2.032 -0.381) (xy 1.016 0))
+          (stroke (width 0) (type default))
+          (fill (type outline)))
+        (polyline
+          (pts (xy 2.794 0.508) (xy 2.921 0.381) (xy 3.683 0.381) (xy 3.81 0.254))
+          (stroke (width 0) (type default))
+          (fill (type none)))
+        (polyline
+          (pts (xy 3.302 0.381) (xy 2.921 -0.254) (xy 3.683 -0.254) (xy 3.302 0.381))
+          (stroke (width 0) (type default))
+          (fill (type none)))
+        (circle (center 1.651 0) (radius 2.794) (stroke (width 0.254) (type default)) (fill (type none)))
+        (circle (center 2.54 -1.778) (radius 0.254) (stroke (width 0) (type default)) (fill (type outline)))
+        (circle (center 2.54 1.778) (radius 0.254) (stroke (width 0) (type default)) (fill (type outline))))
+      (symbol "AO3400A_1_1"
+        (pin input
+          line
+          (at -5.08 0 0)
+          (length 2.54)
+          (name "G" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27)))))
+        (pin passive
+          line
+          (at 2.54 -5.08 90)
+          (length 2.54)
+          (name "S" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27)))))
+        (pin passive
+          line
+          (at 2.54 5.08 270)
+          (length 2.54)
+          (name "D" (effects (font (size 1.27 1.27))))
+          (number "3" (effects (font (size 1.27 1.27)))))))
+    (symbol "Device:LED"
+      (pin_numbers hide)
+      (pin_names (offset 1.016) hide)
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "D" (at 0 2.54 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "LED" (at 0 -2.54 0) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "~" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_keywords" "LED diode" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_description" "Light emitting diode" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "ki_fp_filters"
+        "LED* LED_SMD:* LED_THT:*"
+        (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide))
+      (symbol "LED_0_1"
+        (polyline
+          (pts (xy -1.27 -1.27) (xy -1.27 1.27))
+          (stroke (width 0.254) (type default))
+          (fill (type none)))
+        (polyline (pts (xy -1.27 0) (xy 1.27 0)) (stroke (width 0) (type default)) (fill (type none)))
+        (polyline
+          (pts (xy 1.27 -1.27) (xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27))
+          (stroke (width 0.254) (type default))
+          (fill (type none)))
+        (polyline
+          (pts (xy -3.048 -0.762) (xy -4.572 -2.286) (xy -3.81 -2.286) (xy -4.572 -2.286) (xy -4.572 -1.524))
+          (stroke (width 0) (type default))
+          (fill (type none)))
+        (polyline
+          (pts (xy -1.778 -0.762) (xy -3.302 -2.286) (xy -2.54 -2.286) (xy -3.302 -2.286) (xy -3.302 -1.524))
+          (stroke (width 0) (type default))
+          (fill (type none))))
+      (symbol "LED_1_1"
+        (pin passive
+          line
+          (at -3.81 0 0)
+          (length 2.54)
+          (name "K" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27)))))
+        (pin passive
+          line
+          (at 3.81 0 180)
+          (length 2.54)
+          (name "A" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))))))
+  (rectangle
+    (start 15.24 20.32)
+    (end 149.86 128.27)
+    (stroke (width 0.15) (type dash))
+    (fill (type none))
+    (uuid "165bd9e7-b7e8-4216-a46f-b3c7625f980d"))
+  (text "USB-C input, charger, cell"
+    (at 16.51 25.4 0)
+    (effects (font (size 2 2) bold) (justify left bottom))
+    (uuid "9ca26f55-708b-4295-8f75-7dc8c76e8f3c"))
+  (rectangle
+    (start 154.94 20.32)
+    (end 289.56 128.27)
+    (stroke (width 0.15) (type dash))
+    (fill (type none))
+    (uuid "6d3d3b70-322b-402b-8476-765fa16db474"))
+  (text "Microcontroller, button, programming"
+    (at 157.48 25.4 0)
+    (effects (font (size 2 2) bold) (justify left bottom))
+    (uuid "961fb5e4-2175-4fe8-8ad8-49bf235f7f71"))
+  (rectangle
+    (start 294.64 20.32)
+    (end 410.21 128.27)
+    (stroke (width 0.15) (type dash))
+    (fill (type none))
+    (uuid "1a64914a-13fa-4cbd-809c-46c0904a36d5"))
+  (text "Boost LED driver and bank select"
+    (at 297.18 25.4 0)
+    (effects (font (size 2 2) bold) (justify left bottom))
+    (uuid "7019ecbd-fcab-465c-b1eb-872d5eac5809"))
+  (rectangle
+    (start 15.24 138.43)
+    (end 214.63 281.94)
+    (stroke (width 0.15) (type dash))
+    (fill (type none))
+    (uuid "f003b714-59d9-4452-80e5-492a002748a8"))
+  (text "LED ring (PCB underside): string A 660 nm, string B 625 nm"
+    (at 16.51 143.51 0)
+    (effects (font (size 2 2) bold) (justify left bottom))
+    (uuid "46b3b2e0-5a32-40d7-9fc9-fb19ddc0b760"))
+  (rectangle
+    (start 219.71 138.43)
+    (end 299.72 281.94)
+    (stroke (width 0.15) (type dash))
+    (fill (type none))
+    (uuid "a62a22c9-832e-4561-9291-c8b8419a91cb"))
+  (text "Status seam"
+    (at 222.25 143.51 0)
+    (effects (font (size 2 2) bold) (justify left bottom))
+    (uuid "168f1928-4ed5-45a8-b2a0-6f556c4c1cd7"))
+  (rectangle
+    (start 304.8 138.43)
+    (end 410.21 237.49)
+    (stroke (width 0.15) (type dash))
+    (fill (type none))
+    (uuid "254b929e-ad3f-46cb-86c4-53a841fe9f7e"))
+  (text "Temperature sense, locating pins"
+    (at 307.34 143.51 0)
+    (effects (font (size 2 2) bold) (justify left bottom))
+    (uuid "f677de4f-0c00-49a7-acae-f6a051dcfbae"))
+  (text "BQ21040: I_CHG = 540 / 2.2k = 245 mA (0.41C); 4.20 V; IN 30 V abs max, OVP 6.6 V"
+    (at 16.51 124.46 0)
+    (effects (font (size 1.5 1.5)) (justify left bottom))
+    (uuid "5c969e54-5398-4b70-88b4-1e30982fed88"))
+  (text "I_LED max = VREF / R9 = 204 mV / 8.2 = 24.9 mA (22.9-26.8); CTRL PWM 20 kHz"
+    (at 297.18 124.46 0)
+    (effects (font (size 1.5 1.5)) (justify left bottom))
+    (uuid "706ed422-1753-47f6-8182-909103249ad2"))
+  (text "RT1 sits in the sole's 0.7 mm sensor window"
+    (at 307.34 234.95 0)
+    (effects (font (size 1.5 1.5)) (justify left bottom))
+    (uuid "ce634e41-9bb1-49a8-9c22-744a28ff2ba4"))
+  (symbol
+    (lib_id "Connector:USB_C_Receptacle_PowerOnly_6P")
+    (at 35.56 59.69 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "1ddc2033-b80b-4bc6-aea3-d7a897e36e7a")
+    (property "Reference" "J1" (at 35.56 43.18 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "USB-C power-only" (at 35.56 45.72 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "vf:USB_C_GCT_USB4515-GF-A_MidMount"
+      (at 35.56 59.69 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet"
+      "https://gct.co/files/specs/usb4515-spec.pdf"
+      (at 35.56 59.69 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "USB4515-GF-A" (at 35.56 59.69 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "GCT" (at 35.56 59.69 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "Digi-Key" (at 35.56 59.69 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN"
+      "2073-USB4515-GF-ACT-ND"
+      (at 35.56 59.69 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.digikey.com/en/products/result?keywords=USB4515-GF-A"
+      (at 35.56 59.69 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.61 @1, 11,429 in stock (digikey.com page); Mouser $0.67, 4,086 (snippet, PN NV)"
+      (at 35.56 59.69 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "A12" (uuid "ed5f5e17-df83-47be-8b99-de2ed2024782"))
+    (pin "A5" (uuid "35112a1b-65a6-49ed-b3df-96dbaae71fc5"))
+    (pin "A9" (uuid "097990d7-ace2-49cc-aa12-e8f9c711a889"))
+    (pin "B12" (uuid "29bc420e-9c4e-47e2-ba2a-a88838d15c49"))
+    (pin "B5" (uuid "562c9390-5434-49db-9e85-625f2a9f66ac"))
+    (pin "B9" (uuid "bd008c3d-f7c6-44fa-8424-13362218d8d8"))
+    (pin "S1" (uuid "9b4cf3fb-f4b8-4ad5-a4eb-2cf74eddf6cc"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "J1") (unit 1)))))
+  (wire
+    (pts (xy 35.56 77.47) (xy 35.56 80.01))
+    (stroke (width 0) (type default))
+    (uuid "4c5e471d-a949-4870-b3a8-682b5bd7285a"))
+  (label "GND"
+    (at 35.56 80.01 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "d99a4fe7-7996-4174-8e88-30cd5588350b"))
+  (wire
+    (pts (xy 50.8 64.77) (xy 53.34 64.77))
+    (stroke (width 0) (type default))
+    (uuid "a1bf2dd6-3e91-4fc2-aa4d-f863ad9971ce"))
+  (label "CC1"
+    (at 53.34 64.77 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "c7d6385a-98a8-45e9-95d2-43a6643ed9c6"))
+  (wire
+    (pts (xy 50.8 52.07) (xy 53.34 52.07))
+    (stroke (width 0) (type default))
+    (uuid "fd176d4b-df99-49c1-8c7a-7104ec2a5d2a"))
+  (label "VBUS"
+    (at 53.34 52.07 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "0bae228a-0cd6-4f6d-8ff5-38ad7cb410fb"))
+  (wire
+    (pts (xy 35.56 77.47) (xy 35.56 80.01))
+    (stroke (width 0) (type default))
+    (uuid "ee5e95ab-1207-4ae3-ada5-fd7003d719a4"))
+  (label "GND"
+    (at 35.56 80.01 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "1840011a-1001-4c34-95f6-32f8d31ae9d1"))
+  (wire
+    (pts (xy 50.8 67.31) (xy 53.34 67.31))
+    (stroke (width 0) (type default))
+    (uuid "2bc40c49-c3b3-40f5-a830-be68b433b780"))
+  (label "CC2"
+    (at 53.34 67.31 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "7085d9ff-e47e-4c7f-a85d-02621208e44f"))
+  (wire
+    (pts (xy 50.8 52.07) (xy 53.34 52.07))
+    (stroke (width 0) (type default))
+    (uuid "19774e68-7f78-4315-8983-60fcbda74e05"))
+  (label "VBUS"
+    (at 53.34 52.07 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "60c872a7-a5d2-49f1-a03b-11bf5f4eb97e"))
+  (wire
+    (pts (xy 27.94 77.47) (xy 27.94 80.01))
+    (stroke (width 0) (type default))
+    (uuid "72aa5f72-4370-4618-a6d6-0501b3a764fa"))
+  (label "GND"
+    (at 27.94 80.01 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "4e875168-9860-4f63-b4bd-9d9ba05e736e"))
+  (symbol
+    (lib_id "Device:R")
+    (at 35.56 100.33 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "f6efce68-1244-4b00-ac71-7a44d277dee3")
+    (property "Reference" "R1" (at 38.1 100.33 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "5.1k" (at 35.56 100.33 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+      (at 35.56 100.33 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 35.56 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "0603WAF5101T5E" (at 35.56 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "UNI-ROYAL" (at 35.56 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 35.56 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C23186" (at 35.56 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C23186.html"
+      (at 35.56 100.33 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.0015-0.0026 @100+ (cached pages disagree; highest used), 2.4-23 M in stock"
+      (at 35.56 100.33 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "1acd0c72-8704-4f00-bb1d-73763679aae5"))
+    (pin "2" (uuid "c43c12d8-1a85-462d-b5d1-f2522bc35504"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "R1") (unit 1)))))
+  (wire
+    (pts (xy 35.56 96.52) (xy 35.56 93.98))
+    (stroke (width 0) (type default))
+    (uuid "6bf36d7b-9187-4f26-8361-4b8f7ac90c65"))
+  (label "CC1"
+    (at 35.56 93.98 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "0a64a3a1-b178-4702-b8f2-3f4de949ecbf"))
+  (wire
+    (pts (xy 35.56 104.14) (xy 35.56 106.68))
+    (stroke (width 0) (type default))
+    (uuid "4f08311d-22c5-4a5a-b038-797d205c8cd4"))
+  (label "GND"
+    (at 35.56 106.68 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "fb9978e7-cbe6-41f5-aadb-1cf4b368440c"))
+  (symbol
+    (lib_id "Device:R")
+    (at 49.53 100.33 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "2f328b9b-e9f9-41ee-a3c7-5ed99916c337")
+    (property "Reference" "R2" (at 52.07 100.33 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "5.1k" (at 49.53 100.33 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+      (at 49.53 100.33 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 49.53 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "0603WAF5101T5E" (at 49.53 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "UNI-ROYAL" (at 49.53 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 49.53 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C23186" (at 49.53 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C23186.html"
+      (at 49.53 100.33 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see R1" (at 49.53 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "e9f30fe1-ebcf-4225-b4c5-3c4daf29c261"))
+    (pin "2" (uuid "838d973d-675b-4c74-a0d8-d1edf92c9456"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "R2") (unit 1)))))
+  (wire
+    (pts (xy 49.53 96.52) (xy 49.53 93.98))
+    (stroke (width 0) (type default))
+    (uuid "0607e8af-0b3e-4db6-85c5-07b5451c0058"))
+  (label "CC2"
+    (at 49.53 93.98 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "4c518770-c7d7-43b0-8947-67255c7a46f5"))
+  (wire
+    (pts (xy 49.53 104.14) (xy 49.53 106.68))
+    (stroke (width 0) (type default))
+    (uuid "e88d3a97-acab-401f-a5c6-bbeeda567a6a"))
+  (label "GND"
+    (at 49.53 106.68 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "5083d448-993c-4819-bdf1-7d7ebbb141e5"))
+  (symbol
+    (lib_id "vf:BQ21040DBV")
+    (at 95.25 59.69 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "857a251e-58f8-4eaf-8548-956b7b068acd")
+    (property "Reference" "U2" (at 95.25 50.8 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "BQ21040DBVR" (at 95.25 68.58 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Package_TO_SOT_SMD:SOT-23-6"
+      (at 95.25 59.69 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet"
+      "https://www.ti.com/lit/ds/symlink/bq21040.pdf"
+      (at 95.25 59.69 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "BQ21040DBVR" (at 95.25 59.69 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer"
+      "Texas Instruments"
+      (at 95.25 59.69 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 95.25 59.69 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C202311" (at 95.25 59.69 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C202311.html"
+      (at 95.25 59.69 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.2542-0.3303 @5+ (MOQ 5; cached pages disagree; highest used), 960-14,085 in stock; datasheet SLUSCE2D read"
+      (at 95.25 59.69 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "6" (uuid "da739e4d-7cc7-400b-8e22-fa5109d87c03"))
+    (pin "1" (uuid "fb14cd83-d445-4c03-ab4c-68f8dcfd3536"))
+    (pin "4" (uuid "13595a72-47a0-4041-9364-50dba5b39f9a"))
+    (pin "2" (uuid "847f05c2-0713-4e6c-803c-247d2380f6dc"))
+    (pin "3" (uuid "d842405f-ee73-489b-be7b-b2b49ca15ade"))
+    (pin "5" (uuid "c429b19b-38d0-4ebb-a806-66ddaf58b7ea"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "U2") (unit 1)))))
+  (wire
+    (pts (xy 87.63 57.15) (xy 85.09 57.15))
+    (stroke (width 0) (type default))
+    (uuid "8b2265a8-7d02-44c0-a0c3-cee90df9748f"))
+  (label "VBUS"
+    (at 85.09 57.15 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "d28e9fe5-f46a-4003-97ab-13bc4fab76cf"))
+  (wire
+    (pts (xy 87.63 59.69) (xy 85.09 59.69))
+    (stroke (width 0) (type default))
+    (uuid "e26b7242-cbe7-4dc3-b1a0-2c60d4edea61"))
+  (label "TS"
+    (at 85.09 59.69 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "2f58c4c0-d821-48c3-a617-503be1278d8f"))
+  (wire
+    (pts (xy 87.63 62.23) (xy 85.09 62.23))
+    (stroke (width 0) (type default))
+    (uuid "2d173a2f-681b-4274-9f73-6c4377724859"))
+  (label "ISET"
+    (at 85.09 62.23 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "2e00e5d3-1513-4793-8e2e-b1724b0429b1"))
+  (wire
+    (pts (xy 102.87 57.15) (xy 105.41 57.15))
+    (stroke (width 0) (type default))
+    (uuid "f19ca8c3-83b2-439b-9a99-ae42155f4cf4"))
+  (label "VBAT"
+    (at 105.41 57.15 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "3fd98a16-e476-40ea-a936-186787e0f8f8"))
+  (wire
+    (pts (xy 102.87 59.69) (xy 105.41 59.69))
+    (stroke (width 0) (type default))
+    (uuid "f8bf4df5-5bb7-4779-aa6b-dc1fe8ea24af"))
+  (label "CHG_STAT"
+    (at 105.41 59.69 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "82c490ae-d719-4c0a-976a-12c5fa6c2f27"))
+  (wire
+    (pts (xy 95.25 67.31) (xy 95.25 69.85))
+    (stroke (width 0) (type default))
+    (uuid "cfba2747-f762-4c5a-bc6b-7a2a24501b73"))
+  (label "GND"
+    (at 95.25 69.85 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "5230b81d-0092-46f1-941d-26eea717084c"))
+  (symbol
+    (lib_id "Device:R")
+    (at 80.01 100.33 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "92510d94-bd89-4430-9ccb-44fc8ce93c68")
+    (property "Reference" "R3" (at 82.55 100.33 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "2.2k" (at 80.01 100.33 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+      (at 80.01 100.33 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 80.01 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "0603WAF2201T5E" (at 80.01 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "UNI-ROYAL" (at 80.01 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 80.01 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C4190" (at 80.01 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C4190.html"
+      (at 80.01 100.33 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.0018-0.0041 @100+ (cached pages disagree; highest used), 0.47-5.8 M in stock"
+      (at 80.01 100.33 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "56056cc7-5722-4c7b-98c5-9b75596a31f1"))
+    (pin "2" (uuid "e34d3380-ea02-40ff-8a4a-e36fc820cfa9"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "R3") (unit 1)))))
+  (wire
+    (pts (xy 80.01 96.52) (xy 80.01 93.98))
+    (stroke (width 0) (type default))
+    (uuid "0a13c335-707b-4045-93b6-040ea53203c4"))
+  (label "ISET"
+    (at 80.01 93.98 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "6576243e-f398-4436-9347-7fb60cf2c3d3"))
+  (wire
+    (pts (xy 80.01 104.14) (xy 80.01 106.68))
+    (stroke (width 0) (type default))
+    (uuid "eb4bce7a-1dd2-433e-b04c-513af5371dcf"))
+  (label "GND"
+    (at 80.01 106.68 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "5171d0a8-f81a-4fc2-8b2a-03414e6da91f"))
+  (symbol
+    (lib_id "Device:R")
+    (at 95.25 100.33 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "09d4559c-d7c0-4663-9c8c-89b660cb92e1")
+    (property "Reference" "R4" (at 97.79 100.33 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "10k" (at 95.25 100.33 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+      (at 95.25 100.33 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 95.25 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "RC0603FR-0710KL" (at 95.25 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Yageo" (at 95.25 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 95.25 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C98220" (at 95.25 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C98220.html"
+      (at 95.25 100.33 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.0014-0.0034 @100+ (cached pages disagree; highest used), 7.7-9.0 M in stock (one copy 0)"
+      (at 95.25 100.33 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "5dd746df-60a9-451c-a60d-6468d65c3a19"))
+    (pin "2" (uuid "62068993-5fe9-4f6b-8207-10ce950606e6"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "R4") (unit 1)))))
+  (wire
+    (pts (xy 95.25 96.52) (xy 95.25 93.98))
+    (stroke (width 0) (type default))
+    (uuid "50d78d17-5441-4fe6-a689-1a2543a370b2"))
+  (label "TS"
+    (at 95.25 93.98 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "6c6477f0-440a-458c-8d0d-f7c95ddb83b0"))
+  (wire
+    (pts (xy 95.25 104.14) (xy 95.25 106.68))
+    (stroke (width 0) (type default))
+    (uuid "a8a90329-b694-47c5-a0bf-0587cfd503e7"))
+  (label "GND"
+    (at 95.25 106.68 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "cb58d8ec-0a27-404d-b604-c95499abfc03"))
+  (symbol
+    (lib_id "Device:C")
+    (at 68.58 74.93 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "1debf30e-6536-4d45-9ca5-de787f0ef2eb")
+    (property "Reference" "C1" (at 68.58 72.39 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "1u 25V" (at 68.58 77.47 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
+      (at 68.58 74.93 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 68.58 74.93 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "CL10B105KA8NNNC" (at 68.58 74.93 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Samsung" (at 68.58 74.93 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 68.58 74.93 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C29936" (at 68.58 74.93 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C29936.html"
+      (at 68.58 74.93 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.0064-0.0225 @50+ (MOQ 50; cached pages disagree; highest used), 3.0-6.5 M in stock"
+      (at 68.58 74.93 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "946ff2e4-4b5f-4f7a-995b-f2bfc89e94d8"))
+    (pin "2" (uuid "3e4ebe42-a110-4476-9c42-a678411cce47"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "C1") (unit 1)))))
+  (wire
+    (pts (xy 68.58 71.12) (xy 68.58 68.58))
+    (stroke (width 0) (type default))
+    (uuid "1b4e2b02-e8c1-44b9-b23a-6c1e086db75e"))
+  (label "VBUS"
+    (at 68.58 68.58 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "13a5f8b3-2950-4864-87fb-0342f2fdbf40"))
+  (wire
+    (pts (xy 68.58 78.74) (xy 68.58 81.28))
+    (stroke (width 0) (type default))
+    (uuid "94d83b17-1619-4c3a-8fd6-b967e791a671"))
+  (label "GND"
+    (at 68.58 81.28 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "fe8b73a2-296e-45f9-bcd4-563600bc84ef"))
+  (symbol
+    (lib_id "Device:C")
+    (at 124.46 74.93 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "e171f4fb-e26b-4a3d-a693-049e09bd775b")
+    (property "Reference" "C2" (at 125.73 72.39 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "1u 25V" (at 125.73 77.47 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
+      (at 124.46 74.93 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 124.46 74.93 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "CL10B105KA8NNNC" (at 124.46 74.93 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Samsung" (at 124.46 74.93 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 124.46 74.93 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C29936" (at 124.46 74.93 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C29936.html"
+      (at 124.46 74.93 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see C1" (at 124.46 74.93 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "717732b0-2e3d-4924-acda-4cab1f772e8e"))
+    (pin "2" (uuid "bdcb938d-944c-435c-beea-c06f37042a5f"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "C2") (unit 1)))))
+  (wire
+    (pts (xy 124.46 71.12) (xy 124.46 68.58))
+    (stroke (width 0) (type default))
+    (uuid "53c12e3c-cb1c-4253-a5d4-d0e9cbf0ab28"))
+  (label "VBAT"
+    (at 124.46 68.58 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "3f6818dd-c658-4ac1-85a3-801bf55ca0c4"))
+  (wire
+    (pts (xy 124.46 78.74) (xy 124.46 81.28))
+    (stroke (width 0) (type default))
+    (uuid "8e1b19ea-7430-4682-a692-928e6d87c0e3"))
+  (label "GND"
+    (at 124.46 81.28 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "115b33f8-d95f-4f4b-820b-98b6ec08e7b0"))
+  (symbol
+    (lib_id "Device:R")
+    (at 68.58 107.95 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "08da6e0c-59e5-4c73-8bf3-06de2c6b596a")
+    (property "Reference" "R5" (at 71.12 107.95 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "100k" (at 68.58 107.95 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+      (at 68.58 107.95 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 68.58 107.95 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "RC0603FR-07100KL" (at 68.58 107.95 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Yageo" (at 68.58 107.95 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 68.58 107.95 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C14675" (at 68.58 107.95 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C14675.html"
+      (at 68.58 107.95 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.0014-0.0047 @100+ (cached pages disagree; highest used), 2.3-8.0 M in stock"
+      (at 68.58 107.95 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "4c38a4ce-cae1-4941-9766-f96585e86e03"))
+    (pin "2" (uuid "61b765b0-2cb7-49cc-a678-25958da53a3a"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "R5") (unit 1)))))
+  (wire
+    (pts (xy 68.58 104.14) (xy 68.58 101.6))
+    (stroke (width 0) (type default))
+    (uuid "a187b7e2-abe4-46af-8f7a-6fe10bc4b29b"))
+  (label "VBUS"
+    (at 68.58 101.6 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "26d243ff-7365-489f-89c8-5a9805c64f96"))
+  (wire
+    (pts (xy 68.58 111.76) (xy 68.58 114.3))
+    (stroke (width 0) (type default))
+    (uuid "809360a1-e7d0-46ed-bdc2-62ffa0661373"))
+  (label "VBUS_SENSE"
+    (at 68.58 114.3 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "6c308d48-8ee6-453d-869b-c7bee5154f91"))
+  (symbol
+    (lib_id "Device:R")
+    (at 68.58 118.11 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "6002c666-c5ac-4133-92fe-c34ae943ecda")
+    (property "Reference" "R6" (at 71.12 118.11 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "100k" (at 68.58 118.11 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+      (at 68.58 118.11 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 68.58 118.11 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "RC0603FR-07100KL" (at 68.58 118.11 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Yageo" (at 68.58 118.11 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 68.58 118.11 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C14675" (at 68.58 118.11 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C14675.html"
+      (at 68.58 118.11 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see R5" (at 68.58 118.11 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "c5bfa30a-9dcf-4336-98cc-3255af16d8aa"))
+    (pin "2" (uuid "3287cef4-155f-4319-ae5e-a92945d6dce3"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "R6") (unit 1)))))
+  (wire
+    (pts (xy 68.58 114.3) (xy 68.58 111.76))
+    (stroke (width 0) (type default))
+    (uuid "865cb630-c29d-441d-bbc5-25b0158f78a5"))
+  (label "VBUS_SENSE"
+    (at 68.58 111.76 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "0e04f188-23e1-4c99-a5e2-8bb5ab4a6636"))
+  (wire
+    (pts (xy 68.58 121.92) (xy 68.58 124.46))
+    (stroke (width 0) (type default))
+    (uuid "800529c6-b71e-41eb-ac99-32331bb4bac4"))
+  (label "VDIV_MID"
+    (at 68.58 124.46 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "329bff86-c4e1-4f40-8e79-ed0b2ca721d3"))
+  (symbol
+    (lib_id "Device:R")
+    (at 82.55 118.11 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "fa98fd7e-7f7e-4834-9081-42f892256d06")
+    (property "Reference" "R7" (at 85.09 118.11 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "100k" (at 82.55 118.11 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+      (at 82.55 118.11 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 82.55 118.11 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "RC0603FR-07100KL" (at 82.55 118.11 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Yageo" (at 82.55 118.11 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 82.55 118.11 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C14675" (at 82.55 118.11 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C14675.html"
+      (at 82.55 118.11 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see R5" (at 82.55 118.11 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "fae4b1a7-318d-4d94-8575-a5120671caa3"))
+    (pin "2" (uuid "339f0c66-e8a0-467a-829c-d17a8e71e791"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "R7") (unit 1)))))
+  (wire
+    (pts (xy 82.55 114.3) (xy 82.55 111.76))
+    (stroke (width 0) (type default))
+    (uuid "a2df8a8a-8e89-49f7-8c33-b68d7d025fb3"))
+  (label "VDIV_MID"
+    (at 82.55 111.76 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "8a3b23d8-e236-487a-bb30-47a0e025d53a"))
+  (wire
+    (pts (xy 82.55 121.92) (xy 82.55 124.46))
+    (stroke (width 0) (type default))
+    (uuid "c4cd23f0-c8d4-439f-bf26-08ac7470a1ee"))
+  (label "GND"
+    (at 82.55 124.46 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "3b5ee825-61cb-4dbf-a76f-fc1856d49dad"))
+  (symbol
+    (lib_id "Device:Battery_Cell")
+    (at 139.7 100.33 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board no)
+    (dnp no)
+    (uuid "7b2702eb-b291-4b82-9652-53c3a67f2eb8")
+    (property "Reference" "BT1" (at 142.24 97.79 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "LiPo 600 mAh" (at 142.24 100.33 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "" (at 139.7 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet"
+      "https://www.jauch.com/downloadfile/5bf529d2b6c3061ac0d91eb97d1d37b22/600mah_-_lp503040jh_1s1p_2_wire_50mm.pdf"
+      (at 139.7 100.33 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "MPN"
+      "LP503040JH+PCM+2 WIRES 50MM"
+      (at 139.7 100.33 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Jauch" (at 139.7 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "Digi-Key" (at 139.7 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN"
+      "1908-LP503040JH+PCM+2WIRES50MM-ND"
+      (at 139.7 100.33 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.digikey.com/en/products/detail/jauch-quartz/LP503040JH-PCM-2-WIRES-50MM/9560983"
+      (at 139.7 100.33 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $10.81 @1, 1,637 in stock (digikey.com page); no air shipping (Li-ion), 28-week lead time once stock runs out; datasheet 10/2022"
+      (at 139.7 100.33 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "efd6e8aa-d8fa-4e28-87fa-c56ff0a87888"))
+    (pin "2" (uuid "1b872b2c-d766-4f44-b13e-bbd5615adec4"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "BT1") (unit 1)))))
+  (wire
+    (pts (xy 139.7 95.25) (xy 139.7 92.71))
+    (stroke (width 0) (type default))
+    (uuid "aff280d0-3e52-4689-84ea-df2df03ab828"))
+  (label "VBAT"
+    (at 139.7 92.71 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "6d089251-f611-480b-929e-f1650647d531"))
+  (wire
+    (pts (xy 139.7 102.87) (xy 139.7 105.41))
+    (stroke (width 0) (type default))
+    (uuid "f63da187-d536-4361-be16-e4f21541d028"))
+  (label "GND"
+    (at 139.7 105.41 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "4f53044c-2cd4-4be7-aeea-5973b0a6377e"))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 124.46 100.33 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "4c917ec7-8de8-4aec-a8c7-ee586d5d30a9")
+    (property "Reference" "TP1" (at 124.46 93.98 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "BAT+" (at 124.46 95.25 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "vf:WirePad_1.5x3.0mm"
+      (at 124.46 100.33 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 124.46 100.33 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "89c17dbc-0b74-48de-bd0c-57c951490a3c"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "TP1") (unit 1)))))
+  (wire
+    (pts (xy 124.46 100.33) (xy 124.46 102.87))
+    (stroke (width 0) (type default))
+    (uuid "53b49e23-afc6-46f7-8479-30f3bccb8c46"))
+  (label "VBAT"
+    (at 124.46 102.87 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "a2f5c6a8-33d7-4a46-a995-e1c3e4e4281c"))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 124.46 111.76 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "f065b7c4-66a3-4c03-ba8e-b4a39f3e22f4")
+    (property "Reference" "TP2" (at 124.46 105.41 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "BAT-" (at 124.46 106.68 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "vf:WirePad_1.5x3.0mm"
+      (at 124.46 111.76 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 124.46 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "518a7d58-27a6-46ea-bdbc-239954f42600"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "TP2") (unit 1)))))
+  (wire
+    (pts (xy 124.46 111.76) (xy 124.46 114.3))
+    (stroke (width 0) (type default))
+    (uuid "9ac289d2-82fb-4533-aa95-776e340cdd4f"))
+  (label "GND"
+    (at 124.46 114.3 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "d976d98d-8400-4d66-8ff0-9e56c48e7efa"))
+  (symbol
+    (lib_id "MCU_Microchip_ATtiny:ATtiny1614-SS")
+    (at 209.55 69.85 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "0b60c56d-acb9-4e79-ba64-87558ac9042f")
+    (property "Reference" "U1" (at 196.85 53.34 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "ATtiny1614" (at 212.09 86.36 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
+      (at 209.55 69.85 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet"
+      "https://ww1.microchip.com/downloads/en/DeviceDoc/ATtiny1614-16-17-DataSheet-DS40002204A.pdf"
+      (at 209.55 69.85 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "ATTINY1614-SSNR" (at 209.55 69.85 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Microchip" (at 209.55 69.85 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "Digi-Key" (at 209.55 69.85 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN"
+      "ATTINY1614-SSNRCT-ND"
+      (at 209.55 69.85 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.digikey.com/en/products/result?keywords=ATTINY1614-SSNR"
+      (at 209.55 69.85 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.90 @1, 33,040 in stock (digikey.com page)"
+      (at 209.55 69.85 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "8be5059f-c126-4a69-ba11-68abf51a84e4"))
+    (pin "10" (uuid "3052743f-532f-47bf-9753-87c9211e7a85"))
+    (pin "11" (uuid "bc5a2917-47bb-47a4-a392-4b6d6585a51a"))
+    (pin "12" (uuid "02beb6a4-7515-4b08-80b2-7c0c6fb4c91c"))
+    (pin "13" (uuid "87bde63d-cd22-4a1e-9780-e848397ed7b7"))
+    (pin "14" (uuid "134c362f-7400-4857-bf4f-2a3278e8b7aa"))
+    (pin "2" (uuid "c0262ef5-cb8a-46ab-9ae3-7febfccddc13"))
+    (pin "3" (uuid "673d557a-8186-4cc2-9e0d-7f3c295212fa"))
+    (pin "4" (uuid "9941be45-a6c1-45b2-a3e6-aa38495f4caa"))
+    (pin "5" (uuid "eed11321-e8e6-47e4-94bd-5e89c2566a78"))
+    (pin "6" (uuid "b15384f3-ad34-4b12-844c-39ef657e1b2b"))
+    (pin "7" (uuid "620f7a6d-2eb6-4c2a-9476-0c91d471b87b"))
+    (pin "8" (uuid "7e317b94-c8d7-410e-8f21-a9f1eff9ca82"))
+    (pin "9" (uuid "234001ae-d9ee-4b31-9d4b-dba7d6530fbc"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "U1") (unit 1)))))
+  (wire
+    (pts (xy 209.55 52.07) (xy 209.55 49.53))
+    (stroke (width 0) (type default))
+    (uuid "b10da0d3-6f5d-4132-a69d-0dc459690801"))
+  (label "VBAT"
+    (at 209.55 49.53 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "a4fb0b78-4448-4abb-8af5-f427b6952603"))
+  (wire
+    (pts (xy 224.79 59.69) (xy 227.33 59.69))
+    (stroke (width 0) (type default))
+    (uuid "c490ee22-6972-4b11-8ea7-606526ebfc09"))
+  (label "UPDI"
+    (at 227.33 59.69 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "5d0ddae4-0dea-46aa-9136-64982638d052"))
+  (wire
+    (pts (xy 224.79 62.23) (xy 227.33 62.23))
+    (stroke (width 0) (type default))
+    (uuid "eb905dd8-3b3e-4f97-a845-f07c7e616cac"))
+  (label "NTC_SENSE"
+    (at 227.33 62.23 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "ec2a2b58-f70a-45e2-81d0-821921d6b41a"))
+  (wire
+    (pts (xy 224.79 64.77) (xy 227.33 64.77))
+    (stroke (width 0) (type default))
+    (uuid "2c0c1dbf-39c3-4087-838c-eb7cc356e227"))
+  (label "NTC_EN"
+    (at 227.33 64.77 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "f06ca40c-3b1b-48c5-9d18-aaefc223483b"))
+  (wire
+    (pts (xy 224.79 67.31) (xy 227.33 67.31))
+    (stroke (width 0) (type default))
+    (uuid "5e4400d3-1521-48e5-bf06-aacd27b437bb"))
+  (label "GATE_A"
+    (at 227.33 67.31 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "a22dcb53-8434-4503-a18c-215e0d278e4b"))
+  (wire
+    (pts (xy 209.55 87.63) (xy 209.55 90.17))
+    (stroke (width 0) (type default))
+    (uuid "07ae88c7-9f65-4d99-b6cf-2cd40047928f"))
+  (label "GND"
+    (at 209.55 90.17 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "81c56654-f041-487d-9ca0-efcbd422861e"))
+  (wire
+    (pts (xy 224.79 69.85) (xy 227.33 69.85))
+    (stroke (width 0) (type default))
+    (uuid "a50bf498-05a0-4fc6-afb6-32a99373cf81"))
+  (label "GATE_B"
+    (at 227.33 69.85 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "f9cb3b98-8e8a-4f15-8b1c-df6b4319b8d4"))
+  (wire
+    (pts (xy 224.79 72.39) (xy 227.33 72.39))
+    (stroke (width 0) (type default))
+    (uuid "1f3a51ec-5055-46fc-9caa-c560db9a6e12"))
+  (label "CHG_STAT"
+    (at 227.33 72.39 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "b128034b-0d02-47d4-a19d-aba6f30dc6b2"))
+  (wire
+    (pts (xy 224.79 74.93) (xy 227.33 74.93))
+    (stroke (width 0) (type default))
+    (uuid "6be121f3-4c25-4fe7-bc36-a9256cb9699a"))
+  (label "BTN"
+    (at 227.33 74.93 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "7b039265-0987-459b-ae82-71b0a43d3e06"))
+  (wire
+    (pts (xy 224.79 77.47) (xy 227.33 77.47))
+    (stroke (width 0) (type default))
+    (uuid "28f65a17-817a-4701-9000-a025e5348ed3"))
+  (label "VBUS_SENSE"
+    (at 227.33 77.47 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "0852c1f5-626b-4ff2-8a6a-07d437c132e7"))
+  (wire
+    (pts (xy 194.31 67.31) (xy 191.77 67.31))
+    (stroke (width 0) (type default))
+    (uuid "10fea75c-f328-4f9d-bc9e-34bd4f31188a"))
+  (label "DBG_RX"
+    (at 191.77 67.31 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "255be3d5-d656-4802-90d3-d388ce88c2c3"))
+  (wire
+    (pts (xy 194.31 64.77) (xy 191.77 64.77))
+    (stroke (width 0) (type default))
+    (uuid "c2f9d4ee-fdce-4eb7-b322-840c49b6b66d"))
+  (label "DBG_TX"
+    (at 191.77 64.77 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "c15b9aa1-8668-442a-9a50-4923c54d6054"))
+  (wire
+    (pts (xy 194.31 62.23) (xy 191.77 62.23))
+    (stroke (width 0) (type default))
+    (uuid "f1ba5fd8-bf43-4729-83d2-a1ad982e4563"))
+  (label "SEAM_PWM"
+    (at 191.77 62.23 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "761c8bb0-cb0f-4180-9c8c-80cf5f30f796"))
+  (wire
+    (pts (xy 194.31 59.69) (xy 191.77 59.69))
+    (stroke (width 0) (type default))
+    (uuid "c2f34cec-ce04-4aa3-94ef-6a1de151dcf1"))
+  (label "LED_CTRL"
+    (at 191.77 59.69 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "d91355a3-8c5b-4226-ac1d-4b61a97d9d71"))
+  (symbol
+    (lib_id "Device:C")
+    (at 175.26 54.61 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "f41e9480-6cbb-4a29-b6f1-cc451e6f2956")
+    (property "Reference" "C3" (at 175.26 52.07 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "100n" (at 175.26 57.15 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
+      (at 175.26 54.61 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 175.26 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "CL10B104KB8NNNC" (at 175.26 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Samsung" (at 175.26 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 175.26 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C1591" (at 175.26 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C1591.html"
+      (at 175.26 54.61 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.0085-0.016 @100+ (cached pages disagree; highest used), 3.8-8.2 M in stock (one copy out of stock)"
+      (at 175.26 54.61 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b59ab616-df5e-4882-9bc8-f1a34ef1691f"))
+    (pin "2" (uuid "34187a8d-94f2-48e5-9252-9ad0cbb1ba98"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "C3") (unit 1)))))
+  (wire
+    (pts (xy 175.26 50.8) (xy 175.26 48.26))
+    (stroke (width 0) (type default))
+    (uuid "737551de-c7b7-4136-8814-581c5a0f155b"))
+  (label "VBAT"
+    (at 175.26 48.26 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "a6117126-93f6-4f5a-b7ff-6211eb7441dd"))
+  (wire
+    (pts (xy 175.26 58.42) (xy 175.26 60.96))
+    (stroke (width 0) (type default))
+    (uuid "7ca7fcd5-3e76-4465-90c3-ae1a34a3acce"))
+  (label "GND"
+    (at 175.26 60.96 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "ff75666c-4ef5-46a0-ada6-d08a37918b05"))
+  (symbol
+    (lib_id "Device:C")
+    (at 187.96 54.61 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "2c05d0aa-7ba0-458b-9378-56661406cc26")
+    (property "Reference" "C4" (at 187.96 52.07 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "1u 25V" (at 187.96 57.15 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
+      (at 187.96 54.61 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 187.96 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "CL10B105KA8NNNC" (at 187.96 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Samsung" (at 187.96 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 187.96 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C29936" (at 187.96 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C29936.html"
+      (at 187.96 54.61 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see C1" (at 187.96 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "ff78fb2b-033a-472d-be3c-dde4bf9c5a6b"))
+    (pin "2" (uuid "837fb7bb-2b79-482a-b945-0269bc207904"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "C4") (unit 1)))))
+  (wire
+    (pts (xy 187.96 50.8) (xy 187.96 48.26))
+    (stroke (width 0) (type default))
+    (uuid "a281c6f4-09f9-431d-8344-e8e6c15fa1b6"))
+  (label "VBAT"
+    (at 187.96 48.26 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "32368a52-bfd2-42b2-b616-891c5a5dd862"))
+  (wire
+    (pts (xy 187.96 58.42) (xy 187.96 60.96))
+    (stroke (width 0) (type default))
+    (uuid "3186443a-0286-4b3a-895e-0d337f638fac"))
+  (label "GND"
+    (at 187.96 60.96 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "7c4ac2be-d58f-4d19-9aa1-01c0c750982c"))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 250.19 35.56 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "9c3ece5c-615b-4666-b998-269e37548c0e")
+    (property "Reference" "TP3" (at 250.19 29.21 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "UPDI" (at 250.19 30.48 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "TestPoint:TestPoint_Pad_1.5x1.5mm"
+      (at 250.19 35.56 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 250.19 35.56 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "9ae73ebb-d09c-43c8-91ed-c24d2389ed43"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "TP3") (unit 1)))))
+  (wire
+    (pts (xy 250.19 35.56) (xy 250.19 38.1))
+    (stroke (width 0) (type default))
+    (uuid "214c11d1-efec-4c4c-a74d-4c5645db6230"))
+  (label "UPDI"
+    (at 250.19 38.1 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "7bd1db0c-e8cb-4f64-8b98-c199060e0892"))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 262.89 35.56 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "f50560de-a982-412a-9c4e-fd531811d03c")
+    (property "Reference" "TP4" (at 262.89 29.21 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "VBAT" (at 262.89 30.48 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "TestPoint:TestPoint_Pad_1.5x1.5mm"
+      (at 262.89 35.56 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 262.89 35.56 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "94b503d6-aeef-4f08-bea8-a2a6fe6fc515"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "TP4") (unit 1)))))
+  (wire
+    (pts (xy 262.89 35.56) (xy 262.89 38.1))
+    (stroke (width 0) (type default))
+    (uuid "bf83cc0b-9c72-4857-ab41-8447626de75a"))
+  (label "VBAT"
+    (at 262.89 38.1 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "3e67cdc1-ae9f-47d6-a227-1fa6f61703a0"))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 275.59 35.56 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "144adcb3-d3d9-48db-9052-eadc18edc787")
+    (property "Reference" "TP5" (at 275.59 29.21 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "GND" (at 275.59 30.48 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "TestPoint:TestPoint_Pad_1.5x1.5mm"
+      (at 275.59 35.56 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 275.59 35.56 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "647720c1-c93f-4c8f-bc65-266814a627f3"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "TP5") (unit 1)))))
+  (wire
+    (pts (xy 275.59 35.56) (xy 275.59 38.1))
+    (stroke (width 0) (type default))
+    (uuid "35c6fcc3-b31c-47f3-b190-f6c64ad7c7ea"))
+  (label "GND"
+    (at 275.59 38.1 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "67b0cd12-5a48-4fe4-ab2c-70de74892805"))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 250.19 48.26 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "ca58c481-9d75-451c-bba1-c77fd15b1b95")
+    (property "Reference" "TP6" (at 250.19 41.91 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "TX" (at 250.19 43.18 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "TestPoint:TestPoint_Pad_1.5x1.5mm"
+      (at 250.19 48.26 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 250.19 48.26 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "41e4cabf-189b-40d2-85ff-2982727aa50d"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "TP6") (unit 1)))))
+  (wire
+    (pts (xy 250.19 48.26) (xy 250.19 50.8))
+    (stroke (width 0) (type default))
+    (uuid "660c4dc6-7f79-4031-a9d9-58ee6add050c"))
+  (label "DBG_TX"
+    (at 250.19 50.8 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "f48b06d2-f137-4b83-ac45-e3e2d01ae110"))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 262.89 48.26 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "f57f0064-a06d-43cc-b7e9-b3d112e0251d")
+    (property "Reference" "TP7" (at 262.89 41.91 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "RX" (at 262.89 43.18 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "TestPoint:TestPoint_Pad_1.5x1.5mm"
+      (at 262.89 48.26 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 262.89 48.26 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "344053f8-3241-410d-8236-0e46f821b90c"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "TP7") (unit 1)))))
+  (wire
+    (pts (xy 262.89 48.26) (xy 262.89 50.8))
+    (stroke (width 0) (type default))
+    (uuid "97175707-0a0d-4991-901e-f2b83734f4c7"))
+  (label "DBG_RX"
+    (at 262.89 50.8 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "0a4bef7f-2763-4f9e-ac36-73d4f5c10bee"))
+  (symbol
+    (lib_id "Switch:SW_Push")
+    (at 255.27 111.76 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board no)
+    (dnp no)
+    (uuid "06b7ce40-b949-4eae-87bc-293f51f28fa8")
+    (property "Reference" "SW1" (at 256.54 109.22 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "B3F-1020" (at 255.27 113.03 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "" (at 255.27 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 255.27 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "B3F-1020" (at 255.27 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer"
+      "Omron (Aratas)"
+      (at 255.27 111.76 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 255.27 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C722171" (at 255.27 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C722171.html"
+      (at 255.27 111.76 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.1523 @5+ (MOQ 5; the earlier $0.071 was the 5000+ tier), 700-1,940 in stock, one copy out of stock; 5.0 mm, 0.98 N, 0.25 mm travel"
+      (at 255.27 111.76 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "c49b8d2e-64d2-4190-8160-d2ebfc5a7ddd"))
+    (pin "2" (uuid "67683bce-3e3f-4b93-8d04-c6a74d1a88ec"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "SW1") (unit 1)))))
+  (wire
+    (pts (xy 250.19 111.76) (xy 247.65 111.76))
+    (stroke (width 0) (type default))
+    (uuid "d04119fb-af32-434a-a9b0-1220043008c3"))
+  (label "BTN"
+    (at 247.65 111.76 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "d9e4833f-86b1-4620-9879-11b90a5ba913"))
+  (wire
+    (pts (xy 260.35 111.76) (xy 262.89 111.76))
+    (stroke (width 0) (type default))
+    (uuid "4d03cdf6-eaf9-41dd-9d14-57addcbec562"))
+  (label "GND"
+    (at 262.89 111.76 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "92f1baa0-bc51-4490-8065-9bbd26dc5592"))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 240.03 111.76 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "d26ccddc-6c59-410f-bf14-a48c1c940b39")
+    (property "Reference" "TP8" (at 240.03 105.41 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "BTN" (at 240.03 106.68 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "vf:WirePad_1.2x2.0mm"
+      (at 240.03 111.76 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 240.03 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "2c3d6e4e-405c-4812-9026-57a66d3ceaf3"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "TP8") (unit 1)))))
+  (wire
+    (pts (xy 240.03 111.76) (xy 240.03 114.3))
+    (stroke (width 0) (type default))
+    (uuid "712f5201-5666-4181-a431-38354c3bcbc2"))
+  (label "BTN"
+    (at 240.03 114.3 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "89b1fe4f-0068-45b8-ab81-3f12c260ddb9"))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 270.51 111.76 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "2ba774ff-fd1b-4d9e-8e69-5582c96d5675")
+    (property "Reference" "TP9" (at 270.51 105.41 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "BTN_GND" (at 270.51 106.68 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "vf:WirePad_1.2x2.0mm"
+      (at 270.51 111.76 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 270.51 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "3213c0c5-c2de-41c8-8852-e45abb53ed04"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "TP9") (unit 1)))))
+  (wire
+    (pts (xy 270.51 111.76) (xy 270.51 114.3))
+    (stroke (width 0) (type default))
+    (uuid "4db93f82-161b-4cb6-8d75-d884b4ddbe40"))
+  (label "GND"
+    (at 270.51 114.3 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "038e2631-51c7-4164-901a-afae6b6535d5"))
+  (symbol
+    (lib_id "Device:Thermistor_NTC")
+    (at 330.2 177.8 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "61a67ae4-be11-4a68-809b-7d781f387911")
+    (property "Reference" "RT1" (at 325.12 177.8 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "10k NTC" (at 332.74 177.8 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+      (at 330.2 177.8 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 330.2 177.8 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "NCP18XH103F03RB" (at 330.2 177.8 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Murata" (at 330.2 177.8 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 330.2 177.8 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C13564" (at 330.2 177.8 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C13564.html"
+      (at 330.2 177.8 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.0295-0.0467 @10+ (cached pages disagree; highest used), 256-722 k in stock; one copy marks it not recommended for new designs"
+      (at 330.2 177.8 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "a12264c5-3aeb-48c1-bacd-4eae3946f434"))
+    (pin "2" (uuid "238b1af6-9fb9-49df-813c-d0324a41b50c"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "RT1") (unit 1)))))
+  (wire
+    (pts (xy 330.2 173.99) (xy 330.2 171.45))
+    (stroke (width 0) (type default))
+    (uuid "04b873bf-b11b-4b6e-a932-86ea10d103d1"))
+  (label "NTC_SENSE"
+    (at 330.2 171.45 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "c5a6ce7a-adb2-49f6-96a8-a0dc14d9b8f9"))
+  (wire
+    (pts (xy 330.2 181.61) (xy 330.2 184.15))
+    (stroke (width 0) (type default))
+    (uuid "4b98b1d8-15a1-4313-8aa3-77aca0c286e3"))
+  (label "GND"
+    (at 330.2 184.15 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "7ae8a739-3e72-4eae-a51e-77f6d53f06c8"))
+  (symbol
+    (lib_id "Device:R")
+    (at 330.2 160.02 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "dee30daa-2c49-4144-8ab6-b67ce7a23333")
+    (property "Reference" "R8" (at 332.74 160.02 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "10k" (at 330.2 160.02 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+      (at 330.2 160.02 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 330.2 160.02 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "RC0603FR-0710KL" (at 330.2 160.02 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Yageo" (at 330.2 160.02 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 330.2 160.02 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C98220" (at 330.2 160.02 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C98220.html"
+      (at 330.2 160.02 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see R4" (at 330.2 160.02 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "cfd30391-a0cd-4bb6-b8ef-648ae63c6b9a"))
+    (pin "2" (uuid "587ad4a1-3779-4ac6-880a-f798ea289413"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "R8") (unit 1)))))
+  (wire
+    (pts (xy 330.2 156.21) (xy 330.2 153.67))
+    (stroke (width 0) (type default))
+    (uuid "d39d3868-d6bc-4e77-8692-39b14d95ca75"))
+  (label "NTC_EN"
+    (at 330.2 153.67 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "9ac7c5c3-9a4b-4f0d-81b3-425ac9b0de68"))
+  (wire
+    (pts (xy 330.2 163.83) (xy 330.2 166.37))
+    (stroke (width 0) (type default))
+    (uuid "76e9c55f-d4a1-4b67-9bb1-66a13a2eba84"))
+  (label "NTC_SENSE"
+    (at 330.2 166.37 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "cf7aa946-0bc0-4757-ae63-dfd3bdee856f"))
+  (symbol
+    (lib_id "vf:TPS61169DCK")
+    (at 340.36 64.77 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "7fc468a5-043e-40fa-93d9-cbaebc15b96f")
+    (property "Reference" "U3" (at 340.36 57.15 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "TPS61169" (at 340.36 72.39 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "vf:SC-70-5_HandSolder"
+      (at 340.36 64.77 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet"
+      "https://www.ti.com/lit/ds/symlink/tps61169.pdf"
+      (at 340.36 64.77 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "TPS61169DCKR" (at 340.36 64.77 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer"
+      "Texas Instruments"
+      (at 340.36 64.77 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 340.36 64.77 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C71045" (at 340.36 64.77 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C71045.html"
+      (at 340.36 64.77 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.1606-0.3268 @5+ (MOQ 5; cached pages disagree; highest used), 8,475-33,765 in stock (one copy out of stock); Digi-Key 296-40821-1-ND on backorder"
+      (at 340.36 64.77 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "5" (uuid "533459fc-f1ec-4fb2-910f-f47b0739c72f"))
+    (pin "4" (uuid "cf2f9d24-245c-441a-990d-7c1067e04310"))
+    (pin "1" (uuid "ebcc522c-4c3b-4694-bde7-9465b0ced2ff"))
+    (pin "3" (uuid "d41f2ad2-9151-4429-940c-e38516e2dda6"))
+    (pin "2" (uuid "f38fdf00-39df-4d71-98ef-0cbf86ca3f1d"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "U3") (unit 1)))))
+  (wire
+    (pts (xy 332.74 63.5) (xy 330.2 63.5))
+    (stroke (width 0) (type default))
+    (uuid "4b7babfa-2e0c-4faf-9cdb-95e5b0fbbe3d"))
+  (label "VBAT"
+    (at 330.2 63.5 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "1d0c37c6-5320-401f-bf07-a482097ba097"))
+  (wire
+    (pts (xy 332.74 66.04) (xy 330.2 66.04))
+    (stroke (width 0) (type default))
+    (uuid "e2042d66-52b1-4c3e-b690-dc20ebb8fd13"))
+  (label "LED_CTRL"
+    (at 330.2 66.04 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "53dc44c3-5224-4138-8507-a2c57e355e9c"))
+  (wire
+    (pts (xy 347.98 63.5) (xy 350.52 63.5))
+    (stroke (width 0) (type default))
+    (uuid "6837d4f3-1e1d-499a-90dd-c5f551eb2d57"))
+  (label "SW"
+    (at 350.52 63.5 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "183166d2-e2a9-4db5-ba55-299ba8476e37"))
+  (wire
+    (pts (xy 347.98 66.04) (xy 350.52 66.04))
+    (stroke (width 0) (type default))
+    (uuid "4ecb88b2-e2ef-4506-b7dc-5972d484f7a3"))
+  (label "FB"
+    (at 350.52 66.04 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "986eb825-c22d-4a37-b5b7-7b64c9454f80"))
+  (wire
+    (pts (xy 340.36 71.12) (xy 340.36 73.66))
+    (stroke (width 0) (type default))
+    (uuid "79461161-06ca-42d0-a8de-71e9678fecde"))
+  (label "GND"
+    (at 340.36 73.66 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "9556432e-d641-4e7f-ae20-45f03b1fbb6b"))
+  (symbol
+    (lib_id "Device:L")
+    (at 320.04 44.45 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "8dae24e5-7ba2-4919-aaaf-b2ed418a7818")
+    (property "Reference" "L1" (at 318.77 44.45 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "10u" (at 322.58 44.45 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Inductor_SMD:L_Sunlord_SWPA4018S"
+      (at 320.04 44.45 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 320.04 44.45 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "SWPA4018S100MT" (at 320.04 44.45 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Sunlord" (at 320.04 44.45 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 320.04 44.45 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C83442" (at 320.04 44.45 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C83442.html"
+      (at 320.04 44.45 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.0594 @10+, 1,459 in stock (one LCSC copy found); Isat 1.30 A, DCR 0.18 ohm"
+      (at 320.04 44.45 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "e9a85234-cf6e-4270-8923-23891ff0fa12"))
+    (pin "2" (uuid "cbd3af2b-a6dd-4f52-bbad-03a1e409d67f"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "L1") (unit 1)))))
+  (wire
+    (pts (xy 320.04 40.64) (xy 320.04 38.1))
+    (stroke (width 0) (type default))
+    (uuid "6108e91a-6497-4923-a2d8-66349fa29eb6"))
+  (label "VBAT"
+    (at 320.04 38.1 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "987f87cd-2d0a-4078-a666-c5031f7de124"))
+  (wire
+    (pts (xy 320.04 48.26) (xy 320.04 50.8))
+    (stroke (width 0) (type default))
+    (uuid "fae94586-c2ae-489b-a899-f4ffb5703383"))
+  (label "SW"
+    (at 320.04 50.8 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "c6d268c8-66f0-47c7-9c7d-ae27a2d895ce"))
+  (symbol
+    (lib_id "Device:D_Schottky")
+    (at 364.49 44.45 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "b6e58d15-f4c6-48ca-bd82-66ce9b113cdb")
+    (property "Reference" "D1" (at 364.49 41.91 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "MBR0540" (at 364.49 46.99 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Diode_SMD:D_SOD-123"
+      (at 364.49 44.45 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 364.49 44.45 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "MBR0540T1G" (at 364.49 44.45 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "onsemi" (at 364.49 44.45 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 364.49 44.45 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C21353" (at 364.49 44.45 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C21353.html"
+      (at 364.49 44.45 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.055-0.061 @10+ (MOQ 10; highest used), 47,700-168,940 in stock"
+      (at 364.49 44.45 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "8fdf2249-c99d-44b1-b24b-0a974c25edde"))
+    (pin "2" (uuid "b71e117b-4d71-4bbb-a14f-8a5314170e1e"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "D1") (unit 1)))))
+  (wire
+    (pts (xy 360.68 44.45) (xy 358.14 44.45))
+    (stroke (width 0) (type default))
+    (uuid "a34d37e5-0abb-4382-8914-1496b5125a85"))
+  (label "VOUT"
+    (at 358.14 44.45 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "6f28ea9f-c37c-40cc-9007-7350084adc44"))
+  (wire
+    (pts (xy 368.3 44.45) (xy 370.84 44.45))
+    (stroke (width 0) (type default))
+    (uuid "2092abff-3916-4f9b-a9e8-028580a6e099"))
+  (label "SW"
+    (at 370.84 44.45 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "b0e713e8-549e-44ee-96ce-e743473e34e4"))
+  (symbol
+    (lib_id "Device:C")
+    (at 384.81 54.61 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "bbd10514-4d2a-4f27-b2a3-edd7d1648515")
+    (property "Reference" "C5" (at 386.08 52.07 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "1u 50V" (at 386.08 57.15 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
+      (at 384.81 54.61 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 384.81 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "CL31B105KBHNNNE" (at 384.81 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Samsung" (at 384.81 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 384.81 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C1848" (at 384.81 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C1848.html"
+      (at 384.81 54.61 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.022-0.0492 @10+ (cached pages disagree; highest used), 102,630-573,000 in stock (one copy out of stock)"
+      (at 384.81 54.61 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "2e112760-9ecf-4ddf-8bd3-548938b1de27"))
+    (pin "2" (uuid "eb0f8928-c5a8-417c-9146-bb3149ac197b"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "C5") (unit 1)))))
+  (wire
+    (pts (xy 384.81 50.8) (xy 384.81 48.26))
+    (stroke (width 0) (type default))
+    (uuid "ee7853af-86e8-488e-8f9c-301c1731ef0c"))
+  (label "VOUT"
+    (at 384.81 48.26 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "44ee8b39-c18d-4868-9414-ea2f6ff64161"))
+  (wire
+    (pts (xy 384.81 58.42) (xy 384.81 60.96))
+    (stroke (width 0) (type default))
+    (uuid "4e292f78-ac3e-447c-9698-dd18c85d92d5"))
+  (label "GND"
+    (at 384.81 60.96 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "ae1a8fce-db36-4cae-9363-f179c4328871"))
+  (symbol
+    (lib_id "Device:C")
+    (at 397.51 54.61 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "ca329c3a-7a27-4e7f-bcf1-e7582a319eec")
+    (property "Reference" "C6" (at 398.78 52.07 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "1u 50V" (at 398.78 57.15 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
+      (at 397.51 54.61 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 397.51 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "CL31B105KBHNNNE" (at 397.51 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Samsung" (at 397.51 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 397.51 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C1848" (at 397.51 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C1848.html"
+      (at 397.51 54.61 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see C5" (at 397.51 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "ce69369e-8d65-4c12-be07-8ae0dc6a1676"))
+    (pin "2" (uuid "df88ba7e-b1a6-4c27-8b77-aeb04b1892c6"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "C6") (unit 1)))))
+  (wire
+    (pts (xy 397.51 50.8) (xy 397.51 48.26))
+    (stroke (width 0) (type default))
+    (uuid "e7d72a5b-5854-4ffd-af98-a0c4d519b3b0"))
+  (label "VOUT"
+    (at 397.51 48.26 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "4a405524-56bd-4b24-af29-c0115a87a5bf"))
+  (wire
+    (pts (xy 397.51 58.42) (xy 397.51 60.96))
+    (stroke (width 0) (type default))
+    (uuid "33d8804b-fbcc-4d1c-a143-71671f5a5e06"))
+  (label "GND"
+    (at 397.51 60.96 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "54d0d734-d2ff-4bf7-b349-db7ba8a907bd"))
+  (symbol
+    (lib_id "Device:C")
+    (at 304.8 54.61 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "02ae3bba-d6de-49f8-a3cd-4083dc183e17")
+    (property "Reference" "C7" (at 304.8 52.07 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "10u 25V" (at 304.8 57.15 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+      (at 304.8 54.61 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 304.8 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "GRM21BR61E106KA73L" (at 304.8 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Murata" (at 304.8 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 304.8 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C84416" (at 304.8 54.61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C84416.html"
+      (at 304.8 54.61 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.1764 @5+ on the product page ($0.0191-0.0297 @20+ on image copies), 121,900-484,120 in stock; not recommended for new designs"
+      (at 304.8 54.61 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "9e7d749f-08ee-43dd-8c0d-cccf3097bce1"))
+    (pin "2" (uuid "4c25415f-398b-4f8b-8680-3af92c1fc659"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "C7") (unit 1)))))
+  (wire
+    (pts (xy 304.8 50.8) (xy 304.8 48.26))
+    (stroke (width 0) (type default))
+    (uuid "020e000b-1b7d-4c99-8f83-882c2d4336e4"))
+  (label "VBAT"
+    (at 304.8 48.26 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "175ac317-709f-451a-9bb2-1bc36fbb142c"))
+  (wire
+    (pts (xy 304.8 58.42) (xy 304.8 60.96))
+    (stroke (width 0) (type default))
+    (uuid "0785f19e-95c7-4dae-b9ba-7be9e0039146"))
+  (label "GND"
+    (at 304.8 60.96 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "69ea9447-66fd-436b-af3b-5aff93907baf"))
+  (symbol
+    (lib_id "Device:R")
+    (at 359.41 111.76 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "8fff53fa-3e9f-48fb-b7e8-7535d6c9cd8c")
+    (property "Reference" "R9" (at 361.95 111.76 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "8.2" (at 359.41 111.76 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+      (at 359.41 111.76 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 359.41 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "RC0603FR-078R2L" (at 359.41 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Yageo" (at 359.41 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 359.41 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C137674" (at 359.41 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C137674.html"
+      (at 359.41 111.76 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.0054 @100+, 2,300 in stock"
+      (at 359.41 111.76 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "0de8b4fc-04c0-491e-b474-1642106b117c"))
+    (pin "2" (uuid "bebbdda6-64f6-4046-88db-2664f034b83c"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "R9") (unit 1)))))
+  (wire
+    (pts (xy 359.41 107.95) (xy 359.41 105.41))
+    (stroke (width 0) (type default))
+    (uuid "a1674a10-73a7-467f-86be-47cf646986f7"))
+  (label "FB"
+    (at 359.41 105.41 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "511b9bf6-2415-40c3-bab7-af09ca3c9046"))
+  (wire
+    (pts (xy 359.41 115.57) (xy 359.41 118.11))
+    (stroke (width 0) (type default))
+    (uuid "c8fb412a-d69c-4ee9-9a18-009adcd7383d"))
+  (label "GND"
+    (at 359.41 118.11 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "e55205e3-fa9e-477e-ad66-5367d71e5b5e"))
+  (symbol
+    (lib_id "Device:R")
+    (at 317.5 95.25 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "13bacb7b-2858-4101-93e6-3fbbb5316c2d")
+    (property "Reference" "R10" (at 320.04 95.25 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "100k" (at 317.5 95.25 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+      (at 317.5 95.25 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 317.5 95.25 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "RC0603FR-07100KL" (at 317.5 95.25 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Yageo" (at 317.5 95.25 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 317.5 95.25 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C14675" (at 317.5 95.25 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C14675.html"
+      (at 317.5 95.25 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see R5" (at 317.5 95.25 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "3494657a-c1f8-48be-aef9-b3c2570aac02"))
+    (pin "2" (uuid "f610763a-6bce-497a-a289-f6b1aa5828b4"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "R10") (unit 1)))))
+  (wire
+    (pts (xy 317.5 91.44) (xy 317.5 88.9))
+    (stroke (width 0) (type default))
+    (uuid "dc9978c8-bca9-4814-9e34-935445dd6624"))
+  (label "LED_CTRL"
+    (at 317.5 88.9 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "bca8a7b8-8130-4487-93d1-353f762560a9"))
+  (wire
+    (pts (xy 317.5 99.06) (xy 317.5 101.6))
+    (stroke (width 0) (type default))
+    (uuid "d7d7e117-18da-4be5-9a6f-4de90bffd649"))
+  (label "GND"
+    (at 317.5 101.6 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "78e94e34-ad70-4fe8-8026-bc36b1018a17"))
+  (symbol
+    (lib_id "Transistor_FET:AO3400A")
+    (at 379.73 90.17 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "4fb9b127-befb-4ed0-b47b-e359032f61aa")
+    (property "Reference" "Q1" (at 384.81 88.9 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "AO3400A" (at 384.81 90.17 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Package_TO_SOT_SMD:SOT-23"
+      (at 379.73 90.17 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 379.73 90.17 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "AO3400A" (at 379.73 90.17 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Alpha & Omega" (at 379.73 90.17 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 379.73 90.17 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C20917" (at 379.73 90.17 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C20917.html"
+      (at 379.73 90.17 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.0735-0.0898 @5+ (cached pages disagree; highest used), 100 k-1.14 M in stock; 30 V, 48 mOhm @ 2.5 V"
+      (at 379.73 90.17 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "9a1c49d5-790d-4fea-96ab-1d64a60759eb"))
+    (pin "2" (uuid "164f45e7-f1e3-4843-b90b-6af421175f4d"))
+    (pin "3" (uuid "c72880c3-0aca-4829-8f69-96a7315693e7"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "Q1") (unit 1)))))
+  (wire
+    (pts (xy 374.65 90.17) (xy 372.11 90.17))
+    (stroke (width 0) (type default))
+    (uuid "1148ffa6-e3a0-4a9b-bba6-7db60f1ccba0"))
+  (label "GATE_A"
+    (at 372.11 90.17 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "ac7f7037-97b8-4ef7-81f2-32f61e644d5f"))
+  (wire
+    (pts (xy 382.27 95.25) (xy 382.27 97.79))
+    (stroke (width 0) (type default))
+    (uuid "5d070b75-f963-4e8b-8e3c-d61d349b083b"))
+  (label "FB"
+    (at 382.27 97.79 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "b6e4482f-4c57-41cf-86aa-5049d79e24a8"))
+  (wire
+    (pts (xy 382.27 85.09) (xy 382.27 82.55))
+    (stroke (width 0) (type default))
+    (uuid "85f920f9-88e3-4a45-8c37-dddcedbf9af8"))
+  (label "STR_A"
+    (at 382.27 82.55 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "3cd37ae7-5fcd-4c37-94a4-6c85ad1bb68f"))
+  (symbol
+    (lib_id "Transistor_FET:AO3400A")
+    (at 397.51 90.17 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "e91526e1-1f84-4b62-a762-9d81d4ab7651")
+    (property "Reference" "Q2" (at 402.59 88.9 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "AO3400A" (at 402.59 90.17 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Package_TO_SOT_SMD:SOT-23"
+      (at 397.51 90.17 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 397.51 90.17 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "AO3400A" (at 397.51 90.17 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Alpha & Omega" (at 397.51 90.17 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 397.51 90.17 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C20917" (at 397.51 90.17 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C20917.html"
+      (at 397.51 90.17 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see Q1" (at 397.51 90.17 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "9bb4d90f-1f3b-49b1-a00b-fe70c1255f61"))
+    (pin "2" (uuid "d21f4502-b6a0-4298-a16b-33235128cb1b"))
+    (pin "3" (uuid "df2f67a2-837d-45c5-acc8-56c8c7d6d971"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "Q2") (unit 1)))))
+  (wire
+    (pts (xy 392.43 90.17) (xy 389.89 90.17))
+    (stroke (width 0) (type default))
+    (uuid "9d5a39b1-121b-4d5d-b655-64d310105fac"))
+  (label "GATE_B"
+    (at 389.89 90.17 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "7e8722ce-df9f-4f7c-a45f-1942f9f9e355"))
+  (wire
+    (pts (xy 400.05 95.25) (xy 400.05 97.79))
+    (stroke (width 0) (type default))
+    (uuid "7e528ff9-71b6-4c7d-b8cd-5645ec867314"))
+  (label "FB"
+    (at 400.05 97.79 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "c937b7c3-d4c8-4206-b278-17bf06e28912"))
+  (wire
+    (pts (xy 400.05 85.09) (xy 400.05 82.55))
+    (stroke (width 0) (type default))
+    (uuid "e3d64c88-8776-417f-b2e6-7c290a9f9bb8"))
+  (label "STR_B"
+    (at 400.05 82.55 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "5a53ade8-02fc-45ab-9d26-dcbe40b42583"))
+  (symbol
+    (lib_id "Device:R")
+    (at 372.11 111.76 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "67dea444-2fc9-4a64-8e20-d70cb9f8c642")
+    (property "Reference" "R11" (at 374.65 111.76 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "100k" (at 372.11 111.76 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+      (at 372.11 111.76 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 372.11 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "RC0603FR-07100KL" (at 372.11 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Yageo" (at 372.11 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 372.11 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C14675" (at 372.11 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C14675.html"
+      (at 372.11 111.76 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see R5" (at 372.11 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "4b2a5cab-a105-4906-bc2d-7d2adfd088f3"))
+    (pin "2" (uuid "05802607-77d5-4056-b740-e11502922acd"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "R11") (unit 1)))))
+  (wire
+    (pts (xy 372.11 107.95) (xy 372.11 105.41))
+    (stroke (width 0) (type default))
+    (uuid "3c92f65f-383d-41a1-b64b-a29e330ecd5d"))
+  (label "GATE_A"
+    (at 372.11 105.41 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "a06627c7-96be-4bff-a5d9-284da79b4401"))
+  (wire
+    (pts (xy 372.11 115.57) (xy 372.11 118.11))
+    (stroke (width 0) (type default))
+    (uuid "471755ec-ee95-469e-adeb-d9e287ac49dc"))
+  (label "GND"
+    (at 372.11 118.11 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "4228bdae-ba4f-45f4-b13a-fb289dbedd2f"))
+  (symbol
+    (lib_id "Device:R")
+    (at 389.89 111.76 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "21f6d59c-d6f7-45c1-917f-b39962aa1591")
+    (property "Reference" "R12" (at 392.43 111.76 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "100k" (at 389.89 111.76 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+      (at 389.89 111.76 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 389.89 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "RC0603FR-07100KL" (at 389.89 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Yageo" (at 389.89 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 389.89 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C14675" (at 389.89 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C14675.html"
+      (at 389.89 111.76 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see R5" (at 389.89 111.76 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "6e4c4698-e469-40f0-84c2-2bfda75cfe66"))
+    (pin "2" (uuid "91a82a2a-73ae-43f2-8912-00bbda7185fb"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "R12") (unit 1)))))
+  (wire
+    (pts (xy 389.89 107.95) (xy 389.89 105.41))
+    (stroke (width 0) (type default))
+    (uuid "175a2c07-25da-4be5-8a16-8d471886e2a3"))
+  (label "GATE_B"
+    (at 389.89 105.41 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "6a0647fd-d33a-4257-bc7b-9d5348c13609"))
+  (wire
+    (pts (xy 389.89 115.57) (xy 389.89 118.11))
+    (stroke (width 0) (type default))
+    (uuid "e38e9c37-4a67-49e9-8b42-c9ad82deb9cf"))
+  (label "GND"
+    (at 389.89 118.11 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "6cb8e2b7-2360-4c93-9efd-64b30cb3d32f"))
+  (symbol
+    (lib_id "Device:LED")
+    (at 44.45 160.02 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "9d798b55-1543-4c93-9498-fff8e13b8e61")
+    (property "Reference" "D2" (at 44.45 157.48 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "660nm" (at 44.45 162.56 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "LED_SMD:LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder"
+      (at 44.45 160.02 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet"
+      "https://www.sunledusa.com/products/spec/XZM2MR55W-3.pdf"
+      (at 44.45 160.02 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "XZM2MR55W-3" (at 44.45 160.02 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "SunLED" (at 44.45 160.02 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "Digi-Key" (at 44.45 160.02 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN"
+      "1497-1364-1-ND"
+      (at 44.45 160.02 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.digikey.com/en/products/detail/sunled/XZM2MR55W-3/6709143"
+      (at 44.45 160.02 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.69-0.70 @1, $0.48-0.54 @10 (two Digi-Key page copies; highest used), 3,264-17,861 in stock; 660 nm, 30 mA max, 2.10 mm max"
+      (at 44.45 160.02 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "927e2305-1647-4309-9f0d-f93d2af122bd"))
+    (pin "2" (uuid "7500900b-56f6-4289-9b71-585c0a75e2a9"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "D2") (unit 1)))))
+  (wire
+    (pts (xy 40.64 160.02) (xy 38.1 160.02))
+    (stroke (width 0) (type default))
+    (uuid "9cbf89cd-4573-432e-ac2b-c93183ebd118"))
+  (label "A1"
+    (at 38.1 160.02 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "bb0255c6-18cf-4c8e-9421-4c6b84269d73"))
+  (wire
+    (pts (xy 48.26 160.02) (xy 50.8 160.02))
+    (stroke (width 0) (type default))
+    (uuid "af50e3fc-4ba8-4498-9807-567238f473e0"))
+  (label "VOUT"
+    (at 50.8 160.02 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "bb1290a4-f641-43d3-a34a-d4af592aaefa"))
+  (symbol
+    (lib_id "Device:LED")
+    (at 44.45 180.34 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "8fc851d6-0a86-4937-8c23-fc5243fe9b4e")
+    (property "Reference" "D3" (at 44.45 177.8 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "660nm" (at 44.45 182.88 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "LED_SMD:LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder"
+      (at 44.45 180.34 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet"
+      "https://www.sunledusa.com/products/spec/XZM2MR55W-3.pdf"
+      (at 44.45 180.34 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "XZM2MR55W-3" (at 44.45 180.34 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "SunLED" (at 44.45 180.34 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "Digi-Key" (at 44.45 180.34 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN"
+      "1497-1364-1-ND"
+      (at 44.45 180.34 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.digikey.com/en/products/detail/sunled/XZM2MR55W-3/6709143"
+      (at 44.45 180.34 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "see first 660 nm LED"
+      (at 44.45 180.34 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "68f3f02d-19ef-43b3-a7c7-d3e8100cffaf"))
+    (pin "2" (uuid "eb9b31df-a14f-4e3d-857b-edb62cee2026"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "D3") (unit 1)))))
+  (wire
+    (pts (xy 40.64 180.34) (xy 38.1 180.34))
+    (stroke (width 0) (type default))
+    (uuid "81f09ad1-6db6-445d-a4d5-e0f3a37ee981"))
+  (label "A2"
+    (at 38.1 180.34 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "fefc29b0-7508-4c65-8363-f9db8861d4de"))
+  (wire
+    (pts (xy 48.26 180.34) (xy 50.8 180.34))
+    (stroke (width 0) (type default))
+    (uuid "40d26620-e043-43d7-a52d-8cae218b673d"))
+  (label "A1"
+    (at 50.8 180.34 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "3bda71dc-6d62-473b-8fb1-58ef821481c8"))
+  (symbol
+    (lib_id "Device:LED")
+    (at 44.45 199.39 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "4fafb786-796c-49fb-9f2c-bb152905e47f")
+    (property "Reference" "D4" (at 44.45 196.85 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "660nm" (at 44.45 201.93 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "LED_SMD:LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder"
+      (at 44.45 199.39 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet"
+      "https://www.sunledusa.com/products/spec/XZM2MR55W-3.pdf"
+      (at 44.45 199.39 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "XZM2MR55W-3" (at 44.45 199.39 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "SunLED" (at 44.45 199.39 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "Digi-Key" (at 44.45 199.39 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN"
+      "1497-1364-1-ND"
+      (at 44.45 199.39 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.digikey.com/en/products/detail/sunled/XZM2MR55W-3/6709143"
+      (at 44.45 199.39 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "see first 660 nm LED"
+      (at 44.45 199.39 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "be2449bd-fda8-4c27-84be-ded2c1ee19b6"))
+    (pin "2" (uuid "06eb0a67-d627-4189-aca6-dd02db090626"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "D4") (unit 1)))))
+  (wire
+    (pts (xy 40.64 199.39) (xy 38.1 199.39))
+    (stroke (width 0) (type default))
+    (uuid "b2834755-0957-4059-99b8-6f7ab2fa08a8"))
+  (label "A3"
+    (at 38.1 199.39 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "b6f8b5c4-8a7c-427e-9c32-f18bc7669fee"))
+  (wire
+    (pts (xy 48.26 199.39) (xy 50.8 199.39))
+    (stroke (width 0) (type default))
+    (uuid "e5d974aa-9ff2-4d34-9031-b57abf1f9109"))
+  (label "A2"
+    (at 50.8 199.39 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "90c86ad2-d9dc-43e6-8f27-3805d98dcbb8"))
+  (symbol
+    (lib_id "Device:LED")
+    (at 44.45 219.71 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "fa1562f7-f198-49e9-af06-240fc257562d")
+    (property "Reference" "D5" (at 44.45 217.17 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "660nm" (at 44.45 222.25 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "LED_SMD:LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder"
+      (at 44.45 219.71 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet"
+      "https://www.sunledusa.com/products/spec/XZM2MR55W-3.pdf"
+      (at 44.45 219.71 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "XZM2MR55W-3" (at 44.45 219.71 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "SunLED" (at 44.45 219.71 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "Digi-Key" (at 44.45 219.71 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN"
+      "1497-1364-1-ND"
+      (at 44.45 219.71 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.digikey.com/en/products/detail/sunled/XZM2MR55W-3/6709143"
+      (at 44.45 219.71 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "see first 660 nm LED"
+      (at 44.45 219.71 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "d82957d8-1852-4eb9-a60a-ba59428db5e5"))
+    (pin "2" (uuid "e7e71b7c-8a87-4421-997e-cdd84d5a9a26"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "D5") (unit 1)))))
+  (wire
+    (pts (xy 40.64 219.71) (xy 38.1 219.71))
+    (stroke (width 0) (type default))
+    (uuid "06266dae-346b-4e36-9e01-a0ab177c7a9f"))
+  (label "A4"
+    (at 38.1 219.71 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "f0387dec-e130-495e-ba7a-2fdcba1c7044"))
+  (wire
+    (pts (xy 48.26 219.71) (xy 50.8 219.71))
+    (stroke (width 0) (type default))
+    (uuid "cf160d12-be96-4bcf-be9c-c525fff2ff2b"))
+  (label "A3"
+    (at 50.8 219.71 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "a695850a-fe31-46f1-a1a7-3d7ed6807ad5"))
+  (symbol
+    (lib_id "Device:LED")
+    (at 44.45 240.03 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "006a4728-675f-46bb-a180-5afde9209ec6")
+    (property "Reference" "D6" (at 44.45 237.49 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "660nm" (at 44.45 242.57 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "LED_SMD:LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder"
+      (at 44.45 240.03 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet"
+      "https://www.sunledusa.com/products/spec/XZM2MR55W-3.pdf"
+      (at 44.45 240.03 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "XZM2MR55W-3" (at 44.45 240.03 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "SunLED" (at 44.45 240.03 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "Digi-Key" (at 44.45 240.03 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN"
+      "1497-1364-1-ND"
+      (at 44.45 240.03 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.digikey.com/en/products/detail/sunled/XZM2MR55W-3/6709143"
+      (at 44.45 240.03 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "see first 660 nm LED"
+      (at 44.45 240.03 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "fceae3ff-242c-44bc-b096-83b4abfb75e0"))
+    (pin "2" (uuid "de6ffac6-bc4d-4de3-a116-2bab5c921b15"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "D6") (unit 1)))))
+  (wire
+    (pts (xy 40.64 240.03) (xy 38.1 240.03))
+    (stroke (width 0) (type default))
+    (uuid "f4e9fd22-b377-4f60-a90b-fe8c69c04ec1"))
+  (label "A5"
+    (at 38.1 240.03 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "05980ec9-fbbe-4308-9c15-1500b531cf1e"))
+  (wire
+    (pts (xy 48.26 240.03) (xy 50.8 240.03))
+    (stroke (width 0) (type default))
+    (uuid "c26c2d2e-0c91-4a62-ae84-ebf7441b45c9"))
+  (label "A4"
+    (at 50.8 240.03 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "194d7409-ca43-43ca-9278-c6b53ec8efee"))
+  (symbol
+    (lib_id "Device:LED")
+    (at 44.45 260.35 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "bb155b6a-b08f-46e8-ad65-62fea18b2fac")
+    (property "Reference" "D7" (at 44.45 257.81 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "660nm" (at 44.45 262.89 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "LED_SMD:LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder"
+      (at 44.45 260.35 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet"
+      "https://www.sunledusa.com/products/spec/XZM2MR55W-3.pdf"
+      (at 44.45 260.35 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "XZM2MR55W-3" (at 44.45 260.35 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "SunLED" (at 44.45 260.35 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "Digi-Key" (at 44.45 260.35 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN"
+      "1497-1364-1-ND"
+      (at 44.45 260.35 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.digikey.com/en/products/detail/sunled/XZM2MR55W-3/6709143"
+      (at 44.45 260.35 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "see first 660 nm LED"
+      (at 44.45 260.35 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "ba8ac17c-47a4-45cb-9bb8-aa4e56294cfd"))
+    (pin "2" (uuid "c88ba09d-a9d3-4fe3-a690-35ff5384dc4b"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "D7") (unit 1)))))
+  (wire
+    (pts (xy 40.64 260.35) (xy 38.1 260.35))
+    (stroke (width 0) (type default))
+    (uuid "526fe8db-5ca2-480b-89b0-5abad18f4691"))
+  (label "STR_A"
+    (at 38.1 260.35 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "986779ec-2905-48c6-aa8c-3bae4853d8d0"))
+  (wire
+    (pts (xy 48.26 260.35) (xy 50.8 260.35))
+    (stroke (width 0) (type default))
+    (uuid "79b5b5ee-6a22-4a02-b19b-749396a6730a"))
+  (label "A5"
+    (at 50.8 260.35 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "a2e53f6c-1fe0-4ab1-965b-47c5e9d3c952"))
+  (symbol
+    (lib_id "Device:LED")
+    (at 139.7 160.02 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "f50f2c92-4f8a-4c5b-a137-41ec3d5e1d5c")
+    (property "Reference" "D8" (at 139.7 157.48 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "625nm" (at 139.7 162.56 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "LED_SMD:LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder"
+      (at 139.7 160.02 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 139.7 160.02 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "XZM2CRK55W-3" (at 139.7 160.02 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "SunLED" (at 139.7 160.02 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "Digi-Key" (at 139.7 160.02 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN"
+      "1497-1405-1-ND"
+      (at 139.7 160.02 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.digikey.com/en/products/result?keywords=XZM2CRK55W-3"
+      (at 139.7 160.02 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.48 @1, $0.326 @10, 16,312 in stock (digikey.com page; Octopart 14,519); 625 nm, 30 mA max, 1.80 mm max"
+      (at 139.7 160.02 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "84cdb26d-cf34-405f-b2d5-7f9e80376aef"))
+    (pin "2" (uuid "44ef032a-563c-459b-905d-b620c22b7110"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "D8") (unit 1)))))
+  (wire
+    (pts (xy 135.89 160.02) (xy 133.35 160.02))
+    (stroke (width 0) (type default))
+    (uuid "977594ef-e7dc-4dc7-ae38-5c744a607b8e"))
+  (label "B1"
+    (at 133.35 160.02 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "992dd33a-ff03-46fa-a5fe-ee23a66f8b67"))
+  (wire
+    (pts (xy 143.51 160.02) (xy 146.05 160.02))
+    (stroke (width 0) (type default))
+    (uuid "684829fc-ed32-4b10-9a04-d20f01b0ff63"))
+  (label "VOUT"
+    (at 146.05 160.02 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "ea3e5cf5-a9fd-40a9-8a85-8b133dfd8ab3"))
+  (symbol
+    (lib_id "Device:LED")
+    (at 139.7 180.34 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "707e29c5-03ec-4419-9c60-59878918e738")
+    (property "Reference" "D9" (at 139.7 177.8 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "625nm" (at 139.7 182.88 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "LED_SMD:LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder"
+      (at 139.7 180.34 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 139.7 180.34 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "XZM2CRK55W-3" (at 139.7 180.34 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "SunLED" (at 139.7 180.34 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "Digi-Key" (at 139.7 180.34 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN"
+      "1497-1405-1-ND"
+      (at 139.7 180.34 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.digikey.com/en/products/result?keywords=XZM2CRK55W-3"
+      (at 139.7 180.34 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "see first 625 nm LED"
+      (at 139.7 180.34 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "2e34a05e-c65d-4bf7-baf0-05015464fd5c"))
+    (pin "2" (uuid "559bf581-4a39-4750-8e42-ca5c1fc48d9a"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "D9") (unit 1)))))
+  (wire
+    (pts (xy 135.89 180.34) (xy 133.35 180.34))
+    (stroke (width 0) (type default))
+    (uuid "5b990d1f-8ba9-4e35-a27c-47a8a8000d34"))
+  (label "B2"
+    (at 133.35 180.34 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "2223b70f-6689-4502-93ae-abc1db0889b5"))
+  (wire
+    (pts (xy 143.51 180.34) (xy 146.05 180.34))
+    (stroke (width 0) (type default))
+    (uuid "ba54a93c-2505-4f94-b554-21bdd9c63228"))
+  (label "B1"
+    (at 146.05 180.34 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "17b98c6a-5cac-42c6-97cf-21250d12adfd"))
+  (symbol
+    (lib_id "Device:LED")
+    (at 139.7 199.39 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "c2d1b878-5ad7-4b09-9e52-d838cb8bbfbe")
+    (property "Reference" "D10" (at 139.7 196.85 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "625nm" (at 139.7 201.93 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "LED_SMD:LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder"
+      (at 139.7 199.39 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 139.7 199.39 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "XZM2CRK55W-3" (at 139.7 199.39 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "SunLED" (at 139.7 199.39 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "Digi-Key" (at 139.7 199.39 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN"
+      "1497-1405-1-ND"
+      (at 139.7 199.39 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.digikey.com/en/products/result?keywords=XZM2CRK55W-3"
+      (at 139.7 199.39 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "see first 625 nm LED"
+      (at 139.7 199.39 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "46ac1e02-8ae2-44ec-9057-827c88e15127"))
+    (pin "2" (uuid "46443f47-1770-4bbf-91dc-2e266c164ea3"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "D10") (unit 1)))))
+  (wire
+    (pts (xy 135.89 199.39) (xy 133.35 199.39))
+    (stroke (width 0) (type default))
+    (uuid "ebe86d41-24ff-4718-b5b9-a19e273d358a"))
+  (label "B3"
+    (at 133.35 199.39 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "bffd8636-6ff3-4b15-8b58-833c3ff24b0b"))
+  (wire
+    (pts (xy 143.51 199.39) (xy 146.05 199.39))
+    (stroke (width 0) (type default))
+    (uuid "389184e9-ec39-4d91-be08-bf8053daba27"))
+  (label "B2"
+    (at 146.05 199.39 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "9d447d87-268b-4fec-a5c8-50bab2d90fcf"))
+  (symbol
+    (lib_id "Device:LED")
+    (at 139.7 219.71 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "90ca4522-ac19-4b8c-80ca-254f8d037ede")
+    (property "Reference" "D11" (at 139.7 217.17 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "625nm" (at 139.7 222.25 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "LED_SMD:LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder"
+      (at 139.7 219.71 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 139.7 219.71 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "XZM2CRK55W-3" (at 139.7 219.71 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "SunLED" (at 139.7 219.71 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "Digi-Key" (at 139.7 219.71 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN"
+      "1497-1405-1-ND"
+      (at 139.7 219.71 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.digikey.com/en/products/result?keywords=XZM2CRK55W-3"
+      (at 139.7 219.71 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "see first 625 nm LED"
+      (at 139.7 219.71 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "be6a14d5-e63f-4275-8a7a-c0adcc46c7ec"))
+    (pin "2" (uuid "2c66f06f-274b-409a-8756-dd2d93d184ca"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "D11") (unit 1)))))
+  (wire
+    (pts (xy 135.89 219.71) (xy 133.35 219.71))
+    (stroke (width 0) (type default))
+    (uuid "c1a7c036-89ae-4b50-a7b6-ea27859aa340"))
+  (label "B4"
+    (at 133.35 219.71 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "9766855e-3374-4084-8688-ebfc43e9e6ff"))
+  (wire
+    (pts (xy 143.51 219.71) (xy 146.05 219.71))
+    (stroke (width 0) (type default))
+    (uuid "09da2ceb-fb28-434e-b91d-4c468381f93c"))
+  (label "B3"
+    (at 146.05 219.71 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "019c58d6-5de4-4ef8-bde9-fbb3b4320cbd"))
+  (symbol
+    (lib_id "Device:LED")
+    (at 139.7 240.03 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "2cda233c-00d0-4953-8212-ccfa9bed1c9f")
+    (property "Reference" "D12" (at 139.7 237.49 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "625nm" (at 139.7 242.57 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "LED_SMD:LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder"
+      (at 139.7 240.03 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 139.7 240.03 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "XZM2CRK55W-3" (at 139.7 240.03 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "SunLED" (at 139.7 240.03 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "Digi-Key" (at 139.7 240.03 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN"
+      "1497-1405-1-ND"
+      (at 139.7 240.03 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.digikey.com/en/products/result?keywords=XZM2CRK55W-3"
+      (at 139.7 240.03 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "see first 625 nm LED"
+      (at 139.7 240.03 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "d2a6f643-8e61-4f2a-9738-0e1a24a67216"))
+    (pin "2" (uuid "0e69d3ab-4864-4b7a-83c6-63646146ceac"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "D12") (unit 1)))))
+  (wire
+    (pts (xy 135.89 240.03) (xy 133.35 240.03))
+    (stroke (width 0) (type default))
+    (uuid "1d72e2f3-b6d5-40fb-81c2-e7369cc83d6b"))
+  (label "B5"
+    (at 133.35 240.03 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "d88f54d0-f014-49cb-849b-abad10a8f259"))
+  (wire
+    (pts (xy 143.51 240.03) (xy 146.05 240.03))
+    (stroke (width 0) (type default))
+    (uuid "576c36b9-0b81-4bb7-a4a5-fd5623db22ae"))
+  (label "B4"
+    (at 146.05 240.03 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "381e3445-b851-4e19-8a41-d531ae704160"))
+  (symbol
+    (lib_id "Device:LED")
+    (at 139.7 260.35 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "05c1fe93-22ff-44e1-830f-062740299dca")
+    (property "Reference" "D13" (at 139.7 257.81 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "625nm" (at 139.7 262.89 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "LED_SMD:LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder"
+      (at 139.7 260.35 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 139.7 260.35 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "XZM2CRK55W-3" (at 139.7 260.35 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "SunLED" (at 139.7 260.35 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "Digi-Key" (at 139.7 260.35 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN"
+      "1497-1405-1-ND"
+      (at 139.7 260.35 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.digikey.com/en/products/result?keywords=XZM2CRK55W-3"
+      (at 139.7 260.35 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "see first 625 nm LED"
+      (at 139.7 260.35 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "1a01eb71-3418-43da-86e8-ad86cb07b19d"))
+    (pin "2" (uuid "9eb58e8b-4f03-496a-9a61-a9c84f9e4ecc"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "D13") (unit 1)))))
+  (wire
+    (pts (xy 135.89 260.35) (xy 133.35 260.35))
+    (stroke (width 0) (type default))
+    (uuid "ebb2352b-9f49-42a3-9ac6-6a24cdb89a34"))
+  (label "STR_B"
+    (at 133.35 260.35 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "50fdf414-275f-4e66-b97a-9903a42d7ccc"))
+  (wire
+    (pts (xy 143.51 260.35) (xy 146.05 260.35))
+    (stroke (width 0) (type default))
+    (uuid "48044261-54c7-4d00-b0df-de94c1fe43f4"))
+  (label "B5"
+    (at 146.05 260.35 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "f79d00aa-3003-4444-9f5c-2fbd66ddd379"))
+  (symbol
+    (lib_id "Device:LED")
+    (at 265.43 160.02 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "414b0e51-86d5-4862-9b58-fb042c424ffb")
+    (property "Reference" "D14" (at 265.43 157.48 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "amber" (at 265.43 162.56 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "LED_SMD:LED_0603_1608Metric"
+      (at 265.43 160.02 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 265.43 160.02 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "LTST-C190KSKT" (at 265.43 160.02 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Lite-On" (at 265.43 160.02 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 265.43 160.02 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C125095" (at 265.43 160.02 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C125095.html"
+      (at 265.43 160.02 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.0215-0.0248 @20+ (MOQ 20; highest used), 54-169 k in stock; 591 nm"
+      (at 265.43 160.02 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "7e00bf5f-af53-48dc-bb94-781eb82c3c92"))
+    (pin "2" (uuid "37f6d44c-5bf8-4857-8c4a-9a30e52b1220"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "D14") (unit 1)))))
+  (wire
+    (pts (xy 261.62 160.02) (xy 259.08 160.02))
+    (stroke (width 0) (type default))
+    (uuid "bbd3cbfe-5064-4554-b569-2ca425e58e1d"))
+  (label "GND"
+    (at 259.08 160.02 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "e9ac7dde-0773-4487-8b0c-d458dbfb8a66"))
+  (wire
+    (pts (xy 269.24 160.02) (xy 271.78 160.02))
+    (stroke (width 0) (type default))
+    (uuid "a2218bff-a5b3-4943-8598-dd9f231d2e69"))
+  (label "SEAM1"
+    (at 271.78 160.02 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "3c8b582d-7a1c-434c-a46a-27761761c2cf"))
+  (symbol
+    (lib_id "Device:R")
+    (at 234.95 154.94 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "f5511a31-6e6f-4325-9b1e-2ac65e8acdbf")
+    (property "Reference" "R13" (at 237.49 154.94 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "1k" (at 234.95 154.94 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+      (at 234.95 154.94 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 234.95 154.94 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "RC0603FR-071KL" (at 234.95 154.94 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Yageo" (at 234.95 154.94 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 234.95 154.94 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C22548" (at 234.95 154.94 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C22548.html"
+      (at 234.95 154.94 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $0.0037-0.0058 @100+ (cached pages disagree; highest used), 2.8-9.9 M in stock"
+      (at 234.95 154.94 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "94170bf0-69c1-4853-9ad8-04c31545181d"))
+    (pin "2" (uuid "35ac10d6-5f43-4076-8426-331d0afaf67f"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "R13") (unit 1)))))
+  (wire
+    (pts (xy 234.95 151.13) (xy 234.95 148.59))
+    (stroke (width 0) (type default))
+    (uuid "c11e5787-289a-468a-b849-70c9178d6cdf"))
+  (label "SEAM_PWM"
+    (at 234.95 148.59 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "c78f56bc-97e8-4f62-bc63-f4cfea31c9b5"))
+  (wire
+    (pts (xy 234.95 158.75) (xy 234.95 161.29))
+    (stroke (width 0) (type default))
+    (uuid "55fa8e98-1b4e-417f-8aeb-73f6a83819dc"))
+  (label "SEAM1"
+    (at 234.95 161.29 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "c5548426-9e8b-4d5b-85ac-1599676f45e2"))
+  (symbol
+    (lib_id "Device:LED")
+    (at 265.43 185.42 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "fbfdc897-fe3d-4ee6-810d-da91c6b803c8")
+    (property "Reference" "D15" (at 265.43 182.88 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "amber" (at 265.43 187.96 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "LED_SMD:LED_0603_1608Metric"
+      (at 265.43 185.42 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 265.43 185.42 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "LTST-C190KSKT" (at 265.43 185.42 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Lite-On" (at 265.43 185.42 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 265.43 185.42 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C125095" (at 265.43 185.42 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C125095.html"
+      (at 265.43 185.42 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see D14" (at 265.43 185.42 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "50130b50-bfc4-4da5-9e1c-1880632e7ee2"))
+    (pin "2" (uuid "b7cf0625-58cf-43c8-b9e9-ba0f0d64b7f6"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "D15") (unit 1)))))
+  (wire
+    (pts (xy 261.62 185.42) (xy 259.08 185.42))
+    (stroke (width 0) (type default))
+    (uuid "ca59bcd7-14ba-46ad-9081-73a72fdbf844"))
+  (label "GND"
+    (at 259.08 185.42 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "f68bda72-3858-4075-90cc-e43bc81ac1f2"))
+  (wire
+    (pts (xy 269.24 185.42) (xy 271.78 185.42))
+    (stroke (width 0) (type default))
+    (uuid "b6e96c68-cd21-406e-88c6-8a6b73f4b1e7"))
+  (label "SEAM2"
+    (at 271.78 185.42 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "b957a398-3f97-404d-a09f-f9165daca255"))
+  (symbol
+    (lib_id "Device:R")
+    (at 234.95 180.34 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "4cbf79e8-81f3-454d-8874-98f016ccf84a")
+    (property "Reference" "R14" (at 237.49 180.34 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "1k" (at 234.95 180.34 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+      (at 234.95 180.34 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 234.95 180.34 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "RC0603FR-071KL" (at 234.95 180.34 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Yageo" (at 234.95 180.34 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 234.95 180.34 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C22548" (at 234.95 180.34 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C22548.html"
+      (at 234.95 180.34 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see R13" (at 234.95 180.34 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b9c21b27-3341-4d9d-992a-18a2dafec69d"))
+    (pin "2" (uuid "e8a1e088-9da1-41d4-9274-abe19a19a965"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "R14") (unit 1)))))
+  (wire
+    (pts (xy 234.95 176.53) (xy 234.95 173.99))
+    (stroke (width 0) (type default))
+    (uuid "cbd4192e-22e7-4423-ab4b-31c3a13fc3cd"))
+  (label "SEAM_PWM"
+    (at 234.95 173.99 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "10c3496a-8ce1-4d40-9d38-e8de8e04d6a1"))
+  (wire
+    (pts (xy 234.95 184.15) (xy 234.95 186.69))
+    (stroke (width 0) (type default))
+    (uuid "8d7f340e-28f2-4179-9a92-9380dcbf7b7f"))
+  (label "SEAM2"
+    (at 234.95 186.69 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "28458600-8134-4aca-be31-dca49e237c84"))
+  (symbol
+    (lib_id "Device:LED")
+    (at 265.43 209.55 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "c56c622f-e29d-42eb-86f8-db882dc4e21c")
+    (property "Reference" "D16" (at 265.43 207.01 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "amber" (at 265.43 212.09 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "LED_SMD:LED_0603_1608Metric"
+      (at 265.43 209.55 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 265.43 209.55 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "LTST-C190KSKT" (at 265.43 209.55 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Lite-On" (at 265.43 209.55 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 265.43 209.55 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C125095" (at 265.43 209.55 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C125095.html"
+      (at 265.43 209.55 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see D14" (at 265.43 209.55 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "e79791e3-0bad-4d42-9d46-bc36bc268a0e"))
+    (pin "2" (uuid "07042781-042f-478e-ba8b-d769058f6eb9"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "D16") (unit 1)))))
+  (wire
+    (pts (xy 261.62 209.55) (xy 259.08 209.55))
+    (stroke (width 0) (type default))
+    (uuid "11bde276-05c8-49a6-9fff-3db27d191662"))
+  (label "GND"
+    (at 259.08 209.55 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "ace0b2d4-e589-4381-80cf-4e3cc59e8609"))
+  (wire
+    (pts (xy 269.24 209.55) (xy 271.78 209.55))
+    (stroke (width 0) (type default))
+    (uuid "43f7744a-0e21-46b8-bf71-59b24992b9bb"))
+  (label "SEAM3"
+    (at 271.78 209.55 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "1f98eea5-5536-42bf-a4a4-b86f3f21fa9d"))
+  (symbol
+    (lib_id "Device:R")
+    (at 234.95 204.47 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "be41dbb5-912b-4466-89a6-0222be0e3450")
+    (property "Reference" "R15" (at 237.49 204.47 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "1k" (at 234.95 204.47 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+      (at 234.95 204.47 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 234.95 204.47 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "RC0603FR-071KL" (at 234.95 204.47 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Yageo" (at 234.95 204.47 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 234.95 204.47 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C22548" (at 234.95 204.47 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C22548.html"
+      (at 234.95 204.47 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see R13" (at 234.95 204.47 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "9c6ef117-ec20-408d-a0ef-d874a12c4ce0"))
+    (pin "2" (uuid "1f0b89b9-9f0d-407a-9dae-ee207a14a717"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "R15") (unit 1)))))
+  (wire
+    (pts (xy 234.95 200.66) (xy 234.95 198.12))
+    (stroke (width 0) (type default))
+    (uuid "f8a89f04-05a5-4c22-8566-58f35080f1be"))
+  (label "SEAM_PWM"
+    (at 234.95 198.12 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "5325b8ef-d68a-4974-a01f-c5ddf45c9390"))
+  (wire
+    (pts (xy 234.95 208.28) (xy 234.95 210.82))
+    (stroke (width 0) (type default))
+    (uuid "af5269b4-67d4-40fb-85e0-b87e1598ce7a"))
+  (label "SEAM3"
+    (at 234.95 210.82 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "3a1366dd-8ec8-4d9f-a3ff-aa02c0233357"))
+  (symbol
+    (lib_id "Device:LED")
+    (at 265.43 234.95 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "0ec0d39a-11d5-4c36-9790-d14ab2212893")
+    (property "Reference" "D17" (at 265.43 232.41 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "amber" (at 265.43 237.49 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "LED_SMD:LED_0603_1608Metric"
+      (at 265.43 234.95 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 265.43 234.95 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "LTST-C190KSKT" (at 265.43 234.95 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Lite-On" (at 265.43 234.95 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 265.43 234.95 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C125095" (at 265.43 234.95 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C125095.html"
+      (at 265.43 234.95 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see D14" (at 265.43 234.95 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "5fa4a958-158b-4c69-ab0d-acfc31ffc9a1"))
+    (pin "2" (uuid "968b0073-18f5-4bd0-9f3c-cac897e4035b"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "D17") (unit 1)))))
+  (wire
+    (pts (xy 261.62 234.95) (xy 259.08 234.95))
+    (stroke (width 0) (type default))
+    (uuid "8b8ae250-35ae-426b-b106-bfec4590eb5d"))
+  (label "GND"
+    (at 259.08 234.95 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "8c6dfd2a-fc64-425b-8abe-e5443d887fcd"))
+  (wire
+    (pts (xy 269.24 234.95) (xy 271.78 234.95))
+    (stroke (width 0) (type default))
+    (uuid "936ffb51-f14f-41bd-97f0-65defe3ece79"))
+  (label "SEAM4"
+    (at 271.78 234.95 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "d14dbf65-361c-4262-a88d-dd3280bb8232"))
+  (symbol
+    (lib_id "Device:R")
+    (at 234.95 229.87 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "e6a32607-5ed9-4842-b47f-5eecfaecaf25")
+    (property "Reference" "R16" (at 237.49 229.87 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "1k" (at 234.95 229.87 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+      (at 234.95 229.87 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 234.95 229.87 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "RC0603FR-071KL" (at 234.95 229.87 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Yageo" (at 234.95 229.87 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 234.95 229.87 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C22548" (at 234.95 229.87 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C22548.html"
+      (at 234.95 229.87 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see R13" (at 234.95 229.87 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "94959eb3-acdd-43c4-87b3-394763748120"))
+    (pin "2" (uuid "7372070e-3841-4de6-b835-f620f59e5d39"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "R16") (unit 1)))))
+  (wire
+    (pts (xy 234.95 226.06) (xy 234.95 223.52))
+    (stroke (width 0) (type default))
+    (uuid "19b74931-3bff-4dfb-b681-734a2fbab370"))
+  (label "SEAM_PWM"
+    (at 234.95 223.52 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "8d6e8b61-57dd-4a7a-94ee-1f91fecc5060"))
+  (wire
+    (pts (xy 234.95 233.68) (xy 234.95 236.22))
+    (stroke (width 0) (type default))
+    (uuid "5de8f46a-97fa-45e4-b9b7-b5deb5b6572e"))
+  (label "SEAM4"
+    (at 234.95 236.22 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "4c286881-ef95-4fe4-a1ed-05676634d062"))
+  (symbol
+    (lib_id "Device:LED")
+    (at 265.43 260.35 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "f0a61227-5dbe-4611-8c7f-7710d36fc3d6")
+    (property "Reference" "D18" (at 265.43 257.81 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "amber" (at 265.43 262.89 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "LED_SMD:LED_0603_1608Metric"
+      (at 265.43 260.35 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 265.43 260.35 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "LTST-C190KSKT" (at 265.43 260.35 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Lite-On" (at 265.43 260.35 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 265.43 260.35 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C125095" (at 265.43 260.35 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C125095.html"
+      (at 265.43 260.35 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see D14" (at 265.43 260.35 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "d25fed0b-97ac-4451-8e1b-7e0beb6bf228"))
+    (pin "2" (uuid "9f7da5e5-ec1b-4ebf-bc50-15020ed6e74b"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "D18") (unit 1)))))
+  (wire
+    (pts (xy 261.62 260.35) (xy 259.08 260.35))
+    (stroke (width 0) (type default))
+    (uuid "f4b22df6-762e-49da-bcd6-9d61dd8a2bc5"))
+  (label "GND"
+    (at 259.08 260.35 180)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "ec6d9ed6-e76a-4956-812a-9a4335ab303b"))
+  (wire
+    (pts (xy 269.24 260.35) (xy 271.78 260.35))
+    (stroke (width 0) (type default))
+    (uuid "c7fcd2c1-093a-4876-8e56-37561973c494"))
+  (label "SEAM5"
+    (at 271.78 260.35 0)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "0509121d-5399-4e2e-ba77-56850b17e4eb"))
+  (symbol
+    (lib_id "Device:R")
+    (at 234.95 255.27 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "eed560f0-f0d6-442e-ae00-37b28474db09")
+    (property "Reference" "R17" (at 237.49 255.27 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "1k" (at 234.95 255.27 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+      (at 234.95 255.27 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 234.95 255.27 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "RC0603FR-071KL" (at 234.95 255.27 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Yageo" (at 234.95 255.27 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "LCSC" (at 234.95 255.27 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN" "C22548" (at 234.95 255.27 0) (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.lcsc.com/product-detail/C22548.html"
+      (at 234.95 255.27 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see R13" (at 234.95 255.27 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "df269428-48f6-4181-8e10-97cfaff7059a"))
+    (pin "2" (uuid "7f3c77a3-ba28-4045-ae4b-9a080982b7ee"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "R17") (unit 1)))))
+  (wire
+    (pts (xy 234.95 251.46) (xy 234.95 248.92))
+    (stroke (width 0) (type default))
+    (uuid "bdb3916a-64ae-40c9-814e-341d95d3bc82"))
+  (label "SEAM_PWM"
+    (at 234.95 248.92 90)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid "a48142cd-54a2-40eb-ad4e-e82ff0e70b9d"))
+  (wire
+    (pts (xy 234.95 259.08) (xy 234.95 261.62))
+    (stroke (width 0) (type default))
+    (uuid "06b7ad67-d552-403f-a2ec-51834277a0c5"))
+  (label "SEAM5"
+    (at 234.95 261.62 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "e5e91f3c-a6f6-4d12-a87d-f727f404b489"))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 325.12 199.39 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "98af30c1-8cc1-4b1d-be2a-52836056b95f")
+    (property "Reference" "H1" (at 325.12 193.04 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "locating pin" (at 325.12 194.31 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "vf:LocatingPin_D1.0mm"
+      (at 325.12 199.39 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 325.12 199.39 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "PRPC040SAAN-RC" (at 325.12 199.39 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Manufacturer" "Sullins" (at 325.12 199.39 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor" "Digi-Key" (at 325.12 199.39 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Distributor PN"
+      "S1011EC-40-ND"
+      (at 325.12 199.39 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "URL"
+      "https://www.digikey.com/en/products/detail/PRPC040SAAN-RC/S1011EC-40-ND/2775214"
+      (at 325.12 199.39 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Verified"
+      "A (re-checked 2026-10-12): $1.23 @1, $1.04 @10, 46-48 k in stock (digikey.com page; Octopart ~$1.23); one unattributed result shows $0.55 @1; 5.84 mm posts"
+      (at 325.12 199.39 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "3c597d62-ad8a-4a7f-b397-340d9f49489c"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "H1") (unit 1)))))
+  (wire
+    (pts (xy 325.12 199.39) (xy 325.12 201.93))
+    (stroke (width 0) (type default))
+    (uuid "83719f1f-53cf-463d-8ecb-2bfd0b8769c2"))
+  (label "GND"
+    (at 325.12 201.93 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "42c1cb11-5e1c-47f0-b3bd-088274626bc6"))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 350.52 199.39 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "33f9b6ee-d824-478c-a83e-4aa7da31a34d")
+    (property "Reference" "H2" (at 350.52 193.04 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "locating pin" (at 350.52 194.31 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "vf:LocatingPin_D1.0mm"
+      (at 350.52 199.39 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 350.52 199.39 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see H1" (at 350.52 199.39 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "f93e4aa0-89c0-4b0f-9f32-bcbb2ec72892"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "H2") (unit 1)))))
+  (wire
+    (pts (xy 350.52 199.39) (xy 350.52 201.93))
+    (stroke (width 0) (type default))
+    (uuid "b77ad5e4-6971-4def-b019-427487a04f12"))
+  (label "GND"
+    (at 350.52 201.93 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "6fd2eab4-93ad-4551-8ac5-a49c85e6170c"))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 374.65 199.39 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "dc617a11-3ac0-4bbd-a05a-02d0156ec963")
+    (property "Reference" "H3" (at 374.65 193.04 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "locating pin" (at 374.65 194.31 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "vf:LocatingPin_D1.0mm"
+      (at 374.65 199.39 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 374.65 199.39 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see H1" (at 374.65 199.39 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "bab280ec-13ac-4ca5-bdf1-2d10b2156eb6"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "H3") (unit 1)))))
+  (wire
+    (pts (xy 374.65 199.39) (xy 374.65 201.93))
+    (stroke (width 0) (type default))
+    (uuid "4263e2ff-c381-4bba-8644-e0be8d41cddf"))
+  (label "GND"
+    (at 374.65 201.93 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "efbf47f1-86ad-457f-8189-393d3654addd"))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 325.12 219.71 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "368f2ce9-8b00-4645-a3b4-878d8df47463")
+    (property "Reference" "H4" (at 325.12 213.36 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "locating pin" (at 325.12 214.63 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "vf:LocatingPin_D1.0mm"
+      (at 325.12 219.71 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 325.12 219.71 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see H1" (at 325.12 219.71 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b9af0557-5879-494b-ad69-800d90aa2d83"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "H4") (unit 1)))))
+  (wire
+    (pts (xy 325.12 219.71) (xy 325.12 222.25))
+    (stroke (width 0) (type default))
+    (uuid "c7036ff2-edf3-47bb-98cb-87b928eccfcc"))
+  (label "GND"
+    (at 325.12 222.25 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "28ff6d97-0124-45f9-8b2c-4e13604d8fcf"))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 350.52 219.71 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "6f6a9655-7be9-4047-ba0a-af6538fcf634")
+    (property "Reference" "H5" (at 350.52 213.36 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "locating pin" (at 350.52 214.63 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "vf:LocatingPin_D1.0mm"
+      (at 350.52 219.71 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 350.52 219.71 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see H1" (at 350.52 219.71 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "2f9f87bc-6254-46c7-a7f1-cfbf71c752bf"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "H5") (unit 1)))))
+  (wire
+    (pts (xy 350.52 219.71) (xy 350.52 222.25))
+    (stroke (width 0) (type default))
+    (uuid "3e9c5d18-9275-41f6-b9a8-c937180f43f2"))
+  (label "GND"
+    (at 350.52 222.25 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "e0a4f90c-f571-4ed0-ba8a-bba496bbf58f"))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 374.65 219.71 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "82e23189-60fb-4b90-a8ee-809597806a67")
+    (property "Reference" "H6" (at 374.65 213.36 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "locating pin" (at 374.65 214.63 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint"
+      "vf:LocatingPin_D1.0mm"
+      (at 374.65 219.71 0)
+      (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "~" (at 374.65 219.71 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Verified" "see H1" (at 374.65 219.71 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "a45509d6-2061-441c-a2bf-d97cbe3f5a38"))
+    (instances
+      (project "vein_finder" (path "/2089f64b-be8a-4d2d-9b7c-6b17eef74cde" (reference "H6") (unit 1)))))
+  (wire
+    (pts (xy 374.65 219.71) (xy 374.65 222.25))
+    (stroke (width 0) (type default))
+    (uuid "12866482-3976-443a-89da-ea11750fa430"))
+  (label "GND"
+    (at 374.65 222.25 270)
+    (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right bottom))
+    (uuid "1f083b37-c192-4a17-bcac-c1608c912da1"))
+  (sheet_instances (path "/" (page "1"))))

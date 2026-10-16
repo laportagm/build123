@@ -1,0 +1,227 @@
+{
+ "inputs": {
+  "driver": {
+   "name": "TPS61169DCKR",
+   "v_fb": 0.204,
+   "f_sw": 1200000.0,
+   "i_lim": 1.2,
+   "v_ovp": 36.0,
+   "vin_min": 2.7,
+   "i_q_on": 0.0003,
+   "i_q_off": 2e-06,
+   "pwm_analog_band": [
+    5000.0,
+    100000.0
+   ],
+   "source": "TI SNVSA40B / ZHCSD24B via TI document viewer: VREF 188/204/220 mV, 1.2 MHz, ILIM 1.2 A min, OVP 36/37.5/39 V, Iq 0.3 mA typ, shutdown 1 uA typ / 2 uA max"
+  },
+  "led_a": {
+   "name": "SunLED XZM2MR55W-3 (660 nm)",
+   "vf_at": [
+    2.1,
+    0.02
+   ],
+   "i_max": 0.03,
+   "source": "Digi-Key listing / SunLED base datasheet: Vf 2.1 V typ (2.5 max) @ 20 mA, 30 mA DC max"
+  },
+  "led_b": {
+   "name": "SunLED XZM2CRK55W-3 (625 nm)",
+   "vf_at": [
+    2.2,
+    0.02
+   ],
+   "i_max": 0.03,
+   "source": "Digi-Key listing: Vf 2.2 V typ @ 20 mA; SunLED datasheet copy: 30 mA DC max"
+  },
+  "ind": {
+   "name": "Sunlord SWPA4018S100MT",
+   "L": 1e-05,
+   "i_sat": 1.3,
+   "dcr": 0.18,
+   "source": "Sunlord SWPA4018S datasheet (alfatec mirror): 10 uH, Isat 1.30 A typ, DCR 0.18 ohm typ"
+  },
+  "n_per_bank": 6,
+  "i_cap_a": 0.023,
+  "i_cap_b": 0.024878048780487806,
+  "levels": [
+   0.4,
+   0.7,
+   1.0
+  ],
+  "eta": 0.8,
+  "v_d_schottky": 0.35,
+  "batt_mah": 600.0,
+  "batt_v_nom": 3.7,
+  "batt_usable": 0.9,
+  "i_mcu_active": 0.0015,
+  "i_seam": 0.004
+ },
+ "levels": [
+  {
+   "bank": "A 660 nm",
+   "level": 0.4,
+   "i_led_mA": 9.2,
+   "v_out": 12.5,
+   "p_led_W": 0.115,
+   "p_bat_W": 0.165,
+   "runtime_h": 12.1,
+   "duty_3V0": 0.813,
+   "i_peak_3V0_mA": 122.9,
+   "ccm_3V0": false,
+   "duty_3V7": 0.77,
+   "within_led_rating": true,
+   "within_ovp": true,
+   "peak_vs_isat": 0.095,
+   "peak_vs_ilim": 0.102
+  },
+  {
+   "bank": "A 660 nm",
+   "level": 0.7,
+   "i_led_mA": 16.1,
+   "v_out": 12.72,
+   "p_led_W": 0.205,
+   "p_bat_W": 0.277,
+   "runtime_h": 7.2,
+   "duty_3V0": 0.816,
+   "i_peak_3V0_mA": 164.4,
+   "ccm_3V0": false,
+   "duty_3V7": 0.774,
+   "within_led_rating": true,
+   "within_ovp": true,
+   "peak_vs_isat": 0.126,
+   "peak_vs_ilim": 0.137
+  },
+  {
+   "bank": "A 660 nm",
+   "level": 1.0,
+   "i_led_mA": 23.0,
+   "v_out": 12.86,
+   "p_led_W": 0.296,
+   "p_bat_W": 0.391,
+   "runtime_h": 5.1,
+   "duty_3V0": 0.818,
+   "i_peak_3V0_mA": 225.5,
+   "ccm_3V0": true,
+   "duty_3V7": 0.776,
+   "within_led_rating": true,
+   "within_ovp": true,
+   "peak_vs_isat": 0.173,
+   "peak_vs_ilim": 0.188
+  },
+  {
+   "bank": "B 625 nm",
+   "level": 0.4,
+   "i_led_mA": 10.0,
+   "v_out": 13.13,
+   "p_led_W": 0.131,
+   "p_bat_W": 0.185,
+   "runtime_h": 10.8,
+   "duty_3V0": 0.822,
+   "i_peak_3V0_mA": 131.8,
+   "ccm_3V0": false,
+   "duty_3V7": 0.78,
+   "within_led_rating": true,
+   "within_ovp": true,
+   "peak_vs_isat": 0.101,
+   "peak_vs_ilim": 0.11
+  },
+  {
+   "bank": "B 625 nm",
+   "level": 0.7,
+   "i_led_mA": 17.4,
+   "v_out": 13.35,
+   "p_led_W": 0.232,
+   "p_bat_W": 0.312,
+   "runtime_h": 6.4,
+   "duty_3V0": 0.825,
+   "i_peak_3V0_mA": 176.2,
+   "ccm_3V0": false,
+   "duty_3V7": 0.784,
+   "within_led_rating": true,
+   "within_ovp": true,
+   "peak_vs_isat": 0.136,
+   "peak_vs_ilim": 0.147
+  },
+  {
+   "bank": "B 625 nm",
+   "level": 1.0,
+   "i_led_mA": 24.9,
+   "v_out": 13.49,
+   "p_led_W": 0.336,
+   "p_bat_W": 0.441,
+   "runtime_h": 4.5,
+   "duty_3V0": 0.827,
+   "i_peak_3V0_mA": 243.2,
+   "ccm_3V0": true,
+   "duty_3V7": 0.786,
+   "within_led_rating": true,
+   "within_ovp": true,
+   "peak_vs_isat": 0.187,
+   "peak_vs_ilim": 0.203
+  }
+ ],
+ "sense_resistor": {
+  "R_ohm": 8.2,
+  "tol": 0.01,
+  "ceiling_mA": [
+   22.7,
+   24.9,
+   27.1
+  ],
+  "note": "I = VREF / R at 100 % CTRL duty; VREF 188/204/220 mV"
+ },
+ "duty_for_caps": {
+  "bank_A": 0.925,
+  "bank_B": 1.0,
+  "worst_case_A_mA": 25.1,
+  "note": "duty = cap / typical ceiling; worst case = same duty at VREF max, R min"
+ },
+ "charger": {
+  "i_charge_mA": [
+   223,
+   245,
+   268
+  ],
+  "c_rate": [
+   0.37,
+   0.41,
+   0.45
+  ],
+  "i_term_mA": 24.5,
+  "i_pre_mA": 49.1,
+  "t_full_h_estimate": 3.0,
+  "note": "cell max 0.5C = 300 mA; ~80 % in constant current, then ~1 h constant voltage (estimate)"
+ },
+ "standby": {
+  "total_uA": 3.7,
+  "years_600mAh": 18.5,
+  "note": "excludes the cell's protection circuit (not verified, typically a few uA)"
+ },
+ "ntc": {
+  "25 C": {
+   "ratio": 0.5,
+   "K_per_lsb": 0.1028
+  },
+  "37 C": {
+   "ratio": 0.3921,
+   "K_per_lsb": 0.1167
+  },
+  "41 C": {
+   "ratio": 0.3595,
+   "K_per_lsb": 0.1239
+  },
+  "45 C": {
+   "ratio": 0.329,
+   "K_per_lsb": 0.1326
+  }
+ },
+ "boost_worst": {
+  "duty": 0.847,
+  "i_in": 0.172,
+  "ripple": 0.212,
+  "i_pk": 0.278,
+  "ccm": true,
+  "case": "VIN 3.0 V, VOUT 15.2 V (6 x Vf max 2.5 V + VREF max), I 27.1 mA",
+  "ovp_margin_V": 20.8
+ }
+}

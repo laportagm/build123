@@ -1,0 +1,30 @@
+[
+ {
+  "lamp": "SunLED XZM2MR55W-3, 660 nm, 6 lit",
+  "p_opt_mW": 16.6,
+  "beam_half_angle_deg": 20.0,
+  "I_e_mW_per_sr": 32.1,
+  "alpha_mrad": 1.88,
+  "radiance_W_m2_sr": 228328,
+  "L_R_exempt_limit": 14933333,
+  "retinal_thermal_fraction": 0.0153,
+  "small_source": true,
+  "E_B_W_m2": 0.00482,
+  "blue_light_fraction": 0.482,
+  "group": "Exempt"
+ },
+ {
+  "lamp": "SunLED XZM2CRK55W-3, 625 nm, 6 lit",
+  "p_opt_mW": 10.2,
+  "beam_half_angle_deg": 17.5,
+  "I_e_mW_per_sr": 25.3,
+  "alpha_mrad": 1.88,
+  "radiance_W_m2_sr": 179735,
+  "L_R_exempt_limit": 14933333,
+  "retinal_thermal_fraction": 0.012,
+  "small_source": true,
+  "E_B_W_m2": 0.00379,
+  "blue_light_fraction": 0.379,
+  "group": "Exempt"
+ }
+]

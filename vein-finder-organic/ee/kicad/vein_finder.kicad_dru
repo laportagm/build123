@@ -1,0 +1,4 @@
+(version 1)
+(rule "USB-C land pattern at the notch (USB4515 datasheet layout)"
+  (constraint edge_clearance (min 0.15mm))
+  (condition "A.Type == 'Pad' && A.intersectsCourtyard('J1')"))

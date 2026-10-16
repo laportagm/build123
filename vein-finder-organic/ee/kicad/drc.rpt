@@ -1,0 +1,46 @@
+** Drc report for /home/user/build123/vein-finder-organic/ee/kicad/vein_finder.kicad_pcb **
+** Created on 2026-10-12 15:22:35 **
+
+** Found 12 DRC violations **
+[lib_footprint_mismatch]: Footprint 'LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder' does not match copy in library 'LED_SMD'.
+    Local override; Severity: warning
+    @(105.2055 mm, 82.2756 mm): Footprint D8
+[lib_footprint_mismatch]: Footprint 'LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder' does not match copy in library 'LED_SMD'.
+    Local override; Severity: warning
+    @(99.1815 mm, 114.8358 mm): Footprint D7
+[lib_footprint_mismatch]: Footprint 'LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder' does not match copy in library 'LED_SMD'.
+    Local override; Severity: warning
+    @(127.9811 mm, 103.7177 mm): Footprint D11
+[lib_footprint_mismatch]: Footprint 'LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder' does not match copy in library 'LED_SMD'.
+    Local override; Severity: warning
+    @(119.6186 mm, 115.6404 mm): Footprint D12
+[lib_footprint_mismatch]: Footprint 'LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder' does not match copy in library 'LED_SMD'.
+    Local override; Severity: warning
+    @(99.1815 mm, 85.1642 mm): Footprint D2
+[lib_footprint_mismatch]: Footprint 'LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder' does not match copy in library 'LED_SMD'.
+    Local override; Severity: warning
+    @(112.6275 mm, 81.8276 mm): Footprint D3
+[lib_footprint_mismatch]: Footprint 'LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder' does not match copy in library 'LED_SMD'.
+    Local override; Severity: warning
+    @(127.9811 mm, 96.2823 mm): Footprint D10
+[lib_footprint_mismatch]: Footprint 'LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder' does not match copy in library 'LED_SMD'.
+    Local override; Severity: warning
+    @(125.0324 mm, 89.4564 mm): Footprint D4
+[lib_footprint_mismatch]: Footprint 'LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder' does not match copy in library 'LED_SMD'.
+    Local override; Severity: warning
+    @(119.6186 mm, 84.3596 mm): Footprint D9
+[lib_footprint_mismatch]: Footprint 'LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder' does not match copy in library 'LED_SMD'.
+    Local override; Severity: warning
+    @(125.0324 mm, 110.5436 mm): Footprint D5
+[lib_footprint_mismatch]: Footprint 'LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder' does not match copy in library 'LED_SMD'.
+    Local override; Severity: warning
+    @(105.2055 mm, 117.7244 mm): Footprint D13
+[lib_footprint_mismatch]: Footprint 'LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder' does not match copy in library 'LED_SMD'.
+    Local override; Severity: warning
+    @(112.6275 mm, 118.1724 mm): Footprint D6
+
+** Found 0 unconnected pads **
+
+** Found 0 Footprint errors **
+
+** End of Report **
